@@ -180,7 +180,7 @@ function DrivenByValuesSection() {
   const ActiveIcon = activeIdx < 4 ? coreValues[activeIdx].icon : null;
 
   return (
-    <div ref={containerRef} className="h-[250vh] w-full relative mb-16">
+    <div ref={containerRef} className="h-[600vh] w-full relative mb-16">
       
       {/* The 1-Screen Sticky Slideshow Container */}
       <div className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden bg-[#FAFAFA] rounded-[48px] border border-slate-100">

@@ -69,7 +69,7 @@ function VisionMissionScroll() {
   });
 
   return (
-    <div ref={containerRef} className="relative mt-8 h-[450vh] w-full">
+    <div ref={containerRef} className="relative mt-8 h-[800vh] w-full">
       <div className="sticky top-0 h-screen w-full flex flex-col justify-center items-center overflow-hidden bg-[#F8FAFC]">
         {/* Dynamic Glowing Background Orbs */}
         <div className={`absolute -top-[10%] -right-[10%] w-[60vw] h-[60vw] rounded-full blur-[120px] transition-all duration-1000 pointer-events-none ${

@@ -21,13 +21,11 @@ export default function SplashLoader() {
         {/* Soft glowing light-mode blue orb behind the logo */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-blue-500/10 blur-[100px] rounded-full pointer-events-none" />
         
-        <Image
-          src="/digifore.png"
-          alt="Digifore Logo"
-          width={280}
-          height={100}
-          className="object-contain relative z-10"
-          priority
+        <img
+          src="/zelio.png"
+          alt="Zellio Logo"
+          className="h-24 md:h-32 w-auto object-contain relative z-10 scale-[1.5] md:scale-[2]"
+          style={{ width: "auto" }}
         />
       </motion.div>
       
