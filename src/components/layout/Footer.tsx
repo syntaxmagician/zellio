@@ -52,81 +52,85 @@ export default function Footer() {
   const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
 
   return (
-    <footer className="bg-[#0F172A] text-white mt-16 lg:mt-24">
-      {/* Main Footer */}
-      <div className="section-container pt-16 lg:pt-20 pb-14 border-t border-white/5">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-start">
-          
-          {/* Brand Column (Left - Spans 5) */}
-          <div className="lg:col-span-5 flex flex-col justify-start">
-            <a href="#home" className="flex items-center mb-4 group">
-              <img 
-                src="/zelio.png" 
-                alt="Zellio Logo" 
-                className="h-12 md:h-16 w-auto object-contain scale-[2.4] md:scale-[2.6] origin-left brightness-0 invert group-hover:opacity-90 transition-opacity duration-300" 
-                style={{ width: 'auto' }}
-              />
-            </a>
-            <p className="text-[#94A3B8] text-sm leading-relaxed mb-6 max-w-sm">
-              Empowering businesses through custom software engineering, premium dashboards, and scalable IT systems.
-            </p>
-            <div className="flex items-center gap-3">
-              {socials.map(({ icon: Icon, href, label }) => (
-                <a
-                  key={label}
-                  href={href}
-                  aria-label={label}
-                  className="w-9 h-9 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-[#94A3B8] hover:bg-[#2563EB] hover:text-white hover:border-[#2563EB] transition-all duration-200"
-                >
-                  <Icon size={16} />
-                </a>
+    <div className="bg-white pt-16 lg:pt-24">
+      <footer className="bg-[#0F172A] text-white">
+        {/* Main Footer */}
+        <div className="section-container pt-16 lg:pt-20 pb-14 border-t border-white/5">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-start">
+            
+            {/* Brand Column (Left - Spans 5) */}
+            <div className="lg:col-span-5 flex flex-col justify-start">
+              <a href="#home" className="flex items-center mb-4 group">
+                <img 
+                  src="/zelio.png" 
+                  alt="Zellio Logo" 
+                  className="h-12 md:h-16 w-auto object-contain scale-[2.4] md:scale-[2.6] origin-left brightness-0 invert group-hover:opacity-90 transition-opacity duration-300" 
+                  style={{ width: 'auto' }}
+                />
+              </a>
+              <p className="text-[#94A3B8] text-sm leading-relaxed mb-6 max-w-sm">
+                Empowering businesses through custom software engineering, premium dashboards, and scalable IT systems.
+              </p>
+              
+              {/* Social Links */}
+              <div className="flex items-center gap-3">
+                {socials.map((social, index) => (
+                  <a
+                    key={index}
+                    href={social.href}
+                    aria-label={social.label}
+                    className="w-9 h-9 rounded-full bg-white/5 flex items-center justify-center text-[#94A3B8] hover:bg-[#2563EB] hover:text-white transition-all duration-300 hover:scale-110"
+                  >
+                    <social.icon size={16} />
+                  </a>
+                ))}
+              </div>
+            </div>
+
+            {/* Links Columns (Right - Spans 7) */}
+            <div className="lg:col-span-7 grid grid-cols-2 md:grid-cols-4 gap-8">
+              {Object.entries(footerLinks).map(([title, links]) => (
+                <div key={title} className="flex flex-col">
+                  <h4 className="text-white text-xs font-bold uppercase tracking-wider mb-5">
+                    {title}
+                  </h4>
+                  <ul className="space-y-3.5">
+                    {links.map((link, index) => (
+                      <li key={index}>
+                        <a
+                          href={link.href}
+                          className="text-[#94A3B8] text-sm hover:text-white transition-colors duration-200"
+                        >
+                          {link.label}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               ))}
             </div>
           </div>
+        </div>
 
-          {/* Link Columns Grid (Right - Spans 7) */}
-          <div className="lg:col-span-7 grid grid-cols-2 sm:grid-cols-4 gap-8 w-full">
-            {Object.entries(footerLinks).map(([section, links]) => (
-              <div key={section}>
-                <h4 className="text-sm font-semibold text-white mb-4 tracking-wide uppercase text-[11px] text-slate-400">
-                  {section}
-                </h4>
-                <ul className="space-y-2.5">
-                  {links.map((link) => (
-                    <li key={link.label}>
-                      <a
-                        href={link.href}
-                        className="text-sm text-[#94A3B8] hover:text-white transition-colors"
-                      >
-                        {link.label}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
+        {/* Bottom Footer */}
+        <div className="border-t border-white/5 bg-[#090D1A]">
+          <div className="section-container py-6 flex flex-col md:flex-row items-center justify-between gap-4">
+            <p className="text-[#64748B] text-sm text-center md:text-left">
+              &copy; {new Date().getFullYear()} ZELLIO. All rights reserved.
+            </p>
+            
+            <button
+              onClick={scrollToTop}
+              className="group flex items-center gap-2 text-sm text-[#94A3B8] hover:text-white transition-colors"
+            >
+              Back to top
+              <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-[#2563EB] group-hover:text-white transition-all duration-300">
+                <ArrowUp size={14} />
               </div>
-            ))}
+            </button>
           </div>
-
         </div>
-      </div>
-
-      {/* Bottom Bar */}
-      <div className="border-t border-white/5">
-        <div className="section-container py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-sm text-[#64748B]">
-            © {new Date().getFullYear()} ZELLIO. All rights reserved.
-          </p>
-          <button
-            onClick={scrollToTop}
-            className="flex items-center gap-2 text-sm text-[#64748B] hover:text-white transition-colors group"
-          >
-            Back to top
-            <span className="w-7 h-7 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-[#2563EB] group-hover:border-[#2563EB] transition-all">
-              <ArrowUp size={13} />
-            </span>
-          </button>
-        </div>
-      </div>
-    </footer>
+      </footer>
+    </div>
   );
 }
