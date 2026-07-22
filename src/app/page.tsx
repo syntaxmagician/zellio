@@ -16,7 +16,6 @@ import WhyChoose from "@/components/sections/WhyChoose";
 import Testimonials from "@/components/sections/Testimonials";
 import FAQ from "@/components/sections/FAQ";
 import Contact from "@/components/sections/Contact";
-import CTA from "@/components/sections/CTA";
 
 export default function Home() {
   const [loading, setLoading] = useState(true);
@@ -61,7 +60,6 @@ export default function Home() {
           <Testimonials />
           <FAQ />
           <Contact />
-          <CTA />
         </main>
         <Footer />
       </motion.div>
