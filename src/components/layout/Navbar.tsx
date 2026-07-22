@@ -39,7 +39,7 @@ export default function Navbar({ isDark = false }: { isDark?: boolean }) {
           <img 
             src="/zelio.png" 
             alt="Zellio Logo" 
-            className="h-10 md:h-12 w-auto object-contain scale-[2.2] md:scale-[2.4] origin-left group-hover:scale-[2.3] md:group-hover:scale-[2.5] transition-transform duration-300" 
+            className="h-10 md:h-12 w-auto object-contain scale-[2.6] md:scale-[2.8] origin-left group-hover:scale-[2.7] md:group-hover:scale-[2.9] transition-transform duration-300" 
             style={{ width: 'auto' }}
           />
         </Link>
