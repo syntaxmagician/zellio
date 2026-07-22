@@ -26,7 +26,7 @@ export default function SplashLoader() {
           alt="Zellio Logo"
           width={280}
           height={100}
-          className="object-contain relative z-10"
+          className="object-contain relative z-10 scale-[2.5]"
           style={{ width: "auto", height: "auto" }}
           priority
         />
