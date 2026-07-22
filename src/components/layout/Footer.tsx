@@ -60,14 +60,12 @@ export default function Footer() {
           {/* Brand Column (Left - Spans 5) */}
           <div className="lg:col-span-5 flex flex-col justify-start">
             <a href="#home" className="flex items-center mb-4 group">
-              <div className="w-[180px] h-[52px] overflow-hidden relative flex items-center">
-                <img 
-                  src="/zelio.png" 
-                  alt="Zellio Logo" 
-                  className="absolute left-[-26px] top-1/2 -translate-y-[52%] h-40 w-auto max-w-none object-contain brightness-0 invert group-hover:opacity-90 transition-opacity duration-300" 
-                  style={{ width: 'auto' }}
-                />
-              </div>
+              <img 
+                src="/zelio.png" 
+                alt="Zellio Logo" 
+                className="h-12 md:h-16 w-auto object-contain scale-[2.4] md:scale-[2.6] origin-left brightness-0 invert group-hover:opacity-90 transition-opacity duration-300" 
+                style={{ width: 'auto' }}
+              />
             </a>
             <p className="text-[#94A3B8] text-sm leading-relaxed mb-6 max-w-sm">
               Empowering businesses through custom software engineering, premium dashboards, and scalable IT systems.
