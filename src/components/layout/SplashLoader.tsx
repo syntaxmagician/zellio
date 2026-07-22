@@ -27,6 +27,7 @@ export default function SplashLoader() {
           width={280}
           height={100}
           className="object-contain relative z-10"
+          style={{ width: "auto", height: "auto" }}
           priority
         />
       </motion.div>

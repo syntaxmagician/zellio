@@ -65,6 +65,7 @@ export default function Footer() {
                   src="/zelio.png" 
                   alt="Zellio Logo" 
                   className="absolute left-[-26px] top-1/2 -translate-y-[52%] h-40 w-auto max-w-none object-contain brightness-0 invert group-hover:opacity-90 transition-opacity duration-300" 
+                  style={{ width: 'auto' }}
                 />
               </div>
             </a>

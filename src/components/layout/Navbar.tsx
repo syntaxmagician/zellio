@@ -41,6 +41,7 @@ export default function Navbar({ isDark = false }: { isDark?: boolean }) {
               src="/zelio.png" 
               alt="Zellio Logo" 
               className="absolute left-[-24px] top-1/2 -translate-y-[52%] h-32 w-auto max-w-none object-contain group-hover:scale-[1.03] transition-transform duration-300" 
+              style={{ width: 'auto' }}
             />
           </div>
         </Link>
