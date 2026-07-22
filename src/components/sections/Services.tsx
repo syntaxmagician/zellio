@@ -13,8 +13,6 @@ import {
   Brain,
   BarChart2,
   Smartphone,
-  Clock,
-  Signal,
   ArrowRight,
 } from "lucide-react";
 import { servicesData } from "@/lib/data";
@@ -32,194 +30,224 @@ const iconMap: Record<string, React.ElementType> = {
   Smartphone,
 };
 
-const categories = [
-  "All",
-  ...Array.from(new Set(servicesData.map((p) => p.category))),
-];
+const deliverablesMap: Record<number, string[]> = {
+  1: [
+    "Single Page Applications (SPA)",
+    "SEO & Core Web Vitals",
+    "Custom API & Headless CMS",
+    "Responsive & Fluid Layouts",
+  ],
+  2: [
+    "Real-time Analytics Panels",
+    "Custom CRM & ERP Solutions",
+    "Financial Data Visualization",
+    "Role-Based Access Control",
+  ],
+  3: [
+    "Cross-Platform (iOS & Android)",
+    "Push Notifications & Deep Linking",
+    "Offline Support & Sync",
+    "App Store Publishing",
+  ],
+  4: [
+    "Database Architecture Design",
+    "Third-Party API Integrations",
+    "Legacy System Migration",
+    "High-Concurrency Backend APIs",
+  ],
+  5: [
+    "AWS / GCP / Azure Setup",
+    "Docker & Kubernetes Deployments",
+    "CI/CD Pipeline Automation",
+    "Server Monitoring & Security",
+  ],
+  6: [
+    "Figma Interactive Prototypes",
+    "Wireframing & User Journey",
+    "Design System Creation",
+    "Usability Testing & Iteration",
+  ],
+};
 
 export default function Services() {
-  const [active, setActive] = useState("All");
-  const [hoveredId, setHoveredId] = useState<number | null>(null);
+  const [activeId, setActiveId] = useState<number>(servicesData[0].id);
 
-  const filtered =
-    active === "All"
-      ? servicesData
-      : servicesData.filter((p) => p.category === active);
+  const activeService = servicesData.find((s) => s.id === activeId) || servicesData[0];
+  const ActiveIcon = iconMap[activeService.icon];
 
   return (
-    <section id="services" className="py-24 lg:py-28 bg-[#F8FAFC]">
-      <div className="section-container">
+    <section id="services" className="py-24 lg:py-32 bg-[#FAFAFA] relative overflow-hidden">
+      <div className="section-container max-w-7xl mx-auto px-4 lg:px-8">
+        
         {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: 35, scale: 0.95, filter: "blur(10px)" }}
-          whileInView={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          className="text-center max-w-2xl mx-auto mb-10"
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          className="mb-16 md:mb-20 text-center md:text-left flex flex-col md:flex-row md:items-end justify-between gap-6"
         >
-          <span className="inline-block px-4 py-1.5 rounded-full bg-violet-50 text-[#9FA1FF] text-xs font-semibold uppercase tracking-widest mb-4 border border-violet-100">
-            Our Services
-          </span>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0F172A] mb-4">
-            Custom{" "}
-            <span className="gradient-text">IT Solutions</span>
-          </h2>
-          <p className="text-[#64748B] leading-relaxed">
-            From design to deployment, we offer end-to-end IT services
-            to build modern web, mobile, and custom systems for your business.
+          <div>
+            <span className="inline-block px-3 py-1 rounded-full bg-blue-50 text-[#2563EB] text-[10px] sm:text-xs font-bold uppercase tracking-widest mb-4 border border-blue-100 shadow-sm">
+              Our Expertise
+            </span>
+            <h2 className="text-4xl md:text-5xl font-black text-[#0F172A] tracking-tight leading-tight">
+              Custom <span className="text-[#2563EB]">IT Solutions</span>
+            </h2>
+          </div>
+          <p className="text-sm sm:text-base text-[#64748B] max-w-md leading-relaxed font-medium md:text-right mx-auto md:mx-0">
+            From design to deployment, we offer end-to-end IT services to build modern web, mobile, and custom systems for your business.
           </p>
         </motion.div>
 
-        {/* Category Tabs */}
-        <motion.div
-          initial={{ opacity: 0, y: 15, filter: "blur(4px)" }}
-          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
-          className="flex flex-wrap justify-center gap-2 mb-12"
-        >
-          {categories.map((cat) => (
-            <button
-              key={cat}
-              onClick={() => setActive(cat)}
-              className={`px-4 py-2 text-sm font-medium rounded-xl transition-all duration-200 ${
-                active === cat
-                  ? "bg-gradient-to-r from-[#2563EB] to-[#9FA1FF] text-white shadow-lg shadow-violet-500/20"
-                  : "bg-white text-[#64748B] hover:bg-violet-50 hover:text-[#9FA1FF] border border-gray-100 shadow-sm"
-              }`}
-            >
-              {cat}
-            </button>
-          ))}
-        </motion.div>
-
-        {/* Services Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          <AnimatePresence mode="popLayout">
-            {filtered.map((program, i) => {
-              const Icon = iconMap[program.icon];
-              const isHovered = hoveredId === program.id;
-
+        {/* Interactive Split-Screen Layout */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12 relative">
+          
+          {/* Mobile Navigation (Horizontal Scroll) */}
+          <div className="flex md:hidden overflow-x-auto gap-3 pb-4 snap-x hide-scrollbar">
+            {servicesData.map((program) => {
+              const isActive = activeId === program.id;
               return (
-                <motion.div
+                <button
                   key={program.id}
-                  layout
-                  initial={{ opacity: 0, y: 25, scale: 0.96, filter: "blur(8px)" }}
-                  animate={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
-                  exit={{ opacity: 0, scale: 0.96, filter: "blur(8px)" }}
-                  transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1], delay: i * 0.05 }}
-                  onMouseEnter={() => setHoveredId(program.id)}
-                  onMouseLeave={() => setHoveredId(null)}
-                  className="group bg-white rounded-[32px] border border-slate-100 p-6 relative overflow-hidden transition-all duration-500 shadow-sm hover:shadow-2xl hover:shadow-slate-200/50 hover:border-slate-200/80 flex flex-col justify-between cursor-pointer min-h-[380px]"
+                  onClick={() => setActiveId(program.id)}
+                  className={`relative flex-shrink-0 snap-start px-5 py-2.5 rounded-full text-[13px] font-bold transition-all duration-300 ${
+                    isActive ? "text-white shadow-md" : "bg-white text-slate-500 border border-slate-200 hover:text-slate-900"
+                  }`}
+                  style={isActive ? { backgroundColor: program.color, borderColor: program.color } : {}}
                 >
-                  {/* Soft Background Glow */}
-                  <div 
-                    className="absolute -top-10 -right-10 w-36 h-36 rounded-full blur-[48px] opacity-10 transition-all duration-700 pointer-events-none"
-                    style={{ 
-                      backgroundColor: program.color,
-                      transform: isHovered ? 'scale(1.3)' : 'scale(1)',
-                      opacity: isHovered ? 0.18 : 0.08
-                    }}
-                  />
-                  
-                  {/* Abstract Grid Pattern */}
-                  <div 
-                    className="absolute inset-0 opacity-[0.015] group-hover:opacity-[0.03] transition-opacity pointer-events-none"
-                    style={{ backgroundImage: 'radial-gradient(#0F172A 1px, transparent 1px)', backgroundSize: '24px 24px' }}
-                  />
-
-                  <div>
-                    {/* Top row: Icon & Category */}
-                    <div className="flex items-center justify-between mb-8">
-                      <div 
-                        className="w-14 h-14 rounded-2xl flex items-center justify-center relative transition-all duration-500 shadow-sm border"
-                        style={{ 
-                          backgroundColor: isHovered ? program.color : `${program.color}08`, 
-                          borderColor: isHovered ? 'transparent' : `${program.color}25`,
-                          transform: isHovered ? 'scale(1.05) rotate(3deg)' : 'scale(1) rotate(0deg)'
-                        }}
-                      >
-                        <div 
-                          className="absolute inset-0 blur-md opacity-25 rounded-2xl transition-opacity duration-500"
-                          style={{ 
-                            backgroundColor: program.color,
-                            opacity: isHovered ? 0.5 : 0
-                          }}
-                        />
-                        {Icon && (
-                          <Icon
-                            size={24}
-                            className="relative z-10 transition-colors duration-500"
-                            style={{ color: isHovered ? '#FFFFFF' : program.color }}
-                          />
-                        )}
-                      </div>
-
-                      <span
-                        className="px-3 py-1 rounded-lg text-[10px] font-bold uppercase tracking-wider border transition-all duration-300"
-                        style={{ 
-                          color: program.color, 
-                          backgroundColor: `${program.color}10`,
-                          borderColor: `${program.color}25`
-                        }}
-                      >
-                        {program.category}
-                      </span>
-                    </div>
-
-                    {/* Title */}
-                    <h3 className="text-xl font-black text-slate-800 mb-3 group-hover:text-slate-900 transition-colors leading-tight">
-                      {program.title}
-                    </h3>
-
-                    {/* Description */}
-                    <p className="text-sm text-slate-500 leading-relaxed mb-6 font-medium line-clamp-3">
-                      {program.description}
-                    </p>
-                  </div>
-
-                  <div>
-                    {/* Meta info */}
-                    <div className="flex items-center gap-3 py-3 border-t border-b border-slate-50 mb-6">
-                      <div className="flex items-center gap-1.5 text-xs font-semibold text-slate-400">
-                        <Clock size={14} className="text-slate-300" />
-                        <span>{program.duration}</span>
-                      </div>
-                      <div className="w-1 h-1 rounded-full bg-slate-200" />
-                      <div className="flex items-center gap-1.5 text-xs font-semibold text-slate-400">
-                        <Signal size={14} className="text-slate-300" />
-                        <span>{program.level}</span>
-                      </div>
-                    </div>
-
-                    {/* Bottom CTA Button */}
-                    <div className="flex items-center justify-between pt-1">
-                      <span 
-                        className="text-sm font-extrabold transition-colors duration-300"
-                        style={{ color: isHovered ? program.color : '#475569' }}
-                      >
-                        Discuss Project
-                      </span>
-                      <div 
-                        className="w-10 h-10 rounded-xl flex items-center justify-center border transition-all duration-300"
-                        style={{ 
-                          backgroundColor: isHovered ? program.color : 'transparent',
-                          borderColor: isHovered ? 'transparent' : '#F1F5F9',
-                          transform: isHovered ? 'translateX(2px)' : 'translateX(0)'
-                        }}
-                      >
-                        <ArrowRight 
-                          size={16} 
-                          className="transition-all duration-300"
-                          style={{ color: isHovered ? '#FFFFFF' : '#94A3B8' }}
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </motion.div>
+                  {program.title}
+                </button>
               );
             })}
-          </AnimatePresence>
+          </div>
+
+          {/* Desktop Navigation (Vertical List) */}
+          <div className="hidden md:flex flex-col gap-2 md:col-span-5 lg:col-span-4">
+            {servicesData.map((program, i) => {
+              const isActive = activeId === program.id;
+              const Icon = iconMap[program.icon];
+              return (
+                <button
+                  key={program.id}
+                  onClick={() => setActiveId(program.id)}
+                  className={`relative flex items-center gap-4 w-full p-4 lg:p-5 rounded-2xl transition-all duration-300 text-left group ${
+                    isActive ? "text-slate-900" : "text-slate-400 hover:text-slate-600 hover:bg-white"
+                  }`}
+                >
+                  {isActive && (
+                    <motion.div
+                      layoutId="activeServiceBgDesktop"
+                      className="absolute inset-0 bg-white border border-slate-200/80 shadow-md rounded-2xl"
+                      transition={{ type: "spring", stiffness: 350, damping: 30 }}
+                    />
+                  )}
+                  <span className="relative z-10 text-[11px] font-mono font-bold opacity-40">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  
+                  <div className={`relative z-10 w-8 h-8 rounded-lg flex items-center justify-center transition-all duration-300 ${isActive ? 'bg-slate-50' : 'bg-transparent group-hover:bg-slate-50'}`}>
+                     {Icon && <Icon size={16} style={{ color: isActive ? program.color : '#94A3B8' }} className="transition-colors duration-300" />}
+                  </div>
+
+                  <span className="relative z-10 font-black text-sm lg:text-base tracking-tight transition-transform duration-300 group-hover:translate-x-1">
+                    {program.title}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Showcase Panel (Glassmorphic Detail Card) */}
+          <div className="md:col-span-7 lg:col-span-8 h-full">
+            <div className="bg-white border border-slate-200/80 rounded-[32px] p-6 sm:p-8 lg:p-12 shadow-[0_15px_40px_-15px_rgba(0,0,0,0.05)] relative overflow-hidden flex flex-col h-full min-h-[460px] w-full">
+              
+              {/* Dynamic Abstract Background Glow */}
+              <motion.div 
+                 key={`glow-${activeId}`}
+                 initial={{ opacity: 0, scale: 0.8 }}
+                 animate={{ opacity: 0.1, scale: 1 }}
+                 transition={{ duration: 0.8 }}
+                 className="absolute -top-32 -right-32 w-96 h-96 rounded-full blur-[80px] pointer-events-none"
+                 style={{ backgroundColor: activeService.color }}
+              />
+
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeService.id}
+                  initial={{ opacity: 0, y: 15, filter: "blur(4px)" }}
+                  animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                  exit={{ opacity: 0, y: -15, filter: "blur(4px)" }}
+                  transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                  className="flex flex-col h-full relative z-10"
+                >
+                  {/* Header Row: Icon & Meta */}
+                  <div className="flex flex-wrap items-start justify-between gap-4 mb-8 sm:mb-10">
+                    <div
+                      className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl flex items-center justify-center shadow-sm"
+                      style={{
+                        backgroundColor: `${activeService.color}15`,
+                        border: `1px solid ${activeService.color}30`,
+                      }}
+                    >
+                      <ActiveIcon size={28} style={{ color: activeService.color }} />
+                    </div>
+
+                    <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+                      <span className="text-[10px] sm:text-xs font-bold px-3 py-1.5 bg-slate-50 border border-slate-100 rounded-lg text-slate-500 uppercase tracking-widest">
+                        {activeService.duration}
+                      </span>
+                      <span className="text-[10px] sm:text-xs font-bold px-3 py-1.5 bg-slate-50 border border-slate-100 rounded-lg text-slate-500 uppercase tracking-widest">
+                        {activeService.level}
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Title & Description */}
+                  <h3 className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 mb-4 tracking-tight leading-tight">
+                    {activeService.title}
+                  </h3>
+                  <p className="text-sm sm:text-base text-slate-500 leading-relaxed font-medium mb-10 max-w-2xl">
+                    {activeService.description}
+                  </p>
+
+                  {/* Deliverables */}
+                  <div className="mb-10">
+                    <h4 className="text-[11px] sm:text-xs font-black text-slate-400 mb-5 uppercase tracking-[0.2em]">
+                      Key Deliverables
+                    </h4>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-6">
+                      {deliverablesMap[activeService.id].map((item, idx) => (
+                        <div key={idx} className="flex items-center gap-3">
+                          <div
+                            className="w-1.5 h-1.5 rounded-full flex-shrink-0"
+                            style={{ backgroundColor: activeService.color }}
+                          />
+                          <span className="text-[13px] sm:text-sm font-bold text-slate-700 leading-snug">
+                            {item}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Footer CTA */}
+                  <div className="pt-6 sm:pt-8 border-t border-slate-100 flex flex-wrap items-center justify-between gap-4 mt-auto">
+                    <span className="text-[13px] sm:text-sm font-bold text-slate-400">
+                      Ready to build something amazing?
+                    </span>
+                    <button
+                      className="group flex items-center gap-2 px-6 py-3 rounded-xl text-white text-[13px] sm:text-sm font-black shadow-lg hover:-translate-y-1 transition-all duration-300"
+                      style={{ backgroundColor: activeService.color, boxShadow: `0 10px 25px -5px ${activeService.color}40` }}
+                    >
+                      Discuss Project 
+                      <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" />
+                    </button>
+                  </div>
+                </motion.div>
+              </AnimatePresence>
+            </div>
+          </div>
         </div>
       </div>
     </section>
