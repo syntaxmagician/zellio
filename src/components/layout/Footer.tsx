@@ -59,7 +59,7 @@ export default function Footer() {
           {/* Brand Column */}
           <div className="lg:col-span-1">
             <a href="#home" className="flex items-center mb-5 group">
-              <img src="/digifore.png" alt="Digifore Logo" className="h-9 w-auto object-contain brightness-0 invert group-hover:opacity-90 transition-opacity duration-300" />
+              <img src="/zelio.png" alt="Zellio Logo" className="h-9 w-auto object-contain brightness-0 invert group-hover:opacity-90 transition-opacity duration-300" />
             </a>
             <p className="text-[#94A3B8] text-sm leading-relaxed mb-6">
               Empowering businesses through custom software engineering, premium dashboards, and scalable IT systems.

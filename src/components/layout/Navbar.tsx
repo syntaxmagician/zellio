@@ -36,7 +36,7 @@ export default function Navbar({ isDark = false }: { isDark?: boolean }) {
       <nav className="section-container flex items-center justify-between h-[72px]">
         {/* Logo */}
         <Link href="/" className="flex items-center group">
-          <img src="/digifore.png" alt="Digifore Logo" className="h-9 w-auto object-contain group-hover:scale-[1.02] transition-transform duration-300" />
+          <img src="/zelio.png" alt="Zellio Logo" className="h-9 w-auto object-contain group-hover:scale-[1.02] transition-transform duration-300" />
         </Link>
 
         {/* Desktop Nav */}

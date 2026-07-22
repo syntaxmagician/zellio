@@ -22,8 +22,8 @@ export default function SplashLoader() {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-blue-500/10 blur-[100px] rounded-full pointer-events-none" />
         
         <Image
-          src="/digifore.png"
-          alt="Digifore Logo"
+          src="/zelio.png"
+          alt="Zellio Logo"
           width={280}
           height={100}
           className="object-contain relative z-10"
