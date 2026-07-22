@@ -9,6 +9,9 @@ const companyLogos = [
   { name: "Jaja.id", src: "/jajaid.png" },
   { name: "Masdis", src: "/masdis.png" },
   { name: "Race", src: "/race.png" },
+  { name: "Palda", src: "/palda.png" },
+  { name: "Logotipo", src: "/Logotipo.webp" },
+  { name: "Beego", src: "/beego.webp" },
 ];
 
 function LogoChip({ name, src }: { name: string; src: string }) {

@@ -20,7 +20,7 @@ export default function WhyChoose() {
   return (
     <section id="why-choose" className="py-24 lg:py-32 bg-[#F8FAFC] overflow-hidden relative">
       <div className="section-container relative z-10 max-w-7xl mx-auto">
-        
+
         {/* ── HEADER ── */}
         <motion.div
           initial={{ opacity: 0, y: 35, scale: 0.95, filter: "blur(10px)" }}
@@ -30,7 +30,7 @@ export default function WhyChoose() {
           className="text-center max-w-3xl mx-auto mb-16"
         >
           <h2 className="text-4xl sm:text-5xl font-black text-[#0F172A] mb-6 tracking-tight">
-            The Digifore Advantage
+            The ZELLIO Advantage
           </h2>
           <p className="text-lg text-[#64748B] leading-relaxed max-w-2xl mx-auto">
             We combine elite engineering with an agile, transparent development process to guarantee your project's success.
@@ -53,7 +53,7 @@ export default function WhyChoose() {
               Invest in Quality, Avoid Broken Systems
             </h4>
             <p className="text-sm text-slate-600 leading-relaxed font-medium">
-              Banyak bisnis terjebak dengan penawaran pembuatan sistem murah yang akhirnya berakhir kacau — kode tidak bisa dikembangkan, sistem sering <i>crash</i>, dan proyek mangkrak. Kami di Digifore percaya bahwa sistem IT adalah investasi jangka panjang bisnis Anda. Kami membangun fondasi kode yang kokoh, aman, dan siap berkembang dari awal.
+              Banyak bisnis terjebak dengan penawaran pembuatan sistem murah yang akhirnya berakhir kacau — kode tidak bisa dikembangkan, sistem sering <i>crash</i>, dan proyek mangkrak. Kami di ZELLIO percaya bahwa sistem IT adalah investasi jangka panjang bisnis Anda. Kami membangun fondasi kode yang kokoh, aman, dan siap berkembang dari awal.
             </p>
           </div>
         </motion.div>

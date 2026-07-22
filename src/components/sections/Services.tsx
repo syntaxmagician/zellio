@@ -16,6 +16,8 @@ import {
   ArrowRight,
 } from "lucide-react";
 import { servicesData } from "@/lib/data";
+import { useLanguage } from "@/context/LanguageContext";
+import { TranslationKey } from "@/lib/translations";
 
 const iconMap: Record<string, React.ElementType> = {
   Palette,
@@ -30,50 +32,113 @@ const iconMap: Record<string, React.ElementType> = {
   Smartphone,
 };
 
-const deliverablesMap: Record<number, string[]> = {
-  1: [
-    "Single Page Applications (SPA)",
-    "SEO & Core Web Vitals",
-    "Custom API & Headless CMS",
-    "Responsive & Fluid Layouts",
-  ],
-  2: [
-    "Real-time Analytics Panels",
-    "Custom CRM & ERP Solutions",
-    "Financial Data Visualization",
-    "Role-Based Access Control",
-  ],
-  3: [
-    "Cross-Platform (iOS & Android)",
-    "Push Notifications & Deep Linking",
-    "Offline Support & Sync",
-    "App Store Publishing",
-  ],
-  4: [
-    "Database Architecture Design",
-    "Third-Party API Integrations",
-    "Legacy System Migration",
-    "High-Concurrency Backend APIs",
-  ],
-  5: [
-    "AWS / GCP / Azure Setup",
-    "Docker & Kubernetes Deployments",
-    "CI/CD Pipeline Automation",
-    "Server Monitoring & Security",
-  ],
-  6: [
-    "Figma Interactive Prototypes",
-    "Wireframing & User Journey",
-    "Design System Creation",
-    "Usability Testing & Iteration",
-  ],
+const deliverablesMap = {
+  en: {
+    1: [
+      "Single Page Applications (SPA)",
+      "SEO & Core Web Vitals",
+      "Custom API & Headless CMS",
+      "Responsive & Fluid Layouts",
+    ],
+    2: [
+      "Real-time Analytics Panels",
+      "Custom CRM & ERP Solutions",
+      "Financial Data Visualization",
+      "Role-Based Access Control",
+    ],
+    3: [
+      "Cross-Platform (iOS & Android)",
+      "Push Notifications & Deep Linking",
+      "Offline Support & Sync",
+      "App Store Publishing",
+    ],
+    4: [
+      "Database Architecture Design",
+      "Third-Party API Integrations",
+      "Legacy System Migration",
+      "High-Concurrency Backend APIs",
+    ],
+    5: [
+      "AWS / GCP / Azure Setup",
+      "Docker & Kubernetes Deployments",
+      "CI/CD Pipeline Automation",
+      "Server Monitoring & Security",
+    ],
+    6: [
+      "Figma Interactive Prototypes",
+      "Wireframing & User Journey",
+      "Design System Creation",
+      "Usability Testing & Iteration",
+    ],
+  },
+  id: {
+    1: [
+      "Aplikasi Halaman Tunggal (SPA)",
+      "SEO & Core Web Vitals",
+      "API Kustom & Headless CMS",
+      "Tata Letak Responsif & Fleksibel",
+    ],
+    2: [
+      "Panel Analitik Waktu Nyata",
+      "Solusi CRM & ERP Kustom",
+      "Visualisasi Data Keuangan",
+      "Kontrol Akses Berbasis Peran",
+    ],
+    3: [
+      "Lintas Platform (iOS & Android)",
+      "Notifikasi Push & Deep Linking",
+      "Dukungan Luring & Sinkronisasi",
+      "Publikasi App Store",
+    ],
+    4: [
+      "Desain Arsitektur Database",
+      "Integrasi API Pihak Ketiga",
+      "Migrasi Sistem Warisan",
+      "API Backend Konkurensi Tinggi",
+    ],
+    5: [
+      "Pengaturan AWS / GCP / Azure",
+      "Penerapan Docker & Kubernetes",
+      "Otomatisasi Jalur CI/CD",
+      "Pemantauan & Keamanan Server",
+    ],
+    6: [
+      "Prototipe Interaktif Figma",
+      "Wireframing & Perjalanan Pengguna",
+      "Pembuatan Sistem Desain",
+      "Pengujian & Iterasi Usabilitas",
+    ],
+  }
+};
+
+const localText = {
+  en: {
+    expertise: "Our Expertise",
+    custom: "Custom",
+    solutions: "IT Solutions",
+    desc: "From design to deployment, we offer end-to-end IT services to build modern web, mobile, and custom systems for your business.",
+    deliverables: "Key Deliverables"
+  },
+  id: {
+    expertise: "Keahlian Kami",
+    custom: "Solusi IT",
+    solutions: "Kustom",
+    desc: "Dari desain hingga peluncuran, kami menawarkan layanan TI end-to-end untuk membangun sistem web, seluler, dan kustom modern untuk bisnis Anda.",
+    deliverables: "Hasil Utama"
+  }
 };
 
 export default function Services() {
+  const { language, t } = useLanguage();
   const [activeId, setActiveId] = useState<number>(servicesData[0].id);
 
   const activeService = servicesData.find((s) => s.id === activeId) || servicesData[0];
   const ActiveIcon = iconMap[activeService.icon];
+  
+  const text = localText[language];
+  const activeDeliverables = (deliverablesMap as any)[language][activeId] as string[];
+  
+  const getSlug = (title: string) => title.toLowerCase().replace(/[\s&/]+/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '');
 
   return (
     <section id="services" className="py-24 lg:py-32 bg-[#FAFAFA] relative overflow-hidden">
@@ -89,14 +154,14 @@ export default function Services() {
         >
           <div>
             <span className="inline-block px-3 py-1 rounded-full bg-blue-50 text-[#2563EB] text-[10px] sm:text-xs font-bold uppercase tracking-widest mb-4 border border-blue-100 shadow-sm">
-              Our Expertise
+              {text.expertise}
             </span>
             <h2 className="text-4xl md:text-5xl font-black text-[#0F172A] tracking-tight leading-tight">
-              Custom <span className="text-[#2563EB]">IT Solutions</span>
+              {text.custom} <span className="text-[#2563EB]">{text.solutions}</span>
             </h2>
           </div>
           <p className="text-sm sm:text-base text-[#64748B] max-w-md leading-relaxed font-medium md:text-right mx-auto md:mx-0">
-            From design to deployment, we offer end-to-end IT services to build modern web, mobile, and custom systems for your business.
+            {text.desc}
           </p>
         </motion.div>
 
@@ -107,6 +172,7 @@ export default function Services() {
           <div className="flex md:hidden overflow-x-auto gap-3 pb-4 snap-x hide-scrollbar">
             {servicesData.map((program) => {
               const isActive = activeId === program.id;
+              const titleKey = `service.${getSlug(program.title)}` as TranslationKey;
               return (
                 <button
                   key={program.id}
@@ -115,7 +181,7 @@ export default function Services() {
                     }`}
                   style={isActive ? { backgroundColor: program.color, borderColor: program.color } : {}}
                 >
-                  {program.title}
+                  {t(titleKey)}
                 </button>
               );
             })}
@@ -126,6 +192,7 @@ export default function Services() {
             {servicesData.map((program, i) => {
               const isActive = activeId === program.id;
               const Icon = iconMap[program.icon];
+              const titleKey = `service.${getSlug(program.title)}` as TranslationKey;
               return (
                 <button
                   key={program.id}
@@ -149,7 +216,7 @@ export default function Services() {
                   </div>
 
                   <span className="relative z-10 font-black text-sm lg:text-base tracking-tight transition-transform duration-300 group-hover:translate-x-1">
-                    {program.title}
+                    {t(titleKey)}
                   </span>
                 </button>
               );
@@ -160,7 +227,6 @@ export default function Services() {
           <div className="md:col-span-7 lg:col-span-8 h-full">
             <div className="bg-white border border-slate-200/80 rounded-[32px] p-6 sm:p-8 lg:p-12 shadow-[0_15px_40px_-15px_rgba(0,0,0,0.05)] relative overflow-hidden flex flex-col h-full min-h-[460px] w-full">
 
-              {/* Dynamic Abstract Background Glow */}
               <motion.div
                 key={`glow-${activeId}`}
                 initial={{ opacity: 0, scale: 0.8 }}
@@ -179,7 +245,6 @@ export default function Services() {
                   transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
                   className="flex flex-col h-full relative z-10"
                 >
-                  {/* Header Row: Icon & Meta */}
                   <div className="flex flex-wrap items-start justify-between gap-4 mb-8 sm:mb-10">
                     <div
                       className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl flex items-center justify-center shadow-sm"
@@ -201,21 +266,19 @@ export default function Services() {
                     </div>
                   </div>
 
-                  {/* Title & Description */}
                   <h3 className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 mb-4 tracking-tight leading-tight">
-                    {activeService.title}
+                    {t(`service.${getSlug(activeService.title)}` as TranslationKey)}
                   </h3>
                   <p className="text-sm sm:text-base text-slate-500 leading-relaxed font-medium mb-10 max-w-2xl">
-                    {activeService.description}
+                    {t(`service.desc.${getSlug(activeService.title)}` as TranslationKey)}
                   </p>
 
-                  {/* Deliverables */}
                   <div className="mb-10">
                     <h4 className="text-[11px] sm:text-xs font-black text-slate-400 mb-5 uppercase tracking-[0.2em]">
-                      Key Deliverables
+                      {text.deliverables}
                     </h4>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-6">
-                      {deliverablesMap[activeService.id].map((item, idx) => (
+                      {activeDeliverables.map((item, idx) => (
                         <div key={idx} className="flex items-center gap-3">
                           <div
                             className="w-1.5 h-1.5 rounded-full flex-shrink-0"
@@ -229,7 +292,6 @@ export default function Services() {
                     </div>
                   </div>
 
-                  {/* Footer CTA */}
                 </motion.div>
               </AnimatePresence>
             </div>

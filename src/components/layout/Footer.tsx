@@ -8,36 +8,77 @@ import {
   Video,
   Code2,
 } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
 
-const footerLinks = {
-  Company: [
-    { label: "About Zellio", href: "#about" },
-    { label: "Vision & Mission", href: "#vision-mission" },
-    { label: "Our Team", href: "#" },
-    { label: "Careers", href: "#" },
-    { label: "Press", href: "#" },
-  ],
-  Services: [
-    { label: "UI/UX Design", href: "#services" },
-    { label: "Custom Web Dev", href: "#services" },
-    { label: "Admin Dashboards", href: "#services" },
-    { label: "Mobile Apps", href: "#services" },
-    { label: "Enterprise Systems", href: "#services" },
-  ],
-  Resources: [
-    { label: "Blog", href: "#" },
-    { label: "Case Studies", href: "#" },
-    { label: "Client Portal", href: "#" },
-    { label: "FAQs", href: "#faq" },
-    { label: "System Status", href: "#" },
-  ],
-  Contact: [
-    { label: "Get in Touch", href: "#contact" },
-    { label: "Request a Quote", href: "#contact" },
-    { label: "Partnerships", href: "#" },
-    { label: "Support Center", href: "#" },
-    { label: "Privacy Policy", href: "#" },
-  ],
+const localText = {
+  en: {
+    desc: "Empowering businesses through custom digital platforms, modern dashboards, and scalable IT systems.",
+    backToTop: "Back to top",
+    footerLinks: {
+      Company: [
+        { label: "About Zellio", href: "#about" },
+        { label: "Vision & Mission", href: "#vision-mission" },
+        { label: "Our Team", href: "#" },
+        { label: "Careers", href: "#" },
+        { label: "Press", href: "#" },
+      ],
+      Services: [
+        { label: "UI/UX Design", href: "#services" },
+        { label: "Custom Web Dev", href: "#services" },
+        { label: "Admin Dashboards", href: "#services" },
+        { label: "Mobile Apps", href: "#services" },
+        { label: "Enterprise Systems", href: "#services" },
+      ],
+      Resources: [
+        { label: "Blog", href: "#" },
+        { label: "Case Studies", href: "#" },
+        { label: "Client Portal", href: "#" },
+        { label: "FAQs", href: "#faq" },
+        { label: "System Status", href: "#" },
+      ],
+      Contact: [
+        { label: "Get in Touch", href: "#contact" },
+        { label: "Request a Quote", href: "#contact" },
+        { label: "Partnerships", href: "#" },
+        { label: "Support Center", href: "#" },
+        { label: "Privacy Policy", href: "#" },
+      ],
+    }
+  },
+  id: {
+    desc: "Membantu bisnis berkembang lewat pembuatan platform digital kustom, dashboard canggih, dan sistem IT yang andal.",
+    backToTop: "Kembali ke atas",
+    footerLinks: {
+      Perusahaan: [
+        { label: "Tentang Zellio", href: "#about" },
+        { label: "Visi & Misi", href: "#vision-mission" },
+        { label: "Tim Kami", href: "#" },
+        { label: "Karir", href: "#" },
+        { label: "Berita", href: "#" },
+      ],
+      Layanan: [
+        { label: "Desain UI/UX", href: "#services" },
+        { label: "Website Kustom", href: "#services" },
+        { label: "Dashboard Admin", href: "#services" },
+        { label: "Aplikasi Mobile", href: "#services" },
+        { label: "Sistem IT Kustom", href: "#services" },
+      ],
+      Sumber: [
+        { label: "Blog", href: "#" },
+        { label: "Studi Kasus", href: "#" },
+        { label: "Portal Klien", href: "#" },
+        { label: "Pertanyaan (FAQ)", href: "#faq" },
+        { label: "Status Sistem", href: "#" },
+      ],
+      Kontak: [
+        { label: "Hubungi Kami", href: "#contact" },
+        { label: "Minta Penawaran", href: "#contact" },
+        { label: "Kemitraan", href: "#" },
+        { label: "Pusat Bantuan", href: "#" },
+        { label: "Kebijakan Privasi", href: "#" },
+      ],
+    }
+  }
 };
 
 const socials = [
@@ -49,6 +90,9 @@ const socials = [
 ];
 
 export default function Footer() {
+  const { language } = useLanguage();
+  const text = localText[language];
+
   const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
 
   return (
@@ -69,7 +113,7 @@ export default function Footer() {
                 />
               </a>
               <p className="text-[#94A3B8] text-sm leading-relaxed mb-6 max-w-sm">
-                Empowering businesses through custom software engineering, premium dashboards, and scalable IT systems.
+                {text.desc}
               </p>
               
               {/* Social Links */}
@@ -89,7 +133,7 @@ export default function Footer() {
 
             {/* Links Columns (Right - Spans 7) */}
             <div className="lg:col-span-7 grid grid-cols-2 md:grid-cols-4 gap-8">
-              {Object.entries(footerLinks).map(([title, links]) => (
+              {Object.entries(text.footerLinks).map(([title, links]) => (
                 <div key={title} className="flex flex-col">
                   <h4 className="text-white text-xs font-bold uppercase tracking-wider mb-5">
                     {title}
@@ -123,7 +167,7 @@ export default function Footer() {
               onClick={scrollToTop}
               className="group flex items-center gap-2 text-sm text-[#94A3B8] hover:text-white transition-colors"
             >
-              Back to top
+              {text.backToTop}
               <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-[#2563EB] group-hover:text-white transition-all duration-300">
                 <ArrowUp size={14} />
               </div>
