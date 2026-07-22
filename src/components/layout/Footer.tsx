@@ -11,7 +11,7 @@ import {
 
 const footerLinks = {
   Company: [
-    { label: "About Digifore", href: "#about" },
+    { label: "About Zellio", href: "#about" },
     { label: "Vision & Mission", href: "#vision-mission" },
     { label: "Our Team", href: "#" },
     { label: "Careers", href: "#" },
@@ -54,14 +54,21 @@ export default function Footer() {
   return (
     <footer className="bg-[#0F172A] text-white">
       {/* Main Footer */}
-      <div className="section-container py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
-          {/* Brand Column */}
-          <div className="lg:col-span-1">
-            <a href="#home" className="flex items-center mb-5 group">
-              <img src="/zelio.png" alt="Zellio Logo" className="h-9 w-auto object-contain brightness-0 invert group-hover:opacity-90 transition-opacity duration-300" />
+      <div className="section-container pt-8 pb-14 border-t border-white/5">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-start">
+          
+          {/* Brand Column (Left - Spans 5) */}
+          <div className="lg:col-span-5 flex flex-col justify-start">
+            <a href="#home" className="flex items-center mb-4 group">
+              <div className="w-[180px] h-[52px] overflow-hidden relative flex items-center">
+                <img 
+                  src="/zelio.png" 
+                  alt="Zellio Logo" 
+                  className="absolute left-[-26px] top-1/2 -translate-y-[52%] h-40 w-auto max-w-none object-contain brightness-0 invert group-hover:opacity-90 transition-opacity duration-300" 
+                />
+              </div>
             </a>
-            <p className="text-[#94A3B8] text-sm leading-relaxed mb-6">
+            <p className="text-[#94A3B8] text-sm leading-relaxed mb-6 max-w-sm">
               Empowering businesses through custom software engineering, premium dashboards, and scalable IT systems.
             </p>
             <div className="flex items-center gap-3">
@@ -78,34 +85,37 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Link Columns */}
-          {Object.entries(footerLinks).map(([section, links]) => (
-            <div key={section}>
-              <h4 className="text-sm font-semibold text-white mb-4 tracking-wide">
-                {section}
-              </h4>
-              <ul className="space-y-3">
-                {links.map((link) => (
-                  <li key={link.label}>
-                    <a
-                      href={link.href}
-                      className="text-sm text-[#94A3B8] hover:text-white transition-colors"
-                    >
-                      {link.label}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
+          {/* Link Columns Grid (Right - Spans 7) */}
+          <div className="lg:col-span-7 grid grid-cols-2 sm:grid-cols-4 gap-8 w-full">
+            {Object.entries(footerLinks).map(([section, links]) => (
+              <div key={section}>
+                <h4 className="text-sm font-semibold text-white mb-4 tracking-wide uppercase text-[11px] text-slate-400">
+                  {section}
+                </h4>
+                <ul className="space-y-2.5">
+                  {links.map((link) => (
+                    <li key={link.label}>
+                      <a
+                        href={link.href}
+                        className="text-sm text-[#94A3B8] hover:text-white transition-colors"
+                      >
+                        {link.label}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+
         </div>
       </div>
 
       {/* Bottom Bar */}
-      <div className="border-t border-white/10">
+      <div className="border-t border-white/5">
         <div className="section-container py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-sm text-[#64748B]">
-            © {new Date().getFullYear()} DIGIFORE. All rights reserved.
+            © {new Date().getFullYear()} ZELLIO. All rights reserved.
           </p>
           <button
             onClick={scrollToTop}

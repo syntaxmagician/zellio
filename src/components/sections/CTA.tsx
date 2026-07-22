@@ -5,7 +5,7 @@ import { ArrowRight, Mail } from "lucide-react";
 
 export default function CTA() {
   return (
-    <section className="py-20 lg:py-24 bg-[#0F172A] relative overflow-hidden">
+    <section className="pt-20 pb-8 lg:pt-24 lg:pb-12 bg-[#0F172A] relative overflow-hidden">
       {/* Blue glow top-right */}
       <div className="absolute top-0 right-0 w-80 h-80 rounded-full bg-[#2563EB]/12 blur-3xl" />
       {/* Violet glow center */}

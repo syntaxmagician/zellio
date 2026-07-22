@@ -36,7 +36,13 @@ export default function Navbar({ isDark = false }: { isDark?: boolean }) {
       <nav className="section-container flex items-center justify-between h-[72px]">
         {/* Logo */}
         <Link href="/" className="flex items-center group">
-          <img src="/zelio.png" alt="Zellio Logo" className="h-9 w-auto object-contain group-hover:scale-[1.02] transition-transform duration-300" />
+          <div className="w-[140px] h-10 overflow-hidden relative flex items-center">
+            <img 
+              src="/zelio.png" 
+              alt="Zellio Logo" 
+              className="absolute left-[-24px] top-1/2 -translate-y-[52%] h-32 w-auto max-w-none object-contain group-hover:scale-[1.03] transition-transform duration-300" 
+            />
+          </div>
         </Link>
 
         {/* Desktop Nav */}
