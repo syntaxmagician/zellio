@@ -54,7 +54,7 @@ export default function Footer() {
   return (
     <footer className="bg-[#0F172A] text-white">
       {/* Main Footer */}
-      <div className="section-container pt-8 pb-14 border-t border-white/5">
+      <div className="section-container pt-16 lg:pt-20 pb-14 border-t border-white/5">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-start">
           
           {/* Brand Column (Left - Spans 5) */}
