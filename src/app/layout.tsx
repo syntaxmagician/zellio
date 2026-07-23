@@ -18,25 +18,27 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "DIGIFORE — Empowering People Through Digital Learning",
+  title: "ZELLIO — Empowering People Through Digital Learning",
   description:
-    "DIGIFORE helps individuals and companies improve digital competencies through professional training. Explore 500+ training programs with certified trainers.",
+    "ZELLIO helps individuals and companies improve digital competencies through professional training. Explore 500+ training programs with certified trainers.",
   keywords: [
     "digital training",
     "online learning",
     "enterprise training",
     "IT certification",
     "professional development",
-    "DIGIFORE",
+    "ZELLIO",
   ],
   openGraph: {
-    title: "DIGIFORE — Empowering People Through Digital Learning",
+    title: "ZELLIO — Empowering People Through Digital Learning",
     description:
       "Professional digital training for individuals and enterprises. 500+ programs, certified trainers, industry certifications.",
-    siteName: "DIGIFORE",
+    siteName: "ZELLIO",
     type: "website",
   },
 };
+
+import { LanguageProvider } from "@/context/LanguageContext";
 
 export default function RootLayout({
   children,
@@ -52,7 +54,9 @@ export default function RootLayout({
         className="min-h-full flex flex-col"
         style={{ fontFamily: "var(--font-plus-jakarta), var(--font-inter), system-ui, sans-serif" }}
       >
-        {children}
+        <LanguageProvider>
+          {children}
+        </LanguageProvider>
         <Analytics />
         <SpeedInsights />
       </body>

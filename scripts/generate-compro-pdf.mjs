@@ -5,8 +5,8 @@ import path from "path";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(__dirname, "..");
-const htmlPath = path.join(root, "public", "DIGIFORE-Company-Profile.html");
-const pdfPath = path.join(root, "public", "DIGIFORE-Company-Profile.pdf");
+const htmlPath = path.join(root, "public", "ZELLIO-Company-Profile.html");
+const pdfPath = path.join(root, "public", "ZELLIO-Company-Profile.pdf");
 
 if (!fs.existsSync(htmlPath)) {
   console.error(`HTML not found: ${htmlPath}`);

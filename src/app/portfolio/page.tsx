@@ -130,7 +130,10 @@ export default function PortfolioPage() {
         {filterCategories.map((cat) => (
           <button
             key={cat}
-            onClick={() => setActiveCategory(cat)}
+            onClick={() => {
+              setActiveCategory(cat);
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            }}
             className={`relative py-4 px-1 rounded-md transition-all duration-300 [writing-mode:vertical-lr] rotate-180 select-none text-[11px] font-black uppercase tracking-[0.25em] ${
               activeCategory === cat
                 ? "text-blue-600 scale-110 font-black"
@@ -186,7 +189,10 @@ export default function PortfolioPage() {
             {filterCategories.map((cat) => (
               <button
                 key={cat}
-                onClick={() => setActiveCategory(cat)}
+                onClick={() => {
+                  setActiveCategory(cat);
+                  window.scrollTo({ top: 0, behavior: "smooth" });
+                }}
                 className={`px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider border transition-all duration-300 ${
                   activeCategory === cat
                     ? "bg-blue-600 text-white border-blue-600 shadow-md shadow-blue-500/20"
@@ -201,7 +207,7 @@ export default function PortfolioPage() {
 
         {/* 3-Column Compact Grid with Smooth Layout Transitions */}
         <section className="w-full max-w-7xl mx-auto px-4 lg:px-8 xl:px-0">
-          <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 lg:gap-14">
+          <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 lg:gap-14 min-h-[150vh]">
             <AnimatePresence mode="popLayout">
               {filteredProjects.map((project) => {
                 const Icon = project.icon;

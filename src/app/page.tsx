@@ -21,14 +21,14 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Lock scroll during splash screen
+    // Prevent scrolling during splash
     document.body.style.overflow = "hidden";
     
-    // Exactly 1 second delay (1000ms) as requested by user
+    // Allow the premium loader to complete its cinematic sequence
     const timer = setTimeout(() => {
       setLoading(false);
       document.body.style.overflow = "auto";
-    }, 1000);
+    }, 2800);
     
     return () => {
       clearTimeout(timer);
@@ -43,10 +43,10 @@ export default function Home() {
       </AnimatePresence>
 
       <motion.div
-        initial={{ opacity: 0, y: 50, scale: 0.98 }}
-        animate={!loading ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 50, scale: 0.98 }}
-        transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1], delay: 0.4 }}
-        className="w-full"
+        initial={{ opacity: 0 }}
+        animate={!loading ? { opacity: 1 } : { opacity: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+        className="w-full will-change-opacity"
       >
         <Navbar />
         <main>

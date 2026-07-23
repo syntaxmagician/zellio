@@ -1,9 +1,9 @@
 // ============================================================
-// DIGIFORE – IT Services & Software House Site Data
+// ZELLIO – IT Services & Digital Agency Site Data
 // ============================================================
 
 export const navLinks = [
-  { label: "Home", href: "/#home" },
+  { label: "Home", href: "/" },
   { label: "About Us", href: "/#about" },
   { label: "Services", href: "/#services" },
   { label: "Why Us", href: "/#why-choose" },
@@ -220,7 +220,7 @@ export const testimonials = [
     avatar: "RP",
     rating: 5,
     review:
-      "Digifore built our core payment dashboard. The level of professionalism, clean code, and speed of delivery exceeded our expectations. The real-time tracking graphs load instantly.",
+      "ZELLIO built our core payment dashboard. The level of professionalism, clean code, and speed of delivery exceeded our expectations. The real-time tracking graphs load instantly.",
     color: "#2563EB",
   },
   {
@@ -253,7 +253,7 @@ export const testimonials = [
     avatar: "AR",
     rating: 5,
     review:
-      "They designed and built our SaaS web platform from scratch. The UI/UX is outstanding, and the backend is highly scalable. A truly elite software agency that delivers what they promise.",
+      "They designed and built our SaaS web platform from scratch. The UI/UX is outstanding, and the backend is highly scalable. A truly elite tech partner that delivers what they promise.",
     color: "#D97706",
   },
 ];

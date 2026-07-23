@@ -39,7 +39,7 @@ export default function LearningProcess() {
           </span>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0F172A] mb-4">
             Your Journey With{" "}
-            <span className="gradient-text">Digifore</span>
+            <span className="gradient-text">ZELLIO</span>
           </h2>
           <p className="text-[#64748B] leading-relaxed">
             A structured, end-to-end learning experience designed to take you
