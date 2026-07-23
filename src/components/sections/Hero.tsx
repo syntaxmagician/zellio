@@ -7,13 +7,13 @@ import { useLanguage } from "@/context/LanguageContext";
 
 const localText = {
   en: {
-    slogan: ["BUILD", "DIGITAL", "PRODUCTS", "THAT", "LAST."],
+    slogan: ["BUILD", "DIGITAL", "SYSTEMS", "THAT LAST."],
     description: "We are a premium digital engineering agency. We design and architect world-class software solutions, transforming ambitious ideas into scalable, high-performance enterprise platforms.",
     primaryBtn: "Start Your Project",
-    secondaryBtn: "View Our Work"
+    secondaryBtn: "Explore Our Work"
   },
   id: {
-    slogan: ["BANGUN", "PRODUK", "DIGITAL", "YANG", "ABADI."],
+    slogan: ["BANGUN", "SISTEM", "DIGITAL", "YANG ABADI."],
     description: "Kami adalah agensi rekayasa digital premium. Kami merancang dan membangun solusi perangkat lunak kelas dunia, mengubah ide ambisius menjadi platform enterprise yang terukur dan berkinerja tinggi.",
     primaryBtn: "Mulai Proyek",
     secondaryBtn: "Lihat Portofolio"
@@ -28,21 +28,58 @@ export default function Hero() {
   const premiumEase = [0.22, 1, 0.36, 1] as [number, number, number, number];
 
   return (
-    <section id="home" className="relative min-h-screen w-full flex flex-col bg-[#FAFAFA] overflow-hidden">
+    <section 
+      id="home" 
+      className="relative min-h-screen w-full flex flex-col bg-[#FFFFFF] overflow-hidden"
+      style={{
+        backgroundImage: `
+          linear-gradient(to right, rgba(148, 163, 184, 0.025) 1px, transparent 1px),
+          linear-gradient(to bottom, rgba(148, 163, 184, 0.025) 1px, transparent 1px)
+        `,
+        backgroundSize: "48px 48px"
+      }}
+    >
+      {/* 
+        The Absolute Background Layer (Z-0)
+        Vertical Hero Video (Right side only)
+      */}
+      <div 
+        className="absolute top-0 right-0 w-full h-full overflow-hidden pointer-events-none z-0"
+        style={{
+          maskImage: "linear-gradient(to right, transparent 0%, transparent 40%, black 55%, black 100%)",
+          WebkitMaskImage: "linear-gradient(to right, transparent 0%, transparent 40%, black 55%, black 100%)"
+        }}
+      >
+        <video 
+          src="/vertikalHero.mp4" 
+          autoPlay 
+          loop 
+          muted 
+          playsInline 
+          preload="auto"
+          className="w-full h-full object-cover"
+          style={{
+            transform: "translate3d(0, 0, 0)",
+            willChange: "transform",
+            backfaceVisibility: "hidden",
+            WebkitBackfaceVisibility: "hidden"
+          }}
+        />
+      </div>
       
       {/* 
         Full Viewport Immersive Container
         On desktop: Flex row / CSS Grid 12 cols
         On mobile: Flex col
       */}
-      <div className="flex-1 w-full flex flex-col justify-center pt-32 lg:pt-24 pb-12 lg:pb-0 px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 w-full max-w-[1400px] mx-auto items-center">
+      <div className="flex-1 w-full flex flex-col justify-center pt-32 lg:pt-24 pb-12 lg:pb-0 px-6 relative z-10 pointer-events-none">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 w-full max-w-[1400px] mx-auto items-center pointer-events-auto">
           
           {/* LEFT SIDE: Editorial Typography (40%) - col-span-5 */}
           <div className="col-span-1 lg:col-span-5 flex flex-col justify-center">
             
             {/* Towering Slogan */}
-            <h1 className="flex flex-col text-3xl sm:text-4xl md:text-5xl lg:text-[3.75rem] xl:text-[4.25rem] font-black text-slate-900 tracking-tighter leading-[0.95] mb-8">
+            <h1 className="flex flex-col text-4xl sm:text-5xl md:text-6xl lg:text-[3.75rem] xl:text-[4.75rem] font-black text-slate-900 tracking-tighter leading-[0.9] mb-8">
               {text.slogan.map((word, idx) => (
                 <div key={idx} className="overflow-hidden py-1">
                   <motion.span
@@ -98,28 +135,8 @@ export default function Hero() {
             
           </div>
 
-          {/* RIGHT SIDE: Cinematic Video Container (60%) - col-span-7 */}
-          <div className="col-span-1 lg:col-span-7 flex flex-col justify-center h-full w-full">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.2, ease: premiumEase }}
-              className="w-full aspect-square sm:aspect-video lg:aspect-[4/3] xl:aspect-[16/10] bg-slate-200 rounded-[32px] md:rounded-[40px] overflow-hidden border border-slate-200 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.1)] relative"
-            >
-              {/* Centerpiece Visual (Lumina MP4 cinematic looping video) */}
-              <video 
-                src="/lumina2.mp4" 
-                autoPlay
-                loop
-                muted
-                playsInline
-                className="w-full h-full object-cover pointer-events-none" 
-              />
-              
-              {/* Minimal inner shadow for premium depth */}
-              <div className="absolute inset-0 shadow-[inset_0_0_80px_rgba(0,0,0,0.05)] pointer-events-none" />
-            </motion.div>
-          </div>
+          {/* RIGHT SIDE: Empty to let the background Flow Field shine through (60%) - col-span-7 */}
+          <div className="col-span-1 lg:col-span-7 h-full w-full pointer-events-none" />
 
         </div>
       </div>

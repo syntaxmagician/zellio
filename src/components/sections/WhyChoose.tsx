@@ -52,8 +52,8 @@ const localText = {
 };
 
 /**
- * High-performance HTML5 Canvas Interactive Network Visualization
- * Represents cloud architecture, scalability, and clean engineering.
+ * High-performance HTML5 Canvas Interactive Constellation Creator
+ * As the user moves the mouse, it spawns temporary nodes that form glowing constellations.
  */
 const NetworkVisualizer = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -68,48 +68,49 @@ const NetworkVisualizer = () => {
     let width = 0;
     let height = 0;
     const mouse = { x: -1000, y: -1000 };
-    const MAX_NODES = 85;
+    let lastSpawn = { x: -1000, y: -1000 };
+    const MAX_BASE_NODES = 45;
 
     class Node {
       x: number;
       y: number;
-      baseX: number;
-      baseY: number;
-      radius: number;
-      opacity: number;
       vx: number;
       vy: number;
+      radius: number;
+      isCursor: boolean;
+      life: number;
+      maxLife: number;
 
-      constructor(w: number, h: number) {
-        this.baseX = Math.random() * w;
-        this.baseY = Math.random() * h;
-        this.x = this.baseX;
-        this.y = this.baseY;
-        this.radius = Math.random() * 2 + 0.5;
-        this.opacity = Math.random() * 0.4 + 0.1;
-        this.vx = (Math.random() - 0.5) * 0.15;
-        this.vy = (Math.random() - 0.5) * 0.15;
+      constructor(x: number, y: number, isCursor: boolean = false) {
+        this.x = x;
+        this.y = y;
+        this.isCursor = isCursor;
+        this.radius = isCursor ? Math.random() * 2 + 1.5 : Math.random() * 1.5 + 0.5;
+        this.vx = (Math.random() - 0.5) * 0.3;
+        this.vy = (Math.random() - 0.5) * 0.3;
+        this.maxLife = isCursor ? 120 : Infinity;
+        this.life = this.maxLife;
       }
 
       update() {
-        this.baseX += this.vx;
-        this.baseY += this.vy;
-        
-        if (this.baseX < 0 || this.baseX > width) this.vx *= -1;
-        if (this.baseY < 0 || this.baseY > height) this.vy *= -1;
+        this.x += this.vx;
+        this.y += this.vy;
 
-        const dx = mouse.x - this.baseX;
-        const dy = mouse.y - this.baseY;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        
-        // Gentle parallax/gravity pull towards cursor
-        if (dist < 180) {
-          const force = (180 - dist) / 180;
-          this.x = this.baseX + dx * force * 0.08;
-          this.y = this.baseY + dy * force * 0.08;
+        if (!this.isCursor) {
+          if (this.x < 0 || this.x > width) this.vx *= -1;
+          if (this.y < 0 || this.y > height) this.vy *= -1;
         } else {
-          this.x = this.baseX;
-          this.y = this.baseY;
+          this.life--;
+        }
+
+        // Subtle gravity pull toward the current mouse position
+        const dx = mouse.x - this.x;
+        const dy = mouse.y - this.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 200) {
+          const force = (200 - dist) / 200;
+          this.x += dx * force * 0.03;
+          this.y += dy * force * 0.03;
         }
       }
 
@@ -117,54 +118,22 @@ const NetworkVisualizer = () => {
         if (!ctx) return;
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(37, 99, 235, ${this.opacity + 0.3})`; // Subtle nodes
-        ctx.fill();
-      }
-    }
-
-    class Packet {
-      from: Node;
-      to: Node;
-      progress: number;
-      speed: number;
-
-      constructor(from: Node, to: Node) {
-        this.from = from;
-        this.to = to;
-        this.progress = 0;
-        this.speed = Math.random() * 0.008 + 0.004;
-      }
-
-      update() {
-        const dx = mouse.x - this.from.x;
-        const dy = mouse.y - this.from.y;
         
-        if (Math.sqrt(dx*dx + dy*dy) < 180) {
-          this.progress += this.speed * 2.5;
-        } else {
-          this.progress += this.speed;
+        const opacity = this.isCursor ? (this.life / this.maxLife) * 0.9 : 0.3;
+        ctx.fillStyle = `rgba(37, 99, 235, ${opacity})`;
+        ctx.fill();
+        
+        // Outer glow for cursor-spawned nodes
+        if (this.isCursor) {
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, this.radius * 3.5, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(96, 165, 250, ${(this.life / this.maxLife) * 0.25})`;
+          ctx.fill();
         }
-      }
-
-      draw() {
-        if (!ctx) return;
-        const x = this.from.x + (this.to.x - this.from.x) * this.progress;
-        const y = this.from.y + (this.to.y - this.from.y) * this.progress;
-        
-        ctx.beginPath();
-        ctx.arc(x, y, 2.5, 0, Math.PI * 2);
-        ctx.fillStyle = "rgba(96, 165, 250, 0.9)";
-        ctx.fill();
-        
-        ctx.beginPath();
-        ctx.arc(x, y, 7, 0, Math.PI * 2);
-        ctx.fillStyle = "rgba(96, 165, 250, 0.25)";
-        ctx.fill();
       }
     }
 
     let nodes: Node[] = [];
-    let packets: Packet[] = [];
 
     const init = () => {
       width = canvas.offsetWidth;
@@ -172,46 +141,39 @@ const NetworkVisualizer = () => {
       canvas.width = width * window.devicePixelRatio;
       canvas.height = height * window.devicePixelRatio;
       ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
-      nodes = Array.from({ length: MAX_NODES }, () => new Node(width, height));
-      packets = [];
+      
+      nodes = Array.from({ length: MAX_BASE_NODES }, () => new Node(Math.random() * width, Math.random() * height, false));
     };
 
     const animate = () => {
       ctx.clearRect(0, 0, width, height);
 
-      if (Math.random() < 0.06 && nodes.length > 2) {
-        const n1 = nodes[Math.floor(Math.random() * nodes.length)];
-        let closest = null;
-        let minDist = 250;
-        for (const n2 of nodes) {
-          if (n1 === n2) continue;
-          const dist = Math.hypot(n1.x - n2.x, n1.y - n2.y);
-          if (dist < minDist) {
-            minDist = dist;
-            closest = n2;
-          }
-        }
-        if (closest) packets.push(new Packet(n1, closest));
-      }
+      // Clean dead cursor nodes
+      nodes = nodes.filter(n => n.life > 0);
 
+      // Draw connecting lines
       for (let i = 0; i < nodes.length; i++) {
         for (let j = i + 1; j < nodes.length; j++) {
           const dx = nodes[i].x - nodes[j].x;
           const dy = nodes[i].y - nodes[j].y;
           const dist = Math.sqrt(dx * dx + dy * dy);
           
-          if (dist < 140) {
-            const mouseDx = mouse.x - (nodes[i].x + nodes[j].x) / 2;
-            const mouseDy = mouse.y - (nodes[i].y + nodes[j].y) / 2;
-            const mouseDist = Math.sqrt(mouseDx*mouseDx + mouseDy*mouseDy);
+          if (dist < 130) {
+            let opacity = (1 - dist / 130) * 0.3;
             
-            let opacity = (1 - dist / 140) * 0.4;
-            if (mouseDist < 180) opacity += 0.4; 
+            // If either node is spawned by the cursor, the connection glows bright blue
+            if (nodes[i].isCursor || nodes[j].isCursor) {
+               const lifeFactor = nodes[i].isCursor ? (nodes[i].life / nodes[i].maxLife) : (nodes[j].life / nodes[j].maxLife);
+               opacity = (1 - dist / 130) * 0.7 * lifeFactor;
+               ctx.strokeStyle = `rgba(37, 99, 235, ${opacity})`;
+            } else {
+               // Background stars are very faint and more slate-colored
+               ctx.strokeStyle = `rgba(148, 163, 184, ${opacity * 0.4})`;
+            }
 
             ctx.beginPath();
             ctx.moveTo(nodes[i].x, nodes[i].y);
             ctx.lineTo(nodes[j].x, nodes[j].y);
-            ctx.strokeStyle = `rgba(37, 99, 235, ${Math.min(opacity, 1)})`;
             ctx.lineWidth = 1;
             ctx.stroke();
           }
@@ -219,10 +181,6 @@ const NetworkVisualizer = () => {
       }
 
       nodes.forEach(n => { n.update(); n.draw(); });
-      
-      packets = packets.filter(p => p.progress < 1);
-      packets.forEach(p => { p.update(); p.draw(); });
-
       animationFrameId = requestAnimationFrame(animate);
     };
 
@@ -230,11 +188,20 @@ const NetworkVisualizer = () => {
     animate();
 
     const handleResize = () => init();
+    
     const handleMouseMove = (e: MouseEvent) => {
       const rect = canvas.getBoundingClientRect();
       mouse.x = e.clientX - rect.left;
       mouse.y = e.clientY - rect.top;
+      
+      // Spawn a new constellation node every 20px of cursor movement
+      const distFromLast = Math.hypot(mouse.x - lastSpawn.x, mouse.y - lastSpawn.y);
+      if (distFromLast > 20) { 
+        nodes.push(new Node(mouse.x, mouse.y, true));
+        lastSpawn = { x: mouse.x, y: mouse.y };
+      }
     };
+    
     const handleMouseLeave = () => {
       mouse.x = -1000;
       mouse.y = -1000;
@@ -260,7 +227,7 @@ export default function WhyChoose() {
   const { language } = useLanguage();
   const text = localText[language];
   const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
-  const [clickedIdx, setClickedIdx] = useState<number | null>(null); // For clicked to persist state
+  const [clickedIdxs, setClickedIdxs] = useState<number[]>([]);
   const [isMobile, setIsMobile] = useState(false);
 
   const containerTrackRef = useRef<HTMLDivElement>(null);
@@ -364,8 +331,16 @@ export default function WhyChoose() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 mt-12 lg:mt-16">
           {text.principles.map((principle, idx) => {
             const isHovered = hoveredIdx === idx;
-            const isClicked = clickedIdx === idx;
+            const isClicked = clickedIdxs.includes(idx);
             const isVisible = isHovered || isClicked || isMobile;
+
+            const handleToggleClick = () => {
+              if (clickedIdxs.includes(idx)) {
+                setClickedIdxs(clickedIdxs.filter(i => i !== idx));
+              } else {
+                setClickedIdxs([...clickedIdxs, idx]);
+              }
+            };
 
             return (
               <motion.div
@@ -376,7 +351,7 @@ export default function WhyChoose() {
                 transition={{ duration: 0.7, delay: idx * 0.08, ease: premiumEase }}
                 onMouseEnter={() => setHoveredIdx(idx)}
                 onMouseLeave={() => setHoveredIdx(null)}
-                onClick={() => setClickedIdx(clickedIdx === idx ? null : idx)}
+                onClick={handleToggleClick}
                 className="flex flex-col pt-8 border-t border-slate-200/80 cursor-pointer min-h-[160px] group select-none"
               >
                 <span className="text-[10px] font-mono font-bold text-slate-400 mb-4 block group-hover:text-blue-600 transition-colors duration-300">

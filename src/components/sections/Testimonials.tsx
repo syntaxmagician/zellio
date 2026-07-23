@@ -278,7 +278,7 @@ export default function Testimonials() {
         </motion.div>
 
         {/* HEADER BLOCK */}
-        <div className="absolute top-16 left-0 w-full px-12 lg:px-20 z-20 pointer-events-none">
+        <div className="absolute top-24 left-0 w-full px-12 lg:px-20 z-20 pointer-events-none">
           <span className="text-[10px] md:text-[11px] font-mono font-bold tracking-[0.25em] text-[#94A3B8] mb-4 block uppercase">
             {text.badge}
           </span>
@@ -287,11 +287,10 @@ export default function Testimonials() {
           </h2>
         </div>
 
-        {/* THREE ZONES GRID (LEFT - MIDDLE - RIGHT) */}
-        <div className="max-w-[1400px] mx-auto px-12 lg:px-20 h-full grid grid-cols-12 gap-12 items-center relative z-10">
+        {/* CENTERED TESTIMONIAL LAYOUT */}
+        <div className="max-w-[1100px] mx-auto px-12 lg:px-20 h-full flex items-center justify-center relative z-10">
           
-          {/* LEFT ZONE (35% width - cols 1 to 5) */}
-          <div className="col-span-5 flex flex-col justify-center h-full pt-16">
+          <div className="w-full flex flex-col justify-center items-center text-center pt-28">
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeIndex}
@@ -299,54 +298,40 @@ export default function Testimonials() {
                 initial="initial"
                 animate="animate"
                 exit="exit"
-                className="flex flex-col justify-center h-full"
+                className="flex flex-col justify-center items-center w-full"
               >
-                <p className="text-2xl lg:text-3xl leading-[1.3] text-[#F5F7FA] font-medium tracking-tight mb-12">
+                {/* 5-Star Rating */}
+                <div className="flex gap-1 text-yellow-500 mb-8">
+                  {[1, 2, 3, 4, 5].map((star) => (
+                    <svg key={star} className="w-6 h-6 fill-current" viewBox="0 0 20 20">
+                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                    </svg>
+                  ))}
+                </div>
+
+                <p className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl leading-[1.35] text-[#F5F7FA] font-medium tracking-tight mb-12 max-w-4xl">
                   "{currentStory.review}"
                 </p>
 
-                <div className="flex items-center gap-4">
-                  <div className="w-14 h-14 rounded-full overflow-hidden border border-white/10 relative flex-shrink-0">
+                <div className="flex items-center gap-4 bg-white/5 border border-white/10 px-6 py-4 rounded-full backdrop-blur-md">
+                  <div className="w-12 h-12 rounded-full overflow-hidden border border-white/10 relative flex-shrink-0">
                     <Image 
                       src={currentStory.avatar} 
                       fill 
-                      className="object-cover grayscale hover:grayscale-0 transition-all duration-500" 
+                      className="object-cover" 
                       alt={currentStory.name} 
                       unoptimized
                     />
                   </div>
-                  <div className="flex flex-col">
-                    <span className="text-[#F5F7FA] font-bold text-base lg:text-lg">
+                  <div className="flex flex-col text-left">
+                    <span className="text-[#F5F7FA] font-bold text-base">
                       {currentStory.name}
                     </span>
-                    <span className="text-[#94A3B8] font-medium text-xs lg:text-sm mt-0.5">
+                    <span className="text-[#94A3B8] font-medium text-xs mt-0.5">
                       {currentStory.position} <span className="text-[#475569] font-normal mx-0.5">{text.at}</span> <span className="text-[#3B82F6]">{currentStory.company}</span>
                     </span>
                   </div>
                 </div>
-              </motion.div>
-            </AnimatePresence>
-          </div>
-
-          {/* RIGHT ZONE (60% width - cols 6 to 12) - Removed Metrics entirely to focus purely on testimonial narrative */}
-          <div className="col-span-7 flex items-center justify-center pl-8">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={activeIndex}
-                variants={itemVariants}
-                initial="initial"
-                animate="animate"
-                exit="exit"
-                className="w-full aspect-[16/10] rounded-[24px] overflow-hidden border border-white/8 relative shadow-2xl bg-[#0B121F] group"
-              >
-                <Image 
-                  src={currentStory.image} 
-                  fill 
-                  className="object-cover opacity-90 group-hover:scale-102 transition-transform duration-700" 
-                  alt={currentStory.company} 
-                  unoptimized
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent pointer-events-none" />
               </motion.div>
             </AnimatePresence>
           </div>
@@ -383,21 +368,19 @@ export default function Testimonials() {
             key={story.id} 
             className="border-t border-white/5 pt-10 flex flex-col gap-6"
           >
+            {/* 5-Star Rating */}
+            <div className="flex gap-1 text-yellow-500">
+              {[1, 2, 3, 4, 5].map((star) => (
+                <svg key={star} className="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                </svg>
+              ))}
+            </div>
+
             {/* Quote Statement */}
             <h3 className="text-2xl font-medium text-[#F5F7FA] leading-snug">
               "{story.review}"
             </h3>
-
-            {/* Visual aspect Mockup */}
-            <div className="w-full aspect-[16/10] bg-[#0B121F] border border-white/10 rounded-2xl overflow-hidden relative shadow-lg">
-              <Image 
-                src={story.image} 
-                fill 
-                className="object-cover opacity-85" 
-                alt={story.company} 
-                unoptimized
-              />
-            </div>
 
             {/* User Bio */}
             <div className="flex items-center gap-3">

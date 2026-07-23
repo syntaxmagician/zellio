@@ -1,53 +1,61 @@
-"use client";
-
 import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
+import BrowserPreviewEngine from "../ui/BrowserPreviewEngine";
+import AuroraSectionBackground from "../ui/AuroraSectionBackground";
 
 const expertiseData = {
   en: [
     { 
-      title: "Client Success", 
-      desc: "We build IT systems that directly drive business growth and productivity.", 
-      image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=80"
+      title: "Custom Web Development", 
+      desc: "Modern, fast, and SEO-friendly corporate websites, landing pages, and web portals built with React and Next.js."
     },
     { 
-      title: "User-Centric", 
-      desc: "We prioritize intuitive, fast, and accessible user interfaces in every project.", 
-      image: "https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?auto=format&fit=crop&w=1200&q=80"
+      title: "Admin & Analytics Dashboards", 
+      desc: "Interactive data dashboards, custom CRM/ERP interfaces, and business intelligence panels with real-time analytics."
     },
     { 
-      title: "Modern Tech", 
-      desc: "We leverage cutting-edge tech stacks for performance and scalability.", 
-      image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=1200&q=80"
+      title: "Mobile App Development", 
+      desc: "Native-grade Android and iOS applications developed using Flutter and React Native for a seamless user experience."
     },
     { 
-      title: "Elite Quality", 
-      desc: "We adhere to strict coding standards to deliver clean and secure codebases.", 
-      image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1200&q=80"
+      title: "Custom IT Systems", 
+      desc: "Robust backend architectures, custom database designs, integration of third-party APIs, and legacy system migrations."
+    },
+    { 
+      title: "Cloud Infrastructure & DevOps", 
+      desc: "Reliable AWS, GCP, or Azure setup, Docker containerization, Kubernetes orchestration, and continuous integration (CI/CD) pipelines."
+    },
+    { 
+      title: "UI/UX & Product Design", 
+      desc: "Figma mockups, user research, wireframing, custom design systems, and rapid prototyping to wow your target users."
     }
   ],
   id: [
     { 
-      title: "Client Success", 
-      desc: "Kami membangun sistem IT yang secara langsung mendorong pertumbuhan dan produktivitas bisnis.", 
-      image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=80" 
+      title: "Pembangunan Web Kustom", 
+      desc: "Website korporat, landing page, dan portal web yang modern, cepat, dan SEO-friendly menggunakan React dan Next.js."
     },
     { 
-      title: "User-Centric", 
-      desc: "Kami memprioritaskan antarmuka pengguna yang intuitif, cepat, dan mudah diakses di setiap proyek.", 
-      image: "https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?auto=format&fit=crop&w=1200&q=80" 
+      title: "Dashboard Admin & Analitik", 
+      desc: "Dashboard data interaktif, antarmuka CRM/ERP kustom, dan panel kecerdasan bisnis dengan analitik real-time."
     },
     { 
-      title: "Modern Tech", 
-      desc: "Kami memanfaatkan teknologi mutakhir untuk kinerja tinggi dan skalabilitas sistem.", 
-      image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=1200&q=80" 
+      title: "Pengembangan Aplikasi Mobile", 
+      desc: "Aplikasi Android dan iOS tingkat native menggunakan Flutter dan React Native untuk pengalaman pengguna yang mulus."
     },
     { 
-      title: "Elite Quality", 
-      desc: "Kami mematuhi standar pemrograman yang ketat demi menghasilkan basis kode yang bersih dan aman.", 
-      image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1200&q=80" 
+      title: "Sistem TI Kustom", 
+      desc: "Arsitektur backend yang tangguh, desain basis data kustom, integrasi API pihak ketiga, dan migrasi sistem warisan."
+    },
+    { 
+      title: "Infrastruktur Cloud & DevOps", 
+      desc: "Konfigurasi AWS, GCP, atau Azure yang andal, kontainerisasi Docker, orkestrasi Kubernetes, dan pipa CI/CD."
+    },
+    { 
+      title: "Desain UI/UX & Produk", 
+      desc: "Mockup Figma, riset pengguna, wireframing, sistem desain kustom, dan pembuatan prototipe cepat untuk memikat pengguna Anda."
     }
   ]
 };
@@ -66,7 +74,7 @@ const localText = {
       { label: "Years Experience", value: "8+" }
     ],
     expertiseLabel: "Core Expertise",
-    expertiseTitle: "Technology crafted for real business impact.",
+    expertiseTitle: "Engineering capabilities, not just services.",
     expertiseDesc: "We combine engineering, design and product thinking to build software that scales with your business."
   },
   id: {
@@ -82,131 +90,120 @@ const localText = {
       { label: "Tahun Pengalaman", value: "8+" }
     ],
     expertiseLabel: "Keahlian Utama",
-    expertiseTitle: "Teknologi yang dirancang untuk dampak bisnis nyata.",
+    expertiseTitle: "Kapabilitas rekayasa, bukan sekadar layanan.",
     expertiseDesc: "Kami memadukan rekayasa teknologi, desain, dan pemikiran produk untuk membangun sistem perangkat lunak yang tumbuh bersama bisnis Anda."
   }
 };
 
-// Authentic documentary-style imagery showing engineering and collaboration
-const carouselImages = [
-  "https://images.unsplash.com/photo-1531538606174-0f90ff5dce83?auto=format&fit=crop&w=1200&q=80",
-  "https://images.unsplash.com/photo-1542831371-29b0f74f9713?auto=format&fit=crop&w=1200&q=80",
-  "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=80",
-  "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=1200&q=80"
-];
+
 
 function CoreExpertiseSection({ language }: { language: "en" | "id" }) {
   const [activeIdx, setActiveIdx] = useState(0);
   const data = expertiseData[language];
   const text = localText[language];
-  const premiumEase = [0.22, 1, 0.36, 1] as [number, number, number, number];
 
   return (
-    <div className="w-full bg-[#FFFFFF] py-24 lg:py-36 relative overflow-hidden border-t border-slate-100">
+    <div className="w-full mt-24 lg:mt-32 bg-[#FFFFFF] py-14 lg:py-20 relative overflow-hidden border border-slate-100 rounded-[24px] md:rounded-[40px] shadow-sm">
       
-      {/* Centered Premium Editorial Header */}
-      <div className="max-w-4xl mx-auto text-center px-6 mb-16 lg:mb-24">
-        <span className="text-[11px] font-mono font-bold tracking-[0.25em] uppercase text-blue-600 mb-6 block">
-          {text.expertiseLabel}
-        </span>
-        <h3 className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 tracking-tight leading-[1.05] mb-6">
-          {text.expertiseTitle}
-        </h3>
-        <p className="text-base md:text-lg text-slate-500 font-medium leading-relaxed max-w-2xl mx-auto">
-          {text.expertiseDesc}
-        </p>
-      </div>
+      {/* 
+        Aurora diagonal background canvas (flowing softly)
+      */}
+      <AuroraSectionBackground />
 
-      {/* Split Interactive Layout */}
-      <div className="max-w-[1400px] mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+      {/* Split Spacious Grid Layout: LEFT (Browser Showcase 60%) / RIGHT (Copy + List 40%) */}
+      <div className="max-w-[1400px] mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
         
-        {/* RIGHT (45%): Interactive Vertical List */}
-        <div className="col-span-1 lg:col-span-5 flex flex-col justify-center border-t border-slate-100 order-2 lg:order-2">
-          {data.map((item, idx) => {
-            const isActive = activeIdx === idx;
-            return (
-              <div
-                key={idx}
-                onMouseEnter={() => setActiveIdx(idx)}
-                className="relative py-6 md:py-8 border-b border-slate-100 cursor-pointer group flex items-center justify-between transition-colors duration-300"
-              >
-                
-                {/* Thin animated left indicator */}
-                {isActive && (
-                  <motion.div
-                    layoutId="expertiseActiveBorder"
-                    className="absolute left-[-20px] top-1/4 bottom-1/4 w-[3px] rounded-full bg-blue-600 hidden lg:block"
-                    transition={{ type: "spring", stiffness: 350, damping: 30 }}
-                  />
-                )}
-
-                <div className="flex items-center gap-6">
-                  {/* Subtle numbering */}
-                  <span
-                    className={`text-sm font-mono font-bold transition-colors duration-300 ${
-                      isActive ? "text-blue-600" : "text-slate-300"
-                    }`}
-                  >
-                    0{idx + 1}
-                  </span>
-                  
-                  {/* Title & Description stack inside left list */}
-                  <div className="flex flex-col gap-1">
-                    <h4
-                      className={`text-xl md:text-2xl font-black tracking-tight transition-colors duration-300 ${
-                        isActive ? "text-slate-950 font-bold" : "text-slate-400 group-hover:text-slate-600"
-                      }`}
-                    >
-                      {item.title}
-                    </h4>
-                    
-                    {/* Responsive support description inside item */}
-                    <AnimatePresence>
-                      {isActive && (
-                        <motion.p
-                          initial={{ opacity: 0, height: 0 }}
-                          animate={{ opacity: 1, height: "auto" }}
-                          exit={{ opacity: 0, height: 0 }}
-                          transition={{ duration: 0.3 }}
-                          className="text-xs md:text-sm text-slate-500 font-medium leading-relaxed max-w-sm mt-1"
-                        >
-                          {item.desc}
-                        </motion.p>
-                      )}
-                    </AnimatePresence>
-                  </div>
-                </div>
-
-                {/* Animated Arrow */}
-                <ArrowRight
-                  size={18}
-                  className={`transition-all duration-300 ${
-                    isActive ? "text-blue-600 translate-x-1.5 rotate-45" : "text-slate-200 group-hover:text-slate-400"
-                  }`}
-                />
-
-              </div>
-            );
-          })}
+        {/* LEFT (60%): macOS persistent Browser Showcase */}
+        <div className="col-span-1 lg:col-span-7 order-1 flex items-center justify-center relative z-10">
+          <BrowserPreviewEngine activeIndex={activeIdx} />
         </div>
 
-        {/* LEFT (55%): Cinematic Media Container */}
-        <div className="col-span-1 lg:col-span-7 order-1 lg:order-1">
-          <div className="w-full aspect-[16/10] bg-slate-100 rounded-[28px] md:rounded-[36px] overflow-hidden relative border border-slate-200/50 shadow-sm">
-            <AnimatePresence mode="wait">
-              <motion.img
-                key={activeIdx}
-                initial={{ opacity: 0, scale: 1.03 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.98 }}
-                transition={{ duration: 0.5, ease: premiumEase }}
-                src={data[activeIdx].image}
-                alt={data[activeIdx].title}
-                className="absolute inset-0 w-full h-full object-cover"
-              />
-            </AnimatePresence>
-            <div className="absolute inset-0 bg-slate-950/5 pointer-events-none" />
+        {/* RIGHT (40%): Editorial Typographic Stack & Vertical Menu */}
+        <div className="col-span-1 lg:col-span-5 flex flex-col justify-center order-2 relative z-10">
+          
+          {/* Header Copy */}
+          <div className="mb-6 text-left">
+            <span className="text-[10px] font-mono font-bold tracking-[0.25em] uppercase text-blue-600 mb-3 block">
+              {text.expertiseLabel}
+            </span>
+            <h3 className="text-2xl sm:text-3xl md:text-[2.25rem] font-bold text-slate-900 tracking-tight leading-[1.1] mb-4">
+              {text.expertiseTitle}
+            </h3>
+            <p className="text-xs md:text-sm text-slate-500 font-medium leading-relaxed">
+              {text.expertiseDesc}
+            </p>
           </div>
+
+          {/* Vertical Navigation Menu with Premium Cards */}
+          <div className="flex flex-col gap-2">
+            {data.map((item, idx) => {
+              const isActive = activeIdx === idx;
+              return (
+                <div
+                  key={idx}
+                  onMouseEnter={() => setActiveIdx(idx)}
+                  className={`relative cursor-pointer group flex flex-col transition-all duration-300 rounded-[14px] ${
+                    isActive 
+                      ? "bg-blue-500/5 border border-blue-500/10 shadow-[0_8px_30px_rgba(59,130,246,0.02)] p-4 pl-5 border-l-2 border-l-blue-600" 
+                      : "bg-transparent border border-transparent p-2.5 hover:translate-x-1 border-b border-b-slate-100/40 rounded-none last:border-b-0"
+                  }`}
+                >
+                  <div className="flex items-center justify-between w-full">
+                    <div className="flex items-center gap-3">
+                      {/* Numbering */}
+                      <span
+                        className={`text-xs font-mono font-bold transition-colors duration-300 ${
+                          isActive ? "text-blue-600" : "text-slate-300"
+                        }`}
+                      >
+                        0{idx + 1}
+                      </span>
+                      
+                      {/* Active Title */}
+                      <h4
+                        className={`text-sm md:text-base tracking-tight transition-all duration-300 ${
+                          isActive 
+                            ? "text-slate-950 font-bold" 
+                            : "text-slate-400 group-hover:text-slate-600 font-medium"
+                        }`}
+                      >
+                        {item.title}
+                      </h4>
+                    </div>
+
+                    {/* Circular Action Badge Arrow */}
+                    {isActive ? (
+                      <div className="w-6 h-6 rounded-full bg-white shadow-sm border border-slate-100 flex items-center justify-center text-blue-600">
+                        <ArrowUpRight size={12} />
+                      </div>
+                    ) : (
+                      <ArrowRight
+                        size={12}
+                        className="text-slate-300 group-hover:text-slate-500 transition-transform duration-300 group-hover:translate-x-1"
+                      />
+                    )}
+                  </div>
+
+                  {/* Active detailed supporting text */}
+                  <AnimatePresence>
+                    {isActive && (
+                      <motion.p
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: "auto" }}
+                        exit={{ opacity: 0, height: 0 }}
+                        transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                        className="text-[11px] md:text-xs text-slate-500 font-medium leading-relaxed max-w-sm mt-2 pl-6"
+                      >
+                        {item.desc}
+                      </motion.p>
+                    )}
+                  </AnimatePresence>
+
+                </div>
+              );
+            })}
+          </div>
+
         </div>
 
       </div>
@@ -217,15 +214,7 @@ function CoreExpertiseSection({ language }: { language: "en" | "id" }) {
 export default function About() {
   const { language } = useLanguage();
   const text = localText[language];
-  const [imgIdx, setImgIdx] = useState(0);
 
-  // Crossfade images every 4 seconds
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setImgIdx((prev) => (prev + 1) % carouselImages.length);
-    }, 4000);
-    return () => clearInterval(timer);
-  }, []);
 
   const premiumEase = [0.22, 1, 0.36, 1] as [number, number, number, number];
 
@@ -249,21 +238,15 @@ export default function About() {
               transition={{ duration: 0.7, ease: premiumEase }}
               className="relative w-full aspect-square sm:aspect-video lg:aspect-[4/3] xl:aspect-[16/11] bg-slate-200 rounded-[32px] md:rounded-[40px] overflow-hidden shadow-2xl border border-slate-200"
             >
-              {/* Autoplay Crossfading Carousel */}
-              <div className="absolute inset-0 z-0">
-                <AnimatePresence mode="wait">
-                  <motion.img
-                    key={imgIdx}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.8 }}
-                    src={carouselImages[imgIdx]}
-                    alt="Authentic Team Collaboration"
-                    className="w-full h-full object-cover"
-                  />
-                </AnimatePresence>
-              </div>
+              {/* Premium Cinematic Looping Video */}
+              <video
+                src="/lumina2.mp4"
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="w-full h-full object-cover pointer-events-none"
+              />
 
               {/* Muted overlay for readability */}
               <div className="absolute inset-0 bg-slate-950/15 z-10 pointer-events-none" />
