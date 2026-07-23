@@ -278,7 +278,7 @@ export default function WhyChoose() {
   });
 
   const scale = useTransform(scrollYProgress, [0, 0.4], [0.95, 1]);
-  const premiumEase = [0.22, 1, 0.36, 1];
+  const premiumEase = [0.22, 1, 0.36, 1] as [number, number, number, number];
 
   const words = [
     { text: "Invest", color: "text-slate-900" },

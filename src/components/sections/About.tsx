@@ -99,7 +99,7 @@ function CoreExpertiseSection({ language }: { language: "en" | "id" }) {
   const [activeIdx, setActiveIdx] = useState(0);
   const data = expertiseData[language];
   const text = localText[language];
-  const premiumEase = [0.22, 1, 0.36, 1];
+  const premiumEase = [0.22, 1, 0.36, 1] as [number, number, number, number];
 
   return (
     <div className="w-full bg-[#FFFFFF] py-24 lg:py-36 relative overflow-hidden border-t border-slate-100">
@@ -227,7 +227,7 @@ export default function About() {
     return () => clearInterval(timer);
   }, []);
 
-  const premiumEase = [0.22, 1, 0.36, 1];
+  const premiumEase = [0.22, 1, 0.36, 1] as [number, number, number, number];
 
   return (
     <section id="about" className="relative pt-24 pb-12 lg:pt-32 lg:pb-16 bg-[#FAFAFA] overflow-hidden">
