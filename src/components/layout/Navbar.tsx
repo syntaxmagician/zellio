@@ -92,7 +92,7 @@ export default function Navbar() {
           boxShadow: scrolled ? "0 20px 40px rgba(59, 130, 246, 0.08)" : "0 10px 30px rgba(0, 0, 0, 0.04)",
         }}
         transition={{ duration: 0.4, ease: "easeOut" }}
-        className="hidden lg:flex fixed left-1/2 -translate-x-1/2 z-[100] px-8 xl:px-12 items-center justify-between backdrop-blur-3xl transition-colors will-change-transform"
+        className="hidden lg:flex fixed left-1/2 -translate-x-1/2 z-[100] px-5 lg:px-6 xl:px-8 items-center justify-between backdrop-blur-3xl transition-colors will-change-transform"
       >
         {/* DYNAMIC HOLOGRAPHIC GLOW EFFECT */}
         <AnimatePresence>
@@ -109,12 +109,12 @@ export default function Navbar() {
         </AnimatePresence>
 
         {/* LOGO */}
-        <Link href="/" className="flex items-center group relative w-56 h-10 pl-2">
-          <div className="absolute left-4 top-1/2 -translate-y-1/2 flex items-center">
+        <Link href="/" className="flex items-center group relative w-[120px] lg:w-[140px] xl:w-[160px] h-10 pl-0 lg:pl-1 shrink-0">
+          <div className="absolute left-0 lg:left-1 top-1/2 -translate-y-1/2 flex items-center">
             <img 
               src="/zelio.png" 
               alt="Zellio Logo" 
-              className="w-auto object-contain transition-all duration-300 origin-left drop-shadow-sm scale-[2.6]"
+              className="w-auto object-contain transition-all duration-300 origin-left drop-shadow-sm scale-[1.8] lg:scale-[2] xl:scale-[2.2]"
               style={{ height: '40px' }}
             />
           </div>
@@ -132,8 +132,8 @@ export default function Navbar() {
                 else setShowServices(false);
               }}
             >
-              <Link href={link.href} className="relative px-5 py-2.5 rounded-full group flex items-center gap-1 z-10 cursor-pointer">
-                <span className="relative z-10 text-[11px] font-black tracking-[0.22em] uppercase text-slate-700 transition-colors duration-200 group-hover:text-blue-600 flex items-center gap-1">
+              <Link href={link.href} className="relative px-2 lg:px-3 xl:px-4 py-2.5 rounded-full group flex items-center gap-1 z-10 cursor-pointer whitespace-nowrap">
+                <span className="relative z-10 text-[10px] xl:text-[11px] font-black tracking-[0.1em] lg:tracking-[0.15em] xl:tracking-[0.2em] uppercase text-slate-700 transition-colors duration-200 group-hover:text-blue-600 flex items-center gap-1 whitespace-nowrap">
                   {t(getNavLabelKey(link.label))}
                   {link.label === "Services" && <ChevronDown size={12} className={`transition-transform duration-300 ${showServices ? 'rotate-180 text-blue-600' : ''}`} />}
                 </span>
@@ -232,9 +232,11 @@ export default function Navbar() {
             </button>
           </div>
 
-          <Link
-            href="/#contact"
-            className="group relative px-6 py-3 rounded-full overflow-hidden bg-slate-900 text-white text-[13px] font-semibold transition-all duration-200 shadow-[0_8px_20px_rgba(15,23,42,0.15)] hover:shadow-blue-500/25 flex items-center gap-2 border border-slate-700 hover:border-blue-500 cursor-pointer"
+          <a
+            href="https://wa.me/6285158945811?text=Saya%20ingin%20kosultasi%20mengenai%20project%20yang%20saya%20sedang%20kembangkan%2C%20"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group relative px-4 py-2 rounded-full overflow-hidden bg-slate-900 text-white text-[12px] font-semibold transition-all duration-200 shadow-[0_8px_20px_rgba(15,23,42,0.15)] hover:shadow-blue-500/25 flex items-center gap-2 border border-slate-700 hover:border-blue-500 cursor-pointer"
           >
             <span className="relative flex h-[6px] w-[6px] mr-1">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
@@ -243,7 +245,7 @@ export default function Navbar() {
             <span className="relative z-10 flex items-center gap-2 tracking-wide">
               {t("nav.startProject")} <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
             </span>
-          </Link>
+          </a>
         </div>
       </motion.nav>
 
@@ -340,8 +342,10 @@ export default function Navbar() {
                     transition={{ delay: 0.3 }}
                     className="mt-4 pt-4 border-t border-slate-200"
                   >
-                    <Link
-                      href="/#contact"
+                    <a
+                      href="https://wa.me/6285158945811?text=Saya%20ingin%20kosultasi%20mengenai%20project%20yang%20saya%20sedang%20kembangkan%2C%20"
+                      target="_blank"
+                      rel="noopener noreferrer"
                       onClick={() => setMobileOpen(false)}
                       className="w-full py-3.5 bg-slate-900 hover:bg-blue-600 text-white text-center text-sm font-bold tracking-wide rounded-xl flex items-center justify-center gap-2 shadow-lg hover:shadow-blue-500/25 transition-all active:scale-[0.98]"
                     >
@@ -350,7 +354,7 @@ export default function Navbar() {
                         <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
                       </span>
                       {t("nav.startProject")}
-                    </Link>
+                    </a>
                   </motion.div>
                 </div>
               </motion.div>

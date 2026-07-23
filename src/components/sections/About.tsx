@@ -10,6 +10,7 @@ import {
   TrendingUp,
 } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
+import Abstract3DComposition from "@/components/ui/Abstract3DComposition";
 
 const NeonDivider = () => (
   <>
@@ -461,19 +462,9 @@ export default function About() {
             whileInView={{ opacity: 1, y: 0, scale: 1 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
-            className="bg-[#0A0F1C] rounded-[32px] p-8 relative overflow-hidden flex flex-col items-center justify-center text-center group shadow-[0_20px_40px_-20px_rgba(0,0,0,0.3)] border border-slate-800"
+            className="col-span-1 h-[350px] lg:h-full bg-gradient-to-br from-white via-slate-50/50 to-slate-100/50 border border-slate-100 rounded-[28px] relative overflow-hidden group shadow-[0_15px_30px_-15px_rgba(0,0,0,0.03)] hover:shadow-xl transition-all duration-500"
           >
-            {/* Animated Mesh Gradient Background */}
-            <div className="absolute inset-0 bg-gradient-to-br from-[#2563EB]/25 via-transparent to-[#06B6D4]/15 pointer-events-none group-hover:scale-110 transition-transform duration-1000 ease-out" />
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[220px] h-[220px] bg-blue-500/20 blur-[60px] rounded-full pointer-events-none group-hover:bg-blue-400/30 transition-colors duration-700" />
-
-            <div className="relative z-10">
-              <div className="w-20 h-20 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-[#2563EB] via-[#9FA1FF] to-[#2563EB] flex items-center justify-center shadow-xl shadow-violet-500/20 group-hover:rotate-[10deg] group-hover:scale-105 transition-all duration-500">
-                <span className="text-white text-3xl font-black">DF</span>
-              </div>
-              <h3 className="text-4xl font-black text-white mb-3 tracking-tight">{text.since}</h3>
-              <p className="text-slate-400 font-medium leading-relaxed max-w-[200px] mx-auto text-sm">{text.sinceSub}</p>
-            </div>
+            <Abstract3DComposition />
           </motion.div>
 
           {/* Card-less Liquid Stats & Kinetic Beams Grid */}

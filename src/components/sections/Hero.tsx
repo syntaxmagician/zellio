@@ -114,31 +114,11 @@ export default function Hero() {
             </span>
           </motion.div>
 
-          {/* Staggered Cinematic Typography */}
-          <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-[6.5rem] font-black leading-[1.05] text-slate-900 mb-6 tracking-tight flex flex-col items-center">
-            <div className="flex flex-wrap justify-center gap-x-4 gap-y-2">
-              {titleWords.map((word, i) => (
-                <motion.span
-                  key={i}
-                  initial={{ opacity: 0, y: 40, rotateX: -90 }}
-                  animate={{ opacity: 1, y: 0, rotateX: 0 }}
-                  transition={{ duration: 0.8, delay: 0.1 + i * 0.1, type: "spring", damping: 15 }}
-                  className="inline-block origin-bottom"
-                >
-                  {word}
-                </motion.span>
-              ))}
-            </div>
-            
-            {/* Premium Solid Text */}
-            <motion.span
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
-              className="mt-2 block text-blue-600 dark:text-blue-500 font-black"
-            >
-              {t("hero.titleAcc")}
-            </motion.span>
+          {/* Iconic Slogan Typography */}
+          <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-[6.5rem] font-black leading-[1.1] tracking-tight text-slate-900 mb-8 select-none flex flex-wrap justify-center gap-x-4 sm:gap-x-6">
+            <span>Build.</span>
+            <span>Better.</span>
+            <span className="text-blue-600">Faster.</span>
           </h1>
 
           <motion.p 

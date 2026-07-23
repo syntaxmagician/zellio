@@ -23,10 +23,10 @@ const localText = {
       {
         icon: MapPin,
         label: "Address",
-        value: "Jl. Sudirman Kav. 52-53, Jakarta Selatan 12190",
+        value: "Jl. Blk. Duku, No.93, Cibubur",
       },
-      { icon: Phone, label: "Phone", value: "+62 21 5150 1234" },
-      { icon: Mail, label: "Email", value: "hello@ZELLIO.id" },
+      { icon: Phone, label: "Phone", value: "085158945811" },
+      { icon: Mail, label: "Email", value: "marketing@zellio.id" },
       {
         icon: Clock,
         label: "Business Hours",
@@ -56,10 +56,10 @@ const localText = {
       {
         icon: MapPin,
         label: "Alamat",
-        value: "Jl. Sudirman Kav. 52-53, Jakarta Selatan 12190",
+        value: "Jl. Blk. Duku, No.93, Cibubur",
       },
-      { icon: Phone, label: "Telepon", value: "+62 21 5150 1234" },
-      { icon: Mail, label: "Email", value: "hello@ZELLIO.id" },
+      { icon: Phone, label: "Telepon", value: "085158945811" },
+      { icon: Mail, label: "Email", value: "marketing@zellio.id" },
       {
         icon: Clock,
         label: "Jam Operasional",
@@ -103,8 +103,14 @@ export default function Contact() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Placeholder – would wire to API
-    alert(text.form.alert);
+    
+    const emailTo = "marketing@zellio.id";
+    const subject = "Contact Form Submission";
+    const body = `Full Name\n${form.name || ""}\n\nCompany\n${form.company || ""}\n\nEmail\n${form.email || ""}\n\nPhone\n${form.phone || ""}\n\nMessage\n${form.message || ""}`;
+
+    const mailtoUrl = `mailto:${emailTo}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    window.location.href = mailtoUrl;
+    
     setForm({ name: "", company: "", email: "", phone: "", message: "" });
   };
 
@@ -161,7 +167,7 @@ export default function Contact() {
             <div className="rounded-2xl overflow-hidden border border-gray-100 shadow-sm h-[220px]">
               <iframe
                 title="ZELLIO Office Location"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.2!2d106.8!3d-6.2!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNsKwMTInMDAuMCJTIDEwNsKwNDgnMDAuMCJF!5e0!3m2!1sen!2sid!4v1234567890"
+                src="https://maps.google.com/maps?q=-6.3611275,106.8747062&t=&z=17&ie=UTF8&iwloc=&output=embed"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}

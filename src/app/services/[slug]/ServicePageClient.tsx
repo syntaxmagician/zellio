@@ -108,6 +108,9 @@ export default function ServicePageClient({ service }: { service: any }) {
   const translatedDesc = t(descKey);
   
   const activeDeliverables = (deliverablesMap as any)[language][service.id] as string[];
+  
+  const whatsappTemplate = `Saya ingin kosultasi mengenai project yang saya sedang kembangkan, khususnya untuk layanan: ${translatedTitle}`;
+  const whatsappUrl = `https://wa.me/6285158945811?text=${encodeURIComponent(whatsappTemplate)}`;
 
   return (
     <main className="min-h-screen bg-white">
@@ -148,12 +151,14 @@ export default function ServicePageClient({ service }: { service: any }) {
             </p>
             
             <div className="flex flex-wrap items-center justify-center gap-4">
-              <Link 
-                href="/#contact" 
+              <a 
+                href={whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="px-8 py-4 bg-slate-900 text-white rounded-full font-bold shadow-[0_10px_30px_rgba(15,23,42,0.2)] hover:shadow-blue-500/30 hover:scale-105 active:scale-95 transition-all flex items-center gap-2"
               >
                 {t("nav.startProject")} <ArrowRight size={18} />
-              </Link>
+              </a>
               <Link 
                 href="/portfolio" 
                 className="px-8 py-4 bg-white text-slate-900 border border-slate-200 rounded-full font-bold shadow-sm hover:bg-slate-50 active:scale-95 transition-all"
