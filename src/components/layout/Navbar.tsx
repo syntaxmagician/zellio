@@ -12,6 +12,7 @@ const mainLinks = [
   { label: "Home", href: "/", idKey: "Beranda" },
   { label: "Services", href: "/#services", idKey: "Layanan" },
   { label: "Portfolio", href: "/portfolio", idKey: "Portofolio" },
+  { label: "Team", href: "/team", idKey: "Tim" },
   { label: "About", href: "/#about", idKey: "Tentang" },
   { label: "Contact", href: "/#contact", idKey: "Kontak" },
 ];

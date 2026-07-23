@@ -11,6 +11,7 @@ import Hero from "@/components/sections/Hero";
 import About from "@/components/sections/About";
 import VisionMission from "@/components/sections/VisionMission";
 import Services from "@/components/sections/Services";
+import EngineeringEcosystem from "@/components/sections/EngineeringEcosystem";
 import WhyChoose from "@/components/sections/WhyChoose";
 
 import Testimonials from "@/components/sections/Testimonials";
@@ -55,6 +56,7 @@ export default function Home() {
           <About />
           <VisionMission />
           <Services />
+          <EngineeringEcosystem />
           <WhyChoose />
 
           <Testimonials />

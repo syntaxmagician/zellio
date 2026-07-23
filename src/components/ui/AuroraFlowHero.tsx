@@ -135,8 +135,9 @@ export default function AuroraFlowHero() {
     let height = 0;
     const simplex = new SimplexNoise();
 
-    // 80 parallel strands forming the sweeping wind layout
-    const NUM_STRANDS = 80;
+    // 120 parallel strands forming the sweeping wind layout (60 per side)
+    const NUM_STRANDS = 120;
+    const halfStrands = NUM_STRANDS / 2;
     const strandsOffsets: { offsetAngle: number; spreadScale: number; color: string; width: number }[] = [];
 
     // Colors mapping from requested palette
@@ -149,9 +150,10 @@ export default function AuroraFlowHero() {
     ];
 
     for (let i = 0; i < NUM_STRANDS; i++) {
+      const relativeIndex = i % halfStrands;
       strandsOffsets.push({
-        offsetAngle: (i - NUM_STRANDS / 2) * 0.025,
-        spreadScale: (i / NUM_STRANDS) * 45 - 22,
+        offsetAngle: (relativeIndex - halfStrands / 2) * 0.025,
+        spreadScale: (relativeIndex / halfStrands) * 45 - 22,
         color: colors[i % colors.length],
         width: Math.random() * 0.8 + 0.4 // Hairline widths
       });
@@ -166,7 +168,7 @@ export default function AuroraFlowHero() {
 
     // Data Nodes traveling along splines
     const nodes: DataNode[] = [];
-    const NUM_NODES = 16;
+    const NUM_NODES = 24; // Increased nodes count for doubled strands
     const nodeGlowColors = [
       { base: "#22D3EE", glow: "rgba(34, 211, 238, 0.75)" }, // Cyan
       { base: "#3B82F6", glow: "rgba(59, 130, 246, 0.75)" }, // Electric Blue
@@ -266,11 +268,17 @@ export default function AuroraFlowHero() {
       ctx.globalCompositeOperation = "source-over";
 
       // Define standard control points for the diagonal S-curve
-      // Starts offscreen top-right, sweeps down-left towards center, curves out bottom-right
-      const p0 = { x: width * 0.9, y: -150 };
-      const p1 = { x: width * 0.42, y: height * 0.22 };
-      const p2 = { x: width * 0.48, y: height * 0.68 };
-      const p3 = { x: width * 1.05, y: height * 1.15 };
+      // Path A: Starts top-right, curves to center-left, ends bottom-right (forms `)`)
+      const p0A = { x: width * 0.95, y: -150 };
+      const p1A = { x: width * 0.42, y: height * 0.25 };
+      const p2A = { x: width * 0.48, y: height * 0.70 };
+      const p3A = { x: width * 1.05, y: height * 1.15 };
+
+      // Path B: Starts top-left, curves to center-right, ends bottom-left (forms `(`)
+      const p0B = { x: width * 0.05, y: -150 };
+      const p1B = { x: width * 0.58, y: height * 0.25 };
+      const p2B = { x: width * 0.52, y: height * 0.70 };
+      const p3B = { x: width * -0.05, y: height * 1.15 };
 
       // Pre-calculate strand spline coordinate lists for rendering and data node mapping
       const strandsPaths: Point2D[][] = [];
@@ -279,6 +287,13 @@ export default function AuroraFlowHero() {
       for (let sIndex = 0; sIndex < NUM_STRANDS; sIndex++) {
         const offset = strandsOffsets[sIndex];
         const points: Point2D[] = [];
+
+        // Split strands evenly into Path A and Path B
+        const isPathA = sIndex < NUM_STRANDS / 2;
+        const p0 = isPathA ? p0A : p0B;
+        const p1 = isPathA ? p1A : p1B;
+        const p2 = isPathA ? p2A : p2B;
+        const p3 = isPathA ? p3A : p3B;
 
         for (let step = 0; step <= segmentResolution; step++) {
           const t = step / segmentResolution;
@@ -318,8 +333,17 @@ export default function AuroraFlowHero() {
 
       // 3. Draw Translucent Aurora Ribbons (Thick blurred glass backgrounds)
       ctx.globalCompositeOperation = "screen";
-      for (let i = 0; i < 4; i++) {
-        const targetStrand = strandsPaths[Math.floor(i * (NUM_STRANDS / 4.5))];
+      
+      // Select 4 ribbons spread across both paths
+      const ribbonIndices = [
+        Math.floor(NUM_STRANDS * 0.15), // Path A ribbon
+        Math.floor(NUM_STRANDS * 0.35), // Path A ribbon
+        Math.floor(NUM_STRANDS * 0.65), // Path B ribbon
+        Math.floor(NUM_STRANDS * 0.85)  // Path B ribbon
+      ];
+
+      for (let i = 0; i < ribbonIndices.length; i++) {
+        const targetStrand = strandsPaths[ribbonIndices[i]];
         if (!targetStrand || targetStrand.length === 0) continue;
 
         ctx.beginPath();

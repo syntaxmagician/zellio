@@ -46,7 +46,7 @@ const localText = {
     }
   },
   id: {
-    desc: "Membantu bisnis berkembang lewat pembuatan platform digital kustom, dashboard canggih, dan sistem IT yang andal.",
+    desc: "Membantu bisnis berkembang lewat pembuatan platform digital kustom, dashboard canggih, dan sistem IT yang handal.",
     backToTop: "Kembali ke atas",
     footerLinks: {
       Perusahaan: [
@@ -101,21 +101,21 @@ export default function Footer() {
         {/* Main Footer */}
         <div className="section-container pt-16 lg:pt-20 pb-14 border-t border-white/5">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-start">
-            
+
             {/* Brand Column (Left - Spans 5) */}
             <div className="lg:col-span-5 flex flex-col justify-start">
               <a href="#home" className="flex items-center mb-4 group">
-                <img 
-                  src="/zelio.png" 
-                  alt="Zellio Logo" 
-                  className="h-12 md:h-16 w-auto object-contain scale-[2.4] md:scale-[2.6] origin-left brightness-0 invert group-hover:opacity-90 transition-opacity duration-300" 
+                <img
+                  src="/zelio.png"
+                  alt="Zellio Logo"
+                  className="h-12 md:h-16 w-auto object-contain scale-[2.4] md:scale-[2.6] origin-left brightness-0 invert group-hover:opacity-90 transition-opacity duration-300"
                   style={{ width: 'auto' }}
                 />
               </a>
               <p className="text-[#94A3B8] text-sm leading-relaxed mb-6 max-w-sm">
                 {text.desc}
               </p>
-              
+
               {/* Social Links */}
               <div className="flex items-center gap-3">
                 {socials.map((social, index) => (
@@ -162,7 +162,7 @@ export default function Footer() {
             <p className="text-[#64748B] text-sm text-center md:text-left">
               &copy; {new Date().getFullYear()} ZELLIO. All rights reserved.
             </p>
-            
+
             <button
               onClick={scrollToTop}
               className="group flex items-center gap-2 text-sm text-[#94A3B8] hover:text-white transition-colors"
