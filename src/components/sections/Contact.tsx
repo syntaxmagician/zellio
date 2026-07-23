@@ -2,37 +2,13 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import {
-  MapPin,
-  Phone,
-  Mail,
-  Clock,
-  Send,
-  Building2,
-  User,
-  MessageSquare,
-} from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 
 const localText = {
   en: {
-    badge: "Contact Us",
-    title: "Get In Touch",
-    desc: "Ready to build your next big idea? Tell us about your project requirements and we'll get back to you shortly.",
-    info: [
-      {
-        icon: MapPin,
-        label: "Address",
-        value: "Jl. Blk. Duku, No.93, Cibubur",
-      },
-      { icon: Phone, label: "Phone", value: "085158945811" },
-      { icon: Mail, label: "Email", value: "marketing@zellio.id" },
-      {
-        icon: Clock,
-        label: "Business Hours",
-        value: "Mon – Fri, 09:00 – 18:00 WIB",
-      },
-    ],
+    badge: "Collaborate",
+    title: "Let's build something exceptional.",
+    subtitle: "Have an ambitious project in mind? We'd love to partner with you to engineer it to life. Fill in the form and our strategy team will reach out.",
     form: {
       fullName: "Full Name",
       namePlaceholder: "Your full name",
@@ -42,30 +18,23 @@ const localText = {
       emailPlaceholder: "you@email.com",
       phone: "Phone",
       phonePlaceholder: "+62 ...",
-      message: "Message",
-      messagePlaceholder: "Tell us about your project requirements...",
-      submit: "Send Message",
-      alert: "Thank you! We'll get back to you shortly."
+      budget: "Project Budget",
+      budgetPlaceholder: "Select a range...",
+      message: "Tell us about your project",
+      messagePlaceholder: "What are you looking to build? Describe your goals...",
+      submit: "Initiate Project",
+    },
+    cards: {
+      location: "Jakarta, Indonesia",
+      status: "Available for new projects",
+      projects: "120+ projects delivered",
+      response: "Average response < 12h"
     }
   },
   id: {
-    badge: "Hubungi Kami",
-    title: "Mari Berkolaborasi",
-    desc: "Siap mewujudkan ide besar Anda selanjutnya? Ceritakan kebutuhan proyek Anda dan tim kami akan segera menghubungi Anda.",
-    info: [
-      {
-        icon: MapPin,
-        label: "Alamat",
-        value: "Jl. Blk. Duku, No.93, Cibubur",
-      },
-      { icon: Phone, label: "Telepon", value: "085158945811" },
-      { icon: Mail, label: "Email", value: "marketing@zellio.id" },
-      {
-        icon: Clock,
-        label: "Jam Operasional",
-        value: "Sen – Jum, 09:00 – 18:00 WIB",
-      },
-    ],
+    badge: "Kolaborasi",
+    title: "Mari bangun sesuatu yang luar biasa.",
+    subtitle: "Memiliki proyek ambisius? Kami ingin bermitra dengan Anda untuk mewujudkannya. Isi formulir dan tim strategi kami akan segera menghubungi Anda.",
     form: {
       fullName: "Nama Lengkap",
       namePlaceholder: "Nama lengkap Anda",
@@ -75,13 +44,34 @@ const localText = {
       emailPlaceholder: "anda@email.com",
       phone: "Telepon",
       phonePlaceholder: "+62 ...",
-      message: "Pesan",
-      messagePlaceholder: "Ceritakan detail kebutuhan proyek Anda...",
-      submit: "Kirim Pesan",
-      alert: "Terima kasih! Kami akan segera menghubungi Anda."
+      budget: "Anggaran Proyek",
+      budgetPlaceholder: "Pilih rentang...",
+      message: "Ceritakan proyek Anda",
+      messagePlaceholder: "Sistem apa yang ingin Anda bangun? Deskripsikan tujuan Anda...",
+      submit: "Mulai Proyek",
+    },
+    cards: {
+      location: "Jakarta, Indonesia",
+      status: "Tersedia untuk proyek baru",
+      projects: "120+ proyek selesai",
+      response: "Respon rata-rata < 12 jam"
     }
   }
 };
+
+const budgetRanges = [
+  { label: "< $5,000", value: "< $5,000" },
+  { label: "$5,000 - $15,000", value: "$5,000 - $15,000" },
+  { label: "$15,000 - $50,000", value: "$15,000 - $50,000" },
+  { label: "> $50,000", value: "> $50,000" }
+];
+
+const socialLinks = [
+  { name: "LinkedIn", url: "https://linkedin.com" },
+  { name: "GitHub", url: "https://github.com" },
+  { name: "Instagram", url: "https://instagram.com" },
+  { name: "Behance", url: "https://behance.net" }
+];
 
 export default function Contact() {
   const { language } = useLanguage();
@@ -92,166 +82,103 @@ export default function Contact() {
     company: "",
     email: "",
     phone: "",
+    budget: "",
     message: "",
   });
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     const emailTo = "marketing@zellio.id";
     const subject = "Contact Form Submission";
-    const body = `Full Name\n${form.name || ""}\n\nCompany\n${form.company || ""}\n\nEmail\n${form.email || ""}\n\nPhone\n${form.phone || ""}\n\nMessage\n${form.message || ""}`;
+    const body = `Full Name\n${form.name || ""}\n\nCompany\n${form.company || ""}\n\nEmail\n${form.email || ""}\n\nPhone\n${form.phone || ""}\n\nProject Budget\n${form.budget || ""}\n\nMessage\n${form.message || ""}`;
 
     const mailtoUrl = `mailto:${emailTo}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     window.location.href = mailtoUrl;
-    
-    setForm({ name: "", company: "", email: "", phone: "", message: "" });
+
+    setForm({ name: "", company: "", email: "", phone: "", budget: "", message: "" });
   };
 
   return (
-    <section id="contact" className="py-24 lg:py-28 bg-white">
-      <div className="section-container">
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 35, scale: 0.95, filter: "blur(10px)" }}
-          whileInView={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          className="text-center max-w-2xl mx-auto mb-14"
-        >
-          <span className="inline-block px-4 py-1.5 rounded-full bg-teal-50 text-[#2563EB] text-xs font-semibold uppercase tracking-widest mb-4 border border-teal-100">
-            {text.badge}
-          </span>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0F172A] mb-4">
-            {text.title}
-          </h2>
-          <p className="text-[#64748B] leading-relaxed">
-            {text.desc}
-          </p>
-        </motion.div>
+    <section id="contact" className="py-20 lg:py-24 bg-[#FAFAFA] border-t border-slate-200/50">
+      <div className="max-w-[1400px] mx-auto px-6">
 
-        {/* Split Layout */}
-        <div className="grid lg:grid-cols-2 gap-10 lg:gap-14">
-          {/* Left – Info & Map */}
-          <motion.div
-            initial={{ opacity: 0, x: -40, scale: 0.96, filter: "blur(8px)" }}
-            whileInView={{ opacity: 1, x: 0, scale: 1, filter: "blur(0px)" }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          >
-            <div className="space-y-5 mb-8">
-              {text.info.map(({ icon: Icon, label, value }) => (
-                <div key={label} className="flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-xl bg-teal-50 flex items-center justify-center flex-shrink-0">
-                    <Icon size={18} className="text-[#2563EB]" />
-                  </div>
+        {/* Asymmetric Editorial Layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-stretch">
+
+          {/* LEFT SIDE: Premium Form (65%) */}
+          <div className="col-span-1 lg:col-span-7 order-2 lg:order-1 flex flex-col justify-between">
+            <div className="bg-white rounded-[32px] border border-slate-100 shadow-xl shadow-slate-100/50 p-8 lg:p-10">
+
+              {/* Header inside Form Container */}
+              <div className="max-w-xl mb-8">
+                <span className="text-[10px] font-mono font-bold tracking-[0.2em] uppercase text-blue-600 mb-3 block">
+                  {text.badge}
+                </span>
+                <h2 className="text-3xl sm:text-4xl lg:text-[2.75rem] font-black text-slate-900 tracking-tight leading-[1.1] mb-4">
+                  {text.title}
+                </h2>
+                <p className="text-slate-500 font-medium text-sm sm:text-base leading-relaxed">
+                  {text.subtitle}
+                </p>
+              </div>
+
+              {/* Spacious, Luxurious Inputs */}
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  {/* Name */}
                   <div>
-                    <div className="text-xs font-semibold text-[#64748B] uppercase tracking-wider mb-0.5">
-                      {label}
-                    </div>
-                    <div className="text-sm font-medium text-[#0F172A]">
-                      {value}
-                    </div>
+                    <label
+                      htmlFor="contact-name"
+                      className="text-[10px] font-mono font-bold text-slate-400 uppercase tracking-widest mb-2 block"
+                    >
+                      {text.form.fullName}
+                    </label>
+                    <input
+                      id="contact-name"
+                      name="name"
+                      required
+                      value={form.name}
+                      onChange={handleChange}
+                      placeholder={text.form.namePlaceholder}
+                      className="w-full px-0 py-2 bg-transparent border-b border-slate-200 text-sm text-slate-900 placeholder:text-slate-400 focus:border-slate-900 outline-none transition-colors duration-300 font-medium"
+                    />
+                  </div>
+
+                  {/* Company */}
+                  <div>
+                    <label
+                      htmlFor="contact-company"
+                      className="text-[10px] font-mono font-bold text-slate-400 uppercase tracking-widest mb-2 block"
+                    >
+                      {text.form.company}
+                    </label>
+                    <input
+                      id="contact-company"
+                      name="company"
+                      value={form.company}
+                      onChange={handleChange}
+                      placeholder={text.form.companyPlaceholder}
+                      className="w-full px-0 py-2 bg-transparent border-b border-slate-200 text-sm text-slate-900 placeholder:text-slate-400 focus:border-slate-900 outline-none transition-colors duration-300 font-medium"
+                    />
                   </div>
                 </div>
-              ))}
-            </div>
 
-            {/* Map embed */}
-            <div className="rounded-2xl overflow-hidden border border-gray-100 shadow-sm h-[220px]">
-              <iframe
-                title="ZELLIO Office Location"
-                src="https://maps.google.com/maps?q=-6.3611275,106.8747062&t=&z=17&ie=UTF8&iwloc=&output=embed"
-                width="100%"
-                height="100%"
-                style={{ border: 0 }}
-                allowFullScreen={false}
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-              />
-            </div>
-          </motion.div>
-
-          {/* Right – Contact Form */}
-          <motion.div
-            initial={{ opacity: 0, x: 40, scale: 0.98, filter: "blur(8px)" }}
-            whileInView={{ opacity: 1, x: 0, scale: 1, filter: "blur(0px)" }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
-          >
-            <form
-              onSubmit={handleSubmit}
-              className="p-6 sm:p-8 rounded-2xl bg-[#F8FAFC] border border-gray-100 space-y-5"
-            >
-              {/* Name */}
-              <div>
-                <label
-                  htmlFor="contact-name"
-                  className="text-xs font-semibold text-[#64748B] uppercase tracking-wider mb-1.5 block"
-                >
-                  {text.form.fullName}
-                </label>
-                <div className="relative">
-                  <User
-                    size={16}
-                    className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#94A3B8]"
-                  />
-                  <input
-                    id="contact-name"
-                    name="name"
-                    required
-                    value={form.name}
-                    onChange={handleChange}
-                    placeholder={text.form.namePlaceholder}
-                    className="w-full pl-10 pr-4 py-3 rounded-xl bg-white border border-gray-200 text-sm text-[#0F172A] placeholder:text-[#94A3B8] focus:ring-2 focus:ring-[#9FA1FF]/20 focus:border-[#9FA1FF] outline-none transition-all"
-                  />
-                </div>
-              </div>
-
-              {/* Company */}
-              <div>
-                <label
-                  htmlFor="contact-company"
-                  className="text-xs font-semibold text-[#64748B] uppercase tracking-wider mb-1.5 block"
-                >
-                  {text.form.company}
-                </label>
-                <div className="relative">
-                  <Building2
-                    size={16}
-                    className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#94A3B8]"
-                  />
-                  <input
-                    id="contact-company"
-                    name="company"
-                    value={form.company}
-                    onChange={handleChange}
-                    placeholder={text.form.companyPlaceholder}
-                    className="w-full pl-10 pr-4 py-3 rounded-xl bg-white border border-gray-200 text-sm text-[#0F172A] placeholder:text-[#94A3B8] focus:ring-2 focus:ring-[#9FA1FF]/20 focus:border-[#9FA1FF] outline-none transition-all"
-                  />
-                </div>
-              </div>
-
-              {/* Email & Phone row */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                <div>
-                  <label
-                    htmlFor="contact-email"
-                    className="text-xs font-semibold text-[#64748B] uppercase tracking-wider mb-1.5 block"
-                  >
-                    {text.form.email}
-                  </label>
-                  <div className="relative">
-                    <Mail
-                      size={16}
-                      className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#94A3B8]"
-                    />
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  {/* Email */}
+                  <div>
+                    <label
+                      htmlFor="contact-email"
+                      className="text-[10px] font-mono font-bold text-slate-400 uppercase tracking-widest mb-2 block"
+                    >
+                      {text.form.email}
+                    </label>
                     <input
                       id="contact-email"
                       name="email"
@@ -260,71 +187,197 @@ export default function Contact() {
                       value={form.email}
                       onChange={handleChange}
                       placeholder={text.form.emailPlaceholder}
-                      className="w-full pl-10 pr-4 py-3 rounded-xl bg-white border border-gray-200 text-sm text-[#0F172A] placeholder:text-[#94A3B8] focus:ring-2 focus:ring-[#9FA1FF]/20 focus:border-[#9FA1FF] outline-none transition-all"
+                      className="w-full px-0 py-2 bg-transparent border-b border-slate-200 text-sm text-slate-900 placeholder:text-slate-400 focus:border-slate-900 outline-none transition-colors duration-300 font-medium"
                     />
                   </div>
-                </div>
-                <div>
-                  <label
-                    htmlFor="contact-phone"
-                    className="text-xs font-semibold text-[#64748B] uppercase tracking-wider mb-1.5 block"
-                  >
-                    {text.form.phone}
-                  </label>
-                  <div className="relative">
-                    <Phone
-                      size={16}
-                      className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#94A3B8]"
-                    />
+
+                  {/* Phone */}
+                  <div>
+                    <label
+                      htmlFor="contact-phone"
+                      className="text-[10px] font-mono font-bold text-slate-400 uppercase tracking-widest mb-2 block"
+                    >
+                      {text.form.phone}
+                    </label>
                     <input
                       id="contact-phone"
                       name="phone"
                       value={form.phone}
                       onChange={handleChange}
                       placeholder={text.form.phonePlaceholder}
-                      className="w-full pl-10 pr-4 py-3 rounded-xl bg-white border border-gray-200 text-sm text-[#0F172A] placeholder:text-[#94A3B8] focus:ring-2 focus:ring-[#9FA1FF]/20 focus:border-[#9FA1FF] outline-none transition-all"
+                      className="w-full px-0 py-2 bg-transparent border-b border-slate-200 text-sm text-slate-900 placeholder:text-slate-400 focus:border-slate-900 outline-none transition-colors duration-300 font-medium"
                     />
                   </div>
                 </div>
-              </div>
 
-              {/* Message */}
-              <div>
-                <label
-                  htmlFor="contact-message"
-                  className="text-xs font-semibold text-[#64748B] uppercase tracking-wider mb-1.5 block"
-                >
-                  {text.form.message}
-                </label>
-                <div className="relative">
-                  <MessageSquare
-                    size={16}
-                    className="absolute left-3.5 top-3.5 text-[#94A3B8]"
-                  />
+                {/* Project Budget Selection */}
+                {/* <div>
+                  <label
+                    htmlFor="contact-budget"
+                    className="text-[10px] font-mono font-bold text-slate-400 uppercase tracking-widest mb-2 block"
+                  >
+                    {text.form.budget}
+                  </label>
+                  <select
+                    id="contact-budget"
+                    name="budget"
+                    required
+                    value={form.budget}
+                    onChange={handleChange}
+                    className="w-full px-0 py-2 bg-transparent border-b border-slate-200 text-sm text-slate-900 placeholder:text-slate-400 focus:border-slate-900 outline-none transition-colors duration-300 font-medium cursor-pointer"
+                  >
+                    <option value="" disabled className="text-slate-400">
+                      {text.form.budgetPlaceholder}
+                    </option>
+                    {budgetRanges.map((range) => (
+                      <option key={range.value} value={range.value} className="text-slate-900">
+                        {range.label}
+                      </option>
+                    ))}
+                  </select>
+                </div> */}
+
+                {/* Message */}
+                <div>
+                  <label
+                    htmlFor="contact-message"
+                    className="text-[10px] font-mono font-bold text-slate-400 uppercase tracking-widest mb-2 block"
+                  >
+                    {text.form.message}
+                  </label>
                   <textarea
                     id="contact-message"
                     name="message"
                     required
-                    rows={4}
+                    rows={3}
                     value={form.message}
                     onChange={handleChange}
                     placeholder={text.form.messagePlaceholder}
-                    className="w-full pl-10 pr-4 py-3 rounded-xl bg-white border border-gray-200 text-sm text-[#0F172A] placeholder:text-[#94A3B8] focus:ring-2 focus:ring-[#9FA1FF]/20 focus:border-[#9FA1FF] outline-none transition-all resize-none"
+                    className="w-full px-0 py-2 bg-transparent border-b border-slate-200 text-sm text-slate-900 placeholder:text-slate-400 focus:border-slate-900 outline-none transition-colors duration-300 font-medium resize-none leading-relaxed"
                   />
                 </div>
+
+                {/* Submit button */}
+                <div className="pt-2">
+                  <motion.button
+                    whileHover={{ scale: 1.01 }}
+                    whileTap={{ scale: 0.99 }}
+                    type="submit"
+                    className="w-full sm:w-auto px-8 py-3.5 bg-slate-950 hover:bg-slate-900 text-white font-bold text-sm uppercase tracking-widest rounded-xl transition-all duration-300 shadow-lg shadow-slate-950/15"
+                  >
+                    {text.form.submit}
+                  </motion.button>
+                </div>
+              </form>
+
+            </div>
+
+            {/* Social Links (Elegant bottom alignment) */}
+            <div className="flex flex-wrap gap-8 items-center mt-6 px-2">
+              {socialLinks.map((link) => (
+                <a
+                  key={link.name}
+                  href={link.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group relative font-mono text-[11px] font-bold text-slate-500 hover:text-slate-900 transition-colors py-1 overflow-hidden"
+                >
+                  {link.name}
+                  {/* Underline slide hover animation */}
+                  <span className="absolute bottom-0 left-0 w-full h-[1.5px] bg-slate-900 origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out" />
+                </a>
+              ))}
+            </div>
+          </div>
+
+          {/* RIGHT SIDE: Immersive Trust Photography (35%) */}
+          <div className="col-span-1 lg:col-span-5 order-1 lg:order-2 flex flex-col">
+            <div className="w-full h-[350px] lg:h-full min-h-[550px] rounded-[32px] overflow-hidden shadow-xl relative bg-slate-200">
+
+              {/* Premium Startup Workspace Image */}
+              <img
+                src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80"
+                alt="Zellio Consulting Office"
+                className="w-full h-full object-cover"
+              />
+
+              {/* Dark subtle overlay for contrast */}
+              <div className="absolute inset-0 bg-slate-950/20" />
+
+              {/* Overlaid Floating Info Cards */}
+              <div className="absolute inset-0 p-8 flex flex-col justify-between items-start pointer-events-none">
+
+                {/* Top left card */}
+                <motion.div
+                  initial={{ opacity: 0, y: 15 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.1 }}
+                  className="bg-white/95 backdrop-blur-sm px-4 py-2.5 rounded-2xl shadow-lg border border-white/40 flex items-center gap-2"
+                >
+                  <span className="text-xs">📍</span>
+                  <span className="text-xs font-bold text-slate-900 font-mono tracking-tight">
+                    {text.cards.location}
+                  </span>
+                </motion.div>
+
+                {/* Bottom group container */}
+                <div className="w-full space-y-4">
+                  {/* Middle Left Card */}
+                  <motion.div
+                    initial={{ opacity: 0, x: -15 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: 0.2 }}
+                    className="bg-white/95 backdrop-blur-sm px-4 py-2.5 rounded-2xl shadow-lg border border-white/40 inline-flex items-center gap-2"
+                  >
+                    <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                    <span className="text-[11px] font-bold text-slate-900 font-mono uppercase tracking-wider">
+                      {text.cards.status}
+                    </span>
+                  </motion.div>
+
+                  {/* Bottom double card row */}
+                  <div className="flex flex-wrap gap-4 w-full">
+                    {/* Projects delivered */}
+                    <motion.div
+                      initial={{ opacity: 0, y: 15 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: 0.3 }}
+                      className="bg-slate-950/95 backdrop-blur-sm px-4 py-3 rounded-2xl shadow-lg border border-slate-800 text-white flex-1 min-w-[140px]"
+                    >
+                      <div className="text-xs text-amber-400 mb-0.5">★★★★★</div>
+                      <div className="text-[11px] font-bold font-mono tracking-tight uppercase">
+                        {text.cards.projects}
+                      </div>
+                    </motion.div>
+
+                    {/* Response rate */}
+                    <motion.div
+                      initial={{ opacity: 0, y: 15 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: 0.4 }}
+                      className="bg-white/95 backdrop-blur-sm px-4 py-3 rounded-2xl shadow-lg border border-white/40 flex-1 min-w-[140px]"
+                    >
+                      <div className="text-[9px] font-mono font-bold text-slate-500 uppercase tracking-widest mb-0.5">
+                        Response Rate
+                      </div>
+                      <div className="text-[11px] font-bold text-slate-900 font-mono tracking-tight uppercase">
+                        {text.cards.response}
+                      </div>
+                    </motion.div>
+                  </div>
+                </div>
+
               </div>
 
-              {/* Submit */}
-              <button
-                type="submit"
-                className="btn-primary w-full flex items-center justify-center gap-2 px-6 py-3.5 bg-gradient-to-r from-[#2563EB] to-[#9FA1FF] text-white font-semibold rounded-xl shadow-lg shadow-violet-500/20 hover:shadow-violet-500/35 hover:scale-[1.01] active:scale-[0.99] transition-all duration-200"
-              >
-                <Send size={16} />
-                {text.form.submit}
-              </button>
-            </form>
-          </motion.div>
+            </div>
+          </div>
+
         </div>
+
       </div>
     </section>
   );

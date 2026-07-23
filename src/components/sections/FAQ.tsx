@@ -2,16 +2,17 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Plus, MessageCircle, ArrowRight } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 
 const localText = {
   en: {
-    badge: "Frequently Asked Questions",
-    title1: "Got questions?",
-    title2: "We have answers.",
-    desc1: "Everything you need to know before starting your project. Can't find the answer you're looking for?",
-    desc2: "Talk to our team.",
+    sectionLabel: "Before We Start",
+    title: "Questions Worth Asking.",
+    desc: "Everything you need to know about our workflow, technology, and engineering standards before we build together.",
+    readTimeLabel: "Reading Time",
+    readTimeValue: "5 Min Read",
+    transparencyLabel: "Transparency",
+    transparencyValue: "0% Outsourced",
     faqList: [
       {
         q: "What types of digital projects do you handle?",
@@ -42,16 +43,15 @@ const localText = {
         a: "We work using agile methodologies. We divide the project into 2-week sprints and hold regular progress reviews. You will also get access to a live staging link to track development progress.",
       }
     ],
-    ctaTitle: "Still have questions?",
-    ctaDesc: "Our team responds within 1 business day",
-    contactBtn: "Contact Us"
   },
   id: {
-    badge: "Pertanyaan Populer",
-    title1: "Ada pertanyaan?",
-    title2: "Kami punya jawabannya.",
-    desc1: "Semua yang perlu Anda ketahui sebelum memulai proyek. Tidak menemukan jawaban yang Anda cari?",
-    desc2: "Konsultasi sekarang.",
+    sectionLabel: "Sebelum Memulai",
+    title: "Pertanyaan Penting.",
+    desc: "Semua yang perlu Anda ketahui tentang alur kerja, teknologi, dan standar koding kami sebelum kita membangun bersama.",
+    readTimeLabel: "Waktu Baca",
+    readTimeValue: "5 Menit",
+    transparencyLabel: "Transparansi",
+    transparencyValue: "0% Outsourcing",
     faqList: [
       {
         q: "Jenis proyek digital apa saja yang Anda tangani?",
@@ -82,9 +82,6 @@ const localText = {
         a: "Kami menggunakan metode Agile/Scrum. Proyek dibagi dalam sprint 2 mingguan beserta review berkala. Anda juga akan mendapat akses tautan server 'staging' untuk memantau progres secara live.",
       }
     ],
-    ctaTitle: "Masih punya pertanyaan?",
-    ctaDesc: "Tim kami akan merespon dalam waktu 1x24 jam kerja",
-    contactBtn: "Hubungi Kami"
   }
 };
 
@@ -94,132 +91,105 @@ export default function FAQ() {
   const text = localText[language];
 
   return (
-    <section id="faq" className="py-24 lg:py-32 bg-white relative">
-      <div className="section-container relative z-10">
-        {/* ── Header ── */}
-        <motion.div
-          initial={{ opacity: 0, y: 35, filter: "blur(10px)" }}
-          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          className="w-full mb-16 md:mb-20 flex flex-col md:flex-row md:items-end justify-between gap-8"
-        >
-          <div>
-            <span className="inline-block px-4 py-1.5 rounded-full bg-slate-50 text-slate-800 text-[10px] font-black uppercase tracking-[0.2em] mb-6 border border-slate-200">
-              {text.badge}
-            </span>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tighter leading-[1.1]">
-              {text.title1} <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-500">
-                {text.title2}
+    <section id="faq" className="py-20 lg:py-28 bg-white border-t border-slate-200/50">
+      <div className="max-w-[1400px] mx-auto px-6">
+        
+        {/* Split Editorial Layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+          
+          {/* LEFT SIDE: Sticky Header Column (col-span-4) */}
+          <div className="col-span-1 lg:col-span-4 lg:sticky lg:top-32 flex flex-col justify-start">
+            
+            {/* Section label */}
+            <div className="flex items-center gap-3 mb-6 lg:mb-8">
+              <span className="w-1.5 h-1.5 rounded-full bg-blue-600" />
+              <span className="text-[10px] font-mono font-bold tracking-[0.2em] uppercase text-slate-800">
+                {text.sectionLabel}
               </span>
+            </div>
+
+            {/* Editorial Heading */}
+            <h2 className="text-3xl lg:text-[2.25rem] font-black text-slate-900 tracking-tight leading-[1.1] mb-5">
+              {text.title}
             </h2>
-          </div>
-          <p className="text-slate-500 leading-relaxed max-w-sm md:text-right text-sm">
-            {text.desc1}{" "}
-            <a href="#contact" className="text-blue-600 font-bold hover:underline underline-offset-4">
-              {text.desc2}
-            </a>
-          </p>
-        </motion.div>
 
-        {/* ── FAQ accordion — Single Column Editorial ── */}
-        <div className="w-full flex flex-col gap-0 border-t-2 border-slate-900 mt-12">
-          {text.faqList.map((item, idx) => {
-            const isOpen = openIndex === idx;
+            {/* Intro paragraph */}
+            <p className="text-slate-500 font-medium text-sm lg:text-base leading-relaxed mb-8 lg:mb-10 max-w-sm">
+              {text.desc}
+            </p>
 
-            return (
-              <motion.div
-                key={idx}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.5, delay: idx * 0.05 }}
-                className="border-b border-slate-200 overflow-hidden group"
-              >
-                {/* Question row */}
-                <button
-                  onClick={() => setOpenIndex(isOpen ? null : idx)}
-                  className="w-full flex items-center justify-between py-6 md:py-8 text-left outline-none"
-                  aria-expanded={isOpen}
-                >
-                  <div className="flex items-center gap-6 md:gap-12 flex-1">
-                     <span className="text-sm font-mono font-medium text-slate-300 group-hover:text-blue-600 transition-colors duration-500 hidden sm:block">
-                        {String(idx + 1).padStart(2, '0')}
-                     </span>
-                     <h3 className={`text-xl md:text-2xl font-bold tracking-tight transition-all duration-500 origin-left flex-1 ${
-                         isOpen ? "text-blue-600" : "text-slate-900 group-hover:translate-x-3 group-hover:text-blue-600"
-                     }`}>
-                        {item.q}
-                     </h3>
-                  </div>
-
-                  {/* Minimal Toggle Icon */}
-                  <div className="relative w-8 h-8 flex-shrink-0 flex items-center justify-center text-slate-400 group-hover:text-blue-600 transition-colors duration-500 ml-4">
-                    <motion.div
-                      animate={{ rotate: isOpen ? 45 : 0 }}
-                      transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                      className="absolute inset-0 flex items-center justify-center"
-                    >
-                      <Plus size={24} strokeWidth={2} />
-                    </motion.div>
-                  </div>
-                </button>
-
-                {/* Answer */}
-                <AnimatePresence initial={false}>
-                  {isOpen && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                    >
-                      <div className="pl-0 sm:pl-20 pr-6 pb-8 md:pb-10 max-w-4xl">
-                        <p className="text-slate-500 text-base md:text-lg font-light leading-relaxed">
-                          {item.a}
-                        </p>
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </motion.div>
-            );
-          })}
-        </div>
-
-        {/* ── Bottom CTA strip ── */}
-        <motion.div
-          initial={{ opacity: 0, y: 30, filter: "blur(8px)" }}
-          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
-          className="w-full mt-16"
-        >
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-6 p-8 rounded-[32px] bg-slate-50 border border-slate-100 hover:shadow-xl hover:shadow-blue-500/5 transition-all duration-500">
-            <div className="flex items-center gap-5">
-              <div className="w-14 h-14 rounded-full bg-blue-100 flex items-center justify-center flex-shrink-0 text-blue-600">
-                <MessageCircle size={24} />
-              </div>
-              <div>
-                <div className="text-lg font-bold text-slate-900">
-                  {text.ctaTitle}
+            {/* Statistics details */}
+            <div className="space-y-5 max-w-xs">
+              <div className="border-t border-slate-100 pt-4">
+                <div className="text-[10px] font-mono font-bold text-slate-400 uppercase tracking-widest mb-1">
+                  {text.readTimeLabel}
                 </div>
-                <div className="text-sm font-medium text-slate-500 mt-1">
-                  {text.ctaDesc}
+                <div className="text-sm font-bold text-slate-900 font-mono">
+                  {text.readTimeValue}
+                </div>
+              </div>
+              <div className="border-t border-slate-100 pt-4">
+                <div className="text-[10px] font-mono font-bold text-slate-400 uppercase tracking-widest mb-1">
+                  {text.transparencyLabel}
+                </div>
+                <div className="text-sm font-bold text-slate-900 font-mono">
+                  {text.transparencyValue}
                 </div>
               </div>
             </div>
-            <a
-              href="/#contact"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-slate-900 hover:bg-blue-600 text-white text-[11px] font-black tracking-[0.2em] uppercase rounded-full transition-all duration-300 hover:scale-105 active:scale-95 whitespace-nowrap shadow-lg hover:shadow-blue-500/20"
-            >
-              {text.contactBtn}
-              <ArrowRight size={14} />
-            </a>
-          </div>
-        </motion.div>
 
+          </div>
+
+          {/* RIGHT SIDE: Vertical Question Stack (col-span-8) */}
+          <div className="col-span-1 lg:col-span-8 flex flex-col border-t border-slate-900">
+            {text.faqList.map((item, idx) => {
+              const isOpen = openIndex === idx;
+
+              return (
+                <div
+                  key={idx}
+                  className="border-b border-slate-200 overflow-hidden group"
+                >
+                  {/* Text-based Question Button */}
+                  <button
+                    onClick={() => setOpenIndex(isOpen ? null : idx)}
+                    className="w-full text-left py-5 lg:py-6 outline-none flex items-start justify-between gap-6"
+                    aria-expanded={isOpen}
+                  >
+                    <h3
+                      className={`text-base lg:text-lg font-bold tracking-tight transition-colors duration-300 leading-snug pr-8 ${
+                        isOpen 
+                          ? "text-slate-400 font-semibold" 
+                          : "text-slate-900 group-hover:text-slate-600"
+                      }`}
+                    >
+                      {item.q}
+                    </h3>
+                  </button>
+
+                  {/* Editorial Answer (Fades & Translates cleanly) */}
+                  <AnimatePresence initial={false}>
+                    {isOpen && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0, y: -8 }}
+                        animate={{ height: "auto", opacity: 1, y: 0 }}
+                        exit={{ height: 0, opacity: 0, y: -8 }}
+                        transition={{ duration: 0.3, ease: [0.25, 1, 0.5, 1] }}
+                        className="overflow-hidden"
+                      >
+                        <p className="text-slate-500 font-medium text-xs sm:text-sm lg:text-[0.95rem] leading-relaxed max-w-2xl pb-6 lg:pb-7">
+                          {item.a}
+                        </p>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              );
+            })}
+          </div>
+
+        </div>
+        
       </div>
     </section>
   );
