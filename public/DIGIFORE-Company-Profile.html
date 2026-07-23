@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Zellio — Company Profile</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,500;1,600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --navy: #0B1F3A;
+      --blue: #2563EB;
+      --sky: #38BDF8;
+      --teal: #2DD4BF;
+      --ice: #E8F1FF;
+      --white: #FFFFFF;
+      --ink: #0F172A;
+      --slate: #475569;
+      --muted: #94A3B8;
+      --line: rgba(255,255,255,0.12);
+      --line-dark: rgba(15,23,42,0.08);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      width: 1920px;
+      margin: 0;
+      padding: 0;
+      background: var(--navy);
+      font-family: 'Manrope', system-ui, sans-serif;
+      color: var(--white);
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .slide {
+      width: 1920px;
+      height: 1080px;
+      margin: 0;
+      position: relative;
+      overflow: hidden;
+      page-break-after: always;
+      break-after: page;
+      background: var(--navy);
+    }
+    .slide:last-child { page-break-after: auto; }
+
+    @page { size: 1920px 1080px; margin: 0; }
+    @media print {
+      html, body { width: 1920px; background: var(--navy); }
+      .slide { margin: 0; }
+    }
+
+    /* Wide wordmark logo (transparent bg) */
+    .logo {
+      height: 72px;
+      width: auto;
+      max-width: 360px;
+      object-fit: contain;
+      display: block;
+      flex-shrink: 0;
+      align-self: flex-start;
+    }
+    .logo-lg {
+      height: 96px;
+      max-width: 480px;
+    }
+
+    .nav {
+      position: absolute; top: 28px; left: 56px; right: 64px;
+      display: flex; justify-content: space-between; align-items: center; z-index: 5;
+    }
+    .nav-meta {
+      font-size: 13px; font-weight: 700; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--muted);
+    }
+    .pg {
+      position: absolute; bottom: 36px; right: 64px; z-index: 5;
+      font-size: 14px; font-weight: 700; letter-spacing: 0.16em; color: var(--muted);
+    }
+
+    .kicker {
+      font-size: 14px; font-weight: 800; letter-spacing: 0.24em;
+      text-transform: uppercase; color: var(--sky); margin-bottom: 14px;
+    }
+    .kicker-dark { color: var(--blue); }
+
+    .title {
+      font-size: 52px; font-weight: 800; letter-spacing: -0.035em; line-height: 1.06;
+    }
+    .title em, .italic {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-style: italic; font-weight: 500; color: var(--sky);
+    }
+    .body {
+      font-size: 18px; line-height: 1.65; color: var(--muted); font-weight: 500; max-width: 580px;
+    }
+
+    /* ===== COVER ===== */
+    .cover {
+      background:
+        linear-gradient(105deg, rgba(11,31,58,0.97) 0%, rgba(11,31,58,0.85) 46%, rgba(11,31,58,0.4) 100%),
+        url('./compro-cover.jpg') center/cover;
+    }
+    .cover-inner {
+      height: 100%;
+      padding: 40px 72px 48px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .cover-badge {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 10px 18px; border-radius: 999px;
+      background: rgba(37,99,235,0.28); border: 1px solid rgba(56,189,248,0.4);
+      font-size: 13px; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase;
+      color: #BAE6FD; width: fit-content; margin: 8px 0 22px;
+    }
+    .cover-badge i {
+      width: 8px; height: 8px; border-radius: 50%; background: #38BDF8;
+      box-shadow: 0 0 0 5px rgba(56,189,248,0.25); display: block;
+    }
+    .cover h1 {
+      font-size: 68px; font-weight: 800; letter-spacing: -0.04em; line-height: 1.02;
+      max-width: 980px; margin-bottom: 18px;
+    }
+    .cover h1 em {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-style: italic; font-weight: 500; color: #7DD3FC; display: block;
+    }
+    .cover-sub {
+      font-size: 21px; line-height: 1.6; color: #CBD5E1; max-width: 680px; font-weight: 500;
+      margin-bottom: 32px;
+    }
+    .cover-stats { display: flex; gap: 14px; }
+    .cover-stat {
+      min-width: 160px; padding: 18px 22px; border-radius: 16px;
+      background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.14);
+    }
+    .cover-stat b { display: block; font-size: 34px; font-weight: 800; margin-bottom: 4px; }
+    .cover-stat span { font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #94A3B8; }
+    .cover-foot {
+      display: flex; justify-content: space-between; gap: 24px;
+      border-top: 1px solid rgba(255,255,255,0.12); padding-top: 20px;
+    }
+    .cover-foot .item span {
+      display: block; font-size: 11px; font-weight: 700; letter-spacing: 0.16em;
+      text-transform: uppercase; color: #64748B; margin-bottom: 4px;
+    }
+    .cover-foot .item b { font-size: 17px; font-weight: 650; }
+
+    /* ===== CONTENTS ===== */
+    .contents { display: grid; grid-template-columns: 1.05fr 0.95fr; height: 100%; }
+    .contents-left {
+      padding: 72px 64px 64px 72px; display: flex; flex-direction: column; justify-content: center;
+    }
+    .contents-right {
+      background:
+        linear-gradient(180deg, rgba(11,31,58,0.2), rgba(11,31,58,0.72)),
+        url('./compro-team.jpg') center/cover;
+      position: relative;
+    }
+    .contents-right .cap {
+      position: absolute; left: 28px; bottom: 28px;
+      padding: 14px 18px; border-radius: 12px;
+      background: rgba(11,31,58,0.78); border: 1px solid rgba(255,255,255,0.12);
+      font-size: 14px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+    }
+    .toc { margin-top: 28px; display: flex; flex-direction: column; }
+    .toc-row {
+      display: flex; align-items: center; gap: 18px;
+      padding: 14px 0; border-bottom: 1px solid var(--line);
+    }
+    .toc-row .n {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 22px; color: var(--sky); width: 36px;
+    }
+    .toc-row .t { font-size: 20px; font-weight: 600; }
+
+    /* ===== ABOUT ===== */
+    .about { display: grid; grid-template-columns: 1.15fr 0.85fr; height: 100%; }
+    .about-main {
+      padding: 72px 56px 64px 72px; display: flex; flex-direction: column; justify-content: center;
+    }
+    .about-side {
+      background: linear-gradient(160deg, #1D4ED8, #2563EB 45%, #0EA5E9);
+      padding: 72px 48px; display: flex; flex-direction: column; justify-content: center;
+      position: relative; overflow: hidden;
+    }
+    .about-side::before {
+      content: ''; position: absolute; width: 280px; height: 280px; border-radius: 50%;
+      background: rgba(255,255,255,0.12); top: -80px; right: -50px;
+    }
+    .about-side h3 {
+      font-size: 15px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase;
+      margin-bottom: 26px; opacity: 0.9; position: relative;
+    }
+    .pillars { display: flex; flex-direction: column; gap: 16px; position: relative; }
+    .pillar {
+      padding: 18px 20px; border-radius: 14px;
+      background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.2);
+    }
+    .pillar b { display: block; font-size: 18px; font-weight: 800; margin-bottom: 6px; }
+    .pillar span { font-size: 14px; line-height: 1.5; opacity: 0.92; }
+
+    /* ===== NUMBERS ===== */
+    .nums {
+      background:
+        linear-gradient(120deg, rgba(11,31,58,0.93), rgba(11,31,58,0.78)),
+        url('./compro-dashboard.jpg') center/cover;
+      padding: 80px 72px; height: 100%;
+      display: flex; flex-direction: column; justify-content: center;
+    }
+    .nums-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-top: 40px;
+    }
+    .num-card {
+      padding: 32px 26px; border-radius: 20px;
+      background: rgba(255,255,255,0.09); border: 1px solid rgba(255,255,255,0.14);
+    }
+    .num-card b {
+      display: block; font-size: 52px; font-weight: 800; letter-spacing: -0.03em;
+      margin-bottom: 10px; color: #7DD3FC;
+    }
+    .num-card span { font-size: 15px; font-weight: 600; color: #CBD5E1; line-height: 1.4; }
+
+    /* ===== SERVICES ===== */
+    .svc-page {
+      height: 100%; padding: 120px 64px 64px;
+      display: flex; flex-direction: column;
+    }
+    .svc-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px;
+      flex: 1; min-height: 0; margin-top: 28px;
+    }
+    .svc {
+      background: rgba(255,255,255,0.04); border: 1px solid var(--line);
+      border-radius: 18px; padding: 28px;
+      display: flex; flex-direction: column; position: relative; overflow: hidden;
+    }
+    .svc::before {
+      content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 4px;
+      background: linear-gradient(180deg, var(--sky), var(--blue));
+    }
+    .svc .idx {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 24px; color: var(--sky); margin-bottom: 14px;
+    }
+    .svc h3 { font-size: 20px; font-weight: 800; margin-bottom: 10px; }
+    .svc p { font-size: 15px; line-height: 1.55; color: var(--muted); flex: 1; }
+    .svc .meta {
+      margin-top: 16px; font-size: 12px; font-weight: 800; letter-spacing: 0.08em;
+      text-transform: uppercase; color: #7DD3FC;
+    }
+
+    /* ===== WHY ===== */
+    .why { display: grid; grid-template-columns: 0.9fr 1.1fr; height: 100%; }
+    .why-left {
+      background: var(--ice); color: var(--ink);
+      padding: 80px 56px 64px 72px; display: flex; flex-direction: column; justify-content: center;
+    }
+    .why-left .title { color: var(--ink); font-size: 46px; }
+    .why-left .title em { color: var(--blue); }
+    .why-left .body { color: var(--slate); margin-top: 16px; font-size: 18px; }
+    .why-right {
+      padding: 72px 48px; display: grid; grid-template-columns: 1fr 1fr;
+      gap: 18px; align-content: center;
+    }
+    .why-card {
+      padding: 26px; border-radius: 18px; border: 1px solid var(--line);
+      background: rgba(255,255,255,0.04);
+    }
+    .why-card .n { font-size: 14px; font-weight: 800; color: var(--sky); letter-spacing: 0.1em; margin-bottom: 12px; }
+    .why-card h3 { font-size: 18px; font-weight: 800; margin-bottom: 8px; }
+    .why-card p { font-size: 14px; line-height: 1.5; color: var(--muted); }
+
+    /* ===== PROCESS ===== */
+    .proc-page {
+      padding: 120px 64px 64px; height: 100%;
+      display: flex; flex-direction: column; justify-content: center;
+    }
+    .proc-row {
+      display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; margin-top: 36px;
+    }
+    .proc {
+      background: rgba(255,255,255,0.04); border: 1px solid var(--line);
+      border-radius: 18px; padding: 28px 22px; min-height: 280px; position: relative;
+    }
+    .proc::after {
+      content: '→'; position: absolute; right: -12px; top: 50%; transform: translateY(-50%);
+      color: var(--sky); font-size: 18px; z-index: 2;
+    }
+    .proc:last-child::after { display: none; }
+    .proc .n {
+      width: 42px; height: 42px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--blue), #0EA5E9);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px; font-weight: 800; margin-bottom: 20px;
+    }
+    .proc h3 { font-size: 18px; font-weight: 800; margin-bottom: 10px; }
+    .proc p { font-size: 14px; line-height: 1.5; color: var(--muted); }
+
+    /* ===== PORTFOLIO ===== */
+    .pf-page {
+      height: 100%; padding: 120px 64px 64px;
+      display: flex; flex-direction: column;
+    }
+    .pf-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: 1fr 1fr;
+      gap: 20px; flex: 1; min-height: 0; margin-top: 24px;
+    }
+    .pf {
+      border-radius: 18px; overflow: hidden; border: 1px solid var(--line);
+      background: rgba(255,255,255,0.04);
+      display: flex; flex-direction: column; min-height: 0;
+    }
+    .pf img {
+      width: 100%; flex: 1; min-height: 170px;
+      object-fit: cover; object-position: top; display: block; background: #1e293b;
+    }
+    .pf .info { padding: 16px 18px 18px; flex-shrink: 0; }
+    .pf .cat {
+      font-size: 11px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--sky); margin-bottom: 6px;
+    }
+    .pf h3 { font-size: 18px; font-weight: 800; margin-bottom: 4px; }
+    .pf p { font-size: 13px; color: var(--muted); line-height: 1.4; }
+
+    /* ===== CTA — full bleed, no empty bottom ===== */
+    .cta {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      background:
+        linear-gradient(110deg, rgba(11,31,58,0.95) 0%, rgba(11,31,58,0.82) 55%, rgba(11,31,58,0.55) 100%),
+        url('./compro-meeting.jpg') right center/cover;
+    }
+    .cta-left {
+      padding: 56px 64px 56px 72px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      height: 100%;
+    }
+    .cta-left h1 {
+      font-size: 54px; font-weight: 800; letter-spacing: -0.035em; line-height: 1.08;
+      max-width: 680px; margin: 14px 0 16px;
+    }
+    .cta-left h1 em {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-style: italic; font-weight: 500; color: #7DD3FC;
+    }
+    .cta-left > p {
+      font-size: 18px; line-height: 1.6; color: #CBD5E1; max-width: 540px; margin-bottom: 28px;
+    }
+    .cta-contacts { display: flex; flex-direction: column; gap: 12px; }
+    .cta-contacts div { display: flex; gap: 16px; align-items: baseline; }
+    .cta-contacts .l {
+      width: 80px; font-size: 12px; font-weight: 800; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--sky);
+    }
+    .cta-contacts .v { font-size: 18px; font-weight: 650; }
+
+    .cta-right {
+      background: #E8F1FF;
+      color: var(--ink);
+      padding: 72px 56px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      height: 100%;
+    }
+    .cta-right h3 { font-size: 28px; font-weight: 800; margin-bottom: 22px; }
+    .cta-right li {
+      list-style: none; padding: 16px 0; border-bottom: 1px solid var(--line-dark);
+      font-size: 17px; font-weight: 650; display: flex; gap: 12px; color: #1E293B;
+    }
+    .cta-right li::before { content: '✓'; color: var(--blue); font-weight: 800; }
+    .cta-right .note {
+      margin-top: 28px; font-size: 14px; color: #64748B; font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 01 COVER -->
+  <section class="slide cover">
+    <div class="cover-inner">
+      <div>
+        <img src="./zellio-logo.png" class="logo logo-lg" alt="Zellio" />
+        <div class="cover-badge"><i></i> Company Profile · 2026</div>
+        <h1>Software that drives<br><em>real business growth</em></h1>
+        <p class="cover-sub">
+          Zellio is a software house building websites, applications, dashboards,
+          and enterprise IT systems — shipped fast, secured properly, and ready to scale.
+        </p>
+        <div class="cover-stats">
+          <div class="cover-stat"><b>150+</b><span>Projects</span></div>
+          <div class="cover-stat"><b>98%</b><span>Satisfaction</span></div>
+          <div class="cover-stat"><b>50+</b><span>Enterprise</span></div>
+          <div class="cover-stat"><b>8+</b><span>Years</span></div>
+        </div>
+      </div>
+      <div class="cover-foot">
+        <div class="item"><span>Website</span><b>zellio.id</b></div>
+        <div class="item"><span>Email</span><b>hello@zellio.id</b></div>
+        <div class="item"><span>Phone</span><b>+62 21 5150 1234</b></div>
+        <div class="item"><span>Based in</span><b>Jakarta, Indonesia</b></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 CONTENTS -->
+  <section class="slide">
+    <div class="contents">
+      <div class="contents-left">
+        <div class="kicker">Contents</div>
+        <h2 class="title" style="font-size:44px;">Inside this<br><em>company profile</em></h2>
+        <div class="toc">
+          <div class="toc-row"><span class="n">01</span><span class="t">About Zellio</span></div>
+          <div class="toc-row"><span class="n">02</span><span class="t">Track Record</span></div>
+          <div class="toc-row"><span class="n">03</span><span class="t">Our Services</span></div>
+          <div class="toc-row"><span class="n">04</span><span class="t">Why Choose Us</span></div>
+          <div class="toc-row"><span class="n">05</span><span class="t">How We Work</span></div>
+          <div class="toc-row"><span class="n">06</span><span class="t">Selected Work</span></div>
+          <div class="toc-row"><span class="n">07</span><span class="t">Let's Collaborate</span></div>
+        </div>
+      </div>
+      <div class="contents-right">
+        <div class="cap">Strong engineering · Product mindset</div>
+      </div>
+    </div>
+    <div class="pg">02 / 09</div>
+  </section>
+
+  <!-- 03 ABOUT -->
+  <section class="slide">
+    <div class="about">
+      <div class="about-main">
+        <div class="kicker">About Zellio</div>
+        <h2 class="title">Not just a coding vendor.<br><em>A partner for outcomes.</em></h2>
+        <p class="body" style="margin-top:18px;">
+          Most digital projects fail not from missing features — but from vendors who “finish the code”
+          without thinking about users, performance, or business growth.
+        </p>
+        <p class="body" style="margin-top:14px;">
+          Zellio is different. We build digital products your team actually uses every day —
+          systems that improve operations and revenue, and stay easy to evolve as the market shifts.
+        </p>
+      </div>
+      <div class="about-side">
+        <h3>What we stand for</h3>
+        <div class="pillars">
+          <div class="pillar">
+            <b>Business outcomes first</b>
+            <span>Every feature maps to efficiency, revenue, or customer experience — no wasted scope.</span>
+          </div>
+          <div class="pillar">
+            <b>Production-grade quality</b>
+            <span>Clean, secure code that holds up under real traffic — not a fragile prototype.</span>
+          </div>
+          <div class="pillar">
+            <b>Transparent to launch</b>
+            <span>Clear milestones, live staging, and regular updates. You always know where things stand.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 NUMBERS -->
+  <section class="slide">
+    <div class="nums">
+      <div class="kicker">Track Record</div>
+      <h2 class="title" style="font-size:48px;max-width:720px;">Results that speak<br><em>louder than promises</em></h2>
+      <p class="body" style="color:#CBD5E1;margin-top:14px;">
+        Trusted by startups, SMEs, and enterprises across Indonesia to ship systems used by thousands of users.
+      </p>
+      <div class="nums-grid">
+        <div class="num-card"><b>150+</b><span>Projects successfully launched to production</span></div>
+        <div class="num-card"><b>98%</b><span>Client satisfaction after go-live</span></div>
+        <div class="num-card"><b>50+</b><span>Enterprise &amp; scale-up companies</span></div>
+        <div class="num-card"><b>30%</b><span>Ops efficiency gain on ERP engagements</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 SERVICES -->
+  <section class="slide">
+    <div class="nav">
+      <img src="./zellio-logo.png" class="logo" alt="Zellio" />
+      <div class="nav-meta">Services</div>
+    </div>
+    <div class="svc-page">
+      <div>
+        <div class="kicker">What We Build</div>
+        <h2 class="title" style="font-size:42px;">One partner for your full<br><em>digital product needs</em></h2>
+      </div>
+      <div class="svc-grid">
+        <div class="svc">
+          <div class="idx">01</div>
+          <h3>Website &amp; Web App</h3>
+          <p>Corporate sites, high-converting landing pages, and modern web portals — fast, SEO-friendly, campaign-ready.</p>
+          <div class="meta">From 4 weeks</div>
+        </div>
+        <div class="svc">
+          <div class="idx">02</div>
+          <h3>Dashboard &amp; CRM/ERP</h3>
+          <p>Operations panels, real-time analytics, and internal systems that streamline how your teams work.</p>
+          <div class="meta">From 6 weeks</div>
+        </div>
+        <div class="svc">
+          <div class="idx">03</div>
+          <h3>Mobile App</h3>
+          <p>Store-ready Android &amp; iOS apps with Flutter or React Native — polished UX users enjoy.</p>
+          <div class="meta">From 8 weeks</div>
+        </div>
+        <div class="svc">
+          <div class="idx">04</div>
+          <h3>Custom IT Systems</h3>
+          <p>Backend platforms, API integrations, legacy migration, and enterprise architecture built to last.</p>
+          <div class="meta">From 10 weeks</div>
+        </div>
+        <div class="svc">
+          <div class="idx">05</div>
+          <h3>Cloud &amp; DevOps</h3>
+          <p>AWS / GCP / Azure setup, CI/CD, and monitoring — faster releases, lower downtime.</p>
+          <div class="meta">From 2 weeks</div>
+        </div>
+        <div class="svc">
+          <div class="idx">06</div>
+          <h3>UI/UX Design</h3>
+          <p>Research, wireframes, design systems, and high-fidelity Figma prototypes before development starts.</p>
+          <div class="meta">From 3 weeks</div>
+        </div>
+      </div>
+    </div>
+    <div class="pg">05 / 09</div>
+  </section>
+
+  <!-- 06 WHY -->
+  <section class="slide">
+    <div class="why">
+      <div class="why-left">
+        <div class="kicker kicker-dark">Why Zellio</div>
+        <h2 class="title">Why clients stay<br>for the<br><em>long run</em></h2>
+        <p class="body">
+          We combine strong engineering with clear business communication.
+          Progress is visible. Quality is protected. Deadlines are respected.
+        </p>
+      </div>
+      <div class="why-right">
+        <div class="why-card">
+          <div class="n">01</div>
+          <h3>A dedicated team</h3>
+          <p>Full-stack, UI/UX, and cloud engineers used to production work — not rotating freelancers.</p>
+        </div>
+        <div class="why-card">
+          <div class="n">02</div>
+          <h3>Modern, proven stack</h3>
+          <p>Next.js, React, Node, TypeScript, Postgres — fast, secure, and easy to scale.</p>
+        </div>
+        <div class="why-card">
+          <div class="n">03</div>
+          <h3>Security from day one</h3>
+          <p>Secure auth, encryption, input sanitization, and security checks before production.</p>
+        </div>
+        <div class="why-card">
+          <div class="n">04</div>
+          <h3>Clear pricing + support</h3>
+          <p>Fixed-price estimates upfront. Plus 3 months of free maintenance after go-live.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 07 PROCESS -->
+  <section class="slide">
+    <div class="nav">
+      <img src="./zellio-logo.png" class="logo" alt="Zellio" />
+      <div class="nav-meta">Process</div>
+    </div>
+    <div class="proc-page">
+      <div class="kicker">How We Work</div>
+      <h2 class="title" style="font-size:42px;">From brief to launch<br>without the <em>delays</em></h2>
+      <div class="proc-row">
+        <div class="proc">
+          <div class="n">1</div>
+          <h3>Discovery</h3>
+          <p>We clarify business goals, users, and priorities — so scope and estimates stay accurate.</p>
+        </div>
+        <div class="proc">
+          <div class="n">2</div>
+          <h3>Design</h3>
+          <p>Interactive Figma prototypes. You approve first — then development begins.</p>
+        </div>
+        <div class="proc">
+          <div class="n">3</div>
+          <h3>Build</h3>
+          <p>Two-week sprints with a live staging link so you can review progress anytime.</p>
+        </div>
+        <div class="proc">
+          <div class="n">4</div>
+          <h3>QA</h3>
+          <p>Performance, security, mobile, and cross-browser testing before production.</p>
+        </div>
+        <div class="proc">
+          <div class="n">5</div>
+          <h3>Launch</h3>
+          <p>Deploy + monitoring. Three months of free support for bugs and fine-tuning.</p>
+        </div>
+      </div>
+    </div>
+    <div class="pg">07 / 09</div>
+  </section>
+
+  <!-- 08 PORTFOLIO -->
+  <section class="slide">
+    <div class="nav">
+      <img src="./zellio-logo.png" class="logo" alt="Zellio" />
+      <div class="nav-meta">Selected Work</div>
+    </div>
+    <div class="pf-page">
+      <div>
+        <div class="kicker">Portfolio</div>
+        <h2 class="title" style="font-size:42px;">Real products<br><em>already in users’ hands</em></h2>
+      </div>
+      <div class="pf-grid">
+        <div class="pf">
+          <img src="./MasterDiskon.png" alt="" />
+          <div class="info">
+            <div class="cat">Travel · Website</div>
+            <h3>Master Diskon</h3>
+            <p>Flight &amp; hotel booking with dynamic pricing</p>
+          </div>
+        </div>
+        <div class="pf">
+          <img src="./Raja%20Cepat.png" alt="" />
+          <div class="info">
+            <div class="cat">Logistics · App</div>
+            <h3>Raja Cepat</h3>
+            <p>Courier ops with live package tracking</p>
+          </div>
+        </div>
+        <div class="pf">
+          <img src="./jaja%20id%20web.png" alt="" />
+          <div class="info">
+            <div class="cat">Marketplace</div>
+            <h3>Jaja ID</h3>
+            <p>Multi-vendor e-commerce platform</p>
+          </div>
+        </div>
+        <div class="pf">
+          <img src="./elogs%20dash.png" alt="" />
+          <div class="info">
+            <div class="cat">Enterprise · ERP</div>
+            <h3>Eureka Internal ERP</h3>
+            <p>Logistics operations &amp; analytics dashboard</p>
+          </div>
+        </div>
+        <div class="pf">
+          <img src="./HR%20CMS%20Das.png" alt="" />
+          <div class="info">
+            <div class="cat">HR · Dashboard</div>
+            <h3>HR Management CMS</h3>
+            <p>Attendance, leave, KPI &amp; payroll</p>
+          </div>
+        </div>
+        <div class="pf">
+          <img src="./beego1.png" alt="" />
+          <div class="info">
+            <div class="cat">SuperApp</div>
+            <h3>Beego</h3>
+            <p>Ride-hailing, food delivery &amp; courier</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pg">08 / 09</div>
+  </section>
+
+  <!-- 09 CTA -->
+  <section class="slide">
+    <div class="cta">
+      <div class="cta-left">
+        <img src="./zellio-logo.png" class="logo logo-lg" alt="Zellio" />
+        <div class="kicker" style="margin-top:8px;">Next Step</div>
+        <h1>Have a product idea?<br><em>Let’s build it.</em></h1>
+        <p>Send a short brief or book a discovery call. We’ll respond within one business day with a clear, realistic solution path.</p>
+        <div class="cta-contacts">
+          <div><span class="l">Web</span><span class="v">zellio.id</span></div>
+          <div><span class="l">Email</span><span class="v">hello@zellio.id</span></div>
+          <div><span class="l">Phone</span><span class="v">+62 21 5150 1234</span></div>
+          <div><span class="l">Office</span><span class="v">Jl. Sudirman Kav. 52-53, South Jakarta</span></div>
+        </div>
+      </div>
+      <div class="cta-right">
+        <h3>What you get</h3>
+        <ul>
+          <li>Discovery call &amp; needs analysis</li>
+          <li>Technical proposal + fixed-price estimate</li>
+          <li>UI/UX design in Figma before coding</li>
+          <li>Staging access throughout development</li>
+          <li>3 months free post-launch support</li>
+        </ul>
+        <div class="note">© 2026 Zellio · zellio.id</div>
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>
