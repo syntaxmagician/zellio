@@ -112,7 +112,7 @@ export default function Contact() {
         {/* Asymmetric Editorial Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-stretch">
 
-          {/* LEFT SIDE: Premium Form (65%) */}
+          {/* LEFT SIDE: Premium (65%) */}
           <div className="col-span-1 lg:col-span-7 order-2 lg:order-1 flex flex-col justify-between">
             <div className="bg-white rounded-[32px] border border-slate-100 shadow-xl shadow-slate-100/50 p-8 lg:p-10">
 
