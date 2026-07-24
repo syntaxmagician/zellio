@@ -51,176 +51,7 @@ const localText = {
   }
 };
 
-/**
- * High-performance HTML5 Canvas Interactive Constellation Creator
- * As the user moves the mouse, it spawns temporary nodes that form glowing constellations.
- */
-const NetworkVisualizer = () => {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-  
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
 
-    let animationFrameId: number;
-    let width = 0;
-    let height = 0;
-    const mouse = { x: -1000, y: -1000 };
-    let lastSpawn = { x: -1000, y: -1000 };
-    const MAX_BASE_NODES = 45;
-
-    class Node {
-      x: number;
-      y: number;
-      vx: number;
-      vy: number;
-      radius: number;
-      isCursor: boolean;
-      life: number;
-      maxLife: number;
-
-      constructor(x: number, y: number, isCursor: boolean = false) {
-        this.x = x;
-        this.y = y;
-        this.isCursor = isCursor;
-        this.radius = isCursor ? Math.random() * 2 + 1.5 : Math.random() * 1.5 + 0.5;
-        this.vx = (Math.random() - 0.5) * 0.3;
-        this.vy = (Math.random() - 0.5) * 0.3;
-        this.maxLife = isCursor ? 120 : Infinity;
-        this.life = this.maxLife;
-      }
-
-      update() {
-        this.x += this.vx;
-        this.y += this.vy;
-
-        if (!this.isCursor) {
-          if (this.x < 0 || this.x > width) this.vx *= -1;
-          if (this.y < 0 || this.y > height) this.vy *= -1;
-        } else {
-          this.life--;
-        }
-
-        // Subtle gravity pull toward the current mouse position
-        const dx = mouse.x - this.x;
-        const dy = mouse.y - this.y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist < 200) {
-          const force = (200 - dist) / 200;
-          this.x += dx * force * 0.03;
-          this.y += dy * force * 0.03;
-        }
-      }
-
-      draw() {
-        if (!ctx) return;
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-        
-        const opacity = this.isCursor ? (this.life / this.maxLife) * 0.9 : 0.3;
-        ctx.fillStyle = `rgba(37, 99, 235, ${opacity})`;
-        ctx.fill();
-        
-        // Outer glow for cursor-spawned nodes
-        if (this.isCursor) {
-          ctx.beginPath();
-          ctx.arc(this.x, this.y, this.radius * 3.5, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(96, 165, 250, ${(this.life / this.maxLife) * 0.25})`;
-          ctx.fill();
-        }
-      }
-    }
-
-    let nodes: Node[] = [];
-
-    const init = () => {
-      width = canvas.offsetWidth;
-      height = canvas.offsetHeight;
-      canvas.width = width * window.devicePixelRatio;
-      canvas.height = height * window.devicePixelRatio;
-      ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
-      
-      nodes = Array.from({ length: MAX_BASE_NODES }, () => new Node(Math.random() * width, Math.random() * height, false));
-    };
-
-    const animate = () => {
-      ctx.clearRect(0, 0, width, height);
-
-      // Clean dead cursor nodes
-      nodes = nodes.filter(n => n.life > 0);
-
-      // Draw connecting lines
-      for (let i = 0; i < nodes.length; i++) {
-        for (let j = i + 1; j < nodes.length; j++) {
-          const dx = nodes[i].x - nodes[j].x;
-          const dy = nodes[i].y - nodes[j].y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          
-          if (dist < 130) {
-            let opacity = (1 - dist / 130) * 0.3;
-            
-            // If either node is spawned by the cursor, the connection glows bright blue
-            if (nodes[i].isCursor || nodes[j].isCursor) {
-               const lifeFactor = nodes[i].isCursor ? (nodes[i].life / nodes[i].maxLife) : (nodes[j].life / nodes[j].maxLife);
-               opacity = (1 - dist / 130) * 0.7 * lifeFactor;
-               ctx.strokeStyle = `rgba(37, 99, 235, ${opacity})`;
-            } else {
-               // Background stars are very faint and more slate-colored
-               ctx.strokeStyle = `rgba(148, 163, 184, ${opacity * 0.4})`;
-            }
-
-            ctx.beginPath();
-            ctx.moveTo(nodes[i].x, nodes[i].y);
-            ctx.lineTo(nodes[j].x, nodes[j].y);
-            ctx.lineWidth = 1;
-            ctx.stroke();
-          }
-        }
-      }
-
-      nodes.forEach(n => { n.update(); n.draw(); });
-      animationFrameId = requestAnimationFrame(animate);
-    };
-
-    init();
-    animate();
-
-    const handleResize = () => init();
-    
-    const handleMouseMove = (e: MouseEvent) => {
-      const rect = canvas.getBoundingClientRect();
-      mouse.x = e.clientX - rect.left;
-      mouse.y = e.clientY - rect.top;
-      
-      // Spawn a new constellation node every 20px of cursor movement
-      const distFromLast = Math.hypot(mouse.x - lastSpawn.x, mouse.y - lastSpawn.y);
-      if (distFromLast > 20) { 
-        nodes.push(new Node(mouse.x, mouse.y, true));
-        lastSpawn = { x: mouse.x, y: mouse.y };
-      }
-    };
-    
-    const handleMouseLeave = () => {
-      mouse.x = -1000;
-      mouse.y = -1000;
-    };
-
-    window.addEventListener("resize", handleResize);
-    canvas.addEventListener("mousemove", handleMouseMove);
-    canvas.addEventListener("mouseleave", handleMouseLeave);
-
-    return () => {
-      cancelAnimationFrame(animationFrameId);
-      window.removeEventListener("resize", handleResize);
-      canvas.removeEventListener("mousemove", handleMouseMove);
-      canvas.removeEventListener("mouseleave", handleMouseLeave);
-    };
-  }, []);
-
-  return <canvas ref={canvasRef} className="w-full h-full block cursor-crosshair" />;
-};
 
 
 export default function WhyChoose() {
@@ -310,20 +141,14 @@ export default function WhyChoose() {
             style={{ scale }}
             className="w-full h-[280px] md:h-[320px] lg:h-[380px] xl:h-[420px] rounded-[32px] md:rounded-[40px] overflow-hidden border border-slate-200/60 shadow-[0_20px_50px_-15px_rgba(0,0,0,0.03)] relative bg-white"
           >
-            {/* Subtle base texture for the network */}
-            <div className="absolute inset-0 bg-[radial-gradient(circle_800px_at_50%_50%,rgba(37,99,235,0.02),transparent)] pointer-events-none z-0" />
-            <div className="absolute inset-0 opacity-[0.015] bg-[radial-gradient(#000_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none z-0" />
-            
-            <div className="absolute inset-0 z-10">
-              <NetworkVisualizer />
-            </div>
-            
-            {/* Soft fade borders to blend out the nodes at the edges */}
-            <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-white to-transparent pointer-events-none z-20" />
-            <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-white to-transparent pointer-events-none z-20" />
-            <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-white to-transparent pointer-events-none z-20" />
-            <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-white to-transparent pointer-events-none z-20" />
-
+            <video
+              src="/globe.mp4"
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="w-full h-full object-cover pointer-events-none"
+            />
           </motion.div>
         </div>
 

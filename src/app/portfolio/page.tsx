@@ -4,6 +4,7 @@ import { useState } from "react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { AnimatePresence, motion } from "framer-motion";
+import Image from "next/image";
 import { ArrowUpRight, Laptop, Smartphone, LineChart, Globe } from "lucide-react";
 
 type Project = {
@@ -108,6 +109,16 @@ const projects: Project[] = [
     images: ["/beego1.png", "/beego2.png"],
     icon: Smartphone,
     accent: "text-yellow-600 bg-yellow-50 border-yellow-100",
+  },
+  {
+    title: "Warung BungaPagi Ecosystem",
+    category: "F&B Digital Ecosystem",
+    type: "Website",
+    desc: "Authentic Malaysian Taste, Warmth of Togetherness. Experience authentic Malaysian cuisine, exclusive membership benefits, and a seamless digital ordering experience through the Warung BungaPagi ecosystem.",
+    tags: ["Next.js", "E-Commerce", "Membership API"],
+    image: "/warungbungaweb.png",
+    icon: Globe,
+    accent: "text-fuchsia-600 bg-fuchsia-50 border-fuchsia-100",
   },
 ];
 
@@ -227,19 +238,23 @@ export default function PortfolioPage() {
                         <div className="flex w-full h-full gap-0.5 bg-slate-200">
                           {project.images.map((img, idx) => (
                             <div key={idx} className="relative flex-1 h-full overflow-hidden">
-                              <img
+                              <Image
                                 src={img}
                                 alt={`${project.title} Preview ${idx + 1}`}
-                                className="w-full h-full object-cover transform scale-100 group-hover:scale-[1.05] transition-transform duration-700 ease-out"
+                                fill
+                                className="object-cover transform scale-100 group-hover:scale-[1.05] transition-transform duration-700 ease-out"
+                                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                               />
                             </div>
                           ))}
                         </div>
                       ) : (
-                        <img
+                        <Image
                           src={project.image || ""}
                           alt={project.title}
-                          className="w-full h-full object-cover transform scale-100 group-hover:scale-[1.05] transition-transform duration-700 ease-out"
+                          fill
+                          className="object-cover transform scale-100 group-hover:scale-[1.05] transition-transform duration-700 ease-out"
+                          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                         />
                       )}
                       <div className="absolute inset-0 bg-slate-900/5 group-hover:bg-transparent transition-colors duration-500 pointer-events-none" />

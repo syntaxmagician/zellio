@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Mail, MapPin, Copy, Check, Send, CheckCircle2, XCircle, Loader2 } from "lucide-react";
 import emailjs from "@emailjs/browser";
 import { useLanguage } from "@/context/LanguageContext";
+import Image from "next/image";
 
 const GOOGLE_MAPS_URL = "https://www.google.com/maps/@-6.3612091,106.8746823,3a,75y,46.58h,77.16t/data=!3m7!1e1!3m5!1sVDVkOnEvh9ngzvSGAYMqtg!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D12.83835986745251%26panoid%3DVDVkOnEvh9ngzvSGAYMqtg%26yaw%3D46.58021483120736!7i16384!8i8192?entry=ttu&g_ep=EgoyMDI2MDcyMi4wIKXMDSoASAFQAw%3D%3D";
 
@@ -497,10 +498,12 @@ export default function Contact() {
             <div className="w-full h-[350px] lg:h-full min-h-[550px] rounded-[32px] overflow-hidden shadow-xl relative bg-slate-200">
 
               {/* Premium Startup Workspace Image */}
-              <img
+              <Image
                 src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80"
                 alt="Zellio Consulting Office"
-                className="w-full h-full object-cover"
+                fill
+                className="object-cover"
+                sizes="(max-width: 1024px) 100vw, 50vw"
               />
 
               {/* Dark subtle overlay for contrast */}

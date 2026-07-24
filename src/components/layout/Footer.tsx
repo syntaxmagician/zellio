@@ -9,6 +9,7 @@ import {
   Code2,
 } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
+import Image from "next/image";
 
 const localText = {
   en: {
@@ -105,9 +106,11 @@ export default function Footer() {
             {/* Brand Column (Left - Spans 5) */}
             <div className="lg:col-span-5 flex flex-col justify-start">
               <a href="#home" className="flex items-center mb-4 group">
-                <img
+                <Image
                   src="/zelio.png"
                   alt="Zellio Logo"
+                  width={200}
+                  height={64}
                   className="h-12 md:h-16 w-auto object-contain scale-[2.4] md:scale-[2.6] origin-left brightness-0 invert group-hover:opacity-90 transition-opacity duration-300"
                   style={{ width: 'auto' }}
                 />

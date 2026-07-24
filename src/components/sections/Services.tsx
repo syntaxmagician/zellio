@@ -1,302 +1,182 @@
 "use client";
 
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import {
-  Palette,
-  Monitor,
-  Server,
-  Layers,
-  Cloud,
-  GitBranch,
-  Shield,
-  Brain,
-  BarChart2,
-  Smartphone,
-  ArrowRight,
-} from "lucide-react";
+import React, { useState } from "react";
+import { motion, Variants } from "framer-motion";
 import { servicesData } from "@/lib/data";
 import { useLanguage } from "@/context/LanguageContext";
 import { TranslationKey } from "@/lib/translations";
+import {
+  WebDevIllustration,
+  DashboardIllustration,
+  MobileAppIllustration,
+  ITSystemsIllustration,
+  CloudDevOpsIllustration,
+  UIDesignIllustration
+} from "../ui/ServiceIllustrations";
 
-const iconMap: Record<string, React.ElementType> = {
-  Palette,
-  Monitor,
-  Server,
-  Layers,
-  Cloud,
-  GitBranch,
-  Shield,
-  Brain,
-  BarChart2,
-  Smartphone,
-};
-
-const deliverablesMap = {
-  en: {
-    1: [
-      "Single Page Applications (SPA)",
-      "SEO & Core Web Vitals",
-      "Custom API & Headless CMS",
-      "Responsive & Fluid Layouts",
-    ],
-    2: [
-      "Real-time Analytics Panels",
-      "Custom CRM & ERP Solutions",
-      "Financial Data Visualization",
-      "Role-Based Access Control",
-    ],
-    3: [
-      "Cross-Platform (iOS & Android)",
-      "Push Notifications & Deep Linking",
-      "Offline Support & Sync",
-      "App Store Publishing",
-    ],
-    4: [
-      "Database Architecture Design",
-      "Third-Party API Integrations",
-      "Legacy System Migration",
-      "High-Concurrency Backend APIs",
-    ],
-    5: [
-      "AWS / GCP / Azure Setup",
-      "Docker & Kubernetes Deployments",
-      "CI/CD Pipeline Automation",
-      "Server Monitoring & Security",
-    ],
-    6: [
-      "Figma Interactive Prototypes",
-      "Wireframing & User Journey",
-      "Design System Creation",
-      "Usability Testing & Iteration",
-    ],
-  },
-  id: {
-    1: [
-      "Aplikasi Halaman Tunggal (SPA)",
-      "SEO & Core Web Vitals",
-      "API Kustom & Headless CMS",
-      "Tata Letak Responsif & Fleksibel",
-    ],
-    2: [
-      "Panel Analitik Waktu Nyata",
-      "Solusi CRM & ERP Kustom",
-      "Visualisasi Data Keuangan",
-      "Kontrol Akses Berbasis Peran",
-    ],
-    3: [
-      "Lintas Platform (iOS & Android)",
-      "Notifikasi Push & Deep Linking",
-      "Dukungan Luring & Sinkronisasi",
-      "Publikasi App Store",
-    ],
-    4: [
-      "Desain Arsitektur Database",
-      "Integrasi API Pihak Ketiga",
-      "Migrasi Sistem Warisan",
-      "API Backend Konkurensi Tinggi",
-    ],
-    5: [
-      "Pengaturan AWS / GCP / Azure",
-      "Penerapan Docker & Kubernetes",
-      "Otomatisasi Jalur CI/CD",
-      "Pemantauan & Keamanan Server",
-    ],
-    6: [
-      "Prototipe Interaktif Figma",
-      "Wireframing & Perjalanan Pengguna",
-      "Pembuatan Sistem Desain",
-      "Pengujian & Iterasi Usabilitas",
-    ],
-  }
+const illustrationMap: Record<number, React.FC<{ isHovered: boolean }>> = {
+  1: WebDevIllustration,
+  2: DashboardIllustration,
+  3: MobileAppIllustration,
+  4: ITSystemsIllustration,
+  5: CloudDevOpsIllustration,
+  6: UIDesignIllustration
 };
 
 const localText = {
   en: {
-    expertise: "Our Expertise",
-    custom: "Custom",
-    solutions: "IT Solutions",
-    desc: "From design to deployment, we offer end-to-end IT services to build modern web, mobile, and custom systems for your business.",
-    deliverables: "Key Deliverables"
+    expertise: "OUR EXPERTISE",
+    custom: "Custom IT Solutions",
+    desc: "Purpose-built engineering for modern enterprises. From scalable backend architectures to pixel-perfect interfaces, we build software that drives momentum.",
   },
   id: {
-    expertise: "Keahlian Kami",
-    custom: "Solusi IT",
-    solutions: "Kustom",
-    desc: "Dari desain hingga peluncuran, kami menawarkan layanan TI end-to-end untuk membangun sistem web, seluler, dan kustom modern untuk bisnis Anda.",
-    deliverables: "Hasil Utama"
+    expertise: "KEAHLIAN KAMI",
+    custom: "Solusi IT Kustom",
+    desc: "Rekayasa perangkat lunak untuk perusahaan modern. Dari arsitektur backend yang dapat diskalakan hingga antarmuka yang sempurna, kami membangun sistem yang memacu pertumbuhan.",
   }
+};
+
+const getSlug = (title: string) => 
+  title.toLowerCase().replace(/[\s&/]+/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '');
+
+const BlueprintGrid = () => (
+  <svg className="absolute inset-0 w-full h-full opacity-[0.02] pointer-events-none" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <pattern id="blueprint-grid" width="40" height="40" patternUnits="userSpaceOnUse">
+        <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#0F172A" strokeWidth="1" />
+      </pattern>
+    </defs>
+    <rect width="100%" height="100%" fill="url(#blueprint-grid)" />
+  </svg>
+);
+
+const containerVariants: Variants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.08
+    }
+  }
+};
+
+const itemVariants: Variants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.8,
+      ease: [0.16, 1, 0.3, 1] as const
+    }
+  }
+};
+
+const headerVariants: Variants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.8,
+      ease: [0.16, 1, 0.3, 1] as const
+    }
+  }
+};
+
+interface ServiceColumnProps {
+  program: typeof servicesData[0];
+  index: number;
+  t: (key: TranslationKey) => string;
+}
+
+const ServiceColumn: React.FC<ServiceColumnProps> = ({ program, index, t }) => {
+  const [isHovered, setIsHovered] = useState(false);
+  const Illustration = illustrationMap[program.id];
+  const titleKey = `service.${getSlug(program.title)}` as TranslationKey;
+  const descKey = `service.desc.${getSlug(program.title)}` as TranslationKey;
+
+  return (
+    <motion.div
+      variants={itemVariants}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      className="relative flex flex-col items-start text-left group cursor-default px-6 py-6 lg:px-6 lg:py-8 transition-colors duration-500"
+    >
+      {/* Index */}
+      <span className="font-mono text-[10px] text-slate-500 font-bold mb-4 tracking-[0.2em] uppercase opacity-80 group-hover:opacity-100 transition-opacity duration-300">
+        FIG 0{index + 1}
+      </span>
+
+      {/* Illustration */}
+      <div className="relative mb-6 w-full flex items-center justify-start h-[160px] opacity-100 transition-opacity duration-500">
+        <div className="w-full h-full transform origin-left scale-110">
+          {Illustration && <Illustration isHovered={isHovered} />}
+        </div>
+      </div>
+
+      {/* Title */}
+      <h3 className="text-[16px] font-bold text-slate-800 group-hover:text-[#0F172A] transition-colors duration-300 tracking-tight leading-snug mb-2">
+        {t(titleKey)}
+      </h3>
+
+      {/* Description */}
+      <p className="text-[14px] text-slate-500 leading-relaxed font-medium opacity-80 group-hover:opacity-100 transition-opacity duration-300">
+        {t(descKey)}
+      </p>
+    </motion.div>
+  );
 };
 
 export default function Services() {
   const { language, t } = useLanguage();
-  const [activeId, setActiveId] = useState<number>(servicesData[0].id);
-
-  const activeService = servicesData.find((s) => s.id === activeId) || servicesData[0];
-  const ActiveIcon = iconMap[activeService.icon];
-  
   const text = localText[language];
-  const activeDeliverables = (deliverablesMap as any)[language][activeId] as string[];
-  
-  const getSlug = (title: string) => title.toLowerCase().replace(/[\s&/]+/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '');
 
   return (
-    <section id="services" className="py-24 lg:py-32 bg-[#FAFAFA] relative overflow-hidden">
-      <div className="section-container max-w-7xl mx-auto px-4 lg:px-8">
+    <section id="services" className="relative py-20 lg:py-24 bg-[#ffffff] overflow-hidden border-t border-slate-200/40">
+      {/* Background blueprint grid */}
+      <BlueprintGrid />
 
-        {/* Header */}
+      <div className="max-w-[1600px] mx-auto px-6 lg:px-8 relative z-10">
+        
+        {/* Header Section */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          variants={headerVariants}
+          initial="hidden"
+          whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          className="mb-16 md:mb-20 text-center md:text-left flex flex-col md:flex-row md:items-end justify-between gap-6"
+          className="max-w-4xl mb-12 lg:mb-16 text-left"
         >
-          <div>
-            <span className="inline-block px-3 py-1 rounded-full bg-blue-50 text-[#2563EB] text-[10px] sm:text-xs font-bold uppercase tracking-widest mb-4 border border-blue-100 shadow-sm">
-              {text.expertise}
-            </span>
-            <h2 className="text-4xl md:text-5xl font-black text-[#0F172A] tracking-tight leading-tight">
-              {text.custom} <span className="text-[#2563EB]">{text.solutions}</span>
-            </h2>
-          </div>
-          <p className="text-sm sm:text-base text-[#64748B] max-w-md leading-relaxed font-medium md:text-right mx-auto md:mx-0">
+          <span className="text-[11px] font-mono font-bold text-slate-500 tracking-[0.25em] uppercase mb-4 block">
+            {text.expertise}
+          </span>
+          <h2 className="text-4xl sm:text-5xl md:text-5xl font-semibold text-[#0F172A] tracking-tight leading-tight mb-4">
+            {text.custom}
+          </h2>
+          <p className="text-[15px] sm:text-[17px] text-slate-600 font-medium leading-relaxed max-w-2xl">
             {text.desc}
           </p>
         </motion.div>
 
-        {/* Interactive Split-Screen Layout */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12 relative">
-
-          {/* Mobile Navigation (Horizontal Scroll) */}
-          <div className="flex md:hidden overflow-x-auto gap-3 pb-4 snap-x hide-scrollbar">
-            {servicesData.map((program) => {
-              const isActive = activeId === program.id;
-              const titleKey = `service.${getSlug(program.title)}` as TranslationKey;
-              return (
-                <button
-                  key={program.id}
-                  onClick={() => setActiveId(program.id)}
-                  className={`relative flex-shrink-0 snap-start px-5 py-2.5 rounded-full text-[13px] font-bold transition-all duration-300 ${isActive ? "text-white shadow-md" : "bg-white text-slate-500 border border-slate-200 hover:text-slate-900"
-                    }`}
-                  style={isActive ? { backgroundColor: program.color, borderColor: program.color } : {}}
-                >
-                  {t(titleKey)}
-                </button>
-              );
-            })}
-          </div>
-
-          {/* Desktop Navigation (Vertical List) */}
-          <div className="hidden md:flex flex-col gap-2 md:col-span-5 lg:col-span-4">
-            {servicesData.map((program, i) => {
-              const isActive = activeId === program.id;
-              const Icon = iconMap[program.icon];
-              const titleKey = `service.${getSlug(program.title)}` as TranslationKey;
-              return (
-                <button
-                  key={program.id}
-                  onClick={() => setActiveId(program.id)}
-                  className={`relative flex items-center gap-4 w-full p-4 lg:p-5 rounded-2xl transition-all duration-300 text-left group ${isActive ? "text-slate-900" : "text-slate-400 hover:text-slate-600 hover:bg-white"
-                    }`}
-                >
-                  {isActive && (
-                    <motion.div
-                      layoutId="activeServiceBgDesktop"
-                      className="absolute inset-0 bg-white border border-slate-200/80 shadow-md rounded-2xl"
-                      transition={{ type: "spring", stiffness: 350, damping: 30 }}
-                    />
-                  )}
-                  <span className="relative z-10 text-[11px] font-mono font-bold opacity-40">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-
-                  <div className={`relative z-10 w-8 h-8 rounded-lg flex items-center justify-center transition-all duration-300 ${isActive ? 'bg-slate-50' : 'bg-transparent group-hover:bg-slate-50'}`}>
-                    {Icon && <Icon size={16} style={{ color: isActive ? program.color : '#94A3B8' }} className="transition-colors duration-300" />}
-                  </div>
-
-                  <span className="relative z-10 font-black text-sm lg:text-base tracking-tight transition-transform duration-300 group-hover:translate-x-1">
-                    {t(titleKey)}
-                  </span>
-                </button>
-              );
-            })}
-          </div>
-
-          {/* Showcase Panel (Glassmorphic Detail Card) */}
-          <div className="md:col-span-7 lg:col-span-8 h-full">
-            <div className="bg-white border border-slate-200/80 rounded-[32px] p-6 sm:p-8 lg:p-12 shadow-[0_15px_40px_-15px_rgba(0,0,0,0.05)] relative overflow-hidden flex flex-col h-full min-h-[460px] w-full">
-
-              <motion.div
-                key={`glow-${activeId}`}
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 0.1, scale: 1 }}
-                transition={{ duration: 0.8 }}
-                className="absolute -top-32 -right-32 w-96 h-96 rounded-full blur-[80px] pointer-events-none"
-                style={{ backgroundColor: activeService.color }}
+        {/* 6-Column Linear Grid */}
+        <div className="border-t border-b border-slate-200/50">
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 divide-y md:divide-y-0 md:divide-x divide-slate-200/50"
+          >
+            {servicesData.map((program, index) => (
+              <ServiceColumn 
+                key={program.id} 
+                program={program} 
+                index={index} 
+                t={t} 
               />
-
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={activeService.id}
-                  initial={{ opacity: 0, y: 15, filter: "blur(4px)" }}
-                  animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                  exit={{ opacity: 0, y: -15, filter: "blur(4px)" }}
-                  transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                  className="flex flex-col h-full relative z-10"
-                >
-                  <div className="flex flex-wrap items-start justify-between gap-4 mb-8 sm:mb-10">
-                    <div
-                      className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl flex items-center justify-center shadow-sm"
-                      style={{
-                        backgroundColor: `${activeService.color}15`,
-                        border: `1px solid ${activeService.color}30`,
-                      }}
-                    >
-                      <ActiveIcon size={28} style={{ color: activeService.color }} />
-                    </div>
-
-                    <div className="flex flex-wrap items-center gap-2 sm:gap-3">
-                      <span className="text-[10px] sm:text-xs font-bold px-3 py-1.5 bg-slate-50 border border-slate-100 rounded-lg text-slate-500 uppercase tracking-widest">
-                        {activeService.duration}
-                      </span>
-                      <span className="text-[10px] sm:text-xs font-bold px-3 py-1.5 bg-slate-50 border border-slate-100 rounded-lg text-slate-500 uppercase tracking-widest">
-                        {activeService.level}
-                      </span>
-                    </div>
-                  </div>
-
-                  <h3 className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 mb-4 tracking-tight leading-tight">
-                    {t(`service.${getSlug(activeService.title)}` as TranslationKey)}
-                  </h3>
-                  <p className="text-sm sm:text-base text-slate-500 leading-relaxed font-medium mb-10 max-w-2xl">
-                    {t(`service.desc.${getSlug(activeService.title)}` as TranslationKey)}
-                  </p>
-
-                  <div className="mb-10">
-                    <h4 className="text-[11px] sm:text-xs font-black text-slate-400 mb-5 uppercase tracking-[0.2em]">
-                      {text.deliverables}
-                    </h4>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-6">
-                      {activeDeliverables.map((item, idx) => (
-                        <div key={idx} className="flex items-center gap-3">
-                          <div
-                            className="w-1.5 h-1.5 rounded-full flex-shrink-0"
-                            style={{ backgroundColor: activeService.color }}
-                          />
-                          <span className="text-[13px] sm:text-sm font-bold text-slate-700 leading-snug">
-                            {item}
-                          </span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                </motion.div>
-              </AnimatePresence>
-            </div>
-          </div>
+            ))}
+          </motion.div>
         </div>
+
       </div>
     </section>
   );

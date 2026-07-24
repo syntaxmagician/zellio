@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useRef, useCallback } from "react";
+import { useLanguage } from "@/context/LanguageContext";
 import { motion } from "framer-motion";
 import { 
   SiReact, 
@@ -8,213 +8,131 @@ import {
   SiNodedotjs, 
   SiGo, 
   SiFlutter, 
-  SiDocker, 
-  SiKubernetes, 
-  SiPostgresql, 
-  SiMongodb, 
-  SiFigma, 
-  SiTypescript 
+  SiDocker,
+  SiKubernetes,
+  SiPostgresql,
+  SiMongodb,
+  SiFigma,
+  SiTypescript
 } from "react-icons/si";
 import { FaAws } from "react-icons/fa";
 
-interface TechItem {
-  id: string;
-  name: string;
-  category: "Frontend" | "Backend" | "DevOps" | "Database" | "Design";
-  icon: any;
-  color: string;
-}
+const localText = {
+  en: {
+    badge: "TECHNOLOGY ECOSYSTEM",
+    title: "Architected with modern,\nenterprise core tools.",
+    subtitle: "We use stable, high-performance open-source systems to compose our enterprise blueprints."
+  },
+  id: {
+    badge: "EKOSISTEM TEKNOLOGI",
+    title: "Dirancang dengan perkakas\nmodern berstandar korporat.",
+    subtitle: "Kami menggunakan sistem sumber terbuka yang stabil dan berkinerja tinggi untuk merakit solusi enterprise kami."
+  }
+};
 
-const techItems: TechItem[] = [
-  { id: "react", name: "React", category: "Frontend", icon: SiReact, color: "#61DAFB" },
-  { id: "nextjs", name: "Next.js", category: "Frontend", icon: SiNextdotjs, color: "#000000" },
-  { id: "nodejs", name: "Node.js", category: "Backend", icon: SiNodedotjs, color: "#339933" },
-  { id: "go", name: "Go", category: "Backend", icon: SiGo, color: "#00ADD8" },
-  { id: "flutter", name: "Flutter", category: "Frontend", icon: SiFlutter, color: "#02569B" },
-  { id: "aws", name: "AWS", category: "DevOps", icon: FaAws, color: "#FF9900" },
-  { id: "docker", name: "Docker", category: "DevOps", icon: SiDocker, color: "#2496ED" },
-  { id: "kubernetes", name: "Kubernetes", category: "DevOps", icon: SiKubernetes, color: "#326CE5" },
-  { id: "postgresql", name: "PostgreSQL", category: "Database", icon: SiPostgresql, color: "#4169E1" },
-  { id: "mongodb", name: "MongoDB", category: "Database", icon: SiMongodb, color: "#47A248" },
-  { id: "figma", name: "Figma", category: "Design", icon: SiFigma, color: "#F24E1E" },
-  { id: "typescript", name: "TypeScript", category: "Frontend", icon: SiTypescript, color: "#3178C6" }
+const topRow = [
+  { name: "React", icon: SiReact, category: "FRONTEND", color: "#61DAFB" },
+  { name: "Next.js", icon: SiNextdotjs, category: "FRONTEND", color: "#FFFFFF" },
+  { name: "Node.js", icon: SiNodedotjs, category: "BACKEND", color: "#339933" },
+  { name: "Go", icon: SiGo, category: "BACKEND", color: "#00ADD8" },
+  { name: "Flutter", icon: SiFlutter, category: "FRONTEND", color: "#02569B" },
+  { name: "AWS", icon: FaAws, category: "DEVOPS", color: "#FF9900" },
 ];
 
-const connections = [
-  { from: "react", to: "nextjs" },
-  { from: "react", to: "typescript" },
-  { from: "nodejs", to: "go" },
-  { from: "go", to: "postgresql" },
-  { from: "docker", to: "kubernetes" },
-  { from: "kubernetes", to: "aws" },
-  { from: "postgresql", to: "mongodb" },
-  { from: "figma", to: "react" },
-  { from: "flutter", to: "typescript" }
+const bottomRow = [
+  { name: "Docker", icon: SiDocker, category: "DEVOPS", color: "#2496ED" },
+  { name: "Kubernetes", icon: SiKubernetes, category: "DEVOPS", color: "#326CE5" },
+  { name: "PostgreSQL", icon: SiPostgresql, category: "DATABASE", color: "#4169E1" },
+  { name: "MongoDB", icon: SiMongodb, category: "DATABASE", color: "#47A248" },
+  { name: "Figma", icon: SiFigma, category: "DESIGN", color: "#F24E1E" },
+  { name: "TypeScript", icon: SiTypescript, category: "FRONTEND", color: "#3178C6" },
 ];
+
+const TechCard = ({ tech }: { tech: any }) => (
+  <div className="w-[280px] h-[120px] bg-white/[0.03] hover:bg-white/[0.08] border border-white/10 rounded-2xl p-6 flex flex-col justify-center items-center gap-3 transition-colors duration-300 relative group overflow-hidden shrink-0 mx-3 backdrop-blur-sm">
+    <div className="absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-500" style={{ background: `radial-gradient(circle at center, ${tech.color}, transparent 70%)` }} />
+    <tech.icon size={36} style={{ color: tech.color }} className="group-hover:scale-110 transition-transform duration-300 relative z-10" />
+    <div className="text-center relative z-10">
+      <span className="text-[9px] font-mono font-bold tracking-widest text-slate-500 uppercase block mb-1">{tech.category}</span>
+      <span className="text-sm font-bold text-slate-200">{tech.name}</span>
+    </div>
+  </div>
+);
 
 export default function TechEcosystem() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [coords, setCoords] = useState<{ [key: string]: { x: number; y: number } }>({});
-  const [hoveredId, setHoveredId] = useState<string | null>(null);
+  const { language } = useLanguage();
+  const text = localText[language as "en" | "id"] || localText.en;
 
-  const updateCoords = useCallback(() => {
-    if (!containerRef.current) return;
-    const containerRect = containerRef.current.getBoundingClientRect();
-    const anchors = containerRef.current.querySelectorAll("[data-anchor]");
-    const newCoords: typeof coords = {};
-    
-    anchors.forEach((el) => {
-      const name = el.getAttribute("data-anchor");
-      if (name) {
-        const rect = el.getBoundingClientRect();
-        newCoords[name] = {
-          x: rect.left - containerRect.left + rect.width / 2,
-          y: rect.top - containerRect.top + rect.height / 2,
-        };
-      }
-    });
-    setCoords(newCoords);
-  }, []);
-
-  useEffect(() => {
-    updateCoords();
-    
-    const observer = new ResizeObserver(() => {
-      requestAnimationFrame(updateCoords);
-    });
-
-    if (containerRef.current) {
-      observer.observe(containerRef.current);
-      const cards = containerRef.current.querySelectorAll('.tech-card');
-      cards.forEach(card => observer.observe(card));
-    }
-
-    window.addEventListener("resize", updateCoords);
-    return () => {
-      window.removeEventListener("resize", updateCoords);
-      observer.disconnect();
-    };
-  }, [updateCoords]);
+  // Duplicate arrays to make seamless scrolling
+  const topRowDuplicated = [...topRow, ...topRow, ...topRow, ...topRow];
+  const bottomRowDuplicated = [...bottomRow, ...bottomRow, ...bottomRow, ...bottomRow];
 
   return (
-    <section className="w-full bg-[#FAFAFA] border-t border-slate-100 relative overflow-hidden py-12 lg:py-16">
-      {/* Background visual elements */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-slate-100/50 rounded-full blur-[140px] pointer-events-none z-0" />
+    <section className="w-full bg-[#030712] py-24 md:py-32 relative overflow-hidden">
+      {/* Background ambient light */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-[1000px] h-[500px] bg-blue-900/20 rounded-full blur-[120px] pointer-events-none" />
 
-      <div className="max-w-[1440px] mx-auto px-6 lg:px-12 relative z-10">
-        
-        {/* Header */}
-        <div className="max-w-2xl mx-auto text-center mb-12">
-          <span className="text-[10px] font-mono font-bold text-slate-400 tracking-[0.2em] uppercase block mb-4">
-            TECHNOLOGY ECOSYSTEM
-          </span>
-          <h2 className="text-3xl md:text-5xl font-black text-slate-900 tracking-tight leading-none mb-6">
-            Architected with modern, enterprise core tools.
-          </h2>
-          <p className="text-sm md:text-base font-medium text-slate-500 max-w-lg mx-auto">
-            We use stable, high-performance open-source systems to compose our enterprise blueprints.
-          </p>
+      <div className="relative z-10 flex flex-col items-center text-center px-6 mb-16 md:mb-24">
+        <motion.span 
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-[11px] font-mono font-bold tracking-[0.2em] uppercase text-blue-500 mb-4 block"
+        >
+          {text.badge}
+        </motion.span>
+        <motion.h2 
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.1 }}
+          className="text-3xl md:text-5xl lg:text-[56px] font-extrabold text-white tracking-tight mb-6 whitespace-pre-line leading-[1.1]"
+        >
+          {text.title}
+        </motion.h2>
+        <motion.p 
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.2 }}
+          className="text-base md:text-lg text-slate-400 max-w-2xl"
+        >
+          {text.subtitle}
+        </motion.p>
+      </div>
+
+      {/* Marquee Rows */}
+      <div className="relative z-10 w-full flex flex-col gap-6 overflow-hidden">
+        {/* Shadow overlays for edge fading */}
+        <div className="absolute left-0 top-0 bottom-0 w-32 md:w-64 bg-gradient-to-r from-[#030712] to-transparent z-20 pointer-events-none" />
+        <div className="absolute right-0 top-0 bottom-0 w-32 md:w-64 bg-gradient-to-l from-[#030712] to-transparent z-20 pointer-events-none" />
+
+        {/* Row 1 (Moving Left) */}
+        {/* Item width: 280px + (mx-3 = 24px) = 304px. Set of 6 items = 1824px */}
+        <div className="flex w-max group">
+          <motion.div
+            animate={{ x: [0, -1824] }}
+            transition={{ repeat: Infinity, ease: "linear", duration: 35 }}
+            className="flex group-hover:duration-[100s] transition-all"
+          >
+            {topRowDuplicated.map((tech, i) => (
+              <TechCard key={`${tech.name}-top-${i}`} tech={tech} />
+            ))}
+          </motion.div>
         </div>
 
-        {/* Tech Grid */}
-        <div ref={containerRef} className="relative grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 lg:gap-8 min-h-[400px]">
-          
-          {/* Subtle Connection Lines SVG overlay */}
-          <div className="absolute inset-0 pointer-events-none hidden md:block z-0">
-            <svg className="w-full h-full" style={{ overflow: "visible" }}>
-              {Object.keys(coords).length > 0 &&
-                connections.map((conn, idx) => {
-                  const start = coords[conn.from];
-                  const end = coords[conn.to];
-                  
-                  if (!start || !end) return null;
-
-                  // Determine connection activity based on hover
-                  const isActive = hoveredId === conn.from || hoveredId === conn.to;
-                  const dotColor = isActive ? "#3B82F6" : "#CBD5E1";
-                  const lineColor = isActive ? "#60A5FA" : "#E2E8F0";
-                  const duration = isActive ? 1.2 : (4 + idx * 0.5);
-                  
-                  return (
-                    <g key={idx}>
-                      <line
-                        x1={start.x}
-                        y1={start.y}
-                        x2={end.x}
-                        y2={end.y}
-                        stroke={lineColor}
-                        strokeWidth={isActive ? "2" : "1.5"}
-                        strokeDasharray={isActive ? "6, 6" : "4, 8"}
-                        style={{ transition: "all 0.3s ease" }}
-                      />
-                      {/* Flowing animated data dot */}
-                      <motion.circle
-                        r={isActive ? "3" : "2"}
-                        fill={dotColor}
-                        animate={{
-                          cx: [start.x, end.x],
-                          cy: [start.y, end.y]
-                        }}
-                        transition={{
-                          repeat: Infinity,
-                          duration: duration,
-                          ease: "linear"
-                        }}
-                        style={{ filter: isActive ? "drop-shadow(0 0 4px #3B82F6)" : "none" }}
-                      />
-                    </g>
-                  );
-                })}
-            </svg>
-          </div>
-
-          {/* Cards */}
-          {techItems.map((tech) => {
-            const Icon = tech.icon;
-            const isHovered = hoveredId === tech.id;
-            
-            return (
-              <motion.div
-                key={tech.id}
-                onMouseEnter={() => setHoveredId(tech.id)}
-                onMouseLeave={() => setHoveredId(null)}
-                className={`tech-card relative group bg-white border ${isHovered ? 'border-blue-400 shadow-md ring-4 ring-blue-50' : 'border-slate-200/80 shadow-sm'} rounded-2xl p-5 hover:shadow-lg transition-all duration-300 flex flex-col items-center text-center justify-between z-10 min-h-[140px]`}
-              >
-                {/* Visual anchor for lines */}
-                <div data-anchor={tech.id} className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-0 h-0 pointer-events-none" />
-
-                <div
-                  className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0"
-                  style={{
-                    backgroundColor: `${tech.color}08`,
-                    border: `1px solid ${tech.color}15`
-                  }}
-                >
-                  {typeof Icon === "function" ? (
-                    <Icon size={20} style={{ color: tech.color }} />
-                  ) : (
-                    React.createElement(Icon.type, {
-                      ...Icon.props,
-                      size: 20,
-                      style: { color: tech.color }
-                    })
-                  )}
-                </div>
-
-                <div className="mt-4">
-                  <span className="text-[8px] font-mono font-bold text-slate-400 uppercase tracking-widest block mb-0.5">
-                    {tech.category}
-                  </span>
-                  <h3 className="text-sm font-black text-slate-800 tracking-tight">
-                    {tech.name}
-                  </h3>
-                </div>
-              </motion.div>
-            );
-          })}
-
+        {/* Row 2 (Moving Right) */}
+        <div className="flex w-max group">
+          <motion.div
+            animate={{ x: [-1824, 0] }}
+            transition={{ repeat: Infinity, ease: "linear", duration: 40 }}
+            className="flex group-hover:duration-[100s] transition-all"
+          >
+            {bottomRowDuplicated.map((tech, i) => (
+              <TechCard key={`${tech.name}-bot-${i}`} tech={tech} />
+            ))}
+          </motion.div>
         </div>
-
       </div>
     </section>
   );

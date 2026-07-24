@@ -91,7 +91,7 @@ export default function TeamHero() {
               <TeamAvatar name="hasyim" className="w-[120%] h-[120%] mt-8 object-cover scale-110 group-hover:scale-105 transition-transform duration-700" />
             </div>
             <div className="mt-2 text-center">
-              <span className="text-[8px] font-mono font-bold text-sky-500 tracking-wider block">SERVER</span>
+              <span className="text-[8px] font-mono font-bold text-sky-500 tracking-wider block">DEVOPS</span>
               <h3 className="text-[11px] font-black text-slate-800 tracking-tight leading-none mt-0.5">Hasyim Ridwan</h3>
             </div>
           </motion.div>

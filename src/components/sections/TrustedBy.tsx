@@ -11,6 +11,7 @@ const companyLogos = [
   { name: "Beego", src: "/beego.webp" },
   { name: "Elogs", src: "/elogs.png" },
   { name: "Jaja.id", src: "/jajaid.png" },
+  { name: "Warung BungaPagi", src: "/warungbunga.avif" },
 ];
 
 function LogoChip({ name, src }: { name: string; src: string }) {
@@ -21,6 +22,7 @@ function LogoChip({ name, src }: { name: string; src: string }) {
         alt={name}
         width={120}
         height={40}
+        priority
         className="max-h-[32px] w-auto object-contain filter grayscale group-hover:grayscale-0 transition-all duration-500 opacity-60 group-hover:opacity-100"
       />
     </div>

@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 
 interface AvatarProps {
   name: "vico" | "samuel" | "cavendio" | "rendra" | "cynthia" | "kenji" | "sarah" | "hasyim";
@@ -25,12 +26,13 @@ export default function TeamAvatar({ name, className = "w-full h-full" }: Avatar
   const avatarUrl = `https://api.dicebear.com/7.x/micah/svg?seed=${seed}&backgroundColor=transparent${extraParams}`;
 
   return (
-    <img 
+    <Image 
       src={avatarUrl} 
       alt={`${name} avatar`} 
+      width={100}
+      height={100}
       className={className}
       style={{ objectFit: 'contain' }}
-      loading="lazy"
     />
   );
 }

@@ -54,7 +54,7 @@ const leaders: LeaderData[] = [
   {
     name: "Hasyim Ridwan",
     id: "hasyim",
-    role: "Lead Backend & Server Architect",
+    role: "Lead DevOps & Infrastructure",
     exp: "6+ Years Experience",
     projects: "28+ Scalable Systems",
     tech: ["Go", "Node.js", "Docker", "AWS", "Kubernetes"],

@@ -1,61 +1,45 @@
-import React, { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import React from "react";
+import { motion } from "framer-motion";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
-import BrowserPreviewEngine from "../ui/BrowserPreviewEngine";
+import LinearProcessShowcase from "../ui/LinearProcessShowcase";
 import AuroraSectionBackground from "../ui/AuroraSectionBackground";
 
-const expertiseData = {
+const workflowData = {
   en: [
     {
-      title: "Custom Web Development",
-      desc: "Modern, fast, and SEO-friendly corporate websites, landing pages, and web portals built with React and Next.js."
+      title: "Discovery & Architecture",
+      desc: "We map out requirements, analyze digital infrastructure, and design a secure, high-performance blueprint."
     },
     {
-      title: "Admin & Analytics Dashboards",
-      desc: "Interactive data dashboards, custom CRM/ERP interfaces, and business intelligence panels with real-time analytics."
+      title: "Agile Engineering",
+      desc: "We write clean, typed code in modern frameworks (React/Next.js/Node) with rapid iterations and transparent feedback."
     },
     {
-      title: "Mobile App Development",
-      desc: "Native-grade Android and iOS applications developed using Flutter and React Native for a seamless user experience."
+      title: "System Forensics & QA",
+      desc: "Our engineers run rigorous automated testing, penetration tests, and security audits to guarantee zero defects."
     },
     {
-      title: "Custom IT Systems",
-      desc: "Robust backend architectures, custom database designs, integration of third-party APIs, and legacy system migrations."
-    },
-    {
-      title: "Cloud Infrastructure & DevOps",
-      desc: "Reliable AWS, GCP, or Azure setup, Docker containerization, Kubernetes orchestration, and continuous integration (CI/CD) pipelines."
-    },
-    {
-      title: "UI/UX & Product Design",
-      desc: "Figma mockups, user research, wireframing, custom design systems, and rapid prototyping to wow your target users."
+      title: "Deployment & Scaling",
+      desc: "We deploy onto highly available cloud infrastructures (AWS/GCP) using Docker/Kubernetes and setup automated monitoring."
     }
   ],
   id: [
     {
-      title: "Pembangunan Web Kustom",
-      desc: "Website korporat, landing page, dan portal web yang modern, cepat, dan SEO-friendly menggunakan React dan Next.js."
+      title: "Perencanaan & Arsitektur",
+      desc: "Kami memetakan kebutuhan, menganalisis infrastruktur digital, dan merancang cetak biru sistem yang aman dan berkinerja tinggi."
     },
     {
-      title: "Dashboard Admin & Analitik",
-      desc: "Dashboard data interaktif, antarmuka CRM/ERP kustom, dan panel kecerdasan bisnis dengan analitik real-time."
+      title: "Pengembangan Tangkas",
+      desc: "Kami menulis kode bersih dan terstruktur dalam framework modern dengan iterasi cepat serta umpan balik transparan."
     },
     {
-      title: "Pengembangan Aplikasi Mobile",
-      desc: "Aplikasi Android dan iOS tingkat native menggunakan Flutter dan React Native untuk pengalaman pengguna yang mulus."
+      title: "Forensik Sistem & QA",
+      desc: "Insinyur kami menjalankan pengujian otomatis, uji penetrasi, dan audit keamanan sistem untuk menjamin bebas cacat."
     },
     {
-      title: "Sistem TI Kustom",
-      desc: "Arsitektur backend yang tangguh, desain basis data kustom, integrasi API pihak ketiga, dan migrasi sistem warisan."
-    },
-    {
-      title: "Infrastruktur Cloud & DevOps",
-      desc: "Konfigurasi AWS, GCP, atau Azure yang andal, kontainerisasi Docker, orkestrasi Kubernetes, dan pipa CI/CD."
-    },
-    {
-      title: "Desain UI/UX & Produk",
-      desc: "Mockup Figma, riset pengguna, wireframing, sistem desain kustom, dan pembuatan prototipe cepat untuk memikat pengguna Anda."
+      title: "Peluncuran & Skalabilitas",
+      desc: "Kami meluncurkan sistem ke infrastruktur cloud berkinerja tinggi menggunakan Docker/Kubernetes dengan pemantauan otomatis."
     }
   ]
 };
@@ -73,9 +57,9 @@ const localText = {
       { label: "Enterprise Clients", value: "50+" },
       { label: "Years Experience", value: "8+" }
     ],
-    expertiseLabel: "Core Expertise",
-    expertiseTitle: "Engineering capabilities, not just services.",
-    expertiseDesc: "We combine engineering, design and product thinking to build software that scales with your business."
+    workflowLabel: "Our Process",
+    workflowTitle: "How we build digital products.",
+    workflowDesc: "We combine engineering rigor, security auditing, and product thinking to ship software that drives momentum."
   },
   id: {
     badge: "SIAPA KAMI",
@@ -89,118 +73,45 @@ const localText = {
       { label: "Klien Perusahaan", value: "10+" },
       { label: "Tahun Pengalaman", value: "4+" }
     ],
-    expertiseLabel: "Keahlian Utama",
-    expertiseTitle: "Kapabilitas rekayasa, bukan sekadar layanan.",
-    expertiseDesc: "Kami memadukan rekayasa teknologi, desain, dan pemikiran produk untuk membangun sistem perangkat lunak yang tumbuh bersama bisnis Anda."
+    workflowLabel: "Proses Kami",
+    workflowTitle: "Bagaimana kami membangun produk digital.",
+    workflowDesc: "Kami memadukan rekayasa teknologi, audit keamanan, dan pemikiran produk untuk meluncurkan sistem yang memacu pertumbuhan."
   }
 };
 
 
 
-function CoreExpertiseSection({ language }: { language: "en" | "id" }) {
-  const [activeIdx, setActiveIdx] = useState(0);
-  const data = expertiseData[language];
+function EngineeringWorkflowSection({ language }: { language: "en" | "id" }) {
   const text = localText[language];
 
   return (
-    <div className="w-full mt-24 lg:mt-32 bg-[#FFFFFF] py-14 lg:py-20 relative overflow-hidden border border-slate-100 rounded-[24px] md:rounded-[40px] shadow-sm">
+    <div className="w-full mt-24 lg:mt-32 bg-white py-16 lg:py-24 relative overflow-hidden rounded-[24px] md:rounded-[40px] border border-slate-200/80 shadow-[0_24px_80px_-20px_rgba(0,0,0,0.06)]">
+      
+      {/* Decorative Studio Light Glow */}
+      <div className="absolute top-0 right-0 w-full h-full bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-blue-500/5 via-transparent to-transparent pointer-events-none" />
 
-      {/* 
-        Aurora diagonal background canvas (flowing softly)
-      */}
-      <AuroraSectionBackground />
-
-      {/* Split Spacious Grid Layout: LEFT (Browser Showcase 60%) / RIGHT (Copy + List 40%) */}
-      <div className="max-w-[1400px] mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-
-        {/* LEFT (60%): macOS persistent Browser Showcase */}
-        <div className="col-span-1 lg:col-span-7 order-1 flex items-center justify-center relative z-10">
-          <BrowserPreviewEngine activeIndex={activeIdx} />
-        </div>
-
-        {/* RIGHT (40%): Editorial Typographic Stack & Vertical Menu */}
-        <div className="col-span-1 lg:col-span-5 flex flex-col justify-center order-2 relative z-10">
-
-          {/* Header Copy */}
-          <div className="mb-6 text-left">
-            <span className="text-[10px] font-mono font-bold tracking-[0.25em] uppercase text-blue-600 mb-3 block">
-              {text.expertiseLabel}
+      <div className="max-w-[1400px] mx-auto px-6 lg:px-12 relative z-10">
+        
+        {/* Header Row (Linear Style) */}
+        <div className="flex flex-col lg:flex-row items-start lg:items-end justify-between gap-6 mb-12">
+          <div className="max-w-2xl">
+            <span className="text-[10px] font-mono font-bold tracking-[0.25em] uppercase text-blue-600 mb-4 block">
+              {text.workflowLabel}
             </span>
-            <h3 className="text-2xl sm:text-3xl md:text-[2.25rem] font-bold text-slate-900 tracking-tight leading-[1.1] mb-4">
-              {text.expertiseTitle}
+            <h3 className="text-3xl sm:text-4xl md:text-[3rem] font-bold text-slate-900 tracking-tight leading-[1.1]">
+              {text.workflowTitle}
             </h3>
-            <p className="text-xs md:text-sm text-slate-500 font-medium leading-relaxed">
-              {text.expertiseDesc}
+          </div>
+          <div className="max-w-lg lg:pb-2 text-left lg:text-right">
+            <p className="text-[15px] md:text-base text-slate-500 leading-relaxed font-medium">
+              {text.workflowDesc}
             </p>
           </div>
+        </div>
 
-          {/* Vertical Navigation Menu with Premium Cards */}
-          <div className="flex flex-col gap-2">
-            {data.map((item, idx) => {
-              const isActive = activeIdx === idx;
-              return (
-                <div
-                  key={idx}
-                  onMouseEnter={() => setActiveIdx(idx)}
-                  className={`relative cursor-pointer group flex flex-col transition-all duration-300 rounded-[14px] ${isActive
-                      ? "bg-blue-500/5 border border-blue-500/10 shadow-[0_8px_30px_rgba(59,130,246,0.02)] p-4 pl-5 border-l-2 border-l-blue-600"
-                      : "bg-transparent border border-transparent p-2.5 hover:translate-x-1 border-b border-b-slate-100/40 rounded-none last:border-b-0"
-                    }`}
-                >
-                  <div className="flex items-center justify-between w-full">
-                    <div className="flex items-center gap-3">
-                      {/* Numbering */}
-                      <span
-                        className={`text-xs font-mono font-bold transition-colors duration-300 ${isActive ? "text-blue-600" : "text-slate-300"
-                          }`}
-                      >
-                        0{idx + 1}
-                      </span>
-
-                      {/* Active Title */}
-                      <h4
-                        className={`text-sm md:text-base tracking-tight transition-all duration-300 ${isActive
-                            ? "text-slate-950 font-bold"
-                            : "text-slate-400 group-hover:text-slate-600 font-medium"
-                          }`}
-                      >
-                        {item.title}
-                      </h4>
-                    </div>
-
-                    {/* Circular Action Badge Arrow */}
-                    {isActive ? (
-                      <div className="w-6 h-6 rounded-full bg-white shadow-sm border border-slate-100 flex items-center justify-center text-blue-600">
-                        <ArrowUpRight size={12} />
-                      </div>
-                    ) : (
-                      <ArrowRight
-                        size={12}
-                        className="text-slate-300 group-hover:text-slate-500 transition-transform duration-300 group-hover:translate-x-1"
-                      />
-                    )}
-                  </div>
-
-                  {/* Active detailed supporting text */}
-                  <AnimatePresence>
-                    {isActive && (
-                      <motion.p
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: "auto" }}
-                        exit={{ opacity: 0, height: 0 }}
-                        transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-                        className="text-[11px] md:text-xs text-slate-500 font-medium leading-relaxed max-w-sm mt-2 pl-6"
-                      >
-                        {item.desc}
-                      </motion.p>
-                    )}
-                  </AnimatePresence>
-
-                </div>
-              );
-            })}
-          </div>
-
+        {/* Full-width Flat Dashboard Showcase */}
+        <div className="w-full">
+          <LinearProcessShowcase />
         </div>
 
       </div>
@@ -330,8 +241,8 @@ export default function About() {
 
         </div>
 
-        {/* Replaced old DrivenByValuesSection floating card with premium CoreExpertiseSection */}
-        <CoreExpertiseSection language={language} />
+        {/* Replaced old CoreExpertiseSection with new EngineeringWorkflowSection */}
+        <EngineeringWorkflowSection language={language} />
 
       </div>
     </section>

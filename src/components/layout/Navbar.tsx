@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ArrowRight, ChevronDown, Monitor, BarChart2, Smartphone, Layers, Cloud, Palette } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 import { useLanguage } from "@/context/LanguageContext";
 import { servicesData } from "@/lib/data";
 
@@ -68,15 +69,18 @@ export default function Navbar() {
           {/* LEFT: Logo */}
           <div className="relative w-[180px] lg:w-[240px] h-10 shrink-0">
             <Link href="/" className="absolute left-0 top-1/2 -translate-y-1/2 flex items-center">
-              <img 
+              <Image 
                 src="/zelio.png" 
                 alt="Zellio Logo" 
+                width={240}
+                height={44}
                 className="w-auto object-contain drop-shadow-sm"
                 style={{ 
                   height: '44px', 
                   transform: 'scale(3.2)', 
                   transformOrigin: 'left center' 
                 }}
+                priority
               />
             </Link>
           </div>
@@ -105,7 +109,7 @@ export default function Navbar() {
                     {/* Subtle Hover Underline Animation */}
                     <span className="absolute bottom-0 left-0 w-full h-[1.5px] bg-slate-900 origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out" />
                     
-                    {/* Premium Dropdown with Framer Motion */}
+                    {/* Premium Asymmetric Mega Menu with Framer Motion */}
                     <AnimatePresence>
                       {dropdownOpen && (
                         <motion.div
@@ -115,49 +119,69 @@ export default function Navbar() {
                           transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
                           className="absolute top-[28px] left-1/2 -translate-x-1/2 pt-4 z-[110] pointer-events-auto"
                         >
-                          <div className="w-[580px] bg-white/95 backdrop-blur-xl rounded-[24px] shadow-[0_30px_60px_-15px_rgba(0,0,0,0.12),0_0_50px_rgba(0,0,0,0.03)] border border-slate-200/40 p-5 grid grid-cols-2 gap-3">
-                            {servicesData.map((service) => {
-                              const Icon = iconMap[service.icon];
-                              const isItemHovered = hoveredItemId === service.id;
-                              return (
-                                <Link
-                                  key={service.id}
-                                  href={`/services/${getSlug(service.title)}`}
-                                  onMouseEnter={() => setHoveredItemId(service.id)}
-                                  onMouseLeave={() => setHoveredItemId(null)}
-                                  onClick={() => setDropdownOpen(false)}
-                                  className="group/item flex items-start gap-3.5 p-3 rounded-xl border transition-all duration-300 text-left"
-                                  style={{
-                                    backgroundColor: isItemHovered ? `${service.color}08` : "transparent",
-                                    borderColor: isItemHovered ? `${service.color}15` : "transparent",
-                                  }}
-                                >
-                                  <div 
-                                    className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0 transition-all duration-300 shadow-sm"
-                                    style={{
-                                      backgroundColor: isItemHovered ? service.color : `${service.color}10`,
-                                      color: isItemHovered ? "#ffffff" : service.color,
-                                      border: `1px solid ${service.color}20`
-                                    }}
+                          <div className="w-[780px] bg-white/95 backdrop-blur-2xl rounded-[32px] shadow-[0_40px_100px_-20px_rgba(0,0,0,0.15)] border border-slate-200/60 p-3 flex gap-3">
+                            
+                            {/* Left Featured Panel */}
+                            <div className="w-[240px] shrink-0 rounded-[24px] bg-[#030712] overflow-hidden relative p-6 flex flex-col justify-between group/feature shadow-inner">
+                              <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/20 via-transparent to-purple-600/20 opacity-60 group-hover/feature:opacity-100 transition-opacity duration-700" />
+                              <div className="relative z-10">
+                                <span className="inline-block px-3 py-1 bg-white/10 text-white rounded-full text-[9px] font-bold tracking-[0.2em] uppercase mb-4 border border-white/10">
+                                  {language === "id" ? "Keunggulan" : "Featured"}
+                                </span>
+                                <h4 className="text-white text-[17px] font-bold leading-tight mb-2.5">
+                                  {language === "id" ? "Arsitektur Skala Korporat" : "Enterprise Grade Architecture"}
+                                </h4>
+                                <p className="text-slate-400 text-[11px] leading-relaxed font-medium">
+                                  {language === "id" 
+                                    ? "Kami merancang fondasi digital yang tangguh, aman, dan siap menampung jutaan pengguna tanpa hambatan." 
+                                    : "We engineer resilient, secure digital foundations ready to scale to millions of users flawlessly."}
+                                </p>
+                              </div>
+                              <Link 
+                                href="/team" 
+                                onClick={() => setDropdownOpen(false)} 
+                                className="relative z-10 flex items-center gap-2 text-indigo-400 text-[12px] font-bold hover:text-indigo-300 hover:gap-3 transition-all duration-300 mt-6"
+                              >
+                                 {language === "id" ? "Eksplorasi Tim" : "Explore Our Team"}
+                                 <ArrowRight size={14} />
+                              </Link>
+                            </div>
+
+                            {/* Right Services Grid */}
+                            <div className="flex-1 p-3 grid grid-cols-2 gap-x-2 gap-y-1">
+                              {servicesData.map((service) => {
+                                const Icon = iconMap[service.icon];
+                                const isItemHovered = hoveredItemId === service.id;
+                                return (
+                                  <Link
+                                    key={service.id}
+                                    href={`/services/${getSlug(service.title)}`}
+                                    onMouseEnter={() => setHoveredItemId(service.id)}
+                                    onMouseLeave={() => setHoveredItemId(null)}
+                                    onClick={() => setDropdownOpen(false)}
+                                    className="group/item flex items-start gap-3.5 p-3 rounded-[16px] border border-transparent transition-all duration-300 text-left hover:bg-slate-50 hover:border-slate-200/60"
                                   >
-                                    {Icon && <Icon size={16} />}
-                                  </div>
-                                  <div className="flex flex-col gap-0.5">
-                                    <span 
-                                      className="text-[12px] font-bold transition-colors leading-tight"
+                                    <div 
+                                      className="w-10 h-10 rounded-[12px] flex items-center justify-center shrink-0 transition-all duration-300 shadow-sm group-hover/item:shadow-md group-hover/item:scale-105"
                                       style={{
-                                        color: isItemHovered ? service.color : "#1E293B"
+                                        backgroundColor: isItemHovered ? service.color : `${service.color}15`,
+                                        color: isItemHovered ? "#ffffff" : service.color,
                                       }}
                                     >
-                                      {service.title}
-                                    </span>
-                                    <span className="text-[9.5px] text-slate-400 font-medium leading-normal line-clamp-2 transition-colors duration-300 group-hover/item:text-slate-500">
-                                      {service.description}
-                                    </span>
-                                  </div>
-                                </Link>
-                              );
-                            })}
+                                      {Icon && <Icon size={18} />}
+                                    </div>
+                                    <div className="flex flex-col gap-1 pt-0.5">
+                                      <span className="text-[13px] font-bold text-slate-900 leading-tight group-hover/item:text-indigo-600 transition-colors">
+                                        {service.title}
+                                      </span>
+                                      <span className="text-[10px] text-slate-500 font-medium leading-[1.4] line-clamp-2 transition-colors">
+                                        {service.description}
+                                      </span>
+                                    </div>
+                                  </Link>
+                                );
+                              })}
+                            </div>
                           </div>
                         </motion.div>
                       )}
@@ -233,15 +257,18 @@ export default function Navbar() {
           {/* Mobile Logo */}
           <div className="relative w-[160px] h-10 shrink-0 z-20">
             <Link href="/" className="absolute left-0 top-1/2 -translate-y-1/2 flex items-center">
-              <img 
+              <Image 
                 src="/zelio.png" 
                 alt="Zellio Logo" 
+                width={160}
+                height={36}
                 className="w-auto object-contain drop-shadow-sm"
                 style={{ 
                   height: '36px', 
                   transform: 'scale(3.2)', 
                   transformOrigin: 'left center' 
                 }}
+                priority
               />
             </Link>
           </div>
