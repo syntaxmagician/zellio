@@ -2,10 +2,11 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Mail, MapPin, Copy, Check } from "lucide-react";
+import { Mail, MapPin, Copy, Check, Send, CheckCircle2, XCircle, Loader2 } from "lucide-react";
+import emailjs from "@emailjs/browser";
 import { useLanguage } from "@/context/LanguageContext";
 
-const GOOGLE_MAPS_URL = "https://maps.google.com/?q=Jl.+Blk.+Duku+No.93+Cibubur+Jakarta";
+const GOOGLE_MAPS_URL = "https://www.google.com/maps/@-6.3612091,106.8746823,3a,75y,46.58h,77.16t/data=!3m7!1e1!3m5!1sVDVkOnEvh9ngzvSGAYMqtg!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D12.83835986745251%26panoid%3DVDVkOnEvh9ngzvSGAYMqtg%26yaw%3D46.58021483120736!7i16384!8i8192?entry=ttu&g_ep=EgoyMDI2MDcyMi4wIKXMDSoASAFQAw%3D%3D";
 
 const WhatsappIcon = ({ className }: { className?: string }) => (
   <svg
@@ -141,6 +142,8 @@ export default function Contact() {
   });
 
   const [copiedKey, setCopiedKey] = useState<string | null>(null);
+  const [isSending, setIsSending] = useState(false);
+  const [sendResult, setSendResult] = useState<"idle" | "success" | "error">("idle");
 
   const copyToClipboard = (text: string, key: string) => {
     navigator.clipboard.writeText(text).then(() => {
@@ -155,17 +158,32 @@ export default function Contact() {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsSending(true);
+    setSendResult("idle");
 
-    const emailTo = "marketing@zellio.id";
-    const subject = "Contact Form Submission";
-    const body = `Full Name\n${form.name || ""}\n\nCompany\n${form.company || ""}\n\nEmail\n${form.email || ""}\n\nPhone\n${form.phone || ""}\n\nProject Budget\n${form.budget || ""}\n\nMessage\n${form.message || ""}`;
-
-    const mailtoUrl = `mailto:${emailTo}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    window.location.href = mailtoUrl;
-
-    setForm({ name: "", company: "", email: "", phone: "", budget: "", message: "" });
+    try {
+      await emailjs.send(
+        "service_yjst1bp", // Replace with your Service ID
+        "template_e2d9ka7", // Replace with your Template ID
+        {
+          name: form.name,
+          email: form.email,
+          company: form.company,
+          phone: form.phone,
+          message: form.message,
+        },
+        "92AIWuF99cgqzkD6r" // Replace with your Public Key
+      );
+      setSendResult("success");
+      setForm({ name: "", company: "", email: "", phone: "", budget: "", message: "" });
+    } catch (error) {
+      console.error("EmailJS Error:", error);
+      setSendResult("error");
+    } finally {
+      setIsSending(false);
+    }
   };
 
   return (
@@ -177,7 +195,128 @@ export default function Contact() {
 
           {/* LEFT SIDE: Premium (65%) */}
           <div className="col-span-1 lg:col-span-7 order-2 lg:order-1 flex flex-col justify-between">
-            <div className="bg-white rounded-[32px] border border-slate-100 shadow-xl shadow-slate-100/50 p-8 lg:p-10">
+            <div className="bg-white rounded-[32px] border border-slate-100 shadow-xl shadow-slate-100/50 p-8 lg:p-10 relative overflow-hidden min-h-[500px]">
+
+              {/* High-Tech Animated Overlays */}
+              <AnimatePresence>
+                {/* 1. Sending / Loading State */}
+                {isSending && (
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    className="absolute inset-0 bg-white/95 backdrop-blur-md z-40 flex flex-col items-center justify-center p-8 text-center"
+                  >
+                    <div className="relative mb-6">
+                      {/* Animated sonar ring */}
+                      <motion.div
+                        animate={{ scale: [1, 1.5, 1], opacity: [0.5, 0, 0.5] }}
+                        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                        className="absolute inset-0 rounded-full bg-blue-500/20"
+                      />
+                      <div className="w-16 h-16 rounded-full bg-blue-50 border border-blue-100 flex items-center justify-center relative z-10">
+                        <Loader2 className="w-8 h-8 text-blue-600 animate-spin" />
+                      </div>
+                    </div>
+                    <span className="text-[10px] font-mono font-bold tracking-[0.25em] uppercase text-blue-600 mb-2 block">
+                      TRANSMITTING DATA PACKETS
+                    </span>
+                    <h3 className="text-xl font-black text-slate-900 mb-2">Sending secure message...</h3>
+                    <p className="text-xs text-slate-500 font-mono max-w-xs">
+                      Establishing encrypted handshake with zellio-mail-gateway...
+                    </p>
+                  </motion.div>
+                )}
+
+                {/* 2. Success Notification State */}
+                {sendResult === "success" && (
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.95 }}
+                    className="absolute inset-0 bg-white z-40 flex flex-col items-center justify-center p-8 text-center"
+                  >
+                    <motion.div
+                      initial={{ scale: 0.5, rotate: -45 }}
+                      animate={{ scale: 1, rotate: 0 }}
+                      transition={{ type: "spring", stiffness: 200, damping: 15 }}
+                      className="w-20 h-20 rounded-full bg-emerald-50 border border-emerald-100 flex items-center justify-center mb-6 shadow-lg shadow-emerald-500/10"
+                    >
+                      <CheckCircle2 className="w-10 h-10 text-emerald-500" />
+                    </motion.div>
+
+                    <span className="text-[10px] font-mono font-bold tracking-[0.25em] uppercase text-emerald-600 mb-2 block">
+                      TRANSMISSION SECURED
+                    </span>
+
+                    <h3 className="text-2xl font-black text-slate-900 mb-3">Email Sent Successfully!</h3>
+
+                    <p className="text-slate-500 font-medium text-sm max-w-sm mb-8 leading-relaxed">
+                      Thank you for reaching out. Our team has received your encrypted parameters and will respond within 24 hours.
+                    </p>
+
+                    <div className="space-y-4 w-full max-w-xs">
+                      {/* Close CTA */}
+                      <button
+                        onClick={() => setSendResult("idle")}
+                        className="w-full py-3.5 bg-slate-950 hover:bg-slate-900 text-white font-bold text-xs uppercase tracking-widest rounded-xl transition-all duration-300 shadow-md"
+                      >
+                        Start a New Thread
+                      </button>
+
+                      {/* Fake transaction/secure logs for aesthetic */}
+                      <div className="p-3 bg-slate-50 rounded-xl border border-slate-100 text-[9px] font-mono text-slate-400 text-left space-y-1">
+                        <div>&gt; STATUS: 200 OK</div>
+                        <div>&gt; HASH: SHA-256 (3e9f82d1c...)</div>
+                        <div>&gt; HOST: mail.zellio.id</div>
+                      </div>
+                    </div>
+                  </motion.div>
+                )}
+
+                {/* 3. Error Notification State */}
+                {sendResult === "error" && (
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.95 }}
+                    className="absolute inset-0 bg-white z-40 flex flex-col items-center justify-center p-8 text-center"
+                  >
+                    <motion.div
+                      initial={{ scale: 0.5 }}
+                      animate={{ scale: 1 }}
+                      className="w-20 h-20 rounded-full bg-rose-50 border border-rose-100 flex items-center justify-center mb-6 shadow-lg shadow-rose-500/10"
+                    >
+                      <XCircle className="w-10 h-10 text-rose-500" />
+                    </motion.div>
+
+                    <span className="text-[10px] font-mono font-bold tracking-[0.25em] uppercase text-rose-600 mb-2 block">
+                      TRANSMISSION FAILED
+                    </span>
+
+                    <h3 className="text-2xl font-black text-slate-900 mb-3">Gateway Timeout</h3>
+
+                    <p className="text-slate-500 font-medium text-sm max-w-sm mb-8 leading-relaxed">
+                      We were unable to route your data packet. Please check your network connection or try again.
+                    </p>
+
+                    <div className="flex flex-col gap-3 w-full max-w-xs">
+                      <button
+                        onClick={handleSubmit}
+                        className="w-full py-3.5 bg-rose-600 hover:bg-rose-700 text-white font-bold text-xs uppercase tracking-widest rounded-xl transition-all duration-300 shadow-md shadow-rose-500/20"
+                      >
+                        Retry Transmission
+                      </button>
+                      <button
+                        onClick={() => setSendResult("idle")}
+                        className="w-full py-3.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs uppercase tracking-widest rounded-xl transition-all duration-300"
+                      >
+                        Cancel
+                      </button>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
 
               {/* Header inside Form Container */}
               <div className="max-w-xl mb-8">

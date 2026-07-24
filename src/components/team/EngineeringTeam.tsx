@@ -157,13 +157,13 @@ export default function EngineeringTeam() {
                     <span className="text-[7px] font-mono font-bold text-slate-400 uppercase tracking-widest block mb-1.5">
                       STATIONS & TECHS
                     </span>
-                    <div className="flex flex-wrap gap-1 h-[48px] overflow-hidden relative">
+                    <div className="h-[48px] overflow-hidden relative w-full">
                       <motion.div
                         animate={{
                           y: isHovered ? -20 : 0
                         }}
                         transition={{ duration: 0.35, ease: "easeInOut" }}
-                        className="flex flex-wrap gap-1"
+                        className="flex flex-wrap gap-1 items-start"
                       >
                         {member.skills.map((skill) => (
                           <span

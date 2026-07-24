@@ -13,6 +13,7 @@ export default function TeamHero() {
   const y1 = useTransform(scrollY, [0, 500], [0, -20]);
   const y2 = useTransform(scrollY, [0, 500], [0, 15]);
   const y3 = useTransform(scrollY, [0, 500], [0, -35]);
+  const y4 = useTransform(scrollY, [0, 500], [0, 25]);
 
   return (
     <section ref={containerRef} className="w-full relative overflow-hidden py-10 lg:py-16 border-b border-slate-100">
@@ -37,12 +38,12 @@ export default function TeamHero() {
         </div>
 
         {/* Right Side: NFT Portraits Editorial Composition */}
-        <div className="lg:col-span-6 relative h-[360px] sm:h-[400px] flex items-center justify-center">
+        <div className="lg:col-span-6 grid grid-cols-2 gap-4 lg:block lg:relative lg:h-[420px] w-full">
 
           {/* Portrait 1: Leader (Vico Tegar) */}
           <motion.div
             style={{ y: y1 }}
-            className="absolute left-[5%] top-[10%] w-[130px] sm:w-[150px] aspect-[4/5] bg-white border border-slate-200/80 rounded-[20px] p-3 shadow-lg group hover:shadow-xl transition-shadow duration-500 z-20 flex flex-col"
+            className="relative lg:absolute lg:left-[0%] lg:top-[5%] w-full lg:w-[130px] xl:w-[150px] aspect-[4/5] bg-white border border-slate-200/80 rounded-[20px] p-3 shadow-lg group hover:shadow-xl transition-shadow duration-500 z-20 flex flex-col"
           >
             <div className="w-full flex-grow rounded-[12px] bg-slate-950 relative overflow-hidden flex items-center justify-center">
               <TeamAvatar name="vico" className="w-[120%] h-[120%] mt-8 object-cover scale-110 group-hover:scale-105 transition-transform duration-700" />
@@ -56,7 +57,7 @@ export default function TeamHero() {
           {/* Portrait 2: Frontend (Samuel Sukarno) */}
           <motion.div
             style={{ y: y2 }}
-            className="absolute right-[5%] top-[5%] w-[120px] sm:w-[140px] aspect-[4/5] bg-white border border-slate-200/80 rounded-[20px] p-3 shadow-lg group hover:shadow-xl transition-shadow duration-500 z-10 flex flex-col"
+            className="relative lg:absolute lg:left-[25%] lg:bottom-[5%] w-full lg:w-[120px] xl:w-[140px] aspect-[4/5] bg-white border border-slate-200/80 rounded-[20px] p-3 shadow-lg group hover:shadow-xl transition-shadow duration-500 z-10 flex flex-col"
           >
             <div className="w-full flex-grow rounded-[12px] bg-emerald-950 relative overflow-hidden flex items-center justify-center">
               <TeamAvatar name="samuel" className="w-[120%] h-[120%] mt-8 object-cover scale-110 group-hover:scale-105 transition-transform duration-700" />
@@ -70,7 +71,7 @@ export default function TeamHero() {
           {/* Portrait 3: Backend (Muhammad Cavendio) */}
           <motion.div
             style={{ y: y3 }}
-            className="absolute left-[35%] bottom-[5%] w-[130px] sm:w-[150px] aspect-[4/5] bg-white border border-slate-200/80 rounded-[20px] p-3 shadow-lg group hover:shadow-xl transition-shadow duration-500 z-30 flex flex-col"
+            className="relative lg:absolute lg:left-[50%] lg:top-[5%] w-full lg:w-[130px] xl:w-[150px] aspect-[4/5] bg-white border border-slate-200/80 rounded-[20px] p-3 shadow-lg group hover:shadow-xl transition-shadow duration-500 z-30 flex flex-col"
           >
             <div className="w-full flex-grow rounded-[12px] bg-indigo-950 relative overflow-hidden flex items-center justify-center">
               <TeamAvatar name="cavendio" className="w-[120%] h-[120%] mt-8 object-cover scale-110 group-hover:scale-105 transition-transform duration-700" />
@@ -78,6 +79,20 @@ export default function TeamHero() {
             <div className="mt-2 text-center">
               <span className="text-[8px] font-mono font-bold text-indigo-500 tracking-wider block">BACKEND</span>
               <h3 className="text-[11px] font-black text-slate-800 tracking-tight leading-none mt-0.5">Muhammad Cavendio</h3>
+            </div>
+          </motion.div>
+
+          {/* Portrait 4: Server (Hasyim Ridwan) */}
+          <motion.div
+            style={{ y: y4 }}
+            className="relative lg:absolute lg:left-[75%] lg:bottom-[5%] w-full lg:w-[120px] xl:w-[140px] aspect-[4/5] bg-white border border-slate-200/80 rounded-[20px] p-3 shadow-lg group hover:shadow-xl transition-shadow duration-500 z-40 flex flex-col"
+          >
+            <div className="w-full flex-grow rounded-[12px] bg-sky-950 relative overflow-hidden flex items-center justify-center">
+              <TeamAvatar name="hasyim" className="w-[120%] h-[120%] mt-8 object-cover scale-110 group-hover:scale-105 transition-transform duration-700" />
+            </div>
+            <div className="mt-2 text-center">
+              <span className="text-[8px] font-mono font-bold text-sky-500 tracking-wider block">SERVER</span>
+              <h3 className="text-[11px] font-black text-slate-800 tracking-tight leading-none mt-0.5">Hasyim Ridwan</h3>
             </div>
           </motion.div>
 

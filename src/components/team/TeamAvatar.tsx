@@ -3,7 +3,7 @@
 import React from "react";
 
 interface AvatarProps {
-  name: "vico" | "samuel" | "cavendio" | "rendra" | "cynthia" | "kenji" | "sarah";
+  name: "vico" | "samuel" | "cavendio" | "rendra" | "cynthia" | "kenji" | "sarah" | "hasyim";
   className?: string;
 }
 
@@ -16,11 +16,13 @@ export default function TeamAvatar({ name, className = "w-full h-full" }: Avatar
     rendra: "George", // Cloud architect
     cynthia: "Sophia", // Creative female
     kenji: "Leo", // Systems engineer
-    sarah: "Mia" // QA female
+    sarah: "Mia", // QA female
+    hasyim: "hasyim" // Backend & server
   };
 
   const seed = seedMap[name] || name;
-  const avatarUrl = `https://api.dicebear.com/7.x/micah/svg?seed=${seed}&backgroundColor=transparent`;
+  const extraParams = name === "hasyim" ? "&hair=mrT,mrClean" : "";
+  const avatarUrl = `https://api.dicebear.com/7.x/micah/svg?seed=${seed}&backgroundColor=transparent${extraParams}`;
 
   return (
     <img 

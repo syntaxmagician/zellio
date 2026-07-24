@@ -206,8 +206,8 @@ export default function PortfolioPage() {
         </section>
 
         {/* 3-Column Compact Grid with Smooth Layout Transitions */}
-        <section className="w-full max-w-7xl mx-auto px-4 lg:px-8 xl:px-0">
-          <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 lg:gap-14 min-h-[150vh]">
+        <section className="w-full max-w-7xl mx-auto px-4 lg:px-8 xl:px-0 min-h-[50vh]">
+          <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 lg:gap-14">
             <AnimatePresence mode="popLayout">
               {filteredProjects.map((project) => {
                 const Icon = project.icon;

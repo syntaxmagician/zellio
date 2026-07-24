@@ -7,7 +7,7 @@ import TeamAvatar from "./TeamAvatar";
 
 interface LeaderData {
   name: string;
-  id: "vico" | "samuel" | "cavendio";
+  id: "vico" | "samuel" | "cavendio" | "hasyim";
   role: string;
   exp: string;
   projects: string;
@@ -50,6 +50,17 @@ const leaders: LeaderData[] = [
     philosophy: "\"Data integrity and performance at scale are the lifeblood of any digital ecosystem.\"",
     icon: Layers,
     theme: "indigo"
+  },
+  {
+    name: "Hasyim Ridwan",
+    id: "hasyim",
+    role: "Lead Backend & Server Architect",
+    exp: "6+ Years Experience",
+    projects: "28+ Scalable Systems",
+    tech: ["Go", "Node.js", "Docker", "AWS", "Kubernetes"],
+    philosophy: "\"A good server doesn't complain, it just works silently.\"",
+    icon: Terminal,
+    theme: "blue"
   }
 ];
 
