@@ -27,14 +27,14 @@ export default function TeamCTA() {
         </p>
 
         <div className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
-          <a href="/#contact" className="w-full sm:w-auto">
+          <a href="/contact" className="w-full sm:w-auto">
             <button className="w-full group flex items-center justify-center gap-2 bg-[#0F172A] text-white font-bold text-xs sm:text-sm px-8 py-4 rounded-full shadow-[0_10px_25px_-5px_rgba(15,23,42,0.3)] hover:shadow-[0_15px_35px_-5px_rgba(15,23,42,0.4)] hover:-translate-y-0.5 transition-all duration-300">
               View Careers
               <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
             </button>
           </a>
           
-          <a href="/#contact" className="w-full sm:w-auto">
+          <a href="/contact" className="w-full sm:w-auto">
             <button className="w-full group flex items-center justify-center gap-2 bg-white text-slate-700 border border-slate-200 font-bold text-xs sm:text-sm px-8 py-4 rounded-full shadow-sm hover:shadow-md hover:border-slate-300 hover:text-slate-900 hover:-translate-y-0.5 transition-all duration-300">
               <MessageSquare size={16} className="text-slate-400 group-hover:text-slate-600 transition-colors" />
               Start a Conversation

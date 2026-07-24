@@ -22,8 +22,8 @@ const members: Member[] = [
     name: "Rendra Wijaya",
     id: "rendra",
     role: "Lead Cloud Architect",
-    exp: "7 Years Exp",
-    projects: "30+ Migrations",
+    exp: "2 Years Exp",
+    projects: "8+ Migrations",
     skills: ["AWS", "Terraform", "Docker"],
     nftIcon: Cloud,
     nftColor: "text-blue-500 bg-blue-500/10 border-blue-500/20",
@@ -33,8 +33,8 @@ const members: Member[] = [
     name: "Cynthia Amanda",
     id: "cynthia",
     role: "Lead UI/UX Designer",
-    exp: "6 Years Exp",
-    projects: "35+ Brand Systems",
+    exp: "3 Years Exp",
+    projects: "11+ Brand Systems",
     skills: ["Figma", "Prototyping", "UX Audit"],
     nftIcon: PenTool,
     nftColor: "text-pink-500 bg-pink-500/10 border-pink-500/20",
@@ -44,8 +44,8 @@ const members: Member[] = [
     name: "Kenji Tanaka",
     id: "kenji",
     role: "Senior Systems Engineer",
-    exp: "6 Years Exp",
-    projects: "25+ Go Services",
+    exp: "3 Years Exp",
+    projects: "14+ Go Services",
     skills: ["Go", "gRPC", "PostgreSQL"],
     nftIcon: Terminal,
     nftColor: "text-amber-500 bg-amber-500/10 border-amber-500/20",
@@ -55,8 +55,8 @@ const members: Member[] = [
     name: "Sarah Salsabila",
     id: "sarah",
     role: "QA & Automation Lead",
-    exp: "5 Years Exp",
-    projects: "50+ Releases Checked",
+    exp: "4 Years Exp",
+    projects: "18+ Releases Checked",
     skills: ["Playwright", "CI/CD", "Jest"],
     nftIcon: Rocket,
     nftColor: "text-emerald-500 bg-emerald-500/10 border-emerald-500/20",
@@ -70,7 +70,7 @@ export default function EngineeringTeam() {
   return (
     <section className="w-full bg-[#FAFAFA] border-t border-slate-100 relative">
       <div className="max-w-[1440px] mx-auto px-6 lg:px-12 py-12 lg:py-16">
-        
+
         {/* Section Header */}
         <div className="mb-12">
           <span className="text-[10px] font-mono font-bold text-slate-400 tracking-[0.2em] uppercase block mb-2">
@@ -83,7 +83,7 @@ export default function EngineeringTeam() {
 
         {/* Editorial Masonry/Grid Layout (Blueprint wireframe) */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 border-t border-l border-slate-200/60">
-          
+
           {members.map((member, index) => {
             const Icon = member.nftIcon;
             const isHovered = hoveredId === member.name;
@@ -98,7 +98,7 @@ export default function EngineeringTeam() {
                 {/* NFT Portrait (Human Avatar) */}
                 <div className="w-full aspect-square rounded-xl bg-slate-950 border border-slate-800 relative overflow-hidden flex flex-col justify-end group/avatar">
                   <div className="absolute inset-0 bg-[radial-gradient(#334155_1px,transparent_1px)] [background-size:12px_12px] opacity-30" />
-                  
+
                   {/* Portrait zoom animation */}
                   <TeamAvatar name={member.id} className="w-[110%] h-[110%] relative z-10 transform scale-110 group-hover/avatar:scale-[1.03] transition-transform duration-700 mx-auto origin-bottom" />
 

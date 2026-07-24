@@ -8,7 +8,7 @@ export const navLinks = [
   { label: "Services", href: "/#services" },
   { label: "Why Us", href: "/#why-choose" },
   { label: "Portfolio", href: "/portfolio" },
-  { label: "Contact", href: "/#contact" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export const trustedCompanies = [

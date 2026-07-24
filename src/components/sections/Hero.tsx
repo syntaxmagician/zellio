@@ -117,7 +117,7 @@ export default function Hero() {
             >
               {/* Primary CTA */}
               <a
-                href="#contact"
+                href="/contact"
                 className="group relative w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 bg-slate-950 hover:bg-slate-900 text-white font-bold text-sm uppercase tracking-widest rounded-2xl transition-all duration-300"
               >
                 <span>{text.primaryBtn}</span>

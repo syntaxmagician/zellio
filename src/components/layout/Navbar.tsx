@@ -14,7 +14,7 @@ const mainLinks = [
   { label: "Portfolio", href: "/portfolio", idKey: "Portofolio" },
   { label: "Team", href: "/team", idKey: "Tim" },
   { label: "About", href: "/#about", idKey: "Tentang" },
-  { label: "Contact", href: "/#contact", idKey: "Kontak" },
+  { label: "Contact", href: "/contact", idKey: "Kontak" },
 ];
 
 const iconMap: Record<string, React.ElementType> = {

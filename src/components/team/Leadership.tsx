@@ -22,8 +22,8 @@ const leaders: LeaderData[] = [
     name: "Vico Tegar",
     id: "vico",
     role: "Chief Architect & Leader",
-    exp: "10+ Years Experience",
-    projects: "50+ Enterprise Platforms",
+    exp: "5+ Years Experience",
+    projects: "12+ Enterprise Platforms",
     tech: ["System Architecture", "Cloud Infrastructure", "Go", "Node.js", "Docker"],
     philosophy: "\"Great architecture isn't about the tools you use, but the complexity you hide.\"",
     icon: Cpu,
@@ -33,8 +33,8 @@ const leaders: LeaderData[] = [
     name: "Samuel Sukarno",
     id: "samuel",
     role: "Lead Frontend Engineer",
-    exp: "8+ Years Experience",
-    projects: "40+ Enterprise Projects",
+    exp: "3+ Years Experience",
+    projects: "10+ Enterprise Projects",
     tech: ["React", "Next.js", "TypeScript", "Framer Motion", "TailwindCSS"],
     philosophy: "\"Interfaces should disappear so users only notice the product.\"",
     icon: Palette,
@@ -44,8 +44,8 @@ const leaders: LeaderData[] = [
     name: "Muhammad Cavendio",
     id: "cavendio",
     role: "Lead Backend Engineer",
-    exp: "7+ Years Experience",
-    projects: "45+ Scalable APIs",
+    exp: "5+ Years Experience",
+    projects: "22+ Scalable APIs",
     tech: ["Node.js", "Express", "PostgreSQL", "Redis", "GraphQL"],
     philosophy: "\"Data integrity and performance at scale are the lifeblood of any digital ecosystem.\"",
     icon: Layers,
@@ -82,7 +82,7 @@ export default function Leadership() {
 
         {/* Dashboard Console Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
-          
+
           {/* Left: Selector Console */}
           <div className="lg:col-span-4 flex flex-col gap-3">
             {leaders.map((leader) => {
@@ -92,11 +92,10 @@ export default function Leadership() {
                 <button
                   key={leader.id}
                   onClick={() => setActiveLeader(leader)}
-                  className={`w-full text-left relative flex items-center p-4 rounded-xl transition-all duration-300 border ${
-                    isActive 
-                      ? 'bg-white border-blue-200 shadow-md ring-4 ring-blue-50' 
-                      : 'bg-slate-50/50 border-slate-200 hover:bg-slate-50 hover:border-slate-300'
-                  }`}
+                  className={`w-full text-left relative flex items-center p-4 rounded-xl transition-all duration-300 border ${isActive
+                    ? 'bg-white border-blue-200 shadow-md ring-4 ring-blue-50'
+                    : 'bg-slate-50/50 border-slate-200 hover:bg-slate-50 hover:border-slate-300'
+                    }`}
                 >
                   {/* Status Indicator */}
                   <div className="absolute left-4 top-1/2 -translate-y-1/2 w-1.5 h-6 rounded-full bg-slate-200 overflow-hidden">
@@ -114,9 +113,8 @@ export default function Leadership() {
                     </h3>
                   </div>
 
-                  <div className={`w-8 h-8 rounded-lg flex items-center justify-center shrink-0 transition-colors ${
-                    isActive ? (leader.theme === 'blue' ? 'bg-blue-50 text-blue-600' : leader.theme === 'emerald' ? 'bg-emerald-50 text-emerald-600' : 'bg-indigo-50 text-indigo-600') : 'bg-white border border-slate-200 text-slate-400'
-                  }`}>
+                  <div className={`w-8 h-8 rounded-lg flex items-center justify-center shrink-0 transition-colors ${isActive ? (leader.theme === 'blue' ? 'bg-blue-50 text-blue-600' : leader.theme === 'emerald' ? 'bg-emerald-50 text-emerald-600' : 'bg-indigo-50 text-indigo-600') : 'bg-white border border-slate-200 text-slate-400'
+                    }`}>
                     <Icon className="w-4 h-4" />
                   </div>
                 </button>
@@ -126,7 +124,7 @@ export default function Leadership() {
 
           {/* Right: Spec Screen */}
           <div className="lg:col-span-8 bg-white border border-slate-200 rounded-2xl shadow-sm relative overflow-hidden flex flex-col">
-            
+
             {/* Header / Nav Bar */}
             <div className="h-12 border-b border-slate-100 flex items-center px-6 justify-between bg-slate-50/50">
               <div className="flex items-center gap-2">
@@ -143,7 +141,7 @@ export default function Leadership() {
             </div>
 
             <div className="p-6 md:p-8 flex flex-col md:flex-row gap-8 lg:gap-12 relative">
-              
+
               {/* Avatar Radar Scope */}
               <div className="shrink-0 flex items-center justify-center relative">
                 <AnimatePresence mode="popLayout">
@@ -158,7 +156,7 @@ export default function Leadership() {
                     {/* Radar Spinning Border */}
                     <div className="absolute inset-0 rounded-full border border-dashed border-slate-300 animate-[spin_10s_linear_infinite]" />
                     <div className="absolute inset-2 rounded-full border border-slate-100" />
-                    
+
                     <TeamAvatar name={activeLeader.id} className="w-[115%] h-[115%] relative z-10 transform scale-105 group-hover:scale-110 transition-transform duration-500 ease-out drop-shadow-sm origin-bottom" />
                   </motion.div>
                 </AnimatePresence>

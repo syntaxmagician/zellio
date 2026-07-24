@@ -37,11 +37,11 @@ const localText = {
         { label: "System Status", href: "#" },
       ],
       Contact: [
-        { label: "Get in Touch", href: "#contact" },
-        { label: "Request a Quote", href: "#contact" },
+        { label: "Get in Touch", href: "/contact" },
+        { label: "Request a Quote", href: "/contact" },
         { label: "Partnerships", href: "#" },
         { label: "Support Center", href: "#" },
-        { label: "Privacy Policy", href: "#" },
+        { label: "Privacy Policy", href: "/privacy-policy" },
       ],
     }
   },
@@ -71,11 +71,11 @@ const localText = {
         { label: "Status Sistem", href: "#" },
       ],
       Kontak: [
-        { label: "Hubungi Kami", href: "#contact" },
-        { label: "Minta Penawaran", href: "#contact" },
+        { label: "Hubungi Kami", href: "/contact" },
+        { label: "Minta Penawaran", href: "/contact" },
         { label: "Kemitraan", href: "#" },
         { label: "Pusat Bantuan", href: "#" },
-        { label: "Kebijakan Privasi", href: "#" },
+        { label: "Kebijakan Privasi", href: "/privacy-policy" },
       ],
     }
   }

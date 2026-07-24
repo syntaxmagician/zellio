@@ -83,6 +83,36 @@ const localText = {
   }
 };
 
+const LinkedinIcon = ({ className }: { className?: string }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+    <rect x="2" y="9" width="4" height="12" />
+    <circle cx="4" cy="4" r="2" />
+  </svg>
+);
+
+const GithubIcon = ({ className }: { className?: string }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+  </svg>
+);
+
+const InstagramIcon = ({ className }: { className?: string }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+    <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+  </svg>
+);
+
+const ThreadsIcon = ({ className }: { className?: string }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+    <path d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z" />
+    <path d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+    <path d="M15 12v1.5c0 1.38-1.12 2.5-2.5 2.5a2.5 2.5 0 0 1-2.5-2.5V12" />
+  </svg>
+);
+
 const budgetRanges = [
   { label: "< $5,000", value: "< $5,000" },
   { label: "$5,000 - $15,000", value: "$5,000 - $15,000" },
@@ -91,10 +121,10 @@ const budgetRanges = [
 ];
 
 const socialLinks = [
-  { name: "LinkedIn", url: "https://linkedin.com" },
-  { name: "GitHub", url: "https://github.com" },
-  { name: "Instagram", url: "https://instagram.com" },
-  { name: "Behance", url: "https://behance.net" }
+  { name: "LinkedIn", url: "https://linkedin.com", icon: LinkedinIcon },
+  { name: "GitHub", url: "https://github.com", icon: GithubIcon },
+  { name: "Instagram", url: "https://instagram.com", icon: InstagramIcon },
+  { name: "Threads", url: "https://threads.com", icon: ThreadsIcon }
 ];
 
 export default function Contact() {
@@ -313,8 +343,9 @@ export default function Contact() {
                   href={link.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group relative font-mono text-[11px] font-bold text-slate-500 hover:text-slate-900 transition-colors py-1 overflow-hidden"
+                  className="group relative flex items-center gap-2 font-mono text-[11px] font-bold text-slate-500 hover:text-slate-900 transition-colors py-1 overflow-hidden"
                 >
+                  <link.icon className="w-3.5 h-3.5" />
                   {link.name}
                   <span className="absolute bottom-0 left-0 w-full h-[1.5px] bg-slate-900 origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out" />
                 </a>

@@ -7,54 +7,54 @@ import AuroraSectionBackground from "../ui/AuroraSectionBackground";
 
 const expertiseData = {
   en: [
-    { 
-      title: "Custom Web Development", 
+    {
+      title: "Custom Web Development",
       desc: "Modern, fast, and SEO-friendly corporate websites, landing pages, and web portals built with React and Next.js."
     },
-    { 
-      title: "Admin & Analytics Dashboards", 
+    {
+      title: "Admin & Analytics Dashboards",
       desc: "Interactive data dashboards, custom CRM/ERP interfaces, and business intelligence panels with real-time analytics."
     },
-    { 
-      title: "Mobile App Development", 
+    {
+      title: "Mobile App Development",
       desc: "Native-grade Android and iOS applications developed using Flutter and React Native for a seamless user experience."
     },
-    { 
-      title: "Custom IT Systems", 
+    {
+      title: "Custom IT Systems",
       desc: "Robust backend architectures, custom database designs, integration of third-party APIs, and legacy system migrations."
     },
-    { 
-      title: "Cloud Infrastructure & DevOps", 
+    {
+      title: "Cloud Infrastructure & DevOps",
       desc: "Reliable AWS, GCP, or Azure setup, Docker containerization, Kubernetes orchestration, and continuous integration (CI/CD) pipelines."
     },
-    { 
-      title: "UI/UX & Product Design", 
+    {
+      title: "UI/UX & Product Design",
       desc: "Figma mockups, user research, wireframing, custom design systems, and rapid prototyping to wow your target users."
     }
   ],
   id: [
-    { 
-      title: "Pembangunan Web Kustom", 
+    {
+      title: "Pembangunan Web Kustom",
       desc: "Website korporat, landing page, dan portal web yang modern, cepat, dan SEO-friendly menggunakan React dan Next.js."
     },
-    { 
-      title: "Dashboard Admin & Analitik", 
+    {
+      title: "Dashboard Admin & Analitik",
       desc: "Dashboard data interaktif, antarmuka CRM/ERP kustom, dan panel kecerdasan bisnis dengan analitik real-time."
     },
-    { 
-      title: "Pengembangan Aplikasi Mobile", 
+    {
+      title: "Pengembangan Aplikasi Mobile",
       desc: "Aplikasi Android dan iOS tingkat native menggunakan Flutter dan React Native untuk pengalaman pengguna yang mulus."
     },
-    { 
-      title: "Sistem TI Kustom", 
+    {
+      title: "Sistem TI Kustom",
       desc: "Arsitektur backend yang tangguh, desain basis data kustom, integrasi API pihak ketiga, dan migrasi sistem warisan."
     },
-    { 
-      title: "Infrastruktur Cloud & DevOps", 
+    {
+      title: "Infrastruktur Cloud & DevOps",
       desc: "Konfigurasi AWS, GCP, atau Azure yang andal, kontainerisasi Docker, orkestrasi Kubernetes, dan pipa CI/CD."
     },
-    { 
-      title: "Desain UI/UX & Produk", 
+    {
+      title: "Desain UI/UX & Produk",
       desc: "Mockup Figma, riset pengguna, wireframing, sistem desain kustom, dan pembuatan prototipe cepat untuk memikat pengguna Anda."
     }
   ]
@@ -84,10 +84,10 @@ const localText = {
     para2: "Metodologi kami berpusat pada keahlian rekayasa teknologi dan estetika produk. Kami percaya bahwa perangkat lunak tidak hanya harus berkinerja tinggi dan aman, tetapi juga intuitif, elegan, serta dibangun untuk bertahan lama.",
     cta: "Pelajari Tentang Kami",
     stats: [
-      { label: "Proyek Selesai", value: "150+" },
+      { label: "Proyek Selesai", value: "15+" },
       { label: "Kepuasan Klien", value: "98%" },
-      { label: "Klien Perusahaan", value: "50+" },
-      { label: "Tahun Pengalaman", value: "8+" }
+      { label: "Klien Perusahaan", value: "10+" },
+      { label: "Tahun Pengalaman", value: "4+" }
     ],
     expertiseLabel: "Keahlian Utama",
     expertiseTitle: "Kapabilitas rekayasa, bukan sekadar layanan.",
@@ -104,7 +104,7 @@ function CoreExpertiseSection({ language }: { language: "en" | "id" }) {
 
   return (
     <div className="w-full mt-24 lg:mt-32 bg-[#FFFFFF] py-14 lg:py-20 relative overflow-hidden border border-slate-100 rounded-[24px] md:rounded-[40px] shadow-sm">
-      
+
       {/* 
         Aurora diagonal background canvas (flowing softly)
       */}
@@ -112,7 +112,7 @@ function CoreExpertiseSection({ language }: { language: "en" | "id" }) {
 
       {/* Split Spacious Grid Layout: LEFT (Browser Showcase 60%) / RIGHT (Copy + List 40%) */}
       <div className="max-w-[1400px] mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-        
+
         {/* LEFT (60%): macOS persistent Browser Showcase */}
         <div className="col-span-1 lg:col-span-7 order-1 flex items-center justify-center relative z-10">
           <BrowserPreviewEngine activeIndex={activeIdx} />
@@ -120,7 +120,7 @@ function CoreExpertiseSection({ language }: { language: "en" | "id" }) {
 
         {/* RIGHT (40%): Editorial Typographic Stack & Vertical Menu */}
         <div className="col-span-1 lg:col-span-5 flex flex-col justify-center order-2 relative z-10">
-          
+
           {/* Header Copy */}
           <div className="mb-6 text-left">
             <span className="text-[10px] font-mono font-bold tracking-[0.25em] uppercase text-blue-600 mb-3 block">
@@ -142,30 +142,27 @@ function CoreExpertiseSection({ language }: { language: "en" | "id" }) {
                 <div
                   key={idx}
                   onMouseEnter={() => setActiveIdx(idx)}
-                  className={`relative cursor-pointer group flex flex-col transition-all duration-300 rounded-[14px] ${
-                    isActive 
-                      ? "bg-blue-500/5 border border-blue-500/10 shadow-[0_8px_30px_rgba(59,130,246,0.02)] p-4 pl-5 border-l-2 border-l-blue-600" 
+                  className={`relative cursor-pointer group flex flex-col transition-all duration-300 rounded-[14px] ${isActive
+                      ? "bg-blue-500/5 border border-blue-500/10 shadow-[0_8px_30px_rgba(59,130,246,0.02)] p-4 pl-5 border-l-2 border-l-blue-600"
                       : "bg-transparent border border-transparent p-2.5 hover:translate-x-1 border-b border-b-slate-100/40 rounded-none last:border-b-0"
-                  }`}
+                    }`}
                 >
                   <div className="flex items-center justify-between w-full">
                     <div className="flex items-center gap-3">
                       {/* Numbering */}
                       <span
-                        className={`text-xs font-mono font-bold transition-colors duration-300 ${
-                          isActive ? "text-blue-600" : "text-slate-300"
-                        }`}
+                        className={`text-xs font-mono font-bold transition-colors duration-300 ${isActive ? "text-blue-600" : "text-slate-300"
+                          }`}
                       >
                         0{idx + 1}
                       </span>
-                      
+
                       {/* Active Title */}
                       <h4
-                        className={`text-sm md:text-base tracking-tight transition-all duration-300 ${
-                          isActive 
-                            ? "text-slate-950 font-bold" 
+                        className={`text-sm md:text-base tracking-tight transition-all duration-300 ${isActive
+                            ? "text-slate-950 font-bold"
                             : "text-slate-400 group-hover:text-slate-600 font-medium"
-                        }`}
+                          }`}
                       >
                         {item.title}
                       </h4>
@@ -220,15 +217,15 @@ export default function About() {
 
   return (
     <section id="about" className="relative pt-24 pb-12 lg:pt-32 lg:pb-16 bg-[#FAFAFA] overflow-hidden">
-      
+
       {/* Subtle fine grid/grain style layout support */}
       <div className="absolute inset-0 opacity-[0.012] bg-[radial-gradient(#000_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none z-0" />
-      
+
       <div className="max-w-[1400px] mx-auto px-6 relative z-10">
-        
+
         {/* Asymmetrical Editorial split layout */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-          
+
           {/* MEDIA CONTAINER (Right on desktop, but FIRST on mobile stack) */}
           <div className="col-span-1 lg:col-span-7 lg:order-2">
             <motion.div
@@ -252,7 +249,7 @@ export default function About() {
               <div className="absolute inset-0 bg-slate-950/15 z-10 pointer-events-none" />
 
               {/* Elegant overlays representing stats */}
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -263,7 +260,7 @@ export default function About() {
                 <span className="text-[9px] md:text-[10px] font-mono font-bold tracking-wider text-slate-400 uppercase leading-tight mt-1">{text.stats[0].label}</span>
               </motion.div>
 
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -274,7 +271,7 @@ export default function About() {
                 <span className="text-[9px] md:text-[10px] font-mono font-bold tracking-wider text-slate-400 uppercase leading-tight mt-1">{text.stats[1].label}</span>
               </motion.div>
 
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -285,7 +282,7 @@ export default function About() {
                 <span className="text-[9px] md:text-[10px] font-mono font-bold tracking-wider text-slate-400 uppercase leading-tight mt-1">{text.stats[2].label}</span>
               </motion.div>
 
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -301,7 +298,7 @@ export default function About() {
 
           {/* EDITORIAL STORYTELLING TEXT (Left on desktop, SECOND on mobile stack) */}
           <div className="col-span-1 lg:col-span-5 lg:order-1 flex flex-col justify-center max-w-xl">
-            
+
             {/* Section Label */}
             <span className="text-[11px] font-mono font-bold tracking-[0.25em] uppercase text-blue-600 mb-6 block">
               {text.badge}
@@ -321,7 +318,7 @@ export default function About() {
             {/* Primary Minimal CTA */}
             <div>
               <a
-                href="#contact"
+                href="/contact"
                 className="group inline-flex items-center gap-2 text-slate-900 font-bold text-sm uppercase tracking-wider py-1 border-b-2 border-slate-900 transition-colors"
               >
                 <span>{text.cta}</span>
