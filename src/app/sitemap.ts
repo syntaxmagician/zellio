@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next';
 import { servicesData } from '@/lib/data';
 
-const BASE_URL = 'https://zellio.com';
+const BASE_URL = 'https://zellio.id';
 
 const slugify = (text: string) => text.toLowerCase().replace(/[\s&/]+/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '');
 

@@ -1,6 +1,6 @@
 import { MetadataRoute } from 'next';
 
-const BASE_URL = 'https://zellio.com';
+const BASE_URL = 'https://zellio.id';
 
 export default function robots(): MetadataRoute.Robots {
   return {

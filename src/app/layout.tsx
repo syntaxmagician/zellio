@@ -18,7 +18,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://zellio.com"),
+  metadataBase: new URL("https://zellio.id"),
   title: {
     default: "ZELLIO — Premium Software House & Jasa Pembuatan Website Corporate",
     template: "%s | ZELLIO"
@@ -61,7 +61,7 @@ export const metadata: Metadata = {
     title: "ZELLIO — Premium Software House & Jasa Pembuatan Website",
     description:
       "Elite agency specializing in custom software, corporate websites, and enterprise internal systems.",
-    url: "https://zellio.com",
+    url: "https://zellio.id",
     siteName: "ZELLIO",
     locale: "en_US",
     type: "website",
@@ -108,9 +108,9 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "ProfessionalService",
               "name": "ZELLIO",
-              "url": "https://zellio.com",
-              "logo": "https://zellio.com/icon.png",
-              "image": "https://zellio.com/icon.png",
+              "url": "https://zellio.id",
+              "logo": "https://zellio.id/icon.png",
+              "image": "https://zellio.id/icon.png",
               "description": "ZELLIO is an elite software house and digital agency specializing in custom software development, SaaS, and internal systems. Jasa pembuatan website corporate & sistem informasi kustom.",
               "address": {
                 "@type": "PostalAddress",
