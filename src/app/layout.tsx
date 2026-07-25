@@ -83,6 +83,9 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
+  verification: {
+    google: "Gp8MdnwlDYWNoriMHNjj4BcVUW-plzr1KUrjuUYvuYY",
+  },
 };
 
 import { LanguageProvider } from "@/context/LanguageContext";
