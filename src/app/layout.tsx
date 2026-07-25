@@ -63,14 +63,6 @@ export const metadata: Metadata = {
       "Elite agency specializing in custom software, corporate websites, and enterprise internal systems.",
     url: "https://zellio.com",
     siteName: "ZELLIO",
-    images: [
-      {
-        url: "/icon.png",
-        width: 512,
-        height: 512,
-        alt: "ZELLIO — Premium Software House",
-      },
-    ],
     locale: "en_US",
     type: "website",
   },
@@ -79,7 +71,6 @@ export const metadata: Metadata = {
     title: "ZELLIO — Premium Software House & Web Agency",
     description:
       "Elite agency specializing in custom software, corporate websites, and enterprise internal systems.",
-    images: ["/icon.png"],
   },
   robots: {
     index: true,
