@@ -8,13 +8,13 @@ import { useLanguage } from "@/context/LanguageContext";
 const localText = {
   en: {
     slogan: ["BUILD", "DIGITAL", "SYSTEMS", "THAT LAST."],
-    description: "We are a premium digital engineering agency. We design and architect world-class software solutions, transforming ambitious ideas into scalable, high-performance enterprise platforms.",
+    description: "Modern websites, custom applications, and enterprise software built with performance, scalability, and exceptional user experience in mind",
     primaryBtn: "Start Your Project",
     secondaryBtn: "Explore Our Work"
   },
   id: {
     slogan: ["BANGUN", "SISTEM", "DIGITAL", "YANG ABADI."],
-    description: "Kami adalah agensi rekayasa digital premium. Kami merancang dan membangun solusi perangkat lunak kelas dunia, mengubah ide ambisius menjadi platform enterprise yang terukur dan berkinerja tinggi.",
+    description: "Kami membangun website modern, aplikasi web & mobile custom, serta perangkat lunak enterprise yang membantu bisnis berkembang dengan lebih cepat dan terukur.",
     primaryBtn: "Mulai Proyek",
     secondaryBtn: "Lihat Portofolio"
   }
@@ -28,8 +28,8 @@ export default function Hero() {
   const premiumEase = [0.22, 1, 0.36, 1] as [number, number, number, number];
 
   return (
-    <section 
-      id="home" 
+    <section
+      id="home"
       className="relative min-h-screen w-full flex flex-col bg-[#FFFFFF] overflow-hidden"
       style={{
         backgroundImage: `
@@ -43,19 +43,19 @@ export default function Hero() {
         The Absolute Background Layer (Z-0)
         Vertical Hero Video (Right side only)
       */}
-      <div 
+      <div
         className="absolute top-0 right-0 w-full h-full overflow-hidden pointer-events-none z-0"
         style={{
           maskImage: "linear-gradient(to right, transparent 0%, transparent 40%, black 55%, black 100%)",
           WebkitMaskImage: "linear-gradient(to right, transparent 0%, transparent 40%, black 55%, black 100%)"
         }}
       >
-        <video 
-          src="/vertikalHero.mp4" 
-          autoPlay 
-          loop 
-          muted 
-          playsInline 
+        <video
+          src="/vertikalHero.mp4"
+          autoPlay
+          loop
+          muted
+          playsInline
           preload="auto"
           className="w-full h-full object-cover"
           style={{
@@ -66,7 +66,7 @@ export default function Hero() {
           }}
         />
       </div>
-      
+
       {/* 
         Full Viewport Immersive Container
         On desktop: Flex row / CSS Grid 12 cols
@@ -74,10 +74,10 @@ export default function Hero() {
       */}
       <div className="flex-1 w-full flex flex-col justify-center pt-32 lg:pt-24 pb-12 lg:pb-0 px-6 relative z-10 pointer-events-none">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 w-full max-w-[1400px] mx-auto items-center pointer-events-auto">
-          
+
           {/* LEFT SIDE: Editorial Typography (40%) - col-span-5 */}
           <div className="col-span-1 lg:col-span-5 flex flex-col justify-center">
-            
+
             {/* Towering Slogan */}
             <h1 className="flex flex-col text-4xl sm:text-5xl md:text-6xl lg:text-[3.75rem] xl:text-[4.75rem] font-black text-slate-900 tracking-tighter leading-[0.9] mb-8">
               {text.slogan.map((word, idx) => (
@@ -85,10 +85,10 @@ export default function Hero() {
                   <motion.span
                     initial={{ y: "110%", opacity: 0 }}
                     animate={{ y: "0%", opacity: 1 }}
-                    transition={{ 
-                      duration: 0.8, 
-                      delay: 0.1 + (idx * 0.08), 
-                      ease: premiumEase 
+                    transition={{
+                      duration: 0.8,
+                      delay: 0.1 + (idx * 0.08),
+                      ease: premiumEase
                     }}
                     className="block"
                   >
@@ -132,7 +132,7 @@ export default function Hero() {
                 {text.secondaryBtn}
               </a>
             </motion.div>
-            
+
           </div>
 
           {/* RIGHT SIDE: Empty to let the background Flow Field shine through (60%) - col-span-7 */}
@@ -142,7 +142,7 @@ export default function Hero() {
       </div>
 
       {/* Trusted By Section elegantly anchored at the bottom */}
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1, delay: 0.8 }}

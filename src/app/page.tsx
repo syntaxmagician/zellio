@@ -11,7 +11,7 @@ import Hero from "@/components/sections/Hero";
 import About from "@/components/sections/About";
 import VisionMission from "@/components/sections/VisionMission";
 import Services from "@/components/sections/Services";
-import FeaturedWork from "@/components/sections/FeaturedWork";
+import Banner from "@/components/sections/Banner";
 import EngineeringEcosystem from "@/components/sections/EngineeringEcosystem";
 import WhyChoose from "@/components/sections/WhyChoose";
 import Insights from "@/components/sections/Insights";
@@ -58,7 +58,7 @@ export default function Home() {
           <About />
           <VisionMission />
           <Services />
-          <FeaturedWork />
+          <Banner />
           <EngineeringEcosystem />
           <WhyChoose />
           <Insights />

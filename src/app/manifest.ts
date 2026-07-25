@@ -2,13 +2,13 @@ import { MetadataRoute } from 'next';
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: 'ZELLIO — Premium Software House & Web Agency',
+    name: 'ZELLIO — Software House Indonesia | Website, Web App & Enterprise Solutions',
     short_name: 'ZELLIO',
-    description: 'ZELLIO is a premium digital agency & elite software house specializing in custom software, corporate websites, and enterprise internal systems.',
+    description: 'ZELLIO is a software house in Indonesia specializing in modern websites, custom web & mobile applications, enterprise software, SaaS platforms, and scalable digital solutions for growing businesses.',
     start_url: '/',
-    display: 'standalone',
+    display: "browser",
     background_color: '#ffffff',
-    theme_color: '#2563EB',
+    theme_color: '#09090B',
     icons: [
       {
         src: '/icon.png',

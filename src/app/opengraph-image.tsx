@@ -2,7 +2,7 @@ import { ImageResponse } from 'next/og';
 
 export const runtime = 'edge';
 
-export const alt = 'ZELLIO — Premium Software House & High-End Web Agency';
+export const alt = 'ZELLIO — Software House Indonesia | Website, Web App & Enterprise Solutions';
 export const size = {
   width: 1200,
   height: 630,
@@ -146,7 +146,7 @@ export default async function Image() {
               textShadow: '0 4px 12px rgba(0,0,0,0.3)',
             }}
           >
-            Membangun website corporate premium, aplikasi SaaS kustom, dan ekosistem digital enterprise berskala global.
+            Membangun website corporate berkelas, aplikasi SaaS kustom, dan ekosistem digital enterprise berskala global.
           </p>
         </div>
 

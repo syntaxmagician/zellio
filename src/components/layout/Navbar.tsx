@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, ArrowRight, ChevronDown, Monitor, BarChart2, Smartphone, Layers, Cloud, Palette } from "lucide-react";
+import { Menu, X, ArrowRight, ChevronDown, Monitor, BarChart2, Smartphone, Layers, Cloud, Palette, Globe, FileText, ShoppingBag, Database, Users, UserCheck, Package, Truck, Cpu, Brain } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { useLanguage } from "@/context/LanguageContext";
@@ -25,6 +25,16 @@ const iconMap: Record<string, React.ElementType> = {
   Layers,
   Cloud,
   Palette,
+  Globe,
+  FileText,
+  ShoppingBag,
+  Database,
+  Users,
+  UserCheck,
+  Package,
+  Truck,
+  Cpu,
+  Brain,
 };
 
 const getSlug = (title: string) => title.toLowerCase().replace(/[\s&/]+/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '');
@@ -119,39 +129,12 @@ export default function Navbar() {
                           transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
                           className="absolute top-[28px] left-1/2 -translate-x-1/2 pt-4 z-[110] pointer-events-auto"
                         >
-                          <div className="w-[780px] bg-white/95 backdrop-blur-2xl rounded-[32px] shadow-[0_40px_100px_-20px_rgba(0,0,0,0.15)] border border-slate-200/60 p-3 flex gap-3">
+                          <div className="w-[560px] bg-white/95 backdrop-blur-2xl rounded-[28px] shadow-[0_40px_100px_-20px_rgba(0,0,0,0.15)] border border-slate-200/60 p-5 flex flex-col gap-4">
                             
-                            {/* Left Featured Panel */}
-                            <div className="w-[240px] shrink-0 rounded-[24px] bg-[#030712] overflow-hidden relative p-6 flex flex-col justify-between group/feature shadow-inner">
-                              <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/20 via-transparent to-purple-600/20 opacity-60 group-hover/feature:opacity-100 transition-opacity duration-700" />
-                              <div className="relative z-10">
-                                <span className="inline-block px-3 py-1 bg-white/10 text-white rounded-full text-[9px] font-bold tracking-[0.2em] uppercase mb-4 border border-white/10">
-                                  {language === "id" ? "Keunggulan" : "Featured"}
-                                </span>
-                                <h4 className="text-white text-[17px] font-bold leading-tight mb-2.5">
-                                  {language === "id" ? "Arsitektur Skala Korporat" : "Enterprise Grade Architecture"}
-                                </h4>
-                                <p className="text-slate-400 text-[11px] leading-relaxed font-medium">
-                                  {language === "id" 
-                                    ? "Kami merancang fondasi digital yang tangguh, aman, dan siap menampung jutaan pengguna tanpa hambatan." 
-                                    : "We engineer resilient, secure digital foundations ready to scale to millions of users flawlessly."}
-                                </p>
-                              </div>
-                              <Link 
-                                href="/team" 
-                                onClick={() => setDropdownOpen(false)} 
-                                className="relative z-10 flex items-center gap-2 text-indigo-400 text-[12px] font-bold hover:text-indigo-300 hover:gap-3 transition-all duration-300 mt-6"
-                              >
-                                 {language === "id" ? "Eksplorasi Tim" : "Explore Our Team"}
-                                 <ArrowRight size={14} />
-                              </Link>
-                            </div>
-
-                            {/* Right Services Grid */}
-                            <div className="flex-1 p-3 grid grid-cols-2 gap-x-2 gap-y-1">
-                              {servicesData.map((service) => {
+                            {/* Grid of 6 Top Services */}
+                            <div className="grid grid-cols-2 gap-2.5">
+                              {servicesData.slice(0, 6).map((service) => {
                                 const Icon = iconMap[service.icon];
-                                const isItemHovered = hoveredItemId === service.id;
                                 return (
                                   <Link
                                     key={service.id}
@@ -159,22 +142,27 @@ export default function Navbar() {
                                     onMouseEnter={() => setHoveredItemId(service.id)}
                                     onMouseLeave={() => setHoveredItemId(null)}
                                     onClick={() => setDropdownOpen(false)}
-                                    className="group/item flex items-start gap-3.5 p-3 rounded-[16px] border border-transparent transition-all duration-300 text-left hover:bg-slate-50 hover:border-slate-200/60"
+                                    className="group/item flex items-center gap-3.5 p-3 rounded-2xl border border-transparent transition-all duration-300 text-left hover:bg-slate-50 hover:shadow-[0_4px_20px_rgb(0,0,0,0.03)] hover:border-slate-100"
                                   >
+                                    {/* 3D Glassmorphic Icon Wrapper */}
                                     <div 
-                                      className="w-10 h-10 rounded-[12px] flex items-center justify-center shrink-0 transition-all duration-300 shadow-sm group-hover/item:shadow-md group-hover/item:scale-105"
+                                      className="relative w-11 h-11 rounded-[12px] flex items-center justify-center shrink-0 transition-transform duration-300 group-hover/item:scale-110 shadow-sm"
                                       style={{
-                                        backgroundColor: isItemHovered ? service.color : `${service.color}15`,
-                                        color: isItemHovered ? "#ffffff" : service.color,
+                                        background: `linear-gradient(135deg, ${service.bgColor}, #ffffff)`,
+                                        boxShadow: `4px 4px 10px rgba(0,0,0,0.03), -4px -4px 10px rgba(255,255,255,0.8), inset 0px 2px 4px rgba(255,255,255,0.6), inset 0px -2px 6px ${service.color}15`,
+                                        border: '1px solid rgba(255,255,255,0.9)'
                                       }}
                                     >
-                                      {Icon && <Icon size={18} />}
+                                      <div style={{ color: service.color, filter: 'drop-shadow(0px 2px 3px rgba(0,0,0,0.12))' }}>
+                                        {Icon && <Icon size={20} strokeWidth={2.5} />}
+                                      </div>
                                     </div>
-                                    <div className="flex flex-col gap-1 pt-0.5">
-                                      <span className="text-[13px] font-bold text-slate-900 leading-tight group-hover/item:text-indigo-600 transition-colors">
+                                    
+                                    <div className="flex flex-col flex-1 min-w-0 justify-center">
+                                      <span className="text-[13px] font-bold text-slate-900 leading-tight group-hover/item:text-blue-600 transition-colors truncate">
                                         {service.title}
                                       </span>
-                                      <span className="text-[10px] text-slate-500 font-medium leading-[1.4] line-clamp-2 transition-colors">
+                                      <span className="text-[10px] text-slate-500 font-medium leading-[1.3] truncate transition-colors group-hover/item:text-slate-600 mt-0.5">
                                         {service.description}
                                       </span>
                                     </div>
@@ -182,6 +170,35 @@ export default function Navbar() {
                                 );
                               })}
                             </div>
+
+                            {/* View All Services Bottom Bar */}
+                            <div className="pt-4 border-t border-slate-100 flex justify-between items-center px-2">
+                               <div className="flex items-center gap-3">
+                                  <div className="flex -space-x-1.5">
+                                    <div className="w-6 h-6 rounded-full bg-blue-100 border-2 border-white flex items-center justify-center z-10 shadow-sm">
+                                      <Globe size={10} className="text-blue-600" />
+                                    </div>
+                                    <div className="w-6 h-6 rounded-full bg-emerald-100 border-2 border-white flex items-center justify-center z-20 shadow-sm">
+                                      <Database size={10} className="text-emerald-600" />
+                                    </div>
+                                    <div className="w-6 h-6 rounded-full bg-slate-100 border-2 border-white flex items-center justify-center text-[8px] font-bold text-slate-500 z-30 shadow-sm">
+                                      +{servicesData.length - 6}
+                                    </div>
+                                  </div>
+                                  <span className="text-[10px] font-medium text-slate-400">
+                                    {language === "id" ? "Layanan digital lainnya" : "More digital services"}
+                                  </span>
+                               </div>
+                               <Link
+                                  href="/services"
+                                  onClick={() => setDropdownOpen(false)}
+                                  className="flex items-center gap-1.5 text-[12px] font-bold text-blue-600 hover:text-blue-700 bg-blue-50 hover:bg-blue-100 px-4 py-2 rounded-full transition-all duration-300 group/link"
+                               >
+                                  {language === "id" ? "Lihat Semua Layanan" : "Explore All Services"}
+                                  <ArrowRight size={14} className="group-hover/link:translate-x-1 transition-transform" />
+                               </Link>
+                            </div>
+
                           </div>
                         </motion.div>
                       )}

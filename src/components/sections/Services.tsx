@@ -166,7 +166,7 @@ export default function Services() {
             viewport={{ once: true, margin: "-100px" }}
             className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 divide-y md:divide-y-0 md:divide-x divide-slate-200/50"
           >
-            {servicesData.map((program, index) => (
+            {servicesData.slice(0, 6).map((program, index) => (
               <ServiceColumn 
                 key={program.id} 
                 program={program} 

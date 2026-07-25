@@ -20,36 +20,49 @@ const inter = Inter({
 export const metadata: Metadata = {
   metadataBase: new URL("https://zellio.id"),
   title: {
-    default: "ZELLIO — Premium Software House & Jasa Pembuatan Website Corporate",
+    default: "ZELLIO — Software House Indonesia | Website, Web App & Enterprise Solutions",
     template: "%s | ZELLIO"
   },
   description:
-    "ZELLIO is an elite software house and digital agency. Kami ahli dalam jasa pembuatan website premium, aplikasi custom (iOS/Android), dan sistem informasi enterprise (internal systems) berskala global.",
+    "ZELLIO is a software house in Indonesia specializing in modern websites, custom web & mobile applications, enterprise software, SaaS platforms, and scalable digital solutions for growing businesses.",
   keywords: [
-    // Lokal Indonesia (High-Value B2B Keywords)
-    "software house jakarta",
-    "software house indonesia",
-    "jasa pembuatan website corporate",
-    "jasa pembuatan website premium",
-    "jasa pembuatan aplikasi custom",
-    "jasa pembuatan sistem informasi",
-    "jasa pembuatan crm",
-    "jasa pembuatan erp",
-    "jasa ui ux design",
-    "digital agency jakarta",
-    "jasa web developer",
-    
-    // Internasional (Global Outsourcing / B2B)
-    "premium software house",
-    "custom software development company",
-    "saas development agency",
-    "enterprise software development",
-    "web development company",
-    "offshore web development",
-    "ui ux design studio",
-    
     // Brand
-    "ZELLIO"
+    "ZELLIO",
+
+    // Software House
+    "software house indonesia",
+    "software house jakarta",
+    "software development company",
+    "custom software development",
+
+    // Website Development
+    "jasa pembuatan website",
+    "jasa pembuatan website perusahaan",
+    "jasa pembuatan website company profile",
+    "website development company",
+
+    // Web Application
+    "jasa pembuatan web aplikasi",
+    "web application development",
+    "custom web application",
+
+    // Mobile Application
+    "jasa pembuatan aplikasi",
+    "jasa pembuatan aplikasi android",
+    "jasa pembuatan aplikasi ios",
+    "mobile app development",
+
+    // Enterprise Solutions
+    "jasa pembuatan sistem informasi",
+    "enterprise software development",
+    "erp development",
+    "crm development",
+
+    // SaaS
+    "saas development",
+
+    // Design
+    "ui ux design"
   ],
   authors: [{ name: "ZELLIO Team" }],
   creator: "ZELLIO",
@@ -58,9 +71,9 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   openGraph: {
-    title: "ZELLIO — Premium Software House & Jasa Pembuatan Website",
+    title: "ZELLIO — Software House Indonesia | Website, Web App & Enterprise Solutions",
     description:
-      "Elite agency specializing in custom software, corporate websites, and enterprise internal systems.",
+      "ZELLIO is a software house in Indonesia specializing in modern websites, custom web & mobile applications, enterprise software, SaaS platforms, and scalable digital solutions for growing businesses.",
     url: "https://zellio.id",
     siteName: "ZELLIO",
     locale: "en_US",
@@ -68,9 +81,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "ZELLIO — Premium Software House & Web Agency",
+    title: "ZELLIO — Software House Indonesia | Website, Web App & Enterprise Solutions",
     description:
-      "Elite agency specializing in custom software, corporate websites, and enterprise internal systems.",
+      "ZELLIO is a software house in Indonesia specializing in modern websites, custom web & mobile applications, enterprise software, SaaS platforms, and scalable digital solutions for growing businesses.",
   },
   robots: {
     index: true,

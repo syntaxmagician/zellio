@@ -13,7 +13,6 @@ import { useLanguage } from "@/context/LanguageContext";
 
 const localText = {
   en: {
-    badge: "ENGINEERING PROCESS",
     title: "Engineering complete software ecosystems.",
     subtitle: "We don't just build features. We architect production-ready digital systems with robust infrastructure, scalable APIs, and pixel-perfect design systems.",
     centerTitle: "Unified Platform",
@@ -58,7 +57,7 @@ export default function EngineeringEcosystem() {
     const containerRect = containerRef.current.getBoundingClientRect();
     const anchors = containerRef.current.querySelectorAll("[data-anchor]");
     const newCoords: typeof coords = {};
-    
+
     anchors.forEach((el) => {
       const name = el.getAttribute("data-anchor");
       if (name) {
@@ -74,7 +73,7 @@ export default function EngineeringEcosystem() {
 
   useEffect(() => {
     updateCoords();
-    
+
     // Use ResizeObserver to detect layout shifts and font loads
     const observer = new ResizeObserver(() => {
       requestAnimationFrame(updateCoords);
@@ -245,12 +244,9 @@ export default function EngineeringEcosystem() {
 
       {/* Expanded Container */}
       <div className="w-full max-w-[1440px] mx-auto px-6 lg:px-12 relative z-10">
-        
+
         {/* Header */}
         <div className="max-w-2xl mx-auto text-center mb-6 lg:mb-8">
-          <span className="inline-block px-3 py-1 rounded-full bg-blue-50 text-[#2563EB] text-[10px] font-bold uppercase tracking-widest mb-4 border border-blue-100 shadow-sm">
-            {text.badge}
-          </span>
           <h2 className="text-4xl lg:text-5xl font-black text-slate-900 tracking-tight mb-4">
             {text.title}
           </h2>
@@ -261,7 +257,7 @@ export default function EngineeringEcosystem() {
 
         {/* Desktop Layout with SVG Overlay Connection Lines */}
         <div ref={containerRef} className="relative grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-center min-h-[600px]">
-          
+
           {/* SVG Connector Layer */}
           <div className="absolute inset-0 pointer-events-none hidden lg:block z-0">
             <svg className="w-full h-full" style={{ overflow: "visible" }}>
@@ -279,7 +275,7 @@ export default function EngineeringEcosystem() {
                   const index = cap.side === "left" ? leftCaps.findIndex(c => c.id === cap.id) : rightCaps.findIndex(c => c.id === cap.id);
                   const start = coords[cap.id];
                   const end = coords[`center-${cap.side}-${index}`];
-                  
+
                   if (!start || !end) return null;
 
                   const controlOffset = Math.abs(start.x - end.x) * 0.45;

@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
+import Image from "next/image";
 import { useLanguage } from "@/context/LanguageContext";
 import LinearProcessShowcase from "../ui/LinearProcessShowcase";
 import AuroraSectionBackground from "../ui/AuroraSectionBackground";
@@ -81,39 +82,163 @@ const localText = {
 
 
 
-function EngineeringWorkflowSection({ language }: { language: "en" | "id" }) {
+import { Check, X } from "lucide-react";
+
+function EngineeringWorkflowSectionContent({ language }: { language: "en" | "id" }) {
   const text = localText[language];
 
+  const comparisonFeatures = [
+    {
+      enTitle: "End-to-End Digital Ecosystems",
+      enDesc: "We build complete custom systems from codebase to secure cloud infrastructure.",
+      idTitle: "Ekosistem Digital End-to-End",
+      idDesc: "Kami membangun sistem kustom lengkap dari kode hingga infrastruktur cloud yang aman.",
+      enOther: "Provide fragmented or single-feature solutions.",
+      idOther: "Hanya menyediakan solusi terfragmentasi atau fitur tunggal."
+    },
+    {
+      enTitle: "Dedicated Concierge Support",
+      enDesc: "Direct 24/7 access to our senior engineering team whenever you need assistance.",
+      idTitle: "Dukungan Eksklusif Siaga",
+      idDesc: "Akses langsung 24/7 ke tim senior engineer kami kapan pun Anda membutuhkannya.",
+      enOther: "Limited response times, restricted to working hours.",
+      idOther: "Waktu respon terbatas, hanya pada jam kerja standar."
+    },
+    {
+      enTitle: "Co-Creation & Transparent Updates",
+      enDesc: "Real-time Slack/Teams communication with regular progress reports.",
+      idTitle: "Ko-Kreasi & Pembaruan Transparan",
+      idDesc: "Komunikasi real-time via Slack/Teams dengan laporan progres berkala.",
+      enOther: "Opaque development cycles and slow communication.",
+      idOther: "Siklus pengembangan tertutup dan komunikasi lambat."
+    },
+    {
+      enTitle: "Scalable & Future-Proof Builds",
+      enDesc: "We deliver rich, enterprise-ready features tailored to your business growth.",
+      idTitle: "Arsitektur Skalabel & Siap Masa Depan",
+      idDesc: "Menyediakan fitur lengkap skala enterprise yang siap menopang pertumbuhan bisnis.",
+      enOther: "Basic templates or feature-limited applications.",
+      idOther: "Menggunakan template dasar atau aplikasi dengan fitur terbatas."
+    },
+    {
+      enTitle: "Vetted Industry Excellence",
+      enDesc: "Proven track record of high-performance digital products across sectors.",
+      idTitle: "Rekam Jejak Industri Teruji",
+      idDesc: "Rekam jejak terbukti dalam membangun produk digital performa tinggi di berbagai sektor.",
+      enOther: "Unproven methodologies or generic, untested outcomes.",
+      idOther: "Metodologi belum teruji dengan hasil generik."
+    }
+  ];
+
   return (
-    <div className="w-full mt-24 lg:mt-32 bg-white py-16 lg:py-24 relative overflow-hidden rounded-[24px] md:rounded-[40px] border border-slate-200/80 shadow-[0_24px_80px_-20px_rgba(0,0,0,0.06)]">
+    <div className="w-full">
       
-      {/* Decorative Studio Light Glow */}
-      <div className="absolute top-0 right-0 w-full h-full bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-blue-500/5 via-transparent to-transparent pointer-events-none" />
-
-      <div className="max-w-[1400px] mx-auto px-6 lg:px-12 relative z-10">
-        
-        {/* Header Row (Linear Style) */}
-        <div className="flex flex-col lg:flex-row items-start lg:items-end justify-between gap-6 mb-12">
-          <div className="max-w-2xl">
-            <span className="text-[10px] font-mono font-bold tracking-[0.25em] uppercase text-blue-600 mb-4 block">
-              {text.workflowLabel}
-            </span>
-            <h3 className="text-3xl sm:text-4xl md:text-[3rem] font-bold text-slate-900 tracking-tight leading-[1.1]">
-              {text.workflowTitle}
-            </h3>
-          </div>
-          <div className="max-w-lg lg:pb-2 text-left lg:text-right">
-            <p className="text-[15px] md:text-base text-slate-500 leading-relaxed font-medium">
-              {text.workflowDesc}
-            </p>
-          </div>
+      {/* Header Row (Restored to its original majestic size) */}
+      <div className="flex flex-col lg:flex-row items-start lg:items-end justify-between gap-6 mb-16">
+        <div className="max-w-2xl">
+          <span className="text-[10px] font-mono font-bold tracking-[0.25em] uppercase text-blue-600 mb-4 block">
+            {text.workflowLabel}
+          </span>
+          <h3 className="text-3xl sm:text-4xl md:text-[3rem] font-black text-slate-900 tracking-tight leading-[1.1]">
+            {text.workflowTitle}
+          </h3>
         </div>
+        <div className="max-w-lg lg:pb-2 text-left lg:text-right">
+          <p className="text-[15px] md:text-base text-slate-500 leading-relaxed font-medium">
+            {text.workflowDesc}
+          </p>
+        </div>
+      </div>
 
-        {/* Full-width Flat Dashboard Showcase */}
-        <div className="w-full">
+      {/* 2-Column Split */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
+        
+        {/* Left Column: Dark Showcase (Original size) */}
+        <div className="col-span-1 lg:col-span-5 relative">
           <LinearProcessShowcase />
         </div>
 
+        {/* Right Column: Comparison Table (Service Standard) */}
+        <div className="col-span-1 lg:col-span-7">
+          <div className="w-full relative">
+            
+            <div className="mb-10">
+              <h4 className="text-2xl md:text-3xl font-black text-slate-900 tracking-tight">
+                {language === "id" ? "Kualitas Tanpa Kompromi." : "Uncompromising Quality."}
+              </h4>
+              <p className="text-slate-500 text-sm mt-2 font-medium">
+                {language === "id" ? "Bagaimana kami membedakan diri dari agensi lain." : "How we differentiate from other agencies."}
+              </p>
+            </div>
+
+            <div className="w-full shadow-[0_8px_30px_rgb(0,0,0,0.02)] rounded-2xl overflow-hidden border border-slate-100">
+              
+              {/* Headers */}
+              <div className="grid grid-cols-12 items-stretch pb-0 mb-0">
+                <div className="col-span-7 bg-[#EAF2FC]/40 border-l border-t border-r border-blue-100/40 pt-5 pb-3 rounded-tl-2xl flex justify-center items-center">
+                  <div className="relative w-28 md:w-36 h-10 flex items-center justify-center">
+                    <Image 
+                      src="/zelio.png" 
+                      alt="Zellio" 
+                      width={200}
+                      height={64}
+                      className="h-10 md:h-11 w-auto object-contain scale-[3.2] md:scale-[3.5] origin-center"
+                      style={{ width: 'auto' }}
+                    />
+                  </div>
+                </div>
+                <div className="col-span-5 text-center font-mono text-[10px] md:text-xs font-bold text-slate-400 uppercase tracking-widest flex items-center justify-center pb-3 border-t border-r border-slate-200/60 rounded-tr-2xl bg-white">
+                  {language === "id" ? "LAYANAN LAIN" : "OTHER SERVICES"}
+                </div>
+              </div>
+
+              {/* Rows */}
+              <div className="flex flex-col">
+                {comparisonFeatures.map((feat, idx) => {
+                  const isLast = idx === comparisonFeatures.length - 1;
+                  return (
+                    <div key={idx} className="grid grid-cols-12 items-stretch border-b border-slate-100/85">
+                      
+                      {/* ZELLIO column (Subtle blue background with Title, Desc, and Check Icon) */}
+                      <div className={`col-span-7 flex items-start gap-2.5 px-4 py-4 bg-[#EAF2FC]/40 border-x border-blue-100/40 ${
+                        isLast ? "rounded-bl-2xl" : ""
+                      }`}>
+                        <div className="w-5 h-5 rounded-full bg-emerald-500 text-white flex items-center justify-center flex-shrink-0 mt-0.5 shadow-sm border border-emerald-400/20">
+                          <Check size={11} strokeWidth={4} />
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <h5 className="font-bold text-slate-800 text-xs md:text-[14px] leading-snug">
+                            {language === "id" ? feat.idTitle : feat.enTitle}
+                          </h5>
+                          <p className="text-slate-500 text-[10px] md:text-[12px] mt-1 leading-relaxed font-medium">
+                            {language === "id" ? feat.idDesc : feat.enDesc}
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* Other column (Red cross and descriptive text) */}
+                      <div className={`col-span-5 flex items-start gap-2.5 px-4 py-4 bg-white border-r border-slate-200/60 ${
+                        isLast ? "rounded-br-2xl border-b border-slate-200/60" : ""
+                      }`}>
+                        <div className="w-5 h-5 rounded-full bg-rose-500 text-white flex items-center justify-center flex-shrink-0 mt-0.5 shadow-sm border border-rose-400/20">
+                          <X size={11} strokeWidth={4} />
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <p className="text-slate-500 text-[11px] md:text-[13px] font-medium leading-relaxed mt-0.5">
+                            {language === "id" ? feat.idOther : feat.enOther}
+                          </p>
+                        </div>
+                      </div>
+
+                    </div>
+                  );
+                })}
+              </div>
+
+            </div>
+          </div>
+
+        </div>
       </div>
     </div>
   );
@@ -123,128 +248,133 @@ export default function About() {
   const { language } = useLanguage();
   const text = localText[language];
 
-
   const premiumEase = [0.22, 1, 0.36, 1] as [number, number, number, number];
 
   return (
-    <section id="about" className="relative pt-24 pb-12 lg:pt-32 lg:pb-16 bg-[#FAFAFA] overflow-hidden">
+    <>
+      <section id="about" className="relative pt-24 pb-16 lg:pt-24 lg:pb-32 bg-[#FAFAFA] overflow-hidden">
 
-      {/* Subtle fine grid/grain style layout support */}
-      <div className="absolute inset-0 opacity-[0.012] bg-[radial-gradient(#000_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none z-0" />
+        {/* Subtle fine grid/grain style layout support */}
+        <div className="absolute inset-0 opacity-[0.012] bg-[radial-gradient(#000_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none z-0" />
 
-      <div className="max-w-[1400px] mx-auto px-6 relative z-10">
+        <div className="max-w-[1400px] mx-auto px-6 relative z-10">
 
-        {/* Asymmetrical Editorial split layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+          {/* Asymmetrical Editorial split layout */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
 
-          {/* MEDIA CONTAINER (Right on desktop, but FIRST on mobile stack) */}
-          <div className="col-span-1 lg:col-span-7 lg:order-2">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.98 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.7, ease: premiumEase }}
-              className="relative w-full aspect-square sm:aspect-video lg:aspect-[4/3] xl:aspect-[16/11] bg-slate-200 rounded-[32px] md:rounded-[40px] overflow-hidden shadow-2xl border border-slate-200"
-            >
-              {/* Premium Cinematic Looping Video */}
-              <video
-                src="/lumina2.mp4"
-                autoPlay
-                loop
-                muted
-                playsInline
-                className="w-full h-full object-cover pointer-events-none"
-              />
-
-              {/* Muted overlay for readability */}
-              <div className="absolute inset-0 bg-slate-950/15 z-10 pointer-events-none" />
-
-              {/* Elegant overlays representing stats */}
+            {/* MEDIA CONTAINER (Right on desktop, but FIRST on mobile stack) */}
+            <div className="col-span-1 lg:col-span-7 lg:order-2">
               <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.2, ease: premiumEase }}
-                className="absolute top-6 left-6 z-20 backdrop-blur-md bg-white/70 border border-white/30 px-5 py-3 rounded-2xl shadow-sm flex flex-col items-start w-32 md:w-36 select-none"
+                initial={{ opacity: 0, scale: 0.98 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.7, ease: premiumEase }}
+                className="relative w-full aspect-square sm:aspect-video lg:aspect-[4/3] xl:aspect-[16/11] bg-slate-200 rounded-[32px] md:rounded-[40px] overflow-hidden shadow-2xl border border-slate-200"
               >
-                <span className="text-xl md:text-2xl font-black text-slate-900 tracking-tight">{text.stats[0].value}</span>
-                <span className="text-[9px] md:text-[10px] font-mono font-bold tracking-wider text-slate-400 uppercase leading-tight mt-1">{text.stats[0].label}</span>
+                {/* Premium Cinematic Looping Video */}
+                <video
+                  src="/lumina2.mp4"
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  className="w-full h-full object-cover pointer-events-none"
+                />
+
+                {/* Muted overlay for readability */}
+                <div className="absolute inset-0 bg-slate-950/15 z-10 pointer-events-none" />
+
+                {/* Elegant overlays representing stats */}
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: 0.2, ease: premiumEase }}
+                  className="absolute top-6 left-6 z-20 backdrop-blur-md bg-white/70 border border-white/30 px-5 py-3 rounded-2xl shadow-sm flex flex-col items-start w-32 md:w-36 select-none"
+                >
+                  <span className="text-xl md:text-2xl font-black text-slate-900 tracking-tight">{text.stats[0].value}</span>
+                  <span className="text-[9px] md:text-[10px] font-mono font-bold tracking-wider text-slate-400 uppercase leading-tight mt-1">{text.stats[0].label}</span>
+                </motion.div>
+
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: 0.3, ease: premiumEase }}
+                  className="absolute top-16 right-6 z-20 backdrop-blur-md bg-white/70 border border-white/30 px-5 py-3 rounded-2xl shadow-sm flex flex-col items-start w-32 md:w-36 select-none"
+                >
+                  <span className="text-xl md:text-2xl font-black text-slate-900 tracking-tight">{text.stats[1].value}</span>
+                  <span className="text-[9px] md:text-[10px] font-mono font-bold tracking-wider text-slate-400 uppercase leading-tight mt-1">{text.stats[1].label}</span>
+                </motion.div>
+
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: 0.4, ease: premiumEase }}
+                  className="absolute bottom-16 left-6 z-20 backdrop-blur-md bg-white/70 border border-white/30 px-5 py-3 rounded-2xl shadow-sm flex flex-col items-start w-32 md:w-36 select-none"
+                >
+                  <span className="text-xl md:text-2xl font-black text-slate-900 tracking-tight">{text.stats[2].value}</span>
+                  <span className="text-[9px] md:text-[10px] font-mono font-bold tracking-wider text-slate-400 uppercase leading-tight mt-1">{text.stats[2].label}</span>
+                </motion.div>
+
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: 0.5, ease: premiumEase }}
+                  className="absolute bottom-6 right-6 z-20 backdrop-blur-md bg-white/70 border border-white/30 px-5 py-3 rounded-2xl shadow-sm flex flex-col items-start w-32 md:w-36 select-none"
+                >
+                  <span className="text-xl md:text-2xl font-black text-slate-900 tracking-tight">{text.stats[3].value}</span>
+                  <span className="text-[9px] md:text-[10px] font-mono font-bold tracking-wider text-slate-400 uppercase leading-tight mt-1">{text.stats[3].label}</span>
+                </motion.div>
+
               </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.3, ease: premiumEase }}
-                className="absolute top-16 right-6 z-20 backdrop-blur-md bg-white/70 border border-white/30 px-5 py-3 rounded-2xl shadow-sm flex flex-col items-start w-32 md:w-36 select-none"
-              >
-                <span className="text-xl md:text-2xl font-black text-slate-900 tracking-tight">{text.stats[1].value}</span>
-                <span className="text-[9px] md:text-[10px] font-mono font-bold tracking-wider text-slate-400 uppercase leading-tight mt-1">{text.stats[1].label}</span>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.4, ease: premiumEase }}
-                className="absolute bottom-16 left-6 z-20 backdrop-blur-md bg-white/70 border border-white/30 px-5 py-3 rounded-2xl shadow-sm flex flex-col items-start w-32 md:w-36 select-none"
-              >
-                <span className="text-xl md:text-2xl font-black text-slate-900 tracking-tight">{text.stats[2].value}</span>
-                <span className="text-[9px] md:text-[10px] font-mono font-bold tracking-wider text-slate-400 uppercase leading-tight mt-1">{text.stats[2].label}</span>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.5, ease: premiumEase }}
-                className="absolute bottom-6 right-6 z-20 backdrop-blur-md bg-white/70 border border-white/30 px-5 py-3 rounded-2xl shadow-sm flex flex-col items-start w-32 md:w-36 select-none"
-              >
-                <span className="text-xl md:text-2xl font-black text-slate-900 tracking-tight">{text.stats[3].value}</span>
-                <span className="text-[9px] md:text-[10px] font-mono font-bold tracking-wider text-slate-400 uppercase leading-tight mt-1">{text.stats[3].label}</span>
-              </motion.div>
-
-            </motion.div>
-          </div>
-
-          {/* EDITORIAL STORYTELLING TEXT (Left on desktop, SECOND on mobile stack) */}
-          <div className="col-span-1 lg:col-span-5 lg:order-1 flex flex-col justify-center max-w-xl">
-
-            {/* Section Label */}
-            <span className="text-[11px] font-mono font-bold tracking-[0.25em] uppercase text-blue-600 mb-6 block">
-              {text.badge}
-            </span>
-
-            {/* Editorial Headline */}
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 tracking-tight leading-[1.05] mb-8">
-              {text.headline}
-            </h2>
-
-            {/* Paragraphs - Staggered fade upward */}
-            <div className="space-y-6 text-slate-500 font-medium text-base md:text-lg leading-relaxed mb-10 pr-2">
-              <p>{text.para1}</p>
-              <p>{text.para2}</p>
             </div>
 
-            {/* Primary Minimal CTA */}
-            <div>
-              <a
-                href="/contact"
-                className="group inline-flex items-center gap-2 text-slate-900 font-bold text-sm uppercase tracking-wider py-1 border-b-2 border-slate-900 transition-colors"
-              >
-                <span>{text.cta}</span>
-                <ArrowRight size={16} className="group-hover:translate-x-1.5 transition-transform duration-300" />
-              </a>
+            {/* EDITORIAL STORYTELLING TEXT (Left on desktop, SECOND on mobile stack) */}
+            <div className="col-span-1 lg:col-span-5 lg:order-1 flex flex-col justify-center max-w-xl">
+
+              {/* Section Label */}
+              <span className="text-[11px] font-mono font-bold tracking-[0.25em] uppercase text-blue-600 mb-6 block">
+                {text.badge}
+              </span>
+
+              {/* Editorial Headline */}
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 tracking-tight leading-[1.05] mb-8">
+                {text.headline}
+              </h2>
+
+              {/* Paragraphs - Staggered fade upward */}
+              <div className="space-y-6 text-slate-500 font-medium text-base md:text-lg leading-relaxed mb-10 pr-2">
+                <p>{text.para1}</p>
+                <p>{text.para2}</p>
+              </div>
+
+              {/* Primary Minimal CTA */}
+              <div>
+                <a
+                  href="/contact"
+                  className="group inline-flex items-center gap-2 text-slate-900 font-bold text-sm uppercase tracking-wider py-1 border-b-2 border-slate-900 transition-colors"
+                >
+                  <span>{text.cta}</span>
+                  <ArrowRight size={16} className="group-hover:translate-x-1.5 transition-transform duration-300" />
+                </a>
+              </div>
+
             </div>
 
           </div>
 
         </div>
+      </section>
 
-        {/* Replaced old CoreExpertiseSection with new EngineeringWorkflowSection */}
-        <EngineeringWorkflowSection language={language} />
-
-      </div>
-    </section>
+      {/* Full-bleed Light Section for Process & Quality Comparison */}
+      <section className="w-full bg-[#F8FAFC] py-16 lg:py-20 border-t border-b border-slate-200/60 overflow-hidden">
+        <div className="max-w-[1400px] mx-auto px-6 relative z-10">
+          <EngineeringWorkflowSectionContent language={language} />
+        </div>
+      </section>
+    </>
   );
 }

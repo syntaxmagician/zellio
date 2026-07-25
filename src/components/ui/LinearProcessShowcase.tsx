@@ -71,10 +71,10 @@ export default function LinearProcessShowcase() {
         </div>
 
         {/* Board Workspace */}
-        <div className="flex-grow p-5 bg-[#08090A] grid grid-cols-1 md:grid-cols-4 gap-4 overflow-x-auto">
+        <div className="flex-grow p-4 sm:p-5 bg-[#08090A] flex gap-4 overflow-x-auto snap-x snap-mandatory hide-scrollbar pb-6">
           
           {/* COLUMN 01: DISCOVERY & ARCHITECTURE */}
-          <div className="flex flex-col gap-3 min-w-[200px]">
+          <div className="flex flex-col gap-3 w-[260px] shrink-0 snap-start">
             <div className="flex items-center justify-between border-b border-white/5 pb-2">
               <div className="flex items-center gap-2">
                 <span className="w-1.5 h-1.5 rounded-full bg-blue-500" />
@@ -99,43 +99,42 @@ export default function LinearProcessShowcase() {
             </div>
           </div>
 
-          {/* COLUMN 02: AGILE ENGINEERING */}
-          <div className="flex flex-col gap-3 min-w-[200px]">
+          {/* COLUMN 02: ENGINEERING */}
+          <div className="flex flex-col gap-3 w-[260px] shrink-0 snap-start">
             <div className="flex items-center justify-between border-b border-white/5 pb-2">
               <div className="flex items-center gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse" />
+                <span className="w-1.5 h-1.5 rounded-full bg-amber-500" />
                 <span className="font-semibold text-white/90">02. Engineering</span>
               </div>
               <span className="text-[10px] bg-white/5 px-1.5 py-0.5 rounded font-mono text-white/40">2</span>
             </div>
 
-            {/* Ticket Card A */}
+            {/* Ticket Card */}
             <div className="bg-[#121315]/80 border border-white/5 p-3 rounded-lg hover:border-white/10 transition-colors space-y-3">
               <div className="flex items-center justify-between">
                 <span className="text-[9px] font-mono text-amber-500 bg-amber-500/5 px-1.5 py-0.5 rounded border border-amber-500/10">CODE</span>
-                <span className="text-[8px] text-white/30 flex items-center gap-1"><Clock size={9} /> Active</span>
+                <span className="text-[8px] text-white/30 flex items-center gap-1"><Play size={9} /> Active</span>
               </div>
               <p className="text-white/80 font-medium leading-relaxed text-[11px]">
                 Write clean React/Next.js files & setup microservice REST/gRPC API gateways.
               </p>
               <div className="flex items-center justify-between border-t border-white/5 pt-2 text-[9px] text-white/40">
                 <span className="flex items-center gap-1 font-mono"><GitCommit size={9} /> f5a93d1</span>
-                <span className="text-amber-500 flex items-center gap-1"><FileCode size={9} /> typescript</span>
+                <span className="text-amber-500 flex items-center gap-0.5 font-bold"><FileCode size={10} /> typescript</span>
               </div>
             </div>
 
-            {/* Ticket Card B */}
-            <div className="bg-[#121315]/80 border border-white/5 p-3 rounded-lg hover:border-white/10 transition-colors space-y-2">
-              <p className="text-white/60 leading-relaxed text-[10px] font-mono select-none">
-                $ next build<br/>
-                <span className="text-emerald-500">✓ Page optimizations complete</span><br/>
-                <span className="text-blue-400">✓ Turbopack compilation: OK</span>
-              </p>
+            {/* Sub-process visual: Code compiling terminal */}
+            <div className="bg-[#0D0E10] border border-white/5 rounded-md p-2 font-mono text-[9px] text-white/40">
+              <div className="flex items-center gap-1 mb-1"><Terminal size={9} /> <span>build_runner</span></div>
+              <div className="text-emerald-500/70">$ next build</div>
+              <div className="text-emerald-500">✓ Page optimizations complete</div>
+              <div className="text-blue-400">✓ Turbopack compilation: OK</div>
             </div>
           </div>
 
-          {/* COLUMN 03: FORENSICS & QA */}
-          <div className="flex flex-col gap-3 min-w-[200px]">
+          {/* COLUMN 03: AUDIT & QA */}
+          <div className="flex flex-col gap-3 w-[260px] shrink-0 snap-start">
             <div className="flex items-center justify-between border-b border-white/5 pb-2">
               <div className="flex items-center gap-2">
                 <span className="w-1.5 h-1.5 rounded-full bg-rose-500" />
@@ -145,23 +144,23 @@ export default function LinearProcessShowcase() {
             </div>
 
             {/* Ticket Card */}
-            <div className="bg-[#121315]/80 border border-white/5 p-3 rounded-lg hover:border-white/10 transition-colors space-y-3">
+            <div className="bg-[#121315]/80 border border-white/5 p-3 rounded-lg hover:border-white/10 transition-colors space-y-3 opacity-80">
               <div className="flex items-center justify-between">
                 <span className="text-[9px] font-mono text-rose-500 bg-rose-500/5 px-1.5 py-0.5 rounded border border-rose-500/10">SEC-AUDIT</span>
-                <span className="text-[8px] text-emerald-400 bg-emerald-400/5 px-1 rounded flex items-center gap-0.5"><Check size={8} /> Pass</span>
+                <span className="text-[8px] text-emerald-500 flex items-center gap-1"><Check size={9} /> Pass</span>
               </div>
               <p className="text-white/80 font-medium leading-relaxed text-[11px]">
                 Run query fuzzing tests, database penetration scans, and XSS prevention checks.
               </p>
               <div className="flex items-center justify-between border-t border-white/5 pt-2 text-[9px] text-white/40">
                 <span className="flex items-center gap-1 font-mono"><Terminal size={9} /> check-sec.sh</span>
-                <span className="text-emerald-500 flex items-center gap-1 font-bold"><CheckCircle2 size={10} /> SECURE</span>
+                <span className="text-emerald-500 flex items-center gap-0.5 font-bold"><Shield size={10} /> SECURE</span>
               </div>
             </div>
           </div>
 
-          {/* COLUMN 04: DEPLOYMENT & SCALE */}
-          <div className="flex flex-col gap-3 min-w-[200px]">
+          {/* COLUMN 04: DEVOPS */}
+          <div className="flex flex-col gap-3 w-[260px] shrink-0 snap-start">
             <div className="flex items-center justify-between border-b border-white/5 pb-2">
               <div className="flex items-center gap-2">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
@@ -171,17 +170,17 @@ export default function LinearProcessShowcase() {
             </div>
 
             {/* Ticket Card */}
-            <div className="bg-[#121315]/80 border border-white/5 p-3 rounded-lg hover:border-white/10 transition-colors space-y-3">
+            <div className="bg-[#121315]/80 border border-white/5 p-3 rounded-lg hover:border-white/10 transition-colors space-y-3 opacity-60">
               <div className="flex items-center justify-between">
                 <span className="text-[9px] font-mono text-emerald-500 bg-emerald-500/5 px-1.5 py-0.5 rounded border border-emerald-500/10">DOCKER</span>
-                <span className="text-[8px] text-white/30 flex items-center gap-1"><Play size={9} /> Released</span>
+                <span className="text-[8px] text-white/30 flex items-center gap-1"><ArrowRight size={9} /> Released</span>
               </div>
               <p className="text-white/80 font-medium leading-relaxed text-[11px]">
                 Containerize app stack via Docker & setup high-availability Kubernetes scaling patterns.
               </p>
               <div className="flex items-center justify-between border-t border-white/5 pt-2 text-[9px] text-white/40">
                 <span className="flex items-center gap-1 font-mono"><GitBranch size={9} /> production</span>
-                <span className="text-cyan-400 font-bold font-mono">12ms CDN</span>
+                <span className="text-emerald-500 flex items-center gap-0.5 font-bold">12ms CDN</span>
               </div>
             </div>
           </div>

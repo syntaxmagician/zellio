@@ -1,14 +1,20 @@
 import { MetadataRoute } from 'next';
 
-const BASE_URL = 'https://zellio.id';
+const BASE_URL = "https://zellio.id";
 
 export default function robots(): MetadataRoute.Robots {
   return {
-    rules: {
-      userAgent: '*',
-      allow: '/',
-      disallow: ['/api/', '/admin/'],
-    },
+    rules: [
+      {
+        userAgent: "*",
+        allow: "/",
+        disallow: [
+          "/api/",
+          "/admin/",
+        ],
+      },
+    ],
     sitemap: `${BASE_URL}/sitemap.xml`,
+    host: BASE_URL,
   };
 }

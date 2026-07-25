@@ -23,7 +23,7 @@ function LogoChip({ name, src }: { name: string; src: string }) {
         width={120}
         height={40}
         priority
-        className="max-h-[32px] w-auto object-contain filter grayscale group-hover:grayscale-0 transition-all duration-500 opacity-60 group-hover:opacity-100"
+        className="max-h-[32px] w-auto object-contain transition-all duration-500"
       />
     </div>
   );

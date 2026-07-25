@@ -1,412 +1,183 @@
 "use client";
 
-import React, { useRef, useState, useEffect } from "react";
-import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
+import { motion, AnimatePresence } from "framer-motion";
 import { useLanguage } from "@/context/LanguageContext";
+import { Star } from "lucide-react";
 
 const testimonialsData = {
   en: [
     {
       id: 1,
-      name: "Rizky Pratama",
-      position: "CTO",
-      company: "FinTech Solutions",
-      avatar: "/avatar-rizky.png",
-      review: "They delivered our core payment dashboard in half the expected time.",
-      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80",
-      metrics: [
-        { value: "+45%", label: "Transaction Speed" },
-        { value: "99.99%", label: "Payment Uptime" },
-        { value: "6 Weeks", label: "Delivery Duration" }
-      ]
+      quote: "Zellio didn’t just build our portal; they engineered a strategic asset. The architecture is immaculate, and their attention to enterprise-grade security and uncompromising design standards completely transformed how we interact with our international clients.",
+      author: "David Campos",
+      role: "Managing Partner, Campos Law Firm",
+      avatar: "/avatar-budi.png",
+      rating: 5
     },
     {
       id: 2,
-      name: "Sari Dewi Kusuma",
-      position: "Product Director",
-      company: "RetailFlow Indonesia",
+      quote: "The reduction in our operational latency by 45% was staggering. The real-time fleet management system they architected is robust, scalable, and beautifully designed. They are an elite tier engineering team.",
+      author: "Sarah Jenkins",
+      role: "Chief Operations Officer, Elogs Logistics",
       avatar: "/avatar-sari.png",
-      review: "The multi-vendor platform scales beautifully during high-traffic flash sales.",
-      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80",
-      metrics: [
-        { value: "3.2x", label: "Conversion Rate" },
-        { value: "100k+", label: "Active Vendors" },
-        { value: "4 Months", label: "Delivery Duration" }
-      ]
+      rating: 5
     },
     {
       id: 3,
-      name: "Budi Santoso",
-      position: "CEO",
-      company: "LogiChain Logistics",
-      avatar: "/avatar-budi.png",
-      review: "Our custom ERP system displays fleet locations across 5 provinces flawlessly.",
-      image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1200&q=80",
-      metrics: [
-        { value: "+30%", label: "Efficiency Gain" },
-        { value: "2.5s", label: "Sync Latency" },
-        { value: "3 Months", label: "Delivery Duration" }
-      ]
-    },
-    {
-      id: 4,
-      name: "Anisa Rahman",
-      position: "Co-Founder",
-      company: "EduSpace Platform",
+      quote: "Our luxury e-commerce platform demands absolute perfection in aesthetics and performance. Zellio delivered an experience that is incredibly fast and visually breathtaking, elevating our brand identity entirely.",
+      author: "Amanda Wijaya",
+      role: "Founder, Warung Bunga Pagi",
       avatar: "/avatar-anisa.png",
-      review: "A truly elite tech partner that designed and built our SaaS platform from scratch.",
-      image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80",
-      metrics: [
-        { value: "80k+", label: "Enrolled Students" },
-        { value: "99.98%", label: "Platform Uptime" },
-        { value: "5 Months", label: "Delivery Duration" }
-      ]
+      rating: 5
     }
   ],
   id: [
     {
       id: 1,
-      name: "Rizky Pratama",
-      position: "CTO",
-      company: "FinTech Solutions",
-      avatar: "/avatar-rizky.png",
-      review: "Mereka merancang dashboard pembayaran utama kami dalam setengah estimasi waktu awal.",
-      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80",
-      metrics: [
-        { value: "+45%", label: "Kecepatan Transaksi" },
-        { value: "99.99%", label: "Uptime Pembayaran" },
-        { value: "6 Minggu", label: "Waktu Pengiriman" }
-      ]
+      quote: "Zellio tidak sekadar membangun portal kami; mereka merancang sebuah aset strategis. Arsitektur teknisnya tanpa cacat, dan standar desain serta keamanan mereka benar-benar mengubah cara kami berinteraksi dengan klien internasional.",
+      author: "David Campos",
+      role: "Managing Partner, Campos Law Firm",
+      avatar: "/avatar-budi.png",
+      rating: 5
     },
     {
       id: 2,
-      name: "Sari Dewi Kusuma",
-      position: "Product Director",
-      company: "RetailFlow Indonesia",
+      quote: "Penurunan latensi operasional kami hingga 45% sangat mengejutkan. Sistem manajemen armada real-time yang mereka bangun sangat kuat, skalabel, dan dirancang dengan sangat indah. Mereka adalah tim rekayasa tingkat elit.",
+      author: "Sarah Jenkins",
+      role: "Chief Operations Officer, Elogs Logistics",
       avatar: "/avatar-sari.png",
-      review: "Platform multi-vendor yang mereka buat stabil saat puncak traffic kilat.",
-      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80",
-      metrics: [
-        { value: "3.2x", label: "Tingkat Konversi" },
-        { value: "100rb+", label: "Mitra Aktif" },
-        { value: "4 Bulan", label: "Waktu Pengiriman" }
-      ]
+      rating: 5
     },
     {
       id: 3,
-      name: "Budi Santoso",
-      position: "CEO",
-      company: "LogiChain Logistics",
-      avatar: "/avatar-budi.png",
-      review: "Sistem ERP kustom mereka memetakan logistik di 5 provinsi secara real-time.",
-      image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1200&q=80",
-      metrics: [
-        { value: "+30%", label: "Efisiensi Operasional" },
-        { value: "2.5d", label: "Latensi Sinkronisasi" },
-        { value: "3 Bulan", label: "Waktu Pengiriman" }
-      ]
-    },
-    {
-      id: 4,
-      name: "Anisa Rahman",
-      position: "Co-Founder",
-      company: "EduSpace Platform",
+      quote: "Platform e-commerce mewah kami menuntut kesempurnaan mutlak dalam estetika dan performa. Zellio menghadirkan pengalaman yang sangat cepat dan memukau secara visual, benar-benar meningkatkan identitas merek kami.",
+      author: "Amanda Wijaya",
+      role: "Founder, Warung Bunga Pagi",
       avatar: "/avatar-anisa.png",
-      review: "Mitra teknologi elit yang mendesain dan membangun platform SaaS kami dari nol.",
-      image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80",
-      metrics: [
-        { value: "80rb+", label: "Siswa Terdaftar" },
-        { value: "99.98%", label: "Uptime Platform" },
-        { value: "5 Bulan", label: "Waktu Pengiriman" }
-      ]
+      rating: 5
     }
   ]
 };
 
 const localText = {
   en: {
-    bgText: "RESULTS PARTNERS SUCCESS",
-    badge: "TESTIMONIALS",
-    title: "Built with companies that refuse average.",
-    at: "at"
+    badge: "WHAT THEY SAY",
+    title: "Client Testimonials",
   },
   id: {
-    bgText: "HASIL KEMITRAAN SUKSES",
-    badge: "TESTIMONI",
-    title: "Membangun sistem dengan mereka yang menolak biasa.",
-    at: "di"
+    badge: "APA KATA MEREKA",
+    title: "Testimoni Klien",
   }
 };
 
-/**
- * Metric counter component with cubic-bezier interpolation
- */
-const CountingMetric = ({ value, label, active }: { value: string; label: string; active: boolean }) => {
-  const [displayVal, setDisplayVal] = useState("0");
-
-  useEffect(() => {
-    if (!active) {
-      setDisplayVal("0");
-      return;
-    }
-
-    const numMatch = value.match(/[\d.]+/);
-    const suffix = value.replace(/[\d.]+/, "");
-    if (!numMatch) {
-      setDisplayVal(value);
-      return;
-    }
-
-    const target = parseFloat(numMatch[0]);
-    const duration = 1200; 
-    const startTime = performance.now();
-
-    const update = (now: number) => {
-      const elapsed = now - startTime;
-      const progress = Math.min(elapsed / duration, 1);
-      
-      // cubic-bezier(.22,1,.36,1) easeOutCubic approximation
-      const easeProgress = 1 - Math.pow(1 - progress, 3);
-      const current = target * easeProgress;
-      
-      const isFloat = value.includes(".");
-      const formatted = isFloat ? current.toFixed(2) : Math.floor(current).toString();
-
-      setDisplayVal(formatted + suffix);
-
-      if (progress < 1) {
-        requestAnimationFrame(update);
-      }
-    };
-
-    requestAnimationFrame(update);
-  }, [value, active]);
-
-  return (
-    <div className="flex flex-col pt-6 border-t border-white/5 min-w-[140px] group cursor-default">
-      <span className="text-3xl sm:text-4xl md:text-5xl font-mono font-bold text-[#F5F7FA] tracking-tight group-hover:text-blue-500 transition-colors duration-300">
-        {displayVal}
-      </span>
-      <span className="text-xs md:text-sm font-medium text-[#94A3B8] tracking-wide mt-2">
-        {label}
-      </span>
-    </div>
-  );
-};
-
 export default function Testimonials() {
-  const containerRef = useRef<HTMLDivElement>(null);
   const { language } = useLanguage();
-  const testimonials = testimonialsData[language];
   const text = localText[language];
-  const [activeIndex, setActiveIndex] = useState(0);
+  const quotes = testimonialsData[language];
+  
+  const [currentIndex, setCurrentIndex] = useState(0);
 
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"]
-  });
-
-  // Background slow parallax drift
-  const bgX = useTransform(scrollYProgress, [0, 1], ["0%", "-10%"]);
-
+  // Auto-play slider
   useEffect(() => {
-    return scrollYProgress.onChange((latest) => {
-      // Divide scroll progress into 4 active chapter zones
-      const idx = Math.min(Math.floor(latest * 4), 3);
-      if (idx !== activeIndex) {
-        setActiveIndex(idx);
-      }
-    });
-  }, [scrollYProgress, activeIndex]);
+    const timer = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % quotes.length);
+    }, 6000);
+    return () => clearInterval(timer);
+  }, [quotes.length]);
 
-  const currentStory = testimonials[activeIndex];
-
-  // Premium transitions cubic-bezier(.22,1,.36,1)
-  const itemVariants = {
-    initial: {
-      opacity: 0,
-      scale: 1.08,
-      x: 120,
-      filter: "blur(12px)"
-    },
-    animate: {
-      opacity: 1,
-      scale: 1,
-      x: 0,
-      filter: "blur(0px)",
-      transition: {
-        duration: 0.6,
-        ease: [0.22, 1, 0.36, 1] as [number, number, number, number]
-      }
-    },
-    exit: {
-      opacity: 0,
-      scale: 0.94,
-      x: -40,
-      filter: "blur(6px)",
-      transition: {
-        duration: 0.5,
-        ease: [0.22, 1, 0.36, 1] as [number, number, number, number]
-      }
-    }
-  };
+  const activeQuote = quotes[currentIndex];
 
   return (
-    <section 
-      id="testimonials" 
-      ref={containerRef} 
-      className="w-full relative bg-[#05070B] md:h-[400vh]"
-    >
-      {/* 
-        DESKTOP VIEW: Sticky, Pinned Chapter Scroll
-      */}
-      <div className="hidden md:block w-full sticky top-0 h-screen overflow-hidden">
+    <section id="testimonials" className="relative py-24 lg:py-36 bg-[#FAFAFA] text-slate-900 border-t border-slate-200/60 overflow-hidden">
+      <div className="max-w-[1400px] mx-auto px-6 lg:px-12 relative z-10">
         
-        {/* Ambient Grid and Noise */}
-        <div className="absolute inset-0 opacity-20 mix-blend-overlay bg-[url('https://grainy-gradients.vercel.app/noise.svg')] pointer-events-none" />
-        <div className="absolute inset-0 opacity-[0.015] bg-[linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)] bg-[size:48px_48px] pointer-events-none" />
-
-        {/* Slow Parallax Background Typography */}
-        <motion.div
-          style={{ x: bgX }}
-          className="absolute top-[40%] left-0 whitespace-nowrap opacity-[0.02] pointer-events-none select-none z-0"
-        >
-          <h1 className="text-[28vw] font-black text-white leading-none tracking-tighter">
-            {text.bgText}
-          </h1>
-        </motion.div>
-
-        {/* HEADER BLOCK */}
-        <div className="absolute top-24 left-0 w-full px-12 lg:px-20 z-20 pointer-events-none">
-          <span className="text-[10px] md:text-[11px] font-mono font-bold tracking-[0.25em] text-[#94A3B8] mb-4 block uppercase">
+        {/* Section Header */}
+        <div className="flex flex-col mb-16 lg:mb-24">
+          <span className="text-[11px] font-mono font-bold tracking-[0.25em] text-blue-600 uppercase mb-4 block">
             {text.badge}
           </span>
-          <h2 className="text-3xl lg:text-4xl font-medium tracking-tight text-[#F5F7FA] leading-tight max-w-2xl">
+          <h2 className="text-4xl sm:text-5xl font-black text-slate-900 tracking-tight leading-[1.05]">
             {text.title}
           </h2>
         </div>
 
-        {/* CENTERED TESTIMONIAL LAYOUT */}
-        <div className="max-w-[1100px] mx-auto px-12 lg:px-20 h-full flex items-center justify-center relative z-10">
+        {/* Minimalist Editorial Carousel */}
+        <div className="relative min-h-[440px] md:min-h-[380px] lg:min-h-[340px] flex items-center">
           
-          <div className="w-full flex flex-col justify-center items-center text-center pt-28">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={activeIndex}
-                variants={itemVariants}
-                initial="initial"
-                animate="animate"
-                exit="exit"
-                className="flex flex-col justify-center items-center w-full"
-              >
-                {/* 5-Star Rating */}
-                <div className="flex gap-1 text-yellow-500 mb-8">
-                  {[1, 2, 3, 4, 5].map((star) => (
-                    <svg key={star} className="w-6 h-6 fill-current" viewBox="0 0 20 20">
-                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                    </svg>
-                  ))}
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeQuote.id}
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -15 }}
+              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+              className="absolute inset-0 w-full"
+            >
+              <div className="max-w-5xl">
+                {/* Stars Rating & Quote Mark Header */}
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="flex items-center gap-1">
+                    {[...Array(activeQuote.rating)].map((_, i) => (
+                      <Star key={i} size={18} className="fill-amber-400 text-amber-400" />
+                    ))}
+                  </div>
+                  <span className="font-mono text-xs font-bold text-slate-400 uppercase tracking-widest">
+                    Verified Client Review
+                  </span>
                 </div>
-
-                <p className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl leading-[1.35] text-[#F5F7FA] font-medium tracking-tight mb-12 max-w-4xl">
-                  "{currentStory.review}"
-                </p>
-
-                <div className="flex items-center gap-4 bg-white/5 border border-white/10 px-6 py-4 rounded-full backdrop-blur-md">
-                  <div className="w-12 h-12 rounded-full overflow-hidden border border-white/10 relative flex-shrink-0">
+                
+                {/* Quote Text */}
+                <h3 className="text-2xl sm:text-3xl lg:text-4xl font-semibold text-slate-900 tracking-tight leading-[1.3] md:leading-[1.4] mb-12">
+                  &ldquo;{activeQuote.quote}&rdquo;
+                </h3>
+                
+                {/* Author Info + Avatar */}
+                <div className="pt-6 border-t border-slate-200 w-full max-w-md flex items-center gap-4">
+                  <div className="relative w-14 h-14 rounded-full overflow-hidden border border-slate-200 bg-slate-100 flex-shrink-0 shadow-sm">
                     <Image 
-                      src={currentStory.avatar} 
-                      fill 
-                      className="object-cover" 
-                      alt={currentStory.name} 
-                      unoptimized
+                      src={activeQuote.avatar} 
+                      alt={activeQuote.author}
+                      fill
+                      className="object-cover object-top"
                     />
                   </div>
-                  <div className="flex flex-col text-left">
-                    <span className="text-[#F5F7FA] font-bold text-base">
-                      {currentStory.name}
-                    </span>
-                    <span className="text-[#94A3B8] font-medium text-xs mt-0.5">
-                      {currentStory.position} <span className="text-[#475569] font-normal mx-0.5">{text.at}</span> <span className="text-[#3B82F6]">{currentStory.company}</span>
-                    </span>
+                  <div>
+                    <div className="font-bold text-slate-900 text-base md:text-lg tracking-tight mb-0.5">
+                      {activeQuote.author}
+                    </div>
+                    <div className="font-mono text-[10px] md:text-xs text-slate-500 uppercase tracking-widest">
+                      {activeQuote.role}
+                    </div>
                   </div>
                 </div>
-              </motion.div>
-            </AnimatePresence>
-          </div>
-
+              </div>
+            </motion.div>
+          </AnimatePresence>
+          
         </div>
 
-        {/* BOTTOM PROGRESS LINE */}
-        <div className="absolute bottom-12 left-12 right-12 lg:left-20 lg:right-20 h-[1.5px] bg-white/10 rounded-full overflow-hidden">
-          <motion.div 
-            style={{ scaleX: scrollYProgress }} 
-            className="h-full bg-blue-500 origin-left"
-          />
+        {/* Navigation Indicators */}
+        <div className="flex items-center gap-4 mt-16 lg:mt-24">
+          {quotes.map((_, idx) => (
+            <button
+              key={idx}
+              onClick={() => setCurrentIndex(idx)}
+              className="group py-2 relative flex items-center"
+              aria-label={`Go to testimonial ${idx + 1}`}
+            >
+              {/* Invisible touch target */}
+              <div className="absolute inset-0 -top-2 -bottom-2 -left-2 -right-2" />
+              
+              <div className={`h-[2px] transition-all duration-500 ease-out ${
+                idx === currentIndex ? "w-12 bg-blue-600" : "w-6 bg-slate-300 group-hover:bg-slate-400"
+              }`} />
+            </button>
+          ))}
         </div>
 
       </div>
-
-      {/* 
-        MOBILE VIEW: Graceful, Clean Vertical Case Story Stack
-      */}
-      <div className="block md:hidden space-y-16 py-20 px-6">
-        
-        {/* Header Block */}
-        <div className="mb-12">
-          <span className="text-[10px] font-mono font-bold tracking-[0.25em] text-[#94A3B8] mb-3 block uppercase">
-            {text.badge}
-          </span>
-          <h2 className="text-3xl font-medium tracking-tight text-[#F5F7FA] leading-tight">
-            {text.title}
-          </h2>
-        </div>
-
-        {testimonials.map((story) => (
-          <div 
-            key={story.id} 
-            className="border-t border-white/5 pt-10 flex flex-col gap-6"
-          >
-            {/* 5-Star Rating */}
-            <div className="flex gap-1 text-yellow-500">
-              {[1, 2, 3, 4, 5].map((star) => (
-                <svg key={star} className="w-4 h-4 fill-current" viewBox="0 0 20 20">
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                </svg>
-              ))}
-            </div>
-
-            {/* Quote Statement */}
-            <h3 className="text-2xl font-medium text-[#F5F7FA] leading-snug">
-              "{story.review}"
-            </h3>
-
-            {/* User Bio */}
-            <div className="flex items-center gap-3">
-              <div className="w-12 h-12 rounded-full overflow-hidden border border-white/10 relative">
-                <Image 
-                  src={story.avatar} 
-                  fill 
-                  className="object-cover" 
-                  alt={story.name} 
-                  unoptimized
-                />
-              </div>
-              <div className="flex flex-col">
-                <span className="text-[#F5F7FA] font-bold text-sm">
-                  {story.name}
-                </span>
-                <span className="text-[#94A3B8] text-xs">
-                  {story.position} {text.at} <span className="text-[#3B82F6]">{story.company}</span>
-                </span>
-              </div>
-            </div>
-
-          </div>
-        ))}
-      </div>
-
     </section>
   );
 }
