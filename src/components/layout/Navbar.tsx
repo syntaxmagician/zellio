@@ -80,7 +80,7 @@ export default function Navbar() {
           <div className="relative w-[180px] lg:w-[240px] h-10 shrink-0">
             <Link href="/" className="absolute left-0 top-1/2 -translate-y-1/2 flex items-center">
               <Image 
-                src="/zelio.png" 
+                src="/zellio3.png" 
                 alt="Zellio Logo" 
                 width={240}
                 height={44}
@@ -275,7 +275,7 @@ export default function Navbar() {
           <div className="relative w-[160px] h-10 shrink-0 z-20">
             <Link href="/" className="absolute left-0 top-1/2 -translate-y-1/2 flex items-center">
               <Image 
-                src="/zelio.png" 
+                src="/zellio3.png" 
                 alt="Zellio Logo" 
                 width={160}
                 height={36}

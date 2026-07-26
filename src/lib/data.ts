@@ -73,6 +73,7 @@ export const servicesData = [
     level: "Premium",
     color: "#2563EB",
     bgColor: "#DBEAFE",
+    heroMedia: { type: "image" as const, url: "/hero/service_custom_web.jpg" }
   },
   {
     id: 2,
@@ -84,6 +85,7 @@ export const servicesData = [
     level: "Premium",
     color: "#3b82f6",
     bgColor: "#dbeafe",
+    heroMedia: { type: "image" as const, url: "/hero/service_company_profile.jpg" }
   },
   {
     id: 3,
@@ -95,6 +97,7 @@ export const servicesData = [
     level: "Premium",
     color: "#f59e0b",
     bgColor: "#fef3c7",
+    heroMedia: { type: "image" as const, url: "/hero/service_landing_page.jpg" }
   },
   {
     id: 4,
@@ -106,6 +109,7 @@ export const servicesData = [
     level: "Enterprise",
     color: "#ec4899",
     bgColor: "#fce7f3",
+    heroMedia: { type: "image" as const, url: "/hero/service_ecommerce.jpg" }
   },
   {
     id: 5,
@@ -117,6 +121,7 @@ export const servicesData = [
     level: "Enterprise",
     color: "#8b5cf6",
     bgColor: "#ede9fe",
+    heroMedia: { type: "image" as const, url: "/hero/service_custom_web_app.jpg" }
   },
   {
     id: 6,
@@ -128,6 +133,7 @@ export const servicesData = [
     level: "Enterprise",
     color: "#e11d48",
     bgColor: "#ffe4e6",
+    heroMedia: { type: "image" as const, url: "/hero/service_admin_dash.jpg" }
   },
   {
     id: 7,
@@ -139,6 +145,7 @@ export const servicesData = [
     level: "Premium",
     color: "#10b981",
     bgColor: "#d1fae5",
+    heroMedia: { type: "image" as const, url: "/hero/service_mobile_app.jpg" }
   },
   {
     id: 8,
@@ -150,6 +157,7 @@ export const servicesData = [
     level: "Enterprise",
     color: "#dc2626",
     bgColor: "#fee2e2",
+    heroMedia: { type: "image" as const, url: "/hero/service_erp.jpg" }
   },
   {
     id: 9,
@@ -161,6 +169,7 @@ export const servicesData = [
     level: "Enterprise",
     color: "#4f46e5",
     bgColor: "#e0e7ff",
+    heroMedia: { type: "image" as const, url: "/hero/service_crm.jpg" }
   },
   {
     id: 10,
@@ -172,6 +181,7 @@ export const servicesData = [
     level: "Enterprise",
     color: "#06b6d4",
     bgColor: "#cffafe",
+    heroMedia: { type: "image" as const, url: "/hero/service_hris.jpg" }
   },
   {
     id: 11,
@@ -183,6 +193,7 @@ export const servicesData = [
     level: "Enterprise",
     color: "#84cc16",
     bgColor: "#ecfccb",
+    heroMedia: { type: "image" as const, url: "/hero/service_inventory.jpg" }
   },
   {
     id: 12,
@@ -194,6 +205,7 @@ export const servicesData = [
     level: "Enterprise",
     color: "#a855f7",
     bgColor: "#f3e8ff",
+    heroMedia: { type: "image" as const, url: "/hero/service_saas.jpg" }
   },
   {
     id: 13,
@@ -205,6 +217,7 @@ export const servicesData = [
     level: "Premium",
     color: "#6366f1",
     bgColor: "#e0e7ff",
+    heroMedia: { type: "image" as const, url: "/hero/service_uiux.jpg" }
   },
   {
     id: 14,
@@ -216,6 +229,7 @@ export const servicesData = [
     level: "Enterprise",
     color: "#14b8a6",
     bgColor: "#ccfbf1",
+    heroMedia: { type: "image" as const, url: "/hero/service_ai.jpg" }
   },
   {
     id: 15,
@@ -227,6 +241,7 @@ export const servicesData = [
     level: "Enterprise",
     color: "#0284c7",
     bgColor: "#e0f2fe",
+    heroMedia: { type: "image" as const, url: "/hero/service_cloud.jpg" }
   }
 ];
 

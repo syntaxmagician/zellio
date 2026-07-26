@@ -111,6 +111,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      suppressHydrationWarning
       className={`${plusJakarta.variable} ${inter.variable} h-full antialiased`}
     >
       <head>
@@ -135,6 +136,7 @@ export default function RootLayout({
         />
       </head>
       <body
+        suppressHydrationWarning
         className="min-h-full flex flex-col"
         style={{ fontFamily: "var(--font-plus-jakarta), var(--font-inter), system-ui, sans-serif" }}
       >

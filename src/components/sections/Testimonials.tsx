@@ -140,6 +140,7 @@ export default function Testimonials() {
                       src={activeQuote.avatar} 
                       alt={activeQuote.author}
                       fill
+                      sizes="56px"
                       className="object-cover object-top"
                     />
                   </div>

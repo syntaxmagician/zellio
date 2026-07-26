@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLanguage } from "@/context/LanguageContext";
 import { ArrowRight, Sparkles, CheckCircle2, Zap, Rocket, Globe, ShieldCheck, Database, Settings, Heart, Smartphone, Bell, Users, Clock, BarChart3, Layers } from "lucide-react";
@@ -17,6 +18,7 @@ const solutionsData = {
         title: "Website",
         desc: "Expand your market reach and elevate your brand presence with high-converting, ultrafast custom web applications and corporate portals.",
         cta: "Learn More",
+        href: "/services/custom-website-development",
         image: "/woman-creative.png",
         gradient: "from-[#0055FF] via-[#0088FF] to-[#00C2FF]",
         borderGlow: "border-blue-300/40",
@@ -32,6 +34,7 @@ const solutionsData = {
         title: "Sistem Internal",
         desc: "Custom operational workflows, secure databases, and custom dashboard architectures built specifically to eliminate bottlenecks.",
         cta: "Learn More",
+        href: "/services/erp-system",
         image: "/woman-techy.png",
         gradient: "from-indigo-600 via-purple-500 to-violet-400",
         borderGlow: "border-purple-300/40",
@@ -47,6 +50,7 @@ const solutionsData = {
         title: "Mobile App",
         desc: "Engage your customers anywhere with sleek, native Android & iOS mobile applications designed for peak performance and user delight.",
         cta: "Learn More",
+        href: "/services/mobile-app-development",
         image: "/avatar-anisa.png",
         gradient: "from-rose-500 via-pink-500 to-fuchsia-400",
         borderGlow: "border-pink-300/40",
@@ -62,6 +66,7 @@ const solutionsData = {
         title: "HRIS & Payroll",
         desc: "Streamline employee attendance, performance management, tax compliance, and automated payroll systems tailored for modern organizations.",
         cta: "Learn More",
+        href: "/services/hris-payroll-system",
         image: "/cute-asian-woman.png",
         gradient: "from-emerald-600 via-teal-500 to-green-400",
         borderGlow: "border-emerald-300/40",
@@ -77,6 +82,7 @@ const solutionsData = {
         title: "ERP System",
         desc: "Comprehensive enterprise resource planning software integrating finance, inventory, supply chain, and operations in one centralized hub.",
         cta: "Learn More",
+        href: "/services/erp-system",
         image: "/asian-consultant.png",
         gradient: "from-amber-500 via-orange-500 to-yellow-400",
         borderGlow: "border-amber-300/40",
@@ -98,6 +104,7 @@ const solutionsData = {
         title: "Website",
         desc: "Kembangkan usaha dan jangkauan pasar Anda dengan aplikasi web kustom dan profil perusahaan premium yang cepat, aman, dan berkonversi tinggi.",
         cta: "Selengkapnya",
+        href: "/services/custom-website-development",
         image: "/woman-creative.png",
         gradient: "from-[#0055FF] via-[#0088FF] to-[#00C2FF]",
         borderGlow: "border-blue-300/40",
@@ -113,6 +120,7 @@ const solutionsData = {
         title: "Sistem Internal",
         desc: "Alur kerja operasional kustom, database aman, dan arsitektur dasbor internal yang dibangun khusus untuk merampingkan hambatan operasional.",
         cta: "Selengkapnya",
+        href: "/services/erp-system",
         image: "/woman-techy.png",
         gradient: "from-indigo-600 via-purple-500 to-violet-400",
         borderGlow: "border-purple-300/40",
@@ -128,6 +136,7 @@ const solutionsData = {
         title: "Mobile App",
         desc: "Jangkau pelanggan di mana saja dengan aplikasi seluler Android & iOS native berkinerja tinggi yang memanjakan pengguna dan mendorong konversi.",
         cta: "Selengkapnya",
+        href: "/services/mobile-app-development",
         image: "/avatar-anisa.png",
         gradient: "from-rose-500 via-pink-500 to-fuchsia-400",
         borderGlow: "border-pink-300/40",
@@ -143,6 +152,7 @@ const solutionsData = {
         title: "HRIS & Payroll",
         desc: "Kelola absensi karyawan, penilaian kinerja, kepatuhan pajak, dan sistem penggajian otomatis secara mulus dan akurat untuk perusahaan modern.",
         cta: "Selengkapnya",
+        href: "/services/hris-payroll-system",
         image: "/cute-asian-woman.png",
         gradient: "from-emerald-600 via-teal-500 to-green-400",
         borderGlow: "border-emerald-300/40",
@@ -158,6 +168,7 @@ const solutionsData = {
         title: "ERP System",
         desc: "Sistem perencanaan sumber daya terintegrasi penuh yang menghubungkan keuangan, inventaris, rantai pasokan, dan operasional dalam satu pusat.",
         cta: "Selengkapnya",
+        href: "/services/erp-system",
         image: "/asian-consultant.png",
         gradient: "from-amber-500 via-orange-500 to-yellow-400",
         borderGlow: "border-amber-300/40",
@@ -173,61 +184,60 @@ const solutionsData = {
 
 export default function VisionMission() {
   const { language } = useLanguage();
-  const text = solutionsData[language];
-  const [activeIdx, setActiveIdx] = useState(0); 
-
-  const activeItem = text.items[activeIdx] || text.items[0];
+  const text = solutionsData[language as "en" | "id"];
+  const [activeIdx, setActiveIdx] = useState(0);
+  const activeItem = text.items[activeIdx];
 
   return (
-    <section id="direction" className="relative py-12 lg:py-16 bg-[#F3F8FD] text-slate-900 border-y border-blue-100/60 overflow-hidden">
-      
-      {/* Subtle background ambient details */}
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-400/10 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-indigo-400/10 rounded-full blur-[120px] pointer-events-none" />
+    <section id="direction" className="relative py-20 lg:py-28 bg-white text-slate-900 border-y border-slate-100 overflow-hidden">
+
+      {/* Subtle dot pattern */}
+      <div className="absolute inset-0 opacity-[0.025] bg-[radial-gradient(#0f172a_1px,transparent_1px)] [background-size:28px_28px] pointer-events-none" />
 
       <div className="max-w-[1200px] mx-auto px-6 lg:px-12 relative z-10">
-        
-        {/* Centered Section Header */}
-        <div className="text-center max-w-2xl mx-auto mb-10 lg:mb-14">
-          <span className="text-[10px] font-mono font-bold tracking-[0.25em] text-blue-600 uppercase mb-2 inline-block bg-blue-100/80 px-3 py-1 rounded-full">
+
+        {/* ── HEADER ── */}
+        <div className="mb-16 lg:mb-20 max-w-2xl">
+          <span className="inline-block text-[10px] font-mono font-bold tracking-[0.35em] text-blue-600 uppercase mb-5">
             {text.sectionLabel}
           </span>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-slate-900 tracking-tight leading-[1.15]">
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-black tracking-tighter leading-[0.9] text-slate-900">
             {text.title}
           </h2>
         </div>
 
-        {/* 2-Column Composite & Accordion Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
-          
-          {/* LEFT COLUMN: Dynamic Photo & Emote Badges */}
-          <div className="col-span-1 lg:col-span-6 flex items-center justify-center relative min-h-[380px]">
-            
-            {/* Outer Decorative Rings that match the active category */}
-            <div className={`absolute w-[340px] h-[340px] sm:w-[400px] sm:h-[400px] rounded-full border border-dashed transition-colors duration-500 animate-[spin_60s_linear_infinite] ${activeItem.borderGlow}`} />
-            <div className={`absolute w-[310px] h-[310px] sm:w-[360px] sm:h-[360px] rounded-full border transition-colors duration-500 ${activeItem.borderGlow}`} />
+        {/* ── MAIN GRID: Portrait left · Accordion right ── */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
 
-            {/* Dotted Pattern Accents */}
-            <div className="absolute left-4 bottom-4 w-20 h-20 bg-[radial-gradient(#3b82f6_2px,transparent_2px)] [background-size:12px_12px] opacity-40 pointer-events-none" />
+          {/* LEFT — Portrait circle + animated badges */}
+          <div className="flex items-center justify-center relative min-h-[400px] order-2 lg:order-1">
 
-            {/* Main Vibrant Circle with Dynamic Gradient & Woman Portrait */}
-            <div className={`relative w-[280px] h-[280px] sm:w-[320px] sm:h-[320px] rounded-full bg-gradient-to-tr transition-all duration-700 shadow-lg p-1.5 flex items-center justify-center ${activeItem.gradient}`}>
+            {/* Spinning dashed ring */}
+            <div className={`absolute w-[340px] h-[340px] sm:w-[380px] sm:h-[380px] rounded-full border border-dashed transition-colors duration-700 animate-[spin_60s_linear_infinite] ${activeItem.borderGlow}`} />
+            {/* Static inner ring */}
+            <div className={`absolute w-[300px] h-[300px] sm:w-[340px] sm:h-[340px] rounded-full border transition-colors duration-700 ${activeItem.borderGlow}`} />
+
+            {/* Dot accent */}
+            <div className="absolute left-6 bottom-6 w-16 h-16 bg-[radial-gradient(#3b82f6_2px,transparent_2px)] [background-size:10px_10px] opacity-30 pointer-events-none" />
+
+            {/* Main portrait circle */}
+            <div className={`relative w-[260px] h-[260px] sm:w-[300px] sm:h-[300px] rounded-full bg-gradient-to-tr transition-all duration-700 shadow-2xl p-[5px] ${activeItem.gradient}`}>
               <div className="relative w-full h-full rounded-full overflow-hidden bg-white">
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={activeItem.image}
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1.05 }}
-                    exit={{ opacity: 0, scale: 1.05 }}
-                    transition={{ duration: 0.35, ease: "easeInOut" }}
+                    initial={{ opacity: 0, scale: 0.94 }}
+                    animate={{ opacity: 1, scale: 1.04 }}
+                    exit={{ opacity: 0, scale: 1.04 }}
+                    transition={{ duration: 0.32, ease: "easeInOut" }}
                     className="absolute inset-0 w-full h-full"
                   >
-                    <Image 
-                      src={activeItem.image} 
-                      alt={activeItem.title} 
-                      fill 
+                    <Image
+                      src={activeItem.image}
+                      alt={activeItem.title}
+                      fill
                       className="object-cover object-top"
-                      sizes="(max-width: 768px) 280px, 320px"
+                      sizes="(max-width: 768px) 260px, 300px"
                       priority
                     />
                   </motion.div>
@@ -235,7 +245,7 @@ export default function VisionMission() {
               </div>
             </div>
 
-            {/* Dynamic Animated Symbol / Emote Badges */}
+            {/* Animated icon badges */}
             <AnimatePresence mode="wait">
               {activeItem.badges?.map((badge, idx) => {
                 const BadgeIcon = badge.icon;
@@ -243,106 +253,99 @@ export default function VisionMission() {
                   <motion.div
                     key={`${activeItem.id}-badge-${idx}`}
                     initial={{ opacity: 0, scale: 0.5, y: 10 }}
-                    animate={{ 
-                      opacity: 1, 
-                      scale: [1, 1.05, 1],
+                    animate={{
+                      opacity: 1,
+                      scale: [1, 1.06, 1],
                       y: idx === 0 ? [0, -8, 0] : idx === 1 ? [0, 8, 0] : [0, 0, 0],
                       rotate: idx === 1 ? [0, 5, 0] : 0
                     }}
                     exit={{ opacity: 0, scale: 0.5 }}
-                    transition={{ 
-                      duration: idx === 0 ? 3.5 : idx === 1 ? 4.2 : 2.8, 
-                      repeat: Infinity, 
+                    transition={{
+                      duration: idx === 0 ? 3.5 : idx === 1 ? 4.2 : 2.8,
+                      repeat: Infinity,
                       ease: "easeInOut",
                       delay: idx * 0.2
                     }}
-                    className={`absolute ${badge.pos} w-${badge.size} h-${badge.size} rounded-full ${badge.bg} shadow-lg ${badge.border} flex items-center justify-center z-20 ${badge.color}`}
+                    className={`absolute ${badge.pos} w-${badge.size} h-${badge.size} rounded-full ${badge.bg} shadow-xl ${badge.border} flex items-center justify-center z-20 ${badge.color}`}
                   >
-                    <BadgeIcon size={badge.iconSize} strokeWidth={idx === 1 ? 2.5 : 2} className={idx === 0 ? "animate-pulse" : ""} fill={idx === 2 ? "currentColor" : "none"} />
+                    <BadgeIcon
+                      size={badge.iconSize}
+                      strokeWidth={idx === 1 ? 2.5 : 2}
+                      className={idx === 0 ? "animate-pulse" : ""}
+                      fill={idx === 2 ? "currentColor" : "none"}
+                    />
                   </motion.div>
                 );
               })}
             </AnimatePresence>
-
           </div>
 
-          {/* RIGHT COLUMN: Interactive Vertical Cards Accordion (Editorial Numbers) */}
-          <div className="col-span-1 lg:col-span-6 flex flex-col gap-2.5 max-w-lg w-full mx-auto lg:mx-0">
+          {/* RIGHT — Accordion service list */}
+          <div className="flex flex-col gap-2 order-1 lg:order-2">
             {text.items.map((item, idx) => {
               const isActive = activeIdx === idx;
-
               return (
-                <div
+                <motion.div
                   key={item.id}
                   onClick={() => setActiveIdx(idx)}
-                  className={`group w-full bg-white rounded-xl transition-all duration-300 cursor-pointer overflow-hidden ${
-                    isActive 
-                      ? "border border-blue-200 shadow-md p-4" 
-                      : "border border-slate-100 shadow-sm hover:border-blue-100 hover:shadow p-3.5"
+                  className={`group cursor-pointer rounded-2xl border transition-all duration-300 overflow-hidden ${
+                    isActive
+                      ? "border-slate-200 bg-slate-50 shadow-sm"
+                      : "border-transparent hover:border-slate-100 hover:bg-slate-50/50"
                   }`}
+                  layout
                 >
-                  {/* Card Header (Editorial Typography) */}
-                  <div className="flex items-center justify-between gap-3">
-                    <div className="flex items-center gap-3.5">
-                      {/* Editorial Numbering instead of AI/Lucide Icon */}
-                      <span className={`font-mono text-xs sm:text-sm font-black tracking-wider transition-colors duration-300 ${
-                        isActive ? "text-blue-600" : "text-slate-400 group-hover:text-blue-500"
-                      }`}>
+                  {/* Row header */}
+                  <div className="flex items-center justify-between gap-4 px-5 py-4">
+                    <div className="flex items-center gap-4 min-w-0">
+                      <span className={`font-mono text-xs font-black tracking-wider flex-shrink-0 transition-colors duration-300 ${isActive ? "text-blue-600" : "text-slate-300 group-hover:text-slate-400"}`}>
                         {item.num}
                       </span>
-                      
-                      <h3 className={`text-[14px] sm:text-[15px] font-bold tracking-tight transition-colors duration-300 ${
-                        isActive ? "text-blue-600" : "text-slate-700 group-hover:text-slate-900"
-                      }`}>
+                      <h3 className={`text-[15px] font-bold tracking-tight truncate transition-colors duration-300 ${isActive ? "text-slate-900" : "text-slate-600 group-hover:text-slate-900"}`}>
                         {item.title}
                       </h3>
                     </div>
-
-                    {/* Expand Indicator */}
-                    <div className={`transition-transform duration-300 ${
-                      isActive ? "text-blue-500 rotate-90" : "text-slate-300 group-hover:text-slate-400"
-                    }`}>
-                      <ArrowRight size={14} />
-                    </div>
+                    <motion.div
+                      animate={{ rotate: isActive ? 90 : 0 }}
+                      transition={{ duration: 0.2 }}
+                      className={`flex-shrink-0 transition-colors duration-300 ${isActive ? "text-blue-500" : "text-slate-300 group-hover:text-slate-400"}`}
+                    >
+                      <ArrowRight size={15} />
+                    </motion.div>
                   </div>
 
-                  {/* Expanded Body Content */}
+                  {/* Expanded body */}
                   <AnimatePresence initial={false}>
                     {isActive && (
                       <motion.div
                         initial={{ height: 0, opacity: 0 }}
                         animate={{ height: "auto", opacity: 1 }}
                         exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+                        transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
                         className="overflow-hidden"
                       >
-                        <div className="pt-3 mt-3 border-t border-slate-50 space-y-3">
-                          <p className="text-slate-500 text-[13px] leading-relaxed pr-4">
+                        <div className="px-5 pb-5 pt-1 border-t border-slate-100 space-y-4">
+                          <p className="text-slate-500 text-[13px] leading-relaxed">
                             {item.desc}
                           </p>
-
-                          <div className="pt-1">
-                            <a
-                              href="/contact"
-                              onClick={(e) => e.stopPropagation()}
-                              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-md bg-blue-600 hover:bg-blue-700 text-white text-[11px] font-bold transition-all duration-200"
-                            >
-                              <span>{item.cta}</span>
-                              <ArrowRight size={10} />
-                            </a>
-                          </div>
+                          <Link
+                            href={item.href}
+                            onClick={(e) => e.stopPropagation()}
+                            className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-slate-900 hover:bg-blue-600 text-white text-[11px] font-bold tracking-wide transition-all duration-200"
+                          >
+                            {item.cta}
+                            <ArrowRight size={10} />
+                          </Link>
                         </div>
                       </motion.div>
                     )}
                   </AnimatePresence>
-
-                </div>
+                </motion.div>
               );
             })}
           </div>
 
         </div>
-
       </div>
     </section>
   );

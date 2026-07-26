@@ -12,6 +12,8 @@ const companyLogos = [
   { name: "Elogs", src: "/elogs.png" },
   { name: "Jaja.id", src: "/jajaid.png" },
   { name: "Warung BungaPagi", src: "/warungbunga.avif" },
+  { name: "Guruino", src: "/guruino.png" },
+  { name: "NontonKuy", src: "/nontonkuy.png" },
 ];
 
 function LogoChip({ name, src }: { name: string; src: string }) {

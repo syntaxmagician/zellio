@@ -97,9 +97,8 @@ export default function Footer() {
   const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
 
   return (
-    <div className="bg-white pt-16 lg:pt-24">
-      <footer className="bg-[#0F172A] text-white">
-        {/* Main Footer */}
+    <footer className="bg-[#0F172A] text-white pt-16 lg:pt-24">
+      {/* Main Footer */}
         <div className="section-container pt-16 lg:pt-20 pb-14 border-t border-white/5">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-start">
 
@@ -107,7 +106,7 @@ export default function Footer() {
             <div className="lg:col-span-5 flex flex-col justify-start">
               <a href="#home" className="flex items-center mb-4 group">
                 <Image
-                  src="/zelio.png"
+                  src="/zellio3.png"
                   alt="Zellio Logo"
                   width={200}
                   height={64}
@@ -178,6 +177,5 @@ export default function Footer() {
           </div>
         </div>
       </footer>
-    </div>
   );
 }

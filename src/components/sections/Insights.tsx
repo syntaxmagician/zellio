@@ -90,7 +90,7 @@ export default function Insights() {
             transition={{ duration: 1.5 }}
             className="absolute inset-0"
           >
-            <Image src={activeStory.img} fill className="object-cover blur-[100px] scale-125 saturate-150" alt="blur" />
+            <Image src={activeStory.img} fill sizes="100vw" className="object-cover blur-[100px] scale-125 saturate-150" alt="blur" />
           </motion.div>
         </AnimatePresence>
       </div>
@@ -186,7 +186,7 @@ export default function Insights() {
                  transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
                  className="absolute inset-0"
                >
-                 <Image src={activeStory.img} fill className="object-cover" alt={activeStory.title} />
+                 <Image src={activeStory.img} fill sizes="(max-width: 1024px) 100vw, (max-width: 1280px) 60vw, 800px" className="object-cover" alt={activeStory.title} />
                </motion.div>
             </AnimatePresence>
           </div>
@@ -212,7 +212,7 @@ export default function Insights() {
                       : 'opacity-50 hover:opacity-80 scale-[0.98] hover:scale-100 grayscale-[30%] hover:grayscale-0'
                   }`}
                 >
-                   <Image src={s.img} fill className="object-cover transition-transform duration-700 group-hover:scale-110" alt={`thumb-${i}`} />
+                   <Image src={s.img} fill sizes="(max-width: 768px) 140px, 200px" className="object-cover transition-transform duration-700 group-hover:scale-110" alt={`thumb-${i}`} />
                    
                    {/* Light vignette for thumbnails to keep text readable */}
                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent opacity-80 group-hover:opacity-100 transition-opacity" />

@@ -178,7 +178,7 @@ function EngineeringWorkflowSectionContent({ language }: { language: "en" | "id"
                 <div className="col-span-7 bg-[#EAF2FC]/40 border-l border-t border-r border-blue-100/40 pt-5 pb-3 rounded-tl-2xl flex justify-center items-center">
                   <div className="relative w-28 md:w-36 h-10 flex items-center justify-center">
                     <Image 
-                      src="/zelio.png" 
+                      src="/zellio3.png" 
                       alt="Zellio" 
                       width={200}
                       height={64}

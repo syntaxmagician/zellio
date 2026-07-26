@@ -120,6 +120,26 @@ const projects: Project[] = [
     icon: Globe,
     accent: "text-fuchsia-600 bg-fuchsia-50 border-fuchsia-100",
   },
+  {
+    title: "Guruino",
+    category: "EdTech Platform",
+    type: "Website",
+    desc: "Platform pembelajaran daring interaktif untuk menghubungkan siswa dengan mentor ahli. Memiliki fitur ruang kelas virtual, penjadwalan sesi belajar, dan pembayaran aman.",
+    tags: ["Next.js", "TailwindCSS", "EdTech API"],
+    image: "/guruino1.jpeg",
+    icon: Globe,
+    accent: "text-blue-600 bg-blue-50 border-blue-100",
+  },
+  {
+    title: "NontonKuy",
+    category: "Streaming Community",
+    type: "Website",
+    desc: "Platform media hiburan untuk nonton bareng film secara virtual. Dilengkapi fitur live chat interaktif, sinkronisasi pemutaran video, dan ruang nonton publik.",
+    tags: ["React", "WebSockets", "TailwindCSS"],
+    image: "/nontonkuy.jpeg",
+    icon: Laptop,
+    accent: "text-purple-600 bg-purple-50 border-purple-100",
+  },
 ];
 
 const filterCategories = ["All", "Website", "Internal Dashboard", "APP"] as const;
