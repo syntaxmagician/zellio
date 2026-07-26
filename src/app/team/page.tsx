@@ -12,17 +12,28 @@ import TechEcosystem from "@/components/team/TechEcosystem";
 import TeamCTA from "@/components/team/TeamCTA";
 import TeamSplashLoader from "@/components/layout/TeamSplashLoader";
 
+const SPLASH_SEEN_KEY = "zellio-team-splash-seen";
+
 export default function TeamPage() {
-  const [loading, setLoading] = useState(true);
+  // "pending" -> first client frame; "splash" -> terminal intro (once per session); "done" -> content
+  const [phase, setPhase] = useState<"pending" | "splash" | "done">("pending");
 
   useEffect(() => {
-    // Prevent scrolling during splash loader sequence
+    // sessionStorage is only readable after hydration, so the phase decision
+    // has to happen in an effect rather than during render.
+    if (sessionStorage.getItem(SPLASH_SEEN_KEY)) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setPhase("done");
+      return;
+    }
+    sessionStorage.setItem(SPLASH_SEEN_KEY, "1");
+    setPhase("splash");
     document.body.style.overflow = "hidden";
 
     const timer = setTimeout(() => {
-      setLoading(false);
+      setPhase("done");
       document.body.style.overflow = "auto";
-    }, 2500);
+    }, 1500);
 
     return () => {
       clearTimeout(timer);
@@ -30,16 +41,23 @@ export default function TeamPage() {
     };
   }, []);
 
+  // Let GSAP-driven sections (TeamHero) know the page is visible.
+  useEffect(() => {
+    if (phase === "done") {
+      window.dispatchEvent(new Event("zellio:ready"));
+    }
+  }, [phase]);
+
   return (
     <>
-      <AnimatePresence mode="wait">
-        {loading && <TeamSplashLoader key="team-loader" />}
+      <AnimatePresence>
+        {phase === "splash" && <TeamSplashLoader key="team-loader" />}
       </AnimatePresence>
 
       <motion.div
         initial={{ opacity: 0 }}
-        animate={!loading ? { opacity: 1 } : { opacity: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+        animate={phase === "done" ? { opacity: 1 } : { opacity: 0 }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
         className="min-h-screen bg-[#FAFAFA] flex flex-col justify-between selection:bg-blue-500/30 w-full will-change-opacity"
       >
         <Navbar />

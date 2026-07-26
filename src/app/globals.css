@@ -87,38 +87,29 @@ body {
   to { width: 100%; }
 }
 
-/* Marquee ticker */
-@keyframes marquee {
-  0%   { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
-
-.animate-marquee {
-  display: flex;
-  animation: marquee 30s linear infinite;
-  will-change: transform;
-}
-
-.animate-marquee:hover {
-  animation-play-state: paused;
-}
-
-/* Marquee fade edges */
-.marquee-fade {
+/* Infinite client-logo marquee (drift is driven from JS, scroll-velocity reactive) */
+.marquee {
+  overflow: hidden;
   -webkit-mask-image: linear-gradient(
     to right,
     transparent 0%,
-    black 8%,
-    black 92%,
+    black 7%,
+    black 93%,
     transparent 100%
   );
   mask-image: linear-gradient(
     to right,
     transparent 0%,
-    black 8%,
-    black 92%,
+    black 7%,
+    black 93%,
     transparent 100%
   );
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  will-change: transform;
 }
 
 .animate-float {

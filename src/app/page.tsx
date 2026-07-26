@@ -6,62 +6,77 @@ import SplashLoader from "@/components/layout/SplashLoader";
 
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-import Hero from "@/components/sections/Hero";
+import HeroV2 from "@/components/sections/HeroV2";
 
-import About from "@/components/sections/About";
-import VisionMission from "@/components/sections/VisionMission";
-import Services from "@/components/sections/Services";
-import Banner from "@/components/sections/Banner";
-import EngineeringEcosystem from "@/components/sections/EngineeringEcosystem";
+import TrustedBy from "@/components/sections/TrustedBy";
+import Manifesto from "@/components/sections/Manifesto";
+import ServicesRail from "@/components/sections/ServicesRail";
+import TechStack from "@/components/sections/TechStack";
 import WhyChoose from "@/components/sections/WhyChoose";
-import Insights from "@/components/sections/Insights";
+import SelectedWork from "@/components/sections/SelectedWork";
 
 import Testimonials from "@/components/sections/Testimonials";
 import FAQ from "@/components/sections/FAQ";
 import Contact from "@/components/sections/Contact";
 
+const SPLASH_SEEN_KEY = "zellio-splash-seen";
+
 export default function Home() {
-  const [loading, setLoading] = useState(true);
+  // "pending" -> first client frame; "splash" -> intro plays (once per session); "done" -> content
+  const [phase, setPhase] = useState<"pending" | "splash" | "done">("pending");
 
   useEffect(() => {
-    // Prevent scrolling during splash
+    // sessionStorage is only readable after hydration, so the phase decision
+    // has to happen in an effect rather than during render.
+    if (sessionStorage.getItem(SPLASH_SEEN_KEY)) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setPhase("done");
+      return;
+    }
+    sessionStorage.setItem(SPLASH_SEEN_KEY, "1");
+    setPhase("splash");
     document.body.style.overflow = "hidden";
-    
-    // Allow the premium loader to complete its cinematic sequence
+
     const timer = setTimeout(() => {
-      setLoading(false);
+      setPhase("done");
       document.body.style.overflow = "auto";
-    }, 2800);
-    
+    }, 1500);
+
     return () => {
       clearTimeout(timer);
       document.body.style.overflow = "auto";
     };
   }, []);
 
+  // Let GSAP-driven sections (HeroV2) know the page is visible.
+  useEffect(() => {
+    if (phase === "done") {
+      window.dispatchEvent(new Event("zellio:ready"));
+    }
+  }, [phase]);
+
   return (
     <>
-      <AnimatePresence mode="wait">
-        {loading && <SplashLoader key="loader" />}
+      <AnimatePresence>
+        {phase === "splash" && <SplashLoader key="loader" />}
       </AnimatePresence>
 
       <motion.div
         initial={{ opacity: 0 }}
-        animate={!loading ? { opacity: 1 } : { opacity: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+        animate={phase === "done" ? { opacity: 1 } : { opacity: 0 }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
         className="w-full will-change-opacity"
       >
         <Navbar />
         <main>
-          <Hero />
+          <HeroV2 />
 
-          <About />
-          <VisionMission />
-          <Services />
-          <Banner />
-          <EngineeringEcosystem />
+          <TrustedBy />
+          <Manifesto />
+          <ServicesRail />
+          <TechStack />
+          <SelectedWork />
           <WhyChoose />
-          <Insights />
 
           <Testimonials />
           <FAQ />

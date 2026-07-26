@@ -5,6 +5,10 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { Hammer, ShieldCheck, Milestone } from "lucide-react";
 import TeamAvatar from "./TeamAvatar";
 import AuroraFlowHero from "../ui/AuroraFlowHero";
+import { gsap, useGSAP } from "@/lib/gsap";
+
+// Kept in sync with team/page.tsx — the splash sets this before the hero can be seen.
+const SPLASH_SEEN_KEY = "zellio-team-splash-seen";
 
 export default function TeamHero() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -14,6 +18,37 @@ export default function TeamHero() {
   const y2 = useTransform(scrollY, [0, 500], [0, 15]);
   const y3 = useTransform(scrollY, [0, 500], [0, -35]);
   const y4 = useTransform(scrollY, [0, 500], [0, 25]);
+
+  useGSAP(
+    () => {
+      const mm = gsap.matchMedia();
+      mm.add("(prefers-reduced-motion: no-preference)", () => {
+        const tl = gsap.timeline({ paused: true, defaults: { ease: "power4.out" } });
+        tl.from(".th-badge", { y: 14, opacity: 0, duration: 0.5 })
+          .from(".th-title", { y: 26, opacity: 0, duration: 0.8 }, "-=0.25")
+          .from(".th-desc", { y: 16, opacity: 0, duration: 0.6 }, "-=0.5")
+          .from(
+            ".th-card",
+            { y: 24, opacity: 0, scale: 0.94, duration: 0.7, stagger: 0.09 },
+            "-=0.45"
+          );
+
+        let fallback: ReturnType<typeof setTimeout> | undefined;
+        const play = () => tl.play();
+        if (sessionStorage.getItem(SPLASH_SEEN_KEY)) {
+          play();
+        } else {
+          window.addEventListener("zellio:ready", play, { once: true });
+          fallback = setTimeout(play, 2600);
+        }
+        return () => {
+          window.removeEventListener("zellio:ready", play);
+          if (fallback) clearTimeout(fallback);
+        };
+      });
+    },
+    { scope: containerRef }
+  );
 
   return (
     <section ref={containerRef} className="w-full relative overflow-hidden py-10 lg:py-16 border-b border-slate-100">
@@ -26,13 +61,13 @@ export default function TeamHero() {
 
         {/* Left Side: Content */}
         <div className="lg:col-span-6 space-y-5 lg:space-y-6">
-          <div className="inline-block px-3 py-1 rounded-full bg-white text-[#2563EB] text-[10px] sm:text-xs font-bold uppercase tracking-widest border border-blue-100 shadow-sm">
+          <div className="th-badge inline-block px-3 py-1 rounded-full bg-white text-[#2563EB] text-[10px] sm:text-xs font-bold uppercase tracking-widest border border-blue-100 shadow-sm">
             Meet The Builders.
           </div>
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-[#0F172A] tracking-tight leading-tight">
+          <h1 className="th-title text-4xl sm:text-5xl lg:text-6xl font-black text-[#0F172A] tracking-tight leading-tight">
             Engineering is never a solo effort.
           </h1>
-          <p className="text-slate-500 font-medium text-sm sm:text-base leading-relaxed max-w-xl">
+          <p className="th-desc text-slate-500 font-medium text-sm sm:text-base leading-relaxed max-w-xl">
             Behind every enterprise platform is a multidisciplinary team of designers, software engineers, architects, and strategists dedicated to building products that stand the test of time.
           </p>
         </div>
@@ -43,7 +78,7 @@ export default function TeamHero() {
           {/* Portrait 1: Leader (Vico Tegar) */}
           <motion.div
             style={{ y: y1 }}
-            className="relative lg:absolute lg:left-[0%] lg:top-[5%] w-full lg:w-[130px] xl:w-[150px] aspect-[4/5] bg-white border border-slate-200/80 rounded-[20px] p-3 shadow-lg group hover:shadow-xl transition-shadow duration-500 z-20 flex flex-col"
+            className="th-card relative lg:absolute lg:left-[0%] lg:top-[5%] w-full lg:w-[130px] xl:w-[150px] aspect-[4/5] bg-white border border-slate-200/80 rounded-[20px] p-3 shadow-lg group hover:shadow-xl transition-shadow duration-500 z-20 flex flex-col"
           >
             <div className="w-full flex-grow rounded-[12px] bg-slate-950 relative overflow-hidden flex items-center justify-center">
               <TeamAvatar name="vico" className="w-[120%] h-[120%] mt-8 object-cover scale-110 group-hover:scale-105 transition-transform duration-700" />
@@ -57,7 +92,7 @@ export default function TeamHero() {
           {/* Portrait 2: Frontend (Samuel Sukarno) */}
           <motion.div
             style={{ y: y2 }}
-            className="relative lg:absolute lg:left-[25%] lg:bottom-[5%] w-full lg:w-[120px] xl:w-[140px] aspect-[4/5] bg-white border border-slate-200/80 rounded-[20px] p-3 shadow-lg group hover:shadow-xl transition-shadow duration-500 z-10 flex flex-col"
+            className="th-card relative lg:absolute lg:left-[25%] lg:bottom-[5%] w-full lg:w-[120px] xl:w-[140px] aspect-[4/5] bg-white border border-slate-200/80 rounded-[20px] p-3 shadow-lg group hover:shadow-xl transition-shadow duration-500 z-10 flex flex-col"
           >
             <div className="w-full flex-grow rounded-[12px] bg-emerald-950 relative overflow-hidden flex items-center justify-center">
               <TeamAvatar name="samuel" className="w-[120%] h-[120%] mt-8 object-cover scale-110 group-hover:scale-105 transition-transform duration-700" />
@@ -71,7 +106,7 @@ export default function TeamHero() {
           {/* Portrait 3: Backend (Muhammad Cavendio) */}
           <motion.div
             style={{ y: y3 }}
-            className="relative lg:absolute lg:left-[50%] lg:top-[5%] w-full lg:w-[130px] xl:w-[150px] aspect-[4/5] bg-white border border-slate-200/80 rounded-[20px] p-3 shadow-lg group hover:shadow-xl transition-shadow duration-500 z-30 flex flex-col"
+            className="th-card relative lg:absolute lg:left-[50%] lg:top-[5%] w-full lg:w-[130px] xl:w-[150px] aspect-[4/5] bg-white border border-slate-200/80 rounded-[20px] p-3 shadow-lg group hover:shadow-xl transition-shadow duration-500 z-30 flex flex-col"
           >
             <div className="w-full flex-grow rounded-[12px] bg-indigo-950 relative overflow-hidden flex items-center justify-center">
               <TeamAvatar name="cavendio" className="w-[120%] h-[120%] mt-8 object-cover scale-110 group-hover:scale-105 transition-transform duration-700" />
@@ -85,7 +120,7 @@ export default function TeamHero() {
           {/* Portrait 4: Server (Hasyim Ridwan) */}
           <motion.div
             style={{ y: y4 }}
-            className="relative lg:absolute lg:left-[75%] lg:bottom-[5%] w-full lg:w-[120px] xl:w-[140px] aspect-[4/5] bg-white border border-slate-200/80 rounded-[20px] p-3 shadow-lg group hover:shadow-xl transition-shadow duration-500 z-40 flex flex-col"
+            className="th-card relative lg:absolute lg:left-[75%] lg:bottom-[5%] w-full lg:w-[120px] xl:w-[140px] aspect-[4/5] bg-white border border-slate-200/80 rounded-[20px] p-3 shadow-lg group hover:shadow-xl transition-shadow duration-500 z-40 flex flex-col"
           >
             <div className="w-full flex-grow rounded-[12px] bg-sky-950 relative overflow-hidden flex items-center justify-center">
               <TeamAvatar name="hasyim" className="w-[120%] h-[120%] mt-8 object-cover scale-110 group-hover:scale-105 transition-transform duration-700" />
