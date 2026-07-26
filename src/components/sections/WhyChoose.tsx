@@ -139,7 +139,10 @@ export default function WhyChoose() {
         <div ref={containerTrackRef} className="w-full relative overflow-hidden my-12 lg:my-16">
           <motion.div
             style={{ scale }}
-            className="w-full h-[280px] md:h-[320px] lg:h-[380px] xl:h-[420px] rounded-[32px] md:rounded-[40px] overflow-hidden border border-slate-200/60 shadow-[0_20px_50px_-15px_rgba(0,0,0,0.03)] relative bg-white"
+            /* Capped at the video's own 1024px width — object-cover would
+               otherwise stretch a 1024x576 file across the full 1350px column
+               and soften it. */
+            className="w-full max-w-[1024px] mx-auto h-[280px] md:h-[320px] lg:h-[380px] xl:h-[420px] rounded-[32px] md:rounded-[40px] overflow-hidden border border-slate-200/60 shadow-[0_20px_50px_-15px_rgba(0,0,0,0.03)] relative bg-white"
           >
             <video
               src="/globe.mp4"

@@ -21,12 +21,20 @@ const localText = {
     headline: "Companies that run on our code.",
     desc: "Ten organizations across nine industries — travel, logistics, legal, education, and beyond — operate on systems engineered by ZELLIO.",
     listLabel: "Our clients",
+    tally: [
+      { value: "10", label: "Clients" },
+      { value: "9", label: "Industries" },
+    ],
   },
   id: {
     badge: "Dipercaya Oleh",
     headline: "Perusahaan yang berjalan di atas kode kami.",
     desc: "Sepuluh organisasi dari sembilan industri — travel, logistik, hukum, pendidikan, dan lainnya — beroperasi dengan sistem yang dibangun ZELLIO.",
     listLabel: "Klien kami",
+    tally: [
+      { value: "10", label: "Klien" },
+      { value: "9", label: "Industri" },
+    ],
   },
 };
 
@@ -189,6 +197,28 @@ export default function TrustedBy() {
           listLabel={text.listLabel}
         />
         <MarqueeRow clients={rowTwo} direction="right" baseSpeed={1.2} language={language} />
+      </motion.div>
+
+      {/* Tally — moved here from the hero, where it fell below the fold */}
+      <motion.div
+        initial={{ opacity: 0, y: rise }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-60px" }}
+        transition={{ duration: 0.6, delay: 0.1, ease: premiumEase }}
+        className="max-w-[1400px] mx-auto px-6 mt-14 lg:mt-16"
+      >
+        <div className="flex items-stretch gap-10 sm:gap-14 border-t border-slate-200/80 pt-7">
+          {text.tally.map((t) => (
+            <div key={t.label} className="flex items-baseline gap-2.5">
+              <span className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight tabular-nums">
+                {t.value}
+              </span>
+              <span className="text-[10px] font-mono font-bold tracking-[0.25em] uppercase text-slate-500">
+                {t.label}
+              </span>
+            </div>
+          ))}
+        </div>
       </motion.div>
     </section>
   );

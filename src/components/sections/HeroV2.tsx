@@ -4,6 +4,7 @@ import { useRef } from "react";
 import { ArrowRight } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 import { gsap, useGSAP } from "@/lib/gsap";
+import { isReady } from "@/lib/ready";
 
 const localText = {
   en: {
@@ -27,9 +28,6 @@ const localText = {
     foot: "10 Klien — 9 Industri",
   },
 };
-
-// Kept in sync with page.tsx — the splash sets this before the hero can be seen.
-const SPLASH_SEEN_KEY = "zellio-splash-seen";
 
 export default function HeroV2() {
   const { language } = useLanguage();
@@ -58,17 +56,19 @@ export default function HeroV2() {
             { clipPath: "inset(0% 0% 0% 0%)", duration: 1.2, ease: "expo.out" },
             0.25
           )
-          .from(".hero-foot", { opacity: 0, duration: 0.6 }, "-=0.4");
+          // Lands early rather than last — it used to appear ~5s after load,
+          // by which point the reader has usually scrolled past it.
+          .from(".hero-foot", { y: 12, opacity: 0, duration: 0.6 }, 0.5);
 
-        // First visit: wait for the splash to finish. Repeat visits (and
-        // language switches) already have the flag set, so play immediately.
+        // The splash now plays on every visit, so wait for it — unless it has
+        // already finished (e.g. this is a remount after a language switch).
         let fallback: ReturnType<typeof setTimeout> | undefined;
         const play = () => tl.play();
-        if (sessionStorage.getItem(SPLASH_SEEN_KEY)) {
+        if (isReady()) {
           play();
         } else {
           window.addEventListener("zellio:ready", play, { once: true });
-          fallback = setTimeout(play, 2600);
+          fallback = setTimeout(play, 4000);
         }
 
         // ---- Scroll-linked exit: copy drifts up, video sinks slower ----
@@ -84,12 +84,26 @@ export default function HeroV2() {
           .to(".hero-copy", { y: -90, opacity: 0 }, 0)
           .to(".hero-video-wrap", { y: 140, scale: 1.06 }, 0);
 
-        // Scroll hint: a dash cycling through its little track.
-        gsap.fromTo(
-          ".hero-scroll-dash",
-          { yPercent: -110 },
-          { yPercent: 110, duration: 1.5, ease: "power2.inOut", repeat: -1, repeatDelay: 0.25 }
-        );
+        // Scroll hint: the wheel dot falls and fades, then restarts.
+        gsap
+          .timeline({ repeat: -1, repeatDelay: 0.4 })
+          .fromTo(
+            ".hero-scroll-dash",
+            { y: 0, opacity: 0 },
+            { opacity: 1, duration: 0.22, ease: "power1.out" },
+            0
+          )
+          .to(".hero-scroll-dash", { y: 16, duration: 1.05, ease: "power2.inOut" }, 0)
+          .to(".hero-scroll-dash", { opacity: 0, duration: 0.35, ease: "power1.in" }, 0.7);
+
+        // A slow bob on the body keeps the cue alive between dot cycles.
+        gsap.to(".hero-mouse", {
+          y: 4,
+          duration: 1.6,
+          ease: "sine.inOut",
+          repeat: -1,
+          yoyo: true,
+        });
 
         return () => {
           window.removeEventListener("zellio:ready", play);
@@ -120,7 +134,8 @@ export default function HeroV2() {
         backgroundSize: "48px 48px",
       }}
     >
-      {/* Right-side vertical video, masked into the paper */}
+      {/* Right-side vertical video, masked into the paper. The 4K source has
+          headroom to spare at full-bleed, so object-cover only ever shrinks it. */}
       <div className="hero-video-wrap absolute top-0 right-0 w-full h-full overflow-hidden pointer-events-none z-0 will-change-transform">
         <div
           className="hero-video-clip w-full h-full"
@@ -132,7 +147,7 @@ export default function HeroV2() {
           }}
         >
           <video
-            src="/vertikalHero.mp4"
+            src="/vertical_hero.mp4"
             autoPlay
             loop
             muted
@@ -195,20 +210,21 @@ export default function HeroV2() {
         </div>
       </div>
 
-      {/* Bottom annotation strip */}
+      {/* Scroll cue only. The client/industry count moved to TrustedBy, where
+          it belongs — down here it sat below the fold on shorter screens. */}
       <div className="hero-foot absolute bottom-0 left-0 right-0 z-10 pointer-events-none">
-        <div className="max-w-[1400px] mx-auto px-6 pb-8 flex items-end justify-between">
-          <div className="flex items-center gap-3">
-            <span className="relative block w-px h-10 bg-slate-200 overflow-hidden">
-              <span className="hero-scroll-dash absolute inset-x-0 top-0 h-4 bg-blue-600" />
+        <div className="max-w-[1400px] mx-auto px-6 pb-8 flex items-end">
+          <div className="flex items-center gap-4">
+            {/* Mouse outline with a wheel dot travelling down it. The dot is
+                offset with a margin rather than -translate-x-1/2, because GSAP
+                writes to `transform` and would wipe out the centring. */}
+            <span className="hero-mouse relative block w-[26px] h-[42px] rounded-full border-2 border-slate-400/90">
+              <span className="hero-scroll-dash absolute left-1/2 -ml-[1.5px] top-[7px] block w-[3px] h-[8px] rounded-full bg-blue-600" />
             </span>
-            <span className="text-[10px] font-mono font-bold tracking-[0.25em] uppercase text-slate-400">
+            <span className="text-xs sm:text-sm font-mono font-bold tracking-[0.28em] uppercase text-slate-700">
               {text.scroll}
             </span>
           </div>
-          <span className="hidden sm:block text-[10px] font-mono font-bold tracking-[0.25em] uppercase text-slate-400">
-            {text.foot}
-          </span>
         </div>
       </div>
     </section>

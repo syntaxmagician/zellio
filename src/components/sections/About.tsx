@@ -1,5 +1,7 @@
-import React from "react";
-import { motion } from "framer-motion";
+"use client";
+
+import React, { useEffect, useRef, useState } from "react";
+import { motion, animate, useInView, useReducedMotion } from "framer-motion";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import Image from "next/image";
 import { useLanguage } from "@/context/LanguageContext";
@@ -244,6 +246,60 @@ function EngineeringWorkflowSectionContent({ language }: { language: "en" | "id"
   );
 }
 
+/**
+ * Counts up to the numeric part of a stat ("150+" -> 150, keeping "+").
+ * The value itself is animated, so this drives state via animate()'s onUpdate
+ * rather than using a declarative whileInView transition.
+ */
+function StatCounter({
+  value,
+  label,
+  delay,
+}: {
+  value: string;
+  label: string;
+  delay: number;
+}) {
+  const target = parseInt(value.replace(/\D/g, ""), 10) || 0;
+  const suffix = value.replace(/[\d\s]/g, "");
+
+  const ref = useRef<HTMLDivElement>(null);
+  const inView = useInView(ref, { once: true, margin: "-80px" });
+  const reduceMotion = useReducedMotion();
+  const [display, setDisplay] = useState(reduceMotion ? target : 0);
+
+  useEffect(() => {
+    if (!inView || reduceMotion) return;
+    const controls = animate(0, target, {
+      duration: 1.4,
+      delay,
+      ease: [0.22, 1, 0.36, 1],
+      onUpdate: (latest) => setDisplay(Math.round(latest)),
+    });
+    return () => controls.stop();
+  }, [inView, target, delay, reduceMotion]);
+
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 14 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-80px" }}
+      transition={{ duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] }}
+      className="border-t border-slate-200 pt-4"
+    >
+      {/* tabular-nums keeps the digits from jittering while counting */}
+      <div className="text-3xl md:text-4xl font-black text-slate-900 tracking-tight tabular-nums leading-none">
+        {display}
+        <span className="text-blue-600">{suffix}</span>
+      </div>
+      <div className="text-[10px] font-mono font-bold tracking-[0.18em] uppercase text-slate-400 mt-2.5 leading-tight">
+        {label}
+      </div>
+    </motion.div>
+  );
+}
+
 export default function About() {
   const { language } = useLanguage();
   const text = localText[language];
@@ -281,53 +337,8 @@ export default function About() {
                   className="w-full h-full object-cover pointer-events-none"
                 />
 
-                {/* Muted overlay for readability */}
-                <div className="absolute inset-0 bg-slate-950/15 z-10 pointer-events-none" />
-
-                {/* Elegant overlays representing stats */}
-                <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.2, ease: premiumEase }}
-                  className="absolute top-6 left-6 z-20 backdrop-blur-md bg-white/70 border border-white/30 px-5 py-3 rounded-2xl shadow-sm flex flex-col items-start w-32 md:w-36 select-none"
-                >
-                  <span className="text-xl md:text-2xl font-black text-slate-900 tracking-tight">{text.stats[0].value}</span>
-                  <span className="text-[9px] md:text-[10px] font-mono font-bold tracking-wider text-slate-400 uppercase leading-tight mt-1">{text.stats[0].label}</span>
-                </motion.div>
-
-                <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.3, ease: premiumEase }}
-                  className="absolute top-16 right-6 z-20 backdrop-blur-md bg-white/70 border border-white/30 px-5 py-3 rounded-2xl shadow-sm flex flex-col items-start w-32 md:w-36 select-none"
-                >
-                  <span className="text-xl md:text-2xl font-black text-slate-900 tracking-tight">{text.stats[1].value}</span>
-                  <span className="text-[9px] md:text-[10px] font-mono font-bold tracking-wider text-slate-400 uppercase leading-tight mt-1">{text.stats[1].label}</span>
-                </motion.div>
-
-                <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.4, ease: premiumEase }}
-                  className="absolute bottom-16 left-6 z-20 backdrop-blur-md bg-white/70 border border-white/30 px-5 py-3 rounded-2xl shadow-sm flex flex-col items-start w-32 md:w-36 select-none"
-                >
-                  <span className="text-xl md:text-2xl font-black text-slate-900 tracking-tight">{text.stats[2].value}</span>
-                  <span className="text-[9px] md:text-[10px] font-mono font-bold tracking-wider text-slate-400 uppercase leading-tight mt-1">{text.stats[2].label}</span>
-                </motion.div>
-
-                <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.5, ease: premiumEase }}
-                  className="absolute bottom-6 right-6 z-20 backdrop-blur-md bg-white/70 border border-white/30 px-5 py-3 rounded-2xl shadow-sm flex flex-col items-start w-32 md:w-36 select-none"
-                >
-                  <span className="text-xl md:text-2xl font-black text-slate-900 tracking-tight">{text.stats[3].value}</span>
-                  <span className="text-[9px] md:text-[10px] font-mono font-bold tracking-wider text-slate-400 uppercase leading-tight mt-1">{text.stats[3].label}</span>
-                </motion.div>
+                {/* Subtle grade so the video sits calmly next to the copy */}
+                <div className="absolute inset-0 bg-slate-950/10 z-10 pointer-events-none" />
 
               </motion.div>
             </div>
@@ -349,6 +360,19 @@ export default function About() {
               <div className="space-y-6 text-slate-500 font-medium text-base md:text-lg leading-relaxed mb-10 pr-2">
                 <p>{text.para1}</p>
                 <p>{text.para2}</p>
+              </div>
+
+              {/* Proof points — moved off the video so the numbers are readable
+                  and can animate on their own baseline grid. */}
+              <div className="grid grid-cols-2 gap-x-8 gap-y-7 mb-12 max-w-md">
+                {text.stats.map((stat, i) => (
+                  <StatCounter
+                    key={stat.label}
+                    value={stat.value}
+                    label={stat.label}
+                    delay={i * 0.12}
+                  />
+                ))}
               </div>
 
               {/* Primary Minimal CTA */}

@@ -1,10 +1,9 @@
 import { servicesData } from "@/lib/data";
+import { slugify } from "@/lib/slug";
 import { notFound } from "next/navigation";
 import ServicePageClient from "./ServicePageClient";
 import type { Metadata } from "next";
 
-// Helper function to slugify titles
-export const slugify = (text: string) => text.toLowerCase().replace(/[\s&/]+/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '');
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;

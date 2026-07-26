@@ -1,82 +1,100 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useRef } from "react";
+import Image from "next/image";
+import { gsap, useGSAP } from "@/lib/gsap";
 
-const words = ["INNOVATE", "TRANSFORM", "ZELLIO"];
+/**
+ * Intro loader, ZELLIO cut of the dd.nyc pattern:
+ *   1. the long lockup writes itself in
+ *   2. it collapses down to the single brand letter
+ *   3. that letter blows up while the panel splits open on the page
+ *
+ * The mark is real type rather than the logo PNG so it stays crisp at 20x.
+ */
+export default function SplashLoader({ onDone }: { onDone: () => void }) {
+  const root = useRef<HTMLDivElement>(null);
 
-export default function SplashLoader() {
-  const [index, setIndex] = useState(0);
+  useGSAP(
+    () => {
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        onDone();
+        return;
+      }
 
-  useEffect(() => {
-    // ~1500ms total before page.tsx unmounts us — 3 words, ~450ms each.
-    const interval = setInterval(() => {
-      setIndex((prev) => {
-        if (prev < words.length - 1) {
-          return prev + 1;
-        }
-        clearInterval(interval);
-        return prev;
-      });
-    }, 450);
+      const tl = gsap.timeline({ onComplete: onDone });
 
-    return () => clearInterval(interval);
-  }, []);
+      tl.from(".sl-letter", {
+        yPercent: 115,
+        duration: 0.75,
+        ease: "power4.out",
+        stagger: 0.045,
+      })
+        .from(".sl-tag", { opacity: 0, y: 10, duration: 0.5, ease: "power2.out" }, 0.45)
+        .to(".sl-tag", { opacity: 0, duration: 0.3, ease: "power2.in" }, 1.15)
+        // "ELLIO" retracts into the Z — width, not opacity, so the Z re-centres
+        .to(".sl-rest", { width: 0, duration: 0.6, ease: "power3.inOut" }, 1.25)
+        .to(".sl-z", { scale: 1.15, duration: 0.6, ease: "power3.inOut" }, 1.25)
+        // the letter hands off to the oversized version sitting behind the panels
+        .to(".sl-lockup", { opacity: 0, duration: 0.25, ease: "power2.in" }, 1.95)
+        .fromTo(
+          ".sl-burst",
+          { scale: 0.45, opacity: 0 },
+          { scale: 1, opacity: 1, duration: 0.85, ease: "power3.out" },
+          1.9
+        )
+        // panel splits at the horizon, page shows through the gap
+        .to(".sl-panel-top", { yPercent: -100, duration: 0.9, ease: "power4.inOut" }, 2.1)
+        .to(".sl-panel-bottom", { yPercent: 100, duration: 0.9, ease: "power4.inOut" }, 2.1)
+        .to(".sl-burst", { opacity: 0, duration: 0.45, ease: "power2.in" }, 2.5);
+    },
+    { scope: root }
+  );
 
   return (
-    <motion.div
-      initial={{ opacity: 1 }}
-      exit={{
-        y: "-100vh",
-        transition: { duration: 0.6, ease: [0.76, 0, 0.24, 1] }
-      }}
-      className="fixed inset-0 z-[99999] bg-[#0A0A0B] flex flex-col justify-between p-6 md:p-12 overflow-hidden pointer-events-auto"
-    >
-      {/* Top Left: Agency Tag */}
-      <div className="flex items-center gap-3 pointer-events-none">
-        <span className="w-1.5 h-1.5 rounded-full bg-blue-500 shadow-[0_0_8px_rgba(59,130,246,0.8)]" />
-        <span className="text-[10px] md:text-xs tracking-[0.3em] text-white/40 uppercase font-bold">
-          ZELLIO DIGITAL
+    <div ref={root} className="fixed inset-0 z-[99999] overflow-hidden">
+      {/* Brand mark — hidden behind the panels until they part.
+          The glyph is only ~15% of this PNG's canvas, so the image is drawn at
+          roughly its native width to keep the mark itself pixel-sharp; the
+          transparent surround simply overflows. */}
+      <div className="absolute inset-0 z-10 flex items-center justify-center pointer-events-none overflow-hidden">
+        <Image
+          src="/zellio_logo.png"
+          alt=""
+          aria-hidden="true"
+          width={1536}
+          height={1024}
+          priority
+          className="sl-burst w-[1536px] max-w-none h-auto select-none opacity-0"
+        />
+      </div>
+
+      <div className="sl-panel-top absolute top-0 left-0 w-full h-1/2 bg-[#F4F4F5] z-20" />
+      <div className="sl-panel-bottom absolute bottom-0 left-0 w-full h-1/2 bg-[#F4F4F5] z-20" />
+
+      <div className="absolute inset-0 z-30 flex flex-col items-center justify-center pointer-events-none px-6">
+        <div className="sl-lockup flex items-center justify-center">
+          {/* each letter gets its own overflow-hidden reveal mask */}
+          <span className="overflow-hidden block">
+            <span className="sl-letter sl-z block font-black text-slate-900 leading-[0.9] tracking-tighter text-[19vw] sm:text-[13vw] md:text-[9rem]">
+              Z
+            </span>
+          </span>
+          <span className="sl-rest overflow-hidden whitespace-nowrap flex">
+            {["E", "L", "L", "I", "O"].map((c, i) => (
+              <span key={i} className="overflow-hidden block">
+                <span className="sl-letter block font-black text-slate-900 leading-[0.9] tracking-tighter text-[19vw] sm:text-[13vw] md:text-[9rem]">
+                  {c}
+                </span>
+              </span>
+            ))}
+          </span>
+        </div>
+
+        <span className="sl-tag mt-5 font-mono text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.42em] text-slate-400">
+          Digital Engineering
         </span>
       </div>
-
-      {/* Center: Typographic Word Animation */}
-      <div className="flex-1 flex items-center justify-center relative">
-        <AnimatePresence mode="wait">
-          <motion.h1
-            key={index}
-            initial={{ y: 18, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            exit={{ y: -18, opacity: 0 }}
-            transition={{ duration: 0.28, ease: [0.215, 0.61, 0.355, 1] }}
-            className={`text-4xl sm:text-6xl md:text-8xl font-light tracking-[0.25em] text-center uppercase ${
-              index === words.length - 1
-                ? "font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-indigo-400 to-white"
-                : "text-white/90"
-            }`}
-          >
-            {words[index]}
-          </motion.h1>
-        </AnimatePresence>
-      </div>
-
-      {/* Bottom Row: Minimal Monospace Phase Counter */}
-      <div className="flex justify-between items-end pointer-events-none">
-        <div className="flex flex-col gap-1">
-          <span className="text-[9px] md:text-[10px] tracking-[0.2em] text-white/30 uppercase font-semibold">
-            SYSTEM INITIALIZATION
-          </span>
-          <span className="text-xs tracking-[0.1em] text-white/60">
-            v2.0.4
-          </span>
-        </div>
-
-        <div className="text-sm md:text-base font-mono text-white/50 tracking-widest flex items-center gap-2">
-          <span className="text-white/80">0{index + 1}</span>
-          <span className="text-white/20">/</span>
-          <span>0{words.length}</span>
-        </div>
-      </div>
-    </motion.div>
+    </div>
   );
 }

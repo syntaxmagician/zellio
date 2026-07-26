@@ -6,9 +6,9 @@ import { Hammer, ShieldCheck, Milestone } from "lucide-react";
 import TeamAvatar from "./TeamAvatar";
 import AuroraFlowHero from "../ui/AuroraFlowHero";
 import { gsap, useGSAP } from "@/lib/gsap";
+import { isReady } from "@/lib/ready";
 
 // Kept in sync with team/page.tsx — the splash sets this before the hero can be seen.
-const SPLASH_SEEN_KEY = "zellio-team-splash-seen";
 
 export default function TeamHero() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -35,7 +35,7 @@ export default function TeamHero() {
 
         let fallback: ReturnType<typeof setTimeout> | undefined;
         const play = () => tl.play();
-        if (sessionStorage.getItem(SPLASH_SEEN_KEY)) {
+        if (isReady()) {
           play();
         } else {
           window.addEventListener("zellio:ready", play, { once: true });

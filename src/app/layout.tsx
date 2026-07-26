@@ -102,6 +102,7 @@ export const metadata: Metadata = {
 };
 
 import { LanguageProvider } from "@/context/LanguageContext";
+import SmoothScroll from "@/components/providers/SmoothScroll";
 
 export default function RootLayout({
   children,
@@ -140,6 +141,7 @@ export default function RootLayout({
         className="min-h-full flex flex-col"
         style={{ fontFamily: "var(--font-plus-jakarta), var(--font-inter), system-ui, sans-serif" }}
       >
+        <SmoothScroll />
         <LanguageProvider>
           {children}
         </LanguageProvider>

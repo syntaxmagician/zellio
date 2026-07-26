@@ -1,9 +1,9 @@
 import { MetadataRoute } from 'next';
 import { servicesData } from '@/lib/data';
+import { slugify } from "@/lib/slug";
 
 const BASE_URL = 'https://zellio.id';
 
-const slugify = (text: string) => text.toLowerCase().replace(/[\s&/]+/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '');
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const serviceUrls = servicesData.map((service) => ({
