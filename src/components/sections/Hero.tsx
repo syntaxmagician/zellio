@@ -1,8 +1,8 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useRef } from "react";
+import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { ArrowRight } from "lucide-react";
-import TrustedBy from "./TrustedBy";
 import { useLanguage } from "@/context/LanguageContext";
 
 const localText = {
@@ -23,6 +23,18 @@ const localText = {
 export default function Hero() {
   const { language } = useLanguage();
   const text = localText[language];
+  const reduceMotion = useReducedMotion();
+
+  // Scroll-linked parallax: copy drifts up and fades, video sinks slower than the page.
+  const sectionRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end start"],
+  });
+  const contentY = useTransform(scrollYProgress, [0, 1], [0, reduceMotion ? 0 : -90]);
+  const contentOpacity = useTransform(scrollYProgress, [0, 0.75], [1, reduceMotion ? 1 : 0]);
+  const videoY = useTransform(scrollYProgress, [0, 1], [0, reduceMotion ? 0 : 140]);
+  const videoScale = useTransform(scrollYProgress, [0, 1], [1, reduceMotion ? 1 : 1.08]);
 
   // Premium easing curve (Framer / Apple style)
   const premiumEase = [0.22, 1, 0.36, 1] as [number, number, number, number];
@@ -30,6 +42,7 @@ export default function Hero() {
   return (
     <section
       id="home"
+      ref={sectionRef}
       className="relative min-h-screen w-full flex flex-col bg-[#FFFFFF] overflow-hidden"
       style={{
         backgroundImage: `
@@ -43,9 +56,11 @@ export default function Hero() {
         The Absolute Background Layer (Z-0)
         Vertical Hero Video (Right side only)
       */}
-      <div
+      <motion.div
         className="absolute top-0 right-0 w-full h-full overflow-hidden pointer-events-none z-0"
         style={{
+          y: videoY,
+          scale: videoScale,
           maskImage: "linear-gradient(to right, transparent 0%, transparent 40%, black 55%, black 100%)",
           WebkitMaskImage: "linear-gradient(to right, transparent 0%, transparent 40%, black 55%, black 100%)"
         }}
@@ -65,14 +80,17 @@ export default function Hero() {
             WebkitBackfaceVisibility: "hidden"
           }}
         />
-      </div>
+      </motion.div>
 
       {/* 
         Full Viewport Immersive Container
         On desktop: Flex row / CSS Grid 12 cols
         On mobile: Flex col
       */}
-      <div className="flex-1 w-full flex flex-col justify-center pt-32 lg:pt-24 pb-12 lg:pb-0 px-6 relative z-10 pointer-events-none">
+      <motion.div
+        style={{ y: contentY, opacity: contentOpacity }}
+        className="flex-1 w-full flex flex-col justify-center pt-32 lg:pt-24 pb-12 lg:pb-0 px-6 relative z-10 pointer-events-none"
+      >
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 w-full max-w-[1400px] mx-auto items-center pointer-events-auto">
 
           {/* LEFT SIDE: Editorial Typography (40%) - col-span-5 */}
@@ -139,16 +157,6 @@ export default function Hero() {
           <div className="col-span-1 lg:col-span-7 h-full w-full pointer-events-none" />
 
         </div>
-      </div>
-
-      {/* Trusted By Section elegantly anchored at the bottom */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 0.8 }}
-        className="w-full relative z-10 pb-8"
-      >
-        <TrustedBy />
       </motion.div>
 
     </section>

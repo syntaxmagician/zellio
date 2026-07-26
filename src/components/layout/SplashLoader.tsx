@@ -3,14 +3,13 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-const words = ["INNOVATE", "DEVELOP", "TRANSFORM", "ZELLIO"];
+const words = ["INNOVATE", "TRANSFORM", "ZELLIO"];
 
 export default function SplashLoader() {
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
-    // 2800ms total timeout from page.tsx
-    // We have 4 words. Each word gets ~600ms
+    // ~1500ms total before page.tsx unmounts us — 3 words, ~450ms each.
     const interval = setInterval(() => {
       setIndex((prev) => {
         if (prev < words.length - 1) {
@@ -19,7 +18,7 @@ export default function SplashLoader() {
         clearInterval(interval);
         return prev;
       });
-    }, 600);
+    }, 450);
 
     return () => clearInterval(interval);
   }, []);
@@ -27,9 +26,9 @@ export default function SplashLoader() {
   return (
     <motion.div
       initial={{ opacity: 1 }}
-      exit={{ 
+      exit={{
         y: "-100vh",
-        transition: { duration: 0.9, ease: [0.76, 0, 0.24, 1] }
+        transition: { duration: 0.6, ease: [0.76, 0, 0.24, 1] }
       }}
       className="fixed inset-0 z-[99999] bg-[#0A0A0B] flex flex-col justify-between p-6 md:p-12 overflow-hidden pointer-events-auto"
     >
@@ -46,13 +45,13 @@ export default function SplashLoader() {
         <AnimatePresence mode="wait">
           <motion.h1
             key={index}
-            initial={{ y: 20, opacity: 0, filter: "blur(4px)" }}
-            animate={{ y: 0, opacity: 1, filter: "blur(0px)" }}
-            exit={{ y: -20, opacity: 0, filter: "blur(4px)" }}
-            transition={{ duration: 0.4, ease: [0.215, 0.610, 0.355, 1] }}
+            initial={{ y: 18, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: -18, opacity: 0 }}
+            transition={{ duration: 0.28, ease: [0.215, 0.61, 0.355, 1] }}
             className={`text-4xl sm:text-6xl md:text-8xl font-light tracking-[0.25em] text-center uppercase ${
-              index === words.length - 1 
-                ? "font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-indigo-400 to-white" 
+              index === words.length - 1
+                ? "font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-indigo-400 to-white"
                 : "text-white/90"
             }`}
           >
@@ -71,10 +70,10 @@ export default function SplashLoader() {
             v2.0.4
           </span>
         </div>
-        
+
         <div className="text-sm md:text-base font-mono text-white/50 tracking-widest flex items-center gap-2">
-          <span className="text-white/80">0{index + 1}</span> 
-          <span className="text-white/20">/</span> 
+          <span className="text-white/80">0{index + 1}</span>
+          <span className="text-white/20">/</span>
           <span>0{words.length}</span>
         </div>
       </div>

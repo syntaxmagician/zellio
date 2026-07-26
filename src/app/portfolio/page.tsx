@@ -5,8 +5,10 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
-import { ArrowUpRight, Laptop, Smartphone, LineChart, Globe } from "lucide-react";
+import Link from "next/link";
+import { ArrowRight, ArrowUpRight, Laptop, Smartphone, LineChart, Globe } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
+import { gsap, useGSAP } from "@/lib/gsap";
 
 type Project = {
   title: string;
@@ -16,7 +18,7 @@ type Project = {
   tags: string[];
   image?: string;
   images?: string[];
-  icon: any;
+  icon: React.ElementType;
   accent: string;
 };
 
@@ -182,16 +184,58 @@ const projects: Project[] = [
 const filterCategories = ["All", "Website", "Internal Dashboard", "APP"] as const;
 type FilterCategory = typeof filterCategories[number];
 
-const ITEMS_PER_PAGE = 10;
+const ITEMS_PER_PAGE = 12;
 
 export default function PortfolioPage() {
   const { language } = useLanguage();
   const [activeCategory, setActiveCategory] = useState<FilterCategory>("All");
   const [currentPage, setCurrentPage] = useState(1);
   const gridRef = useRef<HTMLDivElement>(null);
+  const rootRef = useRef<HTMLDivElement>(null);
+  const counterRef = useRef<HTMLSpanElement>(null);
 
   const filteredProjects = projects.filter(
     (project) => activeCategory === "All" || project.type === activeCategory
+  );
+
+  useGSAP(
+    () => {
+      const mm = gsap.matchMedia();
+      mm.add("(prefers-reduced-motion: no-preference)", () => {
+        // Intro syncs with the curtain transition from template.tsx.
+        const tl = gsap.timeline({ delay: 0.45, defaults: { ease: "power4.out" } });
+        tl.from(".porto-eyebrow", { y: 16, opacity: 0, duration: 0.6 })
+          .from(".porto-line", { yPercent: 115, duration: 1, stagger: 0.1 }, "-=0.35")
+          .from(".porto-rail", { y: 18, opacity: 0, duration: 0.7 }, "-=0.55");
+
+        // Project counter rolls up to the real archive size.
+        const el = counterRef.current;
+        if (el) {
+          const target = Number(el.dataset.target ?? 0);
+          const state = { value: 0 };
+          el.textContent = "0";
+          gsap.to(state, {
+            value: target,
+            duration: 1.6,
+            delay: 0.8,
+            ease: "power2.out",
+            onUpdate: () => {
+              el.textContent = `${Math.round(state.value)}`;
+            },
+          });
+        }
+
+        // Quiet reveal for the closing CTA band.
+        gsap.from(".porto-cta", {
+          y: 28,
+          opacity: 0,
+          duration: 0.8,
+          ease: "power3.out",
+          scrollTrigger: { trigger: ".porto-cta", start: "top 88%", once: true },
+        });
+      });
+    },
+    { scope: rootRef, dependencies: [language], revertOnUpdate: true }
   );
 
   const totalPages = Math.ceil(filteredProjects.length / ITEMS_PER_PAGE);
@@ -214,53 +258,60 @@ export default function PortfolioPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#FAFAFA] flex flex-col justify-between selection:bg-blue-500/30">
+    <div ref={rootRef} className="min-h-screen bg-[#FAFAFA] flex flex-col justify-between selection:bg-blue-500/30">
       <Navbar />
 
       <main className="flex-grow pb-24 relative z-10">
-        
+
         {/* Asymmetrical Editorial Hero Section */}
-        <section className="w-full bg-[#FAFAFA] pt-40 pb-16 relative overflow-hidden border-b border-slate-200/60">
-          <div className="absolute inset-0 bg-[radial-gradient(#E2E8F0_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none opacity-50" />
-          
+        <section
+          className="w-full bg-[#FAFAFA] pt-40 pb-16 relative overflow-hidden border-b border-slate-200/60"
+          style={{
+            backgroundImage: `
+              linear-gradient(to right, rgba(148, 163, 184, 0.05) 1px, transparent 1px),
+              linear-gradient(to bottom, rgba(148, 163, 184, 0.05) 1px, transparent 1px)
+            `,
+            backgroundSize: "48px 48px",
+          }}
+        >
           <div className="max-w-[1400px] mx-auto px-6 lg:px-12 relative z-10">
-            <motion.span 
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="text-[11px] font-mono font-bold tracking-[0.3em] uppercase text-blue-600 mb-8 block"
-            >
-              03 — {language === "id" ? "Karya Kami" : "Our Work"}
-            </motion.span>
-            
+            <span className="porto-eyebrow flex items-center gap-3 mb-8">
+              <span className="w-1.5 h-1.5 rounded-full bg-blue-600" />
+              <span className="text-[11px] font-mono font-bold tracking-[0.3em] uppercase text-blue-600">
+                {language === "id" ? "Karya Kami" : "Our Work"}
+              </span>
+            </span>
+
             <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-12 lg:gap-24">
-              <motion.h1 
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-                className="text-6xl sm:text-7xl lg:text-[7rem] font-black tracking-tighter leading-[0.9] text-slate-900 uppercase max-w-4xl"
-              >
-                {language === "id" ? "Arsip" : "Creative"} <br className="hidden md:block"/> 
-                {language === "id" ? "Kreatif." : "Archive."}
-              </motion.h1>
-              
-              <motion.div 
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-                className="lg:w-[350px] flex-shrink-0 border-l-2 border-blue-500 pl-6 lg:mb-4"
-              >
+              <h1 className="text-6xl sm:text-7xl lg:text-[7rem] font-black tracking-tighter leading-[0.9] text-slate-900 uppercase max-w-4xl">
+                <span className="block overflow-hidden py-1">
+                  <span className="porto-line block will-change-transform">
+                    {language === "id" ? "Arsip" : "Creative"}
+                  </span>
+                </span>
+                <span className="block overflow-hidden py-1">
+                  <span className="porto-line block will-change-transform">
+                    {language === "id" ? "Kreatif." : "Archive."}
+                  </span>
+                </span>
+              </h1>
+
+              <div className="porto-rail lg:w-[350px] flex-shrink-0 border-l-2 border-blue-500 pl-6 lg:mb-4">
                 <p className="text-[15px] font-medium text-slate-600 leading-relaxed">
-                  {language === "id" 
+                  {language === "id"
                     ? "Koleksi kurasi platform korporat skalabel dan aplikasi performa tinggi yang telah kami luncurkan."
                     : "A curated collection of scalable corporate platforms and high-performance applications we've deployed."}
                 </p>
                 <div className="mt-6 flex items-center gap-3">
                   <span className="w-10 h-px bg-slate-300 block" />
-                  <span className="text-[10px] font-mono font-bold uppercase tracking-[0.2em] text-slate-500">
-                    {filteredProjects.length} {language === "id" ? "Proyek Terpilih" : "Selected Projects"}
+                  <span className="text-[10px] font-mono font-bold uppercase tracking-[0.2em] text-slate-500 stat-number">
+                    <span ref={counterRef} data-target={filteredProjects.length}>
+                      {filteredProjects.length}
+                    </span>{" "}
+                    {language === "id" ? "Proyek Terpilih" : "Selected Projects"}
                   </span>
                 </div>
-              </motion.div>
+              </div>
             </div>
           </div>
         </section>
@@ -351,7 +402,7 @@ export default function PortfolioPage() {
                     {/* Metadata & Typography */}
                     <div className="flex flex-col flex-grow">
                       <div className="flex items-center gap-2 mb-3">
-                        <span className={`flex items-center gap-1.5 px-2.5 py-1 rounded-[6px] text-[10px] font-bold uppercase tracking-widest border ${project.accent}`}>
+                        <span className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[10px] font-mono font-bold uppercase tracking-widest border border-slate-200 bg-white text-slate-500 group-hover:text-blue-600 group-hover:border-blue-200 transition-colors duration-300">
                           <Icon size={12} strokeWidth={2.5} />
                           {project.category[language as "id" | "en"]}
                         </span>
@@ -373,7 +424,7 @@ export default function PortfolioPage() {
                         {project.tags.map((tag, j) => (
                           <span
                             key={j}
-                            className="text-[10px] font-bold px-2 py-1 rounded-[4px] bg-slate-50 border border-slate-200 text-slate-500"
+                            className="text-[10px] font-mono font-bold uppercase tracking-wider px-3 py-1.5 rounded-full bg-slate-100 text-slate-500"
                           >
                             {tag}
                           </span>
@@ -422,6 +473,45 @@ export default function PortfolioPage() {
               </button>
             </div>
           )}
+        </section>
+
+        {/* Closing CTA band */}
+        <section className="w-full max-w-[1400px] mx-auto px-6 lg:px-12 mt-24">
+          <div
+            className="porto-cta relative overflow-hidden rounded-3xl bg-[#0B2545] text-white p-10 sm:p-14 lg:p-16"
+            style={{
+              backgroundImage: `
+                linear-gradient(to right, rgba(255,255,255,0.035) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255,255,255,0.035) 1px, transparent 1px)
+              `,
+              backgroundSize: "44px 44px",
+            }}
+          >
+            <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-10">
+              <div className="max-w-2xl">
+                <span className="text-[10px] font-mono font-bold tracking-[0.25em] uppercase text-blue-300/90 mb-5 block">
+                  {language === "id" ? "Proyek Berikutnya" : "Next Project"}
+                </span>
+                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-[1.05]">
+                  {language === "id"
+                    ? "Punya sistem yang ingin dibangun?"
+                    : "Have a system in mind?"}
+                </h2>
+                <p className="mt-4 text-[15px] sm:text-base text-slate-300/90 font-medium leading-relaxed max-w-xl">
+                  {language === "id"
+                    ? "Ceritakan kebutuhan Anda — kami bantu merancang arsitektur, membangun, dan meluncurkannya."
+                    : "Tell us what you need — we'll help architect it, build it, and ship it."}
+                </p>
+              </div>
+              <Link
+                href="/contact"
+                className="group inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-slate-950 hover:bg-blue-50 font-bold text-sm uppercase tracking-widest rounded-2xl transition-all duration-300 flex-shrink-0"
+              >
+                <span>{language === "id" ? "Mulai Proyek" : "Start Your Project"}</span>
+                <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform duration-300" />
+              </Link>
+            </div>
+          </div>
         </section>
       </main>
 

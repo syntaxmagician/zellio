@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 
 const terminalLogs = [
   "Initializing ZELLIO engineering core...",
@@ -16,8 +16,7 @@ export default function TeamSplashLoader() {
   const [logIndex, setLogIndex] = useState(0);
 
   useEffect(() => {
-    // 2500ms total timeout from page.tsx
-    // We have 6 logs. Each log gets ~300ms
+    // ~1500ms total timeout from page.tsx — 6 logs, ~230ms each.
     const interval = setInterval(() => {
       setLogIndex((prev) => {
         if (prev < terminalLogs.length - 1) {
@@ -26,7 +25,7 @@ export default function TeamSplashLoader() {
         clearInterval(interval);
         return prev;
       });
-    }, 350);
+    }, 230);
 
     return () => clearInterval(interval);
   }, []);
@@ -34,9 +33,9 @@ export default function TeamSplashLoader() {
   return (
     <motion.div
       initial={{ opacity: 1 }}
-      exit={{ 
+      exit={{
         y: "-100vh",
-        transition: { duration: 0.8, ease: [0.76, 0, 0.24, 1] }
+        transition: { duration: 0.6, ease: [0.76, 0, 0.24, 1] }
       }}
       className="fixed inset-0 z-[99999] bg-[#0A0A0B] flex flex-col justify-between p-6 md:p-12 overflow-hidden pointer-events-auto font-mono"
     >
