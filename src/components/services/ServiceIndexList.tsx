@@ -17,7 +17,7 @@ export interface ServiceRow {
 }
 
 /**
- * Services index: image, name, and what the service actually is.
+ * Services index: image, name,  what the service actually is.
  *
  * A uniform grid rather than a masonry of varying heights — the cards carry a
  * paragraph each, and ragged card heights leave the text baselines out of step
