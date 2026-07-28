@@ -19,21 +19,21 @@ const localText = {
   en: {
     badge: "Trusted By",
     headline: "Companies that run on our code.",
-    desc: "Ten organizations across nine industries — travel, logistics, legal, education, and beyond — operate on systems engineered by ZELLIO.",
+    desc: "Twelve organizations across ten industries — travel, logistics, legal, education, healthcare and beyond — operate on systems engineered by ZELLIO.",
     listLabel: "Our clients",
     tally: [
-      { value: "10", label: "Clients" },
-      { value: "9", label: "Industries" },
+      { value: "12", label: "Clients" },
+      { value: "10", label: "Industries" },
     ],
   },
   id: {
     badge: "Dipercaya Oleh",
     headline: "Perusahaan yang berjalan di atas kode kami.",
-    desc: "Sepuluh organisasi dari sembilan industri — travel, logistik, hukum, pendidikan, dan lainnya — beroperasi dengan sistem yang dibangun ZELLIO.",
+    desc: "Dua belas organisasi dari sepuluh industri — travel, logistik, hukum, pendidikan, kesehatan, dan lainnya — beroperasi dengan sistem yang dibangun ZELLIO.",
     listLabel: "Klien kami",
     tally: [
-      { value: "10", label: "Klien" },
-      { value: "9", label: "Industri" },
+      { value: "12", label: "Klien" },
+      { value: "10", label: "Industri" },
     ],
   },
 };

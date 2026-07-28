@@ -123,7 +123,7 @@ const budgetRanges = [
 ];
 
 const socialLinks = [
-  { name: "LinkedIn", url: "https://linkedin.com", icon: LinkedinIcon },
+  { name: "LinkedIn", url: "http://linkedin.com/company/zellio-id", icon: LinkedinIcon },
   { name: "GitHub", url: "https://github.com", icon: GithubIcon },
   { name: "Instagram", url: "https://instagram.com", icon: InstagramIcon },
   { name: "Threads", url: "https://threads.com", icon: ThreadsIcon }

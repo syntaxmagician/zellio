@@ -40,9 +40,9 @@ const localText = {
       Contact: [
         { label: "Get in Touch", href: "/contact" },
         { label: "Request a Quote", href: "/contact" },
-        { label: "Partnerships", href: "#" },
-        { label: "Support Center", href: "#" },
         { label: "Privacy Policy", href: "/privacy-policy" },
+        { label: "Terms of Service", href: "/terms-of-service" },
+        { label: "Cookie Policy", href: "/cookie-policy" },
       ],
     }
   },
@@ -74,16 +74,16 @@ const localText = {
       Kontak: [
         { label: "Hubungi Kami", href: "/contact" },
         { label: "Minta Penawaran", href: "/contact" },
-        { label: "Kemitraan", href: "#" },
-        { label: "Pusat Bantuan", href: "#" },
         { label: "Kebijakan Privasi", href: "/privacy-policy" },
+        { label: "Syarat & Ketentuan", href: "/terms-of-service" },
+        { label: "Kebijakan Cookie", href: "/cookie-policy" },
       ],
     }
   }
 };
 
 const socials = [
-  { icon: Globe, href: "#", label: "LinkedIn" },
+  { icon: Globe, href: "http://linkedin.com/company/zellio-id", label: "LinkedIn" },
   { icon: MessageSquare, href: "#", label: "Twitter" },
   { icon: Share2, href: "#", label: "Instagram" },
   { icon: Video, href: "#", label: "YouTube" },
@@ -164,6 +164,19 @@ export default function Footer() {
             <p className="text-[#64748B] text-sm text-center md:text-left">
               &copy; {new Date().getFullYear()} ZELLIO. All rights reserved.
             </p>
+
+            {/* Bottom Legal Links */}
+            <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs text-[#64748B]">
+              <a href="/privacy-policy" className="hover:text-white transition-colors">
+                {language === "en" ? "Privacy Policy" : "Kebijakan Privasi"}
+              </a>
+              <a href="/terms-of-service" className="hover:text-white transition-colors">
+                {language === "en" ? "Terms of Service" : "Syarat & Ketentuan"}
+              </a>
+              <a href="/cookie-policy" className="hover:text-white transition-colors">
+                {language === "en" ? "Cookie Policy" : "Kebijakan Cookie"}
+              </a>
+            </div>
 
             <button
               onClick={scrollToTop}

@@ -5,6 +5,7 @@ import { motion, AnimatePresence, animate, useReducedMotion } from "framer-motio
 import Image from "next/image";
 import { useLanguage } from "@/context/LanguageContext";
 import { clientLogos, type ClientLogo } from "@/lib/clients";
+import { ChevronLeft, ChevronRight, Quote } from "lucide-react";
 
 interface Testimonial {
   quote: string;
@@ -17,8 +18,7 @@ interface Testimonial {
   metricLabel: string;
 }
 
-/** How long each quote holds before the roster advances. */
-const HOLD_MS = 7000;
+
 
 const testimonialsData: Record<"en" | "id", Testimonial[]> = {
   en: [
@@ -158,7 +158,7 @@ function markFor(slug: string): ClientLogo | undefined {
   return clientLogos.find((c) => c.slug === slug);
 }
 
-/** Re-counts every time the active quote changes. */
+/** Re-counts once on mount. */
 function Metric({ value, label }: { value: string; label: string }) {
   const target = parseInt(value.replace(/\D/g, ""), 10) || 0;
   const prefix = value.match(/^[^0-9]*/)?.[0] ?? "";
@@ -180,18 +180,41 @@ function Metric({ value, label }: { value: string; label: string }) {
   }, [target, reduceMotion]);
 
   return (
-    <div className="flex items-baseline gap-4">
-      <span className="text-5xl sm:text-6xl font-black tracking-tighter text-blue-600 tabular-nums">
+    <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-50 border border-blue-100/80 text-blue-700 font-medium shadow-sm shadow-blue-500/5">
+      <span className="text-xl sm:text-2xl font-black tracking-tighter text-blue-600 tabular-nums">
         {prefix}
         {display}
         {suffix}
       </span>
-      <span className="font-mono text-[10px] sm:text-xs font-bold text-slate-400 uppercase tracking-widest max-w-[220px] leading-relaxed">
+      <span className="font-mono text-[9px] sm:text-[10px] font-bold text-slate-500 uppercase tracking-widest leading-none max-w-[150px]">
         {label}
       </span>
     </div>
   );
 }
+
+const variants = {
+  enter: (direction: number) => ({
+    x: direction > 0 ? 200 : -200,
+    opacity: 0,
+    scale: 0.97,
+  }),
+  center: {
+    x: 0,
+    opacity: 1,
+    scale: 1,
+  },
+  exit: (direction: number) => ({
+    x: direction < 0 ? 200 : -200,
+    opacity: 0,
+    scale: 0.97,
+  }),
+};
+
+const swipeConfidenceThreshold = 10000;
+const swipePower = (offset: number, velocity: number) => {
+  return Math.abs(offset) * velocity;
+};
 
 export default function Testimonials() {
   const { language } = useLanguage();
@@ -201,27 +224,34 @@ export default function Testimonials() {
   const rise = reduceMotion ? 0 : 16;
 
   const [active, setActive] = useState(0);
+  const [direction, setDirection] = useState(0);
   const [paused, setPaused] = useState(false);
+
   const current = items[active];
   const mark = markFor(current.logoSlug);
 
-  // Auto-advance. Restarting the interval on every change keeps a manual pick
-  // from being cut short by whatever was left of the previous tick.
+  // Auto-advance
   useEffect(() => {
     if (paused || reduceMotion) return;
-    const id = setTimeout(() => setActive((i) => (i + 1) % items.length), HOLD_MS);
+    const id = setTimeout(() => paginate(1), 8000);
     return () => clearTimeout(id);
-  }, [active, paused, reduceMotion, items.length]);
+  }, [active, paused, reduceMotion]);
 
-  const select = useCallback((i: number) => setActive(i), []);
+  const paginate = (newDirection: number) => {
+    setDirection(newDirection);
+    setActive((prevActive) => {
+      let nextActive = prevActive + newDirection;
+      if (nextActive < 0) nextActive = items.length - 1;
+      if (nextActive >= items.length) nextActive = 0;
+      return nextActive;
+    });
+  };
 
   return (
     <section
       id="testimonials"
       aria-labelledby="testimonials-heading"
-      className="relative py-24 lg:py-32 bg-[#FAFAFA] text-slate-900 border-t border-slate-200/60 overflow-hidden"
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
+      className="relative py-24 lg:py-32 bg-gradient-to-b from-[#F3F6F9] to-[#F8FAFC] text-slate-900 border-t border-slate-200/60 overflow-hidden"
     >
       <div className="max-w-[1400px] mx-auto px-6">
         {/* Editorial header */}
@@ -255,153 +285,129 @@ export default function Testimonials() {
           </motion.p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch">
-          {/* ---- Stage: the active quote ---- */}
-          <motion.figure
-            initial={{ opacity: 0, y: rise }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-60px" }}
-            transition={{ duration: 0.65, ease: premiumEase }}
-            className="lg:col-span-8 bg-white rounded-3xl p-8 sm:p-10 lg:p-14 flex flex-col min-h-[440px]"
-          >
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={`${language}-${active}`}
-                initial={{ opacity: 0, y: reduceMotion ? 0 : 14 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: reduceMotion ? 0 : -10 }}
-                transition={{ duration: 0.45, ease: premiumEase }}
-                className="flex flex-col flex-1"
+        {/* Carousel Container */}
+        <div
+          className="max-w-4xl mx-auto relative px-4"
+          onMouseEnter={() => setPaused(true)}
+          onMouseLeave={() => setPaused(false)}
+        >
+          <div className="relative min-h-[440px] sm:min-h-[380px] overflow-hidden flex items-stretch">
+            <AnimatePresence initial={false} custom={direction} mode="popLayout">
+              <motion.figure
+                key={active}
+                custom={direction}
+                variants={variants}
+                initial="enter"
+                animate="center"
+                exit="exit"
+                transition={{
+                  x: { type: "spring", stiffness: 300, damping: 30 },
+                  opacity: { duration: 0.25 },
+                  scale: { duration: 0.25 },
+                }}
+                drag="x"
+                dragConstraints={{ left: 0, right: 0 }}
+                dragElastic={0.7}
+                onDragEnd={(e, { offset, velocity }) => {
+                  const swipe = swipePower(offset.x, velocity.x);
+
+                  if (swipe < -swipeConfidenceThreshold) {
+                    paginate(1);
+                  } else if (swipe > swipeConfidenceThreshold) {
+                    paginate(-1);
+                  }
+                }}
+                className="w-full bg-white rounded-3xl p-8 sm:p-12 flex flex-col justify-between border border-slate-200/50 shadow-sm hover:shadow-[0_20px_50px_rgba(37,99,235,0.06)] transition-all duration-300 select-none cursor-grab active:cursor-grabbing relative overflow-hidden"
               >
-                <div className="mb-8">
-                  <Metric value={current.metricValue} label={current.metricLabel} />
-                </div>
+                <Quote className="absolute top-6 right-6 w-20 h-20 text-blue-600/[0.03] pointer-events-none select-none" />
 
-                <blockquote className="flex-1">
-                  <p className="text-xl sm:text-2xl lg:text-[1.7rem] font-bold tracking-tight leading-[1.35] text-slate-900">
-                    &ldquo;{current.quote}&rdquo;
-                  </p>
-                </blockquote>
-
-                <figcaption className="mt-10 flex flex-wrap items-center justify-between gap-x-6 gap-y-5 pt-6 border-t border-slate-100">
-                  <div className="flex items-center gap-4">
-                    <div className="relative shrink-0 w-16 h-16">
-                      <Image
-                        src={current.avatar}
-                        alt={current.author}
-                        fill
-                        sizes="64px"
-                        className="rounded-full object-cover"
-                      />
-                      <span className="absolute inset-0 rounded-full ring-1 ring-inset ring-slate-900/10" />
-                      <span className="absolute -bottom-1 -right-1 w-6 h-6 rounded-full bg-blue-600 text-white flex items-center justify-center shadow-sm ring-2 ring-white">
-                        <span className="font-serif text-[15px] leading-none pt-1.5">
-                          &rdquo;
-                        </span>
-                      </span>
-                    </div>
-                    <div className="min-w-0">
-                      <div className="font-bold text-slate-900 tracking-tight text-lg">
-                        {current.author}
-                      </div>
-                      <div className="font-mono text-[10px] text-slate-500 uppercase tracking-widest mt-1">
-                        {current.role}, {current.company}
-                      </div>
-                    </div>
+                <div className="flex flex-col flex-1">
+                  <div className="mb-6 sm:mb-8">
+                    <Metric value={current.metricValue} label={current.metricLabel} />
                   </div>
 
-                  {mark && (
-                    <Image
-                      src={mark.src}
-                      alt={mark.name}
-                      width={mark.width}
-                      height={mark.height}
-                      className="h-7 w-auto grayscale opacity-60"
-                    />
-                  )}
-                </figcaption>
-              </motion.div>
-            </AnimatePresence>
-          </motion.figure>
+                  <blockquote className="flex-1 mb-8">
+                    <p className="text-xl sm:text-2xl md:text-[1.75rem] font-bold tracking-tight leading-[1.4] text-slate-900">
+                      &ldquo;{current.quote}&rdquo;
+                    </p>
+                  </blockquote>
 
-          {/* ---- Roster: an index, not a set of dots ---- */}
-          <motion.div
-            initial={{ opacity: 0, y: rise }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-60px" }}
-            transition={{ duration: 0.65, delay: 0.1, ease: premiumEase }}
-            className="lg:col-span-4 flex flex-col"
-          >
-            <span className="font-mono text-[10px] font-bold uppercase tracking-[0.25em] text-slate-400 mb-5 px-1">
-              {text.roster}
-              <span className="text-slate-300 ml-2">
-                {String(active + 1).padStart(2, "0")}/{String(items.length).padStart(2, "0")}
-              </span>
-            </span>
-
-            <div className="flex flex-col">
-              {items.map((t, i) => {
-                const isActive = i === active;
-                return (
-                  <button
-                    key={t.author}
-                    type="button"
-                    onClick={() => select(i)}
-                    aria-current={isActive}
-                    className={`group relative text-left px-1 py-5 border-t border-slate-200/80 last:border-b transition-colors duration-300 ${
-                      isActive ? "" : "hover:bg-white/60"
-                    }`}
-                  >
+                  <figcaption className="mt-auto flex flex-wrap items-center justify-between gap-x-4 gap-y-4 pt-6 border-t border-slate-100">
                     <div className="flex items-center gap-4">
-                      <div
-                        className={`relative shrink-0 w-10 h-10 transition-all duration-500 ${
-                          isActive ? "opacity-100 grayscale-0" : "opacity-45 grayscale"
-                        }`}
-                      >
+                      <div className="relative shrink-0 w-12 h-12 sm:w-14 sm:h-14">
                         <Image
-                          src={t.avatar}
-                          alt=""
-                          aria-hidden="true"
+                          src={current.avatar}
+                          alt={current.author}
                           fill
-                          sizes="40px"
-                          className="rounded-full object-cover"
+                          sizes="56px"
+                          className="rounded-full object-cover pointer-events-none"
                         />
                         <span className="absolute inset-0 rounded-full ring-1 ring-inset ring-slate-900/10" />
                       </div>
                       <div className="min-w-0">
-                        <div
-                          className={`font-bold tracking-tight text-[15px] transition-colors duration-300 ${
-                            isActive
-                              ? "text-slate-900"
-                              : "text-slate-400 group-hover:text-slate-600"
-                          }`}
-                        >
-                          {t.author}
+                        <div className="font-bold text-slate-900 tracking-tight text-[15px] sm:text-base">
+                          {current.author}
                         </div>
-                        <div className="font-mono text-[9px] uppercase tracking-[0.18em] text-slate-400 mt-1 truncate">
-                          {t.company}
+                        <div className="font-mono text-[9px] sm:text-[10px] text-slate-500 uppercase tracking-widest mt-0.5 sm:mt-1">
+                          {current.role}, {current.company}
                         </div>
                       </div>
                     </div>
 
-                    {/* Hairline that fills for as long as this quote holds */}
-                    {isActive && (
-                      <motion.span
-                        key={`bar-${active}-${paused}`}
-                        className="absolute left-0 -bottom-px h-px bg-blue-600"
-                        initial={{ width: reduceMotion ? "100%" : 0 }}
-                        animate={{ width: "100%" }}
-                        transition={{
-                          duration: reduceMotion || paused ? 0 : HOLD_MS / 1000,
-                          ease: "linear",
-                        }}
+                    {mark && (
+                      <Image
+                        src={mark.src}
+                        alt={mark.name}
+                        width={mark.width}
+                        height={mark.height}
+                        className="h-6 sm:h-7 w-auto object-contain pointer-events-none"
                       />
                     )}
-                  </button>
-                );
-              })}
+                  </figcaption>
+                </div>
+              </motion.figure>
+            </AnimatePresence>
+          </div>
+
+          {/* Controls */}
+          <div className="mt-8 flex items-center justify-between px-4">
+            {/* Step indicators / pagination dots */}
+            <div className="flex items-center gap-2">
+              {items.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => {
+                    setDirection(i > active ? 1 : -1);
+                    setActive(i);
+                  }}
+                  className={`h-2 rounded-full transition-all duration-300 ${
+                    i === active ? "w-6 bg-blue-600" : "w-2 bg-slate-200 hover:bg-slate-300"
+                  }`}
+                  aria-label={`Go to slide ${i + 1}`}
+                />
+              ))}
             </div>
-          </motion.div>
+
+            {/* Navigation buttons */}
+            <div className="flex items-center gap-3">
+              <button
+                type="button"
+                onClick={() => paginate(-1)}
+                className="w-10 h-10 sm:w-12 sm:h-12 rounded-full border border-slate-200 bg-white flex items-center justify-center text-slate-600 hover:text-blue-600 hover:border-blue-600 shadow-sm hover:shadow-[0_10px_20px_rgba(37,99,235,0.06)] active:scale-95 transition-all duration-300"
+                aria-label="Previous testimonial"
+              >
+                <ChevronLeft className="w-5 h-5" />
+              </button>
+              <button
+                type="button"
+                onClick={() => paginate(1)}
+                className="w-10 h-10 sm:w-12 sm:h-12 rounded-full border border-slate-200 bg-white flex items-center justify-center text-slate-600 hover:text-blue-600 hover:border-blue-600 shadow-sm hover:shadow-[0_10px_20px_rgba(37,99,235,0.06)] active:scale-95 transition-all duration-300"
+                aria-label="Next testimonial"
+              >
+                <ChevronRight className="w-5 h-5" />
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </section>

@@ -24,6 +24,19 @@ type Project = {
 
 const projects: Project[] = [
   {
+    title: "Batugin",
+    category: { id: "Farmasi & Kesehatan", en: "Healthcare & Pharmaceuticals" },
+    type: "Website",
+    desc: { 
+      id: "Website Company Profile resmi untuk lini produk kesehatan unggulan Batugin. Menghadirkan informasi produk terpercaya dengan desain medis yang bersih, profesional, dan edukatif.", 
+      en: "Official Company Profile website for the Batugin healthcare product line. Presents trusted product information with a clean, professional, and educational medical design." 
+    },
+    tags: ["Next.js", "TailwindCSS", "Framer Motion"],
+    image: "/batugin_compro.jpeg",
+    icon: Globe,
+    accent: "text-rose-600 bg-rose-50 border-rose-100",
+  },
+  {
     title: "Master Diskon",
     category: { id: "Travel & Perhotelan", en: "Travel & Hospitality" },
     type: "Internal Dashboard",

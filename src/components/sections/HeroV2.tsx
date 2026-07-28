@@ -147,7 +147,7 @@ export default function HeroV2() {
           }}
         >
           <video
-            src="/vertical_hero.mp4"
+            src="/coba14k.mp4"
             autoPlay
             loop
             muted
@@ -155,7 +155,7 @@ export default function HeroV2() {
             preload="auto"
             className="w-full h-full object-cover"
             style={{
-              transform: "translate3d(0, 0, 0)",
+              transform: "translate3d(0, -8%, 0) scale(1.22)",
               backfaceVisibility: "hidden",
               WebkitBackfaceVisibility: "hidden",
             }}
@@ -164,8 +164,8 @@ export default function HeroV2() {
       </div>
 
       {/* Copy block */}
-      <div className="hero-copy flex-1 w-full flex flex-col justify-center pt-32 lg:pt-24 pb-24 lg:pb-16 px-6 relative z-10 pointer-events-none will-change-transform">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 w-full max-w-[1400px] mx-auto items-center pointer-events-auto">
+      <div className="hero-copy flex-1 w-full flex flex-col justify-center pt-32 lg:pt-24 pb-24 lg:pb-16 px-6 lg:px-12 relative z-10 pointer-events-none will-change-transform">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 w-full max-w-none items-center pointer-events-auto">
           <div className="col-span-1 lg:col-span-5 flex flex-col justify-center">
             <p className="hero-eyebrow flex items-center gap-3 mb-6">
               <span className="w-1.5 h-1.5 rounded-full bg-blue-600" />
@@ -198,7 +198,7 @@ export default function HeroV2() {
                 />
               </a>
               <a
-                href="#work"
+                href="/services"
                 className="group w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 bg-white hover:bg-slate-50 text-slate-900 font-bold text-sm uppercase tracking-widest rounded-2xl border border-slate-200 transition-all duration-300"
               >
                 {text.secondaryBtn}
@@ -213,7 +213,7 @@ export default function HeroV2() {
       {/* Scroll cue only. The client/industry count moved to TrustedBy, where
           it belongs — down here it sat below the fold on shorter screens. */}
       <div className="hero-foot absolute bottom-0 left-0 right-0 z-10 pointer-events-none">
-        <div className="max-w-[1400px] mx-auto px-6 pb-8 flex items-end">
+        <div className="w-full max-w-none px-6 lg:px-12 pb-8 flex items-end">
           <div className="flex items-center gap-4">
             {/* Mouse outline with a wheel dot travelling down it. The dot is
                 offset with a margin rather than -translate-x-1/2, because GSAP

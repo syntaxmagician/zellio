@@ -5,7 +5,6 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Shield, Database, Lock, Share2, HelpCircle, CheckCircle2 } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-import PrivacySplashLoader from "@/components/layout/PrivacySplashLoader";
 import { useLanguage } from "@/context/LanguageContext";
 
 const policyText = {
@@ -96,26 +95,10 @@ const policyText = {
 export default function PrivacyPolicyPage() {
   const { language } = useLanguage();
   const text = policyText[language];
-  const [loading, setLoading] = useState(true);
   const [activeSection, setActiveSection] = useState(text.sections[0].id);
-
-  // Set up splash loader
-  useEffect(() => {
-    document.body.style.overflow = "hidden";
-    const timer = setTimeout(() => {
-      setLoading(false);
-      document.body.style.overflow = "auto";
-    }, 2800);
-    return () => {
-      clearTimeout(timer);
-      document.body.style.overflow = "auto";
-    };
-  }, []);
 
   // Update active section based on scroll
   useEffect(() => {
-    if (loading) return;
-
     const handleScroll = () => {
       let currentSection = text.sections[0].id;
       for (const section of text.sections) {
@@ -132,7 +115,7 @@ export default function PrivacyPolicyPage() {
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [loading, text.sections]);
+  }, [text.sections]);
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
@@ -144,14 +127,10 @@ export default function PrivacyPolicyPage() {
 
   return (
     <>
-      <AnimatePresence mode="wait">
-        {loading && <PrivacySplashLoader key="privacy-loader" />}
-      </AnimatePresence>
-
       <motion.div
         initial={{ opacity: 0 }}
-        animate={!loading ? { opacity: 1 } : { opacity: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
         className="min-h-screen bg-[#FAFAFA] flex flex-col justify-between selection:bg-indigo-500/30 w-full will-change-opacity"
       >
         <Navbar />

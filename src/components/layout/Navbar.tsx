@@ -74,7 +74,7 @@ export default function Navbar() {
             : "bg-transparent border-b border-transparent py-7"
         }`}
       >
-        <div className="max-w-[1400px] mx-auto px-6 w-full flex items-center justify-between">
+        <div className="max-w-none px-6 lg:px-12 w-full flex items-center justify-between">
           
           {/* LEFT: Logo */}
           <div className="relative w-[180px] lg:w-[240px] h-10 shrink-0">

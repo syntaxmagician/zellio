@@ -7,7 +7,7 @@ import {
   Database, Users, UserCheck, Package, Truck, Cpu, Brain,
   ChevronDown, Server, Code2, Zap, Shield, Activity, 
   ArrowUpRight, Play, LayoutGrid, HelpCircle,
-  Network
+  Network, Terminal
 } from "lucide-react";
 import Link from "next/link";
 import { motion, AnimatePresence, useScroll, useTransform, useMotionValueEvent, useInView, useMotionValue, useSpring } from "framer-motion";
@@ -923,106 +923,98 @@ export default function ServicePageClient({ service }: { service: any }) {
       {/* 03 METHODOLOGY / CREATIVE SPRINTS */}
       <section 
         ref={methodologyRef} 
-        className="relative z-20 bg-slate-50 text-slate-900 overflow-hidden py-24 md:py-32 border-b border-slate-100"
+        className="relative z-20 bg-[#F4F4F5] text-slate-900 overflow-hidden py-24 md:py-32 border-y border-slate-200/60"
       >
         <div className="container mx-auto px-6">
-          <div className="max-w-6xl mx-auto flex flex-col lg:flex-row gap-16 lg:gap-24 relative">
+          <div className="max-w-6xl mx-auto flex flex-col lg:flex-row gap-16 relative">
             
-            {/* LEFT COLUMN: Sticky Info & Tracker */}
-            <div className="lg:w-[360px] flex-shrink-0">
+            {/* LEFT COLUMN: Vertical Interactive Stepper */}
+            <div className="lg:w-[320px] flex-shrink-0 relative">
               <div className="sticky top-32">
                 <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 text-blue-600 text-[10px] font-mono font-bold tracking-widest uppercase mb-6">
                   02 — Our Process
                 </span>
-                <h3 className="text-4xl sm:text-5xl font-black tracking-tighter leading-[0.95] uppercase mb-5 text-slate-900">
+                <h3 className="text-4xl sm:text-5xl font-black tracking-tighter leading-[0.95] uppercase mb-10 text-slate-900">
                   {language === "id" ? "Cara Kami Bekerja" : "How We Work"}
                 </h3>
-                <p className="text-sm text-slate-500 font-light leading-relaxed mb-8 border-l-2 border-blue-500 pl-4">
-                  {language === "id" 
-                    ? `Proses terstruktur, hasil yang bisa diukur — dari brief awal hingga produksi live.`
-                    : `Structured process, measurable outcomes — from initial brief to live production.`}
-                </p>
-
-                {/* Vertical Process Navigation Tracker */}
-                <div className="hidden lg:flex flex-col gap-2.5">
+                
+                {/* Vertical Stepper Tracker */}
+                <div className="relative border-l-2 border-slate-200 ml-3 pl-8 flex flex-col gap-8 pb-10">
                   {processPhases.map((phase, idx) => {
                     const isActive = activePhase === idx;
-                    
                     return (
-                      <button 
-                        key={`tracker-${idx}`}
-                        onClick={() => {
-                          const element = document.getElementById(`process-step-${idx}`);
-                          if (element) {
-                            element.scrollIntoView({ behavior: "smooth", block: "center" });
-                          }
-                          setActivePhase(idx);
-                        }}
-                        className={`flex items-center justify-between w-full text-left py-3 px-4 rounded-xl border transition-all duration-300 ${
-                          isActive 
-                            ? "bg-white border-slate-200/80 shadow-[0_4px_20px_-4px_rgba(15,23,42,0.06)] text-blue-600" 
-                            : "bg-transparent border-transparent text-slate-400 hover:text-slate-700 hover:bg-slate-100/50"
-                        }`}
+                      <div 
+                        key={idx}
+                        className="relative group cursor-pointer"
+                        onMouseEnter={() => setActivePhase(idx)}
+                        onClick={() => setActivePhase(idx)}
                       >
-                        <div className="flex items-center gap-4">
-                          <span className={`font-mono text-[11px] font-bold ${isActive ? "text-blue-600" : "text-slate-300"}`}>
-                            {String(idx + 1).padStart(2, "0")}
+                        {/* Connecting Dot */}
+                        <div className={`absolute -left-[41px] top-1/2 -translate-y-1/2 w-4 h-4 rounded-full border-2 transition-all duration-300 flex items-center justify-center ${
+                          isActive ? "bg-white border-blue-600 shadow-[0_0_12px_rgba(37,99,235,0.4)]" : "bg-slate-100 border-slate-300 group-hover:border-blue-400 group-hover:scale-110"
+                        }`}>
+                          {isActive && <div className="w-1.5 h-1.5 bg-blue-600 rounded-full" />}
+                        </div>
+
+                        <div className="flex flex-col">
+                          <span className={`text-[10px] font-mono font-bold tracking-widest transition-colors duration-300 ${
+                            isActive ? "text-blue-600" : "text-slate-400 group-hover:text-blue-400"
+                          }`}>
+                            STEP {String(idx + 1).padStart(2, "0")}
                           </span>
-                          <span className={`text-[12px] font-bold tracking-tight uppercase transition-colors duration-300 ${
-                            isActive ? "text-slate-900" : "text-slate-500"
+                          <span className={`text-sm sm:text-base font-bold uppercase tracking-tight transition-colors duration-300 mt-1 ${
+                            isActive ? "text-slate-900" : "text-slate-500 group-hover:text-slate-700"
                           }`}>
                             {phase.title}
                           </span>
                         </div>
-                        {isActive && (
-                          <motion.div 
-                            layoutId="activeDot"
-                            className="w-1.5 h-1.5 rounded-full bg-blue-600 shadow-[0_0_8px_rgba(37,99,235,0.6)]" 
-                          />
-                        )}
-                      </button>
+                      </div>
                     );
                   })}
                 </div>
               </div>
             </div>
 
-            {/* RIGHT COLUMN: Scrolling Timeline Rows */}
-            <div className="flex-1 relative flex flex-col">
-              {processPhases.map((phase, idx) => {
-                const isActive = activePhase === idx;
-                return (
-                  <motion.div
-                    id={`process-step-${idx}`}
-                    key={`card-${idx}`}
-                    onViewportEnter={() => setActivePhase(idx)}
-                    onMouseEnter={() => setActivePhase(idx)}
-                    viewport={{ margin: "-40% 0px -40% 0px" }}
-                    className={`py-12 border-b border-slate-200 last:border-b-0 flex flex-col gap-4 cursor-pointer transition-all duration-700 ${
-                      isActive ? "opacity-100 scale-100" : "opacity-30 scale-[0.98] blur-[0.5px]"
-                    }`}
-                  >
-                    <div className="flex items-center justify-between">
-                      <span className={`text-[10px] font-mono tracking-[0.2em] transition-colors duration-500 ${isActive ? "text-blue-600" : "text-slate-400"}`}>
-                        STEP {String(idx + 1).padStart(2, "0")}
-                      </span>
-                      <span className={`text-[10px] font-mono font-bold tracking-[0.2em] px-3 py-1.5 rounded-full uppercase transition-all duration-500 ${
-                        isActive ? "bg-blue-50 text-blue-600" : "bg-slate-100 text-slate-400"
-                      }`}>
-                        {phase.metric}
-                      </span>
-                    </div>
-                    
-                    <h4 className={`text-3xl md:text-4xl font-black tracking-tight uppercase transition-colors duration-500 ${isActive ? "text-slate-900" : "text-slate-400"}`}>
-                      {phase.title}
-                    </h4>
-                    
-                    <p className={`text-sm md:text-base font-light leading-relaxed max-w-md transition-colors duration-500 ${isActive ? "text-slate-600" : "text-slate-400"}`}>
-                      {phase.detail}
-                    </p>
-                  </motion.div>
-                );
-              })}
+            {/* RIGHT COLUMN: Interactive Visual Card */}
+            <div className="flex-1 relative">
+               <div className="sticky top-32 w-full">
+                 <AnimatePresence mode="wait">
+                   <motion.div
+                     key={activePhase}
+                     initial={{ opacity: 0, y: 15 }}
+                     animate={{ opacity: 1, y: 0 }}
+                     exit={{ opacity: 0, y: -15 }}
+                     transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                     className="flex flex-col justify-center min-h-[320px] md:min-h-[380px] w-full"
+                   >
+                     {/* Clean Typography Layout */}
+                     <div className="py-8 md:py-12 relative flex-grow flex flex-col justify-center px-6 md:px-16 lg:border-l border-slate-300/50">
+                       <div className="absolute -bottom-10 right-0 md:right-10 text-[12rem] md:text-[16rem] font-black text-slate-300/30 pointer-events-none select-none tracking-tighter leading-none z-0">
+                         {String(activePhase + 1).padStart(2, "0")}
+                       </div>
+                       
+                       <div className="relative z-10">
+                         <div className="flex flex-wrap items-center gap-3 mb-6">
+                           <span className="px-3 py-1.5 rounded-full bg-blue-50 text-blue-600 text-[10px] font-mono font-bold tracking-[0.15em] uppercase">
+                             {processPhases[activePhase].metric}
+                           </span>
+                           <span className="text-xs font-bold text-slate-400 uppercase tracking-wider">
+                             PHASE {activePhase + 1}
+                           </span>
+                         </div>
+                         
+                         <h4 className="text-3xl sm:text-4xl font-black tracking-tighter uppercase text-slate-900 mb-4">
+                           {processPhases[activePhase].title}
+                         </h4>
+                         
+                         <p className="text-sm sm:text-base font-light text-slate-600 leading-relaxed max-w-xl">
+                           {processPhases[activePhase].detail}
+                         </p>
+                       </div>
+                     </div>
+                   </motion.div>
+                 </AnimatePresence>
+               </div>
             </div>
 
           </div>
