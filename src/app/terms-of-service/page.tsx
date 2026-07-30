@@ -10,83 +10,83 @@ import { useLanguage } from "@/context/LanguageContext";
 const policyText = {
   en: {
     title: "Terms of Service",
-    lastUpdated: "Last Updated: October 2024",
+    lastUpdated: "Last Updated: June 2026",
     sections: [
       {
         id: "sec-1",
         icon: Shield,
-        designator: "TERMS_ACCEPTANCE",
-        heading: "1. Acceptance of Terms",
-        content: "By accessing or using Zellio Digital's services, websites, or custom software deliverables, you agree to be bound by these Terms of Service. If you do not agree to these terms, you must cease using our software, systems, and services immediately."
+        designator: "WELCOME",
+        heading: "1. Welcome to Zellio",
+        content: "Hello and welcome to Zellio! We're thrilled to have you here. By using our website, reaching out for projects, or hiring us to build your software, you're agreeing to these terms. If you don't agree, that's completely fine, but it means we won't be able to work together or offer our services to you."
       },
       {
         id: "sec-2",
         icon: Code2,
-        designator: "SCOPE_SERVICES",
-        heading: "2. Scope of Engineering Services",
-        content: "Zellio Digital provides custom software engineering, UI/UX design, cloud architecture design, and database normalization systems. All project milestones, engineering schedules, and custom feature sets are defined in individual Statements of Work (SOW) or signed Service Level Agreements (SLA)."
+        designator: "OUR_WORK",
+        heading: "2. How We Work Together",
+        content: "Our goal is to build amazing digital products for you—whether that's a new website, a custom mobile app, or a complex software system. The exact details, timelines, and costs of what we'll build together will always be clearly written down in a separate, friendly project agreement before we write a single line of code."
       },
       {
         id: "sec-3",
         icon: Database,
-        designator: "INTELLECTUAL_PROPERTY",
-        heading: "3. Intellectual Property Rights",
-        content: "Unless explicitly stated otherwise in a custom project contract, all core code bases, custom components, and proprietary architectures developed by Zellio Digital remain our intellectual property. Upon full payment of all project fees, the client is granted a perpetual, non-exclusive license to run and modify the custom application built specifically for them."
+        designator: "OWNERSHIP",
+        heading: "3. Who Owns What",
+        content: "We believe in fairness. While we retain the rights to our underlying frameworks and the core tools we use every day, you get a perpetual license to use, run, and modify the custom software we build specifically for your business once the project is fully paid for. Simple as that."
       },
       {
         id: "sec-4",
         icon: UserCheck,
-        designator: "CLIENT_RESPONSIBILITY",
-        heading: "4. Client Obligations & Access",
-        content: "Clients must provide timely system requirements, brand design assets, database specifications, and API access credentials necessary for project execution. Zellio Digital is not responsible for engineering delays resulting from client dependencies or missing parameters."
+        designator: "TEAMWORK",
+        heading: "4. Your Role in the Project",
+        content: "Great software is built through collaboration. To keep everything on schedule, we'll need you to share your requirements, feedback, and any necessary assets (like logos or server access) in a timely manner. If things get delayed on your end, it might push back our delivery dates, but we'll always communicate with you along the way."
       },
       {
         id: "sec-5",
         icon: Lock,
-        designator: "LIMITATION_LIABILITY",
-        heading: "5. Limitation of Liability",
-        content: "To the maximum extent permitted by law, Zellio Digital, its engineers, and partners shall not be held liable for any indirect, special, incidental, or consequential system failures (including server crashes, database corruptions, or loss of business profits) arising from the deployment of our systems."
+        designator: "LIABILITY",
+        heading: "5. Keeping Expectations Clear",
+        content: "We take immense pride in our code, but software is complex and sometimes unpredictable. To the extent allowed by law, we can't be held financially responsible for indirect issues like lost profits or unexpected server downtime after hand-off. We promise to do our best work, and we ask that you use the systems responsibly."
       }
     ]
   },
   id: {
     title: "Syarat dan Ketentuan",
-    lastUpdated: "Pembaruan Terakhir: Oktober 2024",
+    lastUpdated: "Pembaruan Terakhir: Juni 2026",
     sections: [
       {
         id: "sec-1",
         icon: Shield,
-        designator: "TERMS_ACCEPTANCE",
-        heading: "1. Penerimaan Ketentuan",
-        content: "Dengan mengakses atau menggunakan layanan, situs web, atau produk perangkat lunak kustom Zellio Digital, Anda setuju untuk terikat oleh Syarat dan Ketentuan ini. Jika Anda tidak menyetujui ketentuan ini, Anda harus segera menghentikan penggunaan sistem dan layanan kami."
+        designator: "WELCOME",
+        heading: "1. Selamat Datang di Zellio",
+        content: "Halo dan selamat datang! Kami senang Anda ada di sini. Dengan menelusuri website kami atau bekerja sama dalam sebuah proyek, Anda setuju dengan ketentuan ini. Jika Anda kurang nyaman dengan aturan ini, tidak apa-apa, tapi sayangnya kita mungkin tidak bisa bekerja sama lebih jauh."
       },
       {
         id: "sec-2",
         icon: Code2,
-        designator: "SCOPE_SERVICES",
-        heading: "2. Cakupan Layanan Rekayasa",
-        content: "Zellio Digital menyediakan rekayasa perangkat lunak kustom, desain UI/UX, arsitektur cloud, dan sistem normalisasi basis data. Semua pencapaian proyek, jadwal rekayasa, dan fitur kustom didefinisikan dalam Dokumen Kesepakatan Kerja (SOW) atau Perjanjian Tingkat Layanan (SLA) yang ditandatangani."
+        designator: "OUR_WORK",
+        heading: "2. Cara Kita Bekerja Sama",
+        content: "Fokus utama kami adalah menciptakan produk digital yang luar biasa untuk Anda—baik itu website, aplikasi mobile, maupun sistem internal. Semua detail mengenai waktu pengerjaan, harga, dan fitur akan selalu kita sepakati bersama secara tertulis sebelum proyek dimulai, jadi tidak ada kejutan di akhir."
       },
       {
         id: "sec-3",
         icon: Database,
-        designator: "INTELLECTUAL_PROPERTY",
-        heading: "3. Hak Kekayaan Intelektual",
-        content: "Kecuali dinyatakan secara eksplisit dalam kontrak proyek kustom, semua basis kode utama, komponen kustom, dan arsitektur berpemilik yang dikembangkan oleh Zellio Digital tetap menjadi hak kekayaan intelektual kami. Setelah pelunasan biaya proyek, klien diberikan lisensi abadi non-eksklusif untuk menjalankan dan memodifikasi aplikasi kustom yang dibangun khusus untuk mereka."
+        designator: "OWNERSHIP",
+        heading: "3. Kepemilikan Sistem",
+        content: "Kami percaya pada kerja sama yang adil. Kami tetap memiliki hak atas framework dasar yang kami gunakan, namun setelah pembayaran proyek lunas, Anda bebas menggunakan, menjalankan, dan memodifikasi aplikasi yang kami buat khusus untuk bisnis Anda. Sangat sederhana dan transparan."
       },
       {
         id: "sec-4",
         icon: UserCheck,
-        designator: "CLIENT_RESPONSIBILITY",
-        heading: "4. Kewajiban & Akses Klien",
-        content: "Klien harus menyediakan kebutuhan sistem, aset desain merek, spesifikasi basis data, dan kredensial akses API secara tepat waktu untuk pelaksanaan proyek. Zellio Digital tidak bertanggung jawab atas keterlambatan pengerjaan yang diakibatkan oleh dependensi klien atau parameter yang tidak lengkap."
+        designator: "TEAMWORK",
+        heading: "4. Peran Anda dalam Proyek",
+        content: "Aplikasi yang hebat lahir dari komunikasi yang baik. Agar proyek selesai tepat waktu, kami sangat membutuhkan bantuan Anda untuk memberikan feedback, materi desain, atau akses yang diperlukan sesuai jadwal. Keterlambatan dari pihak Anda tentu bisa menggeser tenggat waktu, tapi tenang saja, kita akan selalu berkoordinasi."
       },
       {
         id: "sec-5",
         icon: Lock,
-        designator: "LIMITATION_LIABILITY",
-        heading: "5. Batasan Tanggung Jawab",
-        content: "Sejauh yang diizinkan oleh hukum, Zellio Digital, para engineer, dan mitranya tidak bertanggung jawab atas kegagalan sistem tidak langsung, khusus, insidental, atau konsekuensial (termasuk crash server, kerusakan database, atau kerugian keuntungan bisnis) yang timbul dari penerapan sistem kami."
+        designator: "LIABILITY",
+        heading: "5. Harapan dan Tanggung Jawab",
+        content: "Kami sangat bangga dengan kualitas pekerjaan kami, namun dunia software terkadang sulit diprediksi secara absolut. Sesuai batasan hukum, kami tidak dapat dimintai pertanggungjawaban finansial atas hal-hal di luar kendali seperti server yang down atau hilangnya potensi keuntungan setelah sistem diserahkan. Kami berjanji memberikan yang terbaik, dan kami harap Anda menggunakannya dengan bijak."
       }
     ]
   }
@@ -131,69 +131,64 @@ export default function TermsOfServicePage() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5, ease: "easeOut" }}
-        className="min-h-screen bg-[#FAFAFA] flex flex-col justify-between selection:bg-indigo-500/30 w-full will-change-opacity"
+        className="min-h-screen bg-[#FAFAFA] flex flex-col justify-between selection:bg-slate-900/10 w-full will-change-opacity"
       >
         <Navbar />
 
-        <main className="flex-grow pt-32 pb-24 relative z-10 px-6">
+        <main className="flex-grow pt-40 pb-24 relative z-10 px-6">
           <div className="max-w-[1200px] mx-auto">
-            
-            {/* Header: Tech Document Style */}
-            <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 border-b border-slate-200 pb-8 gap-8">
-              <div>
-                <span className="inline-flex items-center gap-2 px-3 py-1 bg-indigo-50 text-indigo-600 rounded-full text-[10px] font-mono font-bold tracking-[0.2em] uppercase mb-5">
-                  <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 animate-pulse" />
-                  LEGAL COMPLIANCE
-                </span>
-                <h1 className="text-4xl md:text-6xl font-black text-slate-900 tracking-tight mb-4 leading-tight">
-                  {text.title}
-                </h1>
-                <p className="text-sm text-slate-500 font-mono flex items-center gap-2">
-                  <span>{text.lastUpdated}</span>
-                  <span className="hidden sm:inline-block w-1 h-1 rounded-full bg-slate-300" />
-                  <span className="hidden sm:inline-block">DOC_ID: ZS-4781</span>
-                </p>
-              </div>
 
-              {/* Status Badge */}
-              <div className="flex items-center gap-3 bg-white border border-slate-200 px-4 py-3 rounded-2xl shadow-sm">
-                <div className="w-10 h-10 rounded-full bg-emerald-50 flex items-center justify-center shrink-0">
-                  <CheckCircle2 className="w-5 h-5 text-emerald-500" />
-                </div>
-                <div>
-                  <div className="text-[10px] font-bold font-mono text-slate-400 uppercase tracking-widest">System Status</div>
-                  <div className="text-sm font-bold text-slate-900 tracking-tight">Active & Enforced</div>
+            {/* Header: Tech Document Style */}
+            <div className="flex flex-col mb-12">
+              <span className="inline-flex items-center gap-2 px-3 py-1 border border-slate-900/10 bg-slate-100 text-slate-600 rounded-full text-[10px] font-mono font-bold tracking-[0.2em] uppercase mb-6 w-fit">
+                <span className="w-1.5 h-1.5 rounded-full bg-slate-400 animate-pulse" />
+                LEGAL COMPLIANCE
+              </span>
+              <h1 className="text-5xl md:text-7xl font-black text-slate-900 tracking-tighter uppercase leading-none mb-6">
+                {text.title}
+              </h1>
+
+              <div className="w-full border-b border-slate-900/10 pt-4" />
+
+              <div className="flex flex-col md:flex-row justify-between items-start md:items-center py-6 gap-4">
+                <p className="text-xs font-mono text-slate-500 uppercase tracking-widest flex items-center gap-3">
+                  <span>{text.lastUpdated}</span>
+                  <span className="w-1 h-1 rounded-full bg-slate-300" />
+                  <span>DOC_ID: ZS-4781</span>
+                </p>
+                <div className="flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.4)]" />
+                  <span className="text-[10px] font-bold font-mono text-slate-900 uppercase tracking-widest">Active & Enforced</span>
                 </div>
               </div>
             </div>
 
             {/* Split Content Layout */}
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 relative">
-              
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 mt-8 relative">
+
               {/* Left Sidebar: Sticky TOC */}
               <div className="hidden lg:block lg:col-span-4 relative">
-                <div className="sticky top-32 space-y-2">
-                  <h3 className="text-[10px] font-mono font-bold text-slate-400 uppercase tracking-[0.2em] mb-6 px-4">
+                <div className="sticky top-32 space-y-4 pr-6">
+                  <h3 className="text-[10px] font-mono font-bold text-slate-400 uppercase tracking-[0.2em] mb-4">
                     Document Sections
                   </h3>
                   <div className="flex flex-col gap-1">
-                    {text.sections.map((section) => {
+                    {text.sections.map((section, idx) => {
                       const isActive = activeSection === section.id;
-                      const Icon = section.icon;
-                      
+                      const num = (idx + 1).toString().padStart(2, "0");
+
                       return (
                         <button
                           key={section.id}
                           onClick={() => scrollToSection(section.id)}
-                          className={`flex items-center gap-3 w-full text-left px-4 py-3 rounded-xl transition-all duration-300 ${
-                            isActive 
-                              ? "bg-indigo-50 text-indigo-700 shadow-sm" 
-                              : "text-slate-500 hover:bg-slate-100/50 hover:text-slate-900"
-                          }`}
+                          className={`flex items-start gap-4 text-left py-2.5 border-l transition-all duration-300 pl-4 -ml-px ${isActive
+                              ? "border-slate-900 text-slate-900 font-bold"
+                              : "border-slate-200 text-slate-400 hover:text-slate-900 hover:border-slate-400"
+                            }`}
                         >
-                          <Icon size={16} className={isActive ? "text-indigo-600" : "text-slate-400"} />
-                          <span className={`text-[13px] font-bold ${isActive ? "opacity-100" : "opacity-80"}`}>
-                            {section.heading}
+                          <span className="text-xs font-mono tracking-widest">{num}</span>
+                          <span className="text-[13px] tracking-tight leading-snug">
+                            {section.heading.split(".").slice(1).join(".").trim()}
                           </span>
                         </button>
                       );
@@ -203,48 +198,37 @@ export default function TermsOfServicePage() {
               </div>
 
               {/* Right Content: Policy Body */}
-              <div className="lg:col-span-8">
-                <div className="bg-white rounded-[32px] border border-slate-200/60 shadow-xl shadow-slate-200/20 overflow-hidden relative">
-                  
-                  {/* Top Bar for Card */}
-                  <div className="h-12 bg-slate-50 border-b border-slate-100 flex items-center px-6 gap-2">
-                    <div className="w-3 h-3 rounded-full bg-rose-400/80" />
-                    <div className="w-3 h-3 rounded-full bg-amber-400/80" />
-                    <div className="w-3 h-3 rounded-full bg-emerald-400/80" />
-                    <div className="ml-4 text-[10px] font-mono text-slate-400 font-bold uppercase tracking-widest">
-                      zellio-terms-framework.md
-                    </div>
-                  </div>
+              <div className="lg:col-span-8 space-y-16">
+                {text.sections.map((section, idx) => {
+                  const numberStr = (idx + 1).toString().padStart(2, "0");
 
-                  {/* Content padding */}
-                  <div className="p-8 md:p-12 space-y-16">
-                    {text.sections.map((section) => {
-                      const Icon = section.icon;
-                      return (
-                        <div key={section.id} id={section.id} className="scroll-mt-32">
-                          <div className="flex items-start gap-4 mb-4">
-                            <div className="w-10 h-10 rounded-xl bg-indigo-50 border border-indigo-100 flex items-center justify-center shrink-0 mt-1">
-                              <Icon size={18} className="text-indigo-600" />
-                            </div>
-                            <div>
-                              <div className="text-[10px] font-mono font-bold text-indigo-500 uppercase tracking-widest mb-1.5">
-                                [ {section.designator} ]
-                              </div>
-                              <h2 className="text-xl md:text-2xl font-bold text-slate-900 tracking-tight">
-                                {section.heading}
-                              </h2>
-                            </div>
-                          </div>
-                          <div className="pl-0 md:pl-14">
-                            <p className="text-slate-600 leading-relaxed text-sm md:text-base font-medium">
-                              {section.content}
-                            </p>
-                          </div>
+                  return (
+                    <div
+                      key={section.id}
+                      id={section.id}
+                      className="scroll-mt-32 border-b border-slate-100 pb-16 last:border-0 last:pb-0"
+                    >
+                      <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-start">
+                        {/* Number Column */}
+                        <div className="col-span-1 md:col-span-2 text-4xl md:text-5xl font-black font-mono text-slate-200 leading-none">
+                          {numberStr}
                         </div>
-                      );
-                    })}
-                  </div>
-                </div>
+                        {/* Content Column */}
+                        <div className="col-span-1 md:col-span-10">
+                          <div className="text-[10px] font-mono font-bold text-slate-400 uppercase tracking-widest mb-2">
+                            [ {section.designator} ]
+                          </div>
+                          <h2 className="text-xl md:text-2xl font-bold text-slate-900 tracking-tight mb-4 uppercase">
+                            {section.heading.split(".").slice(1).join(".").trim()}
+                          </h2>
+                          <p className="text-slate-600 leading-relaxed text-sm md:text-base font-medium">
+                            {section.content}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
               </div>
 
             </div>

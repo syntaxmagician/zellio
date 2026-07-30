@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import { ArrowRight } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 import { gsap, useGSAP } from "@/lib/gsap";
@@ -8,21 +8,21 @@ import { isReady } from "@/lib/ready";
 
 const localText = {
   en: {
-    eyebrow: "Software Engineering & Design Studio",
-    slogan: ["BUILD", "DIGITAL", "SYSTEMS", "THAT LAST."],
+    eyebrow: "Greetings! We Are ZELLIO",
+    slogan: ["Building digital", "systems that last."],
     description:
-      "Modern websites, custom applications, and enterprise software built with performance, scalability, and exceptional user experience in mind",
-    primaryBtn: "Start Your Project",
+      "We are a creative team of designers, developers, and strategists building elevated websites and custom enterprise systems.",
+    primaryBtn: "Get to know us",
     secondaryBtn: "Explore Our Work",
     scroll: "Scroll",
     foot: "10 Clients — 9 Industries",
   },
   id: {
-    eyebrow: "Studio Rekayasa Perangkat Lunak & Desain",
-    slogan: ["BANGUN", "SISTEM", "DIGITAL", "YANG ABADI."],
+    eyebrow: "KAMI ADALAH ZELLIO",
+    slogan: ["Membangun sistem", "digital yang abadi."],
     description:
-      "Kami membangun website modern, aplikasi web & mobile custom, serta perangkat lunak enterprise yang membantu bisnis berkembang dengan lebih cepat dan terukur.",
-    primaryBtn: "Mulai Proyek",
+      "Kami adalah tim desainer, developer, dan arsitek perangkat lunak yang membangun sistem digital premium berstandar industri.",
+    primaryBtn: "Mulai proyek",
     secondaryBtn: "Lihat Portofolio",
     scroll: "Scroll",
     foot: "10 Klien — 9 Industri",
@@ -33,6 +33,14 @@ export default function HeroV2() {
   const { language } = useLanguage();
   const text = localText[language];
   const sectionRef = useRef<HTMLElement>(null);
+  const [activeVideo, setActiveVideo] = useState<1 | 2>(1);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveVideo((prev) => (prev === 1 ? 2 : 1));
+    }, 8000);
+    return () => clearInterval(interval);
+  }, []);
 
   useGSAP(
     () => {
@@ -42,13 +50,26 @@ export default function HeroV2() {
         // ---- Intro timeline (plays once the splash releases the page) ----
         const tl = gsap.timeline({ paused: true, defaults: { ease: "power4.out" } });
 
-        tl.from(".hero-eyebrow", { y: 18, opacity: 0, duration: 0.6 })
+        tl.fromTo(".hero-meta", { y: -10, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6 })
           .from(
             ".hero-line",
             { yPercent: 120, duration: 1, stagger: 0.09 },
             "-=0.35"
           )
-          .from(".hero-desc", { y: 16, opacity: 0, duration: 0.7 }, "-=0.55")
+          .fromTo(
+            ".hero-pill",
+            { scale: 0.8, opacity: 0 },
+            { scale: 1, opacity: 1, duration: 0.6, ease: "back.out(1.5)" },
+            "-=0.5"
+          )
+          .fromTo(
+            ".hero-meta-bottom",
+            { y: 10, opacity: 0 },
+            { y: 0, opacity: 1, duration: 0.6, stagger: 0.1 },
+            "-=0.4"
+          )
+          .from(".hero-eyebrow", { y: 14, opacity: 0, duration: 0.5 }, "-=0.3")
+          .from(".hero-desc", { y: 16, opacity: 0, duration: 0.7 }, "-=0.45")
           .from(".hero-cta", { y: 16, opacity: 0, duration: 0.7 }, "-=0.5")
           .fromTo(
             ".hero-video-clip",
@@ -113,7 +134,7 @@ export default function HeroV2() {
 
       mm.add("(prefers-reduced-motion: reduce)", () => {
         gsap.set(
-          [".hero-eyebrow", ".hero-line", ".hero-desc", ".hero-cta", ".hero-foot"],
+          [".hero-eyebrow", ".hero-line", ".hero-desc", ".hero-cta", ".hero-foot", ".hero-meta", ".hero-pill", ".hero-meta-bottom"],
           { clearProps: "all" }
         );
       });
@@ -125,105 +146,199 @@ export default function HeroV2() {
     <section
       id="home"
       ref={sectionRef}
-      className="relative min-h-screen w-full flex flex-col bg-white overflow-hidden"
-      style={{
-        backgroundImage: `
-          linear-gradient(to right, rgba(148, 163, 184, 0.025) 1px, transparent 1px),
-          linear-gradient(to bottom, rgba(148, 163, 184, 0.025) 1px, transparent 1px)
-        `,
-        backgroundSize: "48px 48px",
-      }}
+      className="relative min-h-screen w-full flex flex-col bg-[#121212] overflow-hidden"
     >
-      {/* Right-side vertical video, masked into the paper. The 4K source has
-          headroom to spare at full-bleed, so object-cover only ever shrinks it. */}
-      <div className="hero-video-wrap absolute top-0 right-0 w-full h-full overflow-hidden pointer-events-none z-0 will-change-transform">
-        <div
-          className="hero-video-clip w-full h-full"
-          style={{
-            maskImage:
-              "linear-gradient(to right, transparent 0%, transparent 40%, black 55%, black 100%)",
-            WebkitMaskImage:
-              "linear-gradient(to right, transparent 0%, transparent 40%, black 55%, black 100%)",
-          }}
-        >
-          <video
-            src="/coba14k.mp4"
-            autoPlay
-            loop
-            muted
-            playsInline
-            preload="auto"
-            className="w-full h-full object-cover"
-            style={{
-              transform: "translate3d(0, -8%, 0) scale(1.22)",
-              backfaceVisibility: "hidden",
-              WebkitBackfaceVisibility: "hidden",
-            }}
-          />
-        </div>
+      {/* Background Typography - Faded Outline */}
+      <div className="absolute right-[-10%] top-[10%] lg:top-[15%] text-[45vw] lg:text-[28vw] font-black leading-none pointer-events-none select-none opacity-80"
+        style={{ WebkitTextStroke: "1px rgba(255,255,255,0.03)", color: "transparent" }}>
+        Z E L L
+      </div>
+      <div className="absolute right-[-15%] bottom-[5%] lg:bottom-[5%] text-[45vw] lg:text-[28vw] font-black leading-none pointer-events-none select-none opacity-80"
+        style={{ WebkitTextStroke: "1px rgba(255,255,255,0.03)", color: "transparent" }}>
+        I O
       </div>
 
-      {/* Copy block */}
-      <div className="hero-copy flex-1 w-full flex flex-col justify-center pt-32 lg:pt-24 pb-24 lg:pb-16 px-6 lg:px-12 relative z-10 pointer-events-none will-change-transform">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 w-full max-w-none items-center pointer-events-auto">
-          <div className="col-span-1 lg:col-span-5 flex flex-col justify-center">
-            <p className="hero-eyebrow flex items-center gap-3 mb-6">
-              <span className="w-1.5 h-1.5 rounded-full bg-blue-600" />
-              <span className="text-[10px] font-mono font-bold tracking-[0.25em] uppercase text-slate-500">
-                {text.eyebrow}
-              </span>
-            </p>
 
-            <h1 className="flex flex-col text-4xl sm:text-5xl md:text-6xl lg:text-[3.75rem] xl:text-[4.75rem] font-black text-slate-900 tracking-tighter leading-[0.9] mb-8">
-              {text.slogan.map((word, idx) => (
-                <span key={idx} className="block overflow-hidden py-1">
-                  <span className="hero-line block will-change-transform">{word}</span>
-                </span>
-              ))}
-            </h1>
+      {/* Abstract geometric circle */}
+      <div className="absolute right-[-20%] top-[-10%] w-[80vw] h-[80vw] rounded-full border border-white/5 pointer-events-none" />
+      {/* Decorative Particles */}
+      <div className="absolute left-[5%] top-[20%] flex gap-2 text-slate-600/50 text-xs font-mono pointer-events-none">
+        + + +
+      </div>
+      <div className="absolute right-[25%] top-[30%] flex flex-col gap-2 text-slate-600/50 text-xs font-mono pointer-events-none">
+        <span>+</span>
+        <span>+</span>
+      </div>
 
-            <p className="hero-desc text-slate-500 font-medium text-base sm:text-lg lg:text-xl leading-relaxed max-w-lg mb-10 pr-4">
-              {text.description}
-            </p>
+      {/* Background Video */}
+      <div className="hero-video-wrap absolute inset-0 w-full h-full overflow-hidden pointer-events-none z-0 will-change-transform">
+        {/* Base Video */}
+        <video
+          src="/cinematic.mp4"
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="auto"
+          className={`hero-video-clip absolute inset-0 w-full h-full object-cover transition-opacity duration-[2000ms] ease-in-out ${activeVideo === 1 ? "opacity-[0.22]" : "opacity-0"
+            }`}
+        />
+        {/* Alternate Video */}
+        <video
+          src="/coba3.mp4"
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="auto"
+          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-[2000ms] ease-in-out ${activeVideo === 2 ? "opacity-[0.25]" : "opacity-0"
+            }`}
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#121212] via-[#121212]/75 to-transparent" />
+      </div>
 
-            <div className="hero-cta flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
-              <a
-                href="/contact"
-                className="group relative w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 bg-slate-950 hover:bg-slate-900 text-white font-bold text-sm uppercase tracking-widest rounded-2xl transition-all duration-300"
-              >
-                <span>{text.primaryBtn}</span>
-                <ArrowRight
-                  size={16}
-                  className="group-hover:translate-x-1 transition-transform duration-300"
-                />
-              </a>
-              <a
-                href="/services"
-                className="group w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 bg-white hover:bg-slate-50 text-slate-900 font-bold text-sm uppercase tracking-widest rounded-2xl border border-slate-200 transition-all duration-300"
-              >
-                {text.secondaryBtn}
-              </a>
-            </div>
+      {/* Copy block with Editorial Asymmetrical Grid */}
+      <div className="hero-copy flex-1 w-full flex flex-col justify-center pt-40 lg:pt-44 pb-24 lg:pb-16 px-6 lg:px-12 relative z-10 pointer-events-none will-change-transform">
+        <div className="w-full max-w-[1400px] mx-auto pointer-events-auto relative">
+
+          {/* Top Left Label (Studio Intro) */}
+          <div className="hero-meta absolute top-[-50px] lg:top-[-80px] left-0 flex flex-col gap-2 opacity-0">
+            <span className="text-[10px] font-mono font-bold tracking-[0.2em] text-[#2563EB] uppercase">[ 01 // STUDIO INTRODUCTION ]</span>
+            <span className="text-[10px] font-mono tracking-widest text-slate-500">EST. 2026</span>
           </div>
 
-          <div className="col-span-1 lg:col-span-7 h-full w-full pointer-events-none" />
+          {/* Asymmetric Header */}
+          <div className="flex flex-col w-full mb-12 lg:mb-16">
+            <h1 className="flex flex-col text-[2.2rem] sm:text-4xl md:text-5xl lg:text-[4.2rem] xl:text-[5rem] 2xl:text-[6rem] font-black text-white tracking-tighter leading-[0.9] uppercase">
+              {/* First Line */}
+              <span className="block overflow-hidden py-1 relative">
+                <span className="hero-line block will-change-transform relative z-10">
+                  {text.slogan[0]}
+                </span>
+              </span>
+
+              {/* Second Line (Indented) */}
+              <span className="block py-1 relative lg:ml-[15%] flex items-center gap-4 lg:gap-8">
+                <span className="hero-line block will-change-transform flex items-center flex-wrap gap-4 lg:gap-8">
+                  {/* Inline pill badge */}
+                  <span className="hero-pill hidden md:flex shrink-0 items-center justify-center px-6 py-2 lg:py-2.5 rounded-full border border-white/20 bg-white/5 backdrop-blur-md text-[10px] lg:text-xs font-mono font-bold tracking-[0.2em] text-[#2563EB] mb-1 lg:mb-0 opacity-0">
+                    We're Ready
+                  </span>
+                  {(() => {
+                    const words = text.slogan[1].split(" ");
+                    const lastWord = words[words.length - 1];
+                    const otherWords = words.slice(0, -1).join(" ");
+                    return (
+                      <>
+                        {otherWords}{" "}
+                        <span className="relative inline-block">
+                          {lastWord}
+                        </span>
+                      </>
+                    );
+                  })()}
+                </span>
+              </span>
+            </h1>
+          </div>
+
+          {/* Split Bottom Grid: Description on the right */}
+          <div className="relative grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-0 mt-8 lg:mt-20">
+
+            {/* Rotating Text Ring — editorial stamp, agency style */}
+            <div className="hidden lg:flex absolute left-[28%] top-[35%] -translate-x-1/2 -translate-y-1/2 items-center justify-center pointer-events-none">
+              <svg className="w-52 h-52" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <path id="text-circle-path" d="M 100,100 m -72,0 a 72,72 0 1,1 144,0 a 72,72 0 1,1 -144,0" />
+                </defs>
+                {/* Rotating text ring */}
+                <g className="text-ring-rotate" style={{ transformOrigin: '100px 100px' }}>
+                  <text
+                    fontSize="11.2"
+                    fill="rgba(255,255,255,0.85)"
+                    fontFamily="'Space Mono', 'Courier New', monospace"
+                    fontWeight="400"
+                    letterSpacing="3.2"
+                  >
+                    <textPath href="#text-circle-path">
+                      ZELLIO STUDIO ✦ SYSTEM · DEVELOP · STRATEGY ✦
+                    </textPath>
+                  </text>
+                </g>
+                {/* Center sparkle — 4-point star */}
+                <g className="center-sparkle" style={{ transformOrigin: '100px 100px' }}>
+                  <path
+                    d="M100 88 L102.5 97.5 L112 100 L102.5 102.5 L100 112 L97.5 102.5 L88 100 L97.5 97.5 Z"
+                    fill="rgba(255,255,255,0.85)"
+                  />
+                </g>
+              </svg>
+              <style>{`
+                @keyframes text-ring-spin {
+                  from { transform: rotate(0deg); }
+                  to { transform: rotate(360deg); }
+                }
+                .text-ring-rotate {
+                  animation: text-ring-spin 22s linear infinite;
+                }
+                @keyframes sparkle-breathe {
+                  0%, 100% { transform: scale(0.85) rotate(0deg); opacity: 0.6; }
+                  50% { transform: scale(1.15) rotate(45deg); opacity: 1; }
+                }
+                .center-sparkle {
+                  animation: sparkle-breathe 4s ease-in-out infinite;
+                }
+              `}</style>
+            </div>
+
+            {/* Left side meta tags (Coordinates etc) */}
+            <div className="hidden lg:flex col-span-5 flex-col justify-end gap-1 pb-4">
+              <span className="hero-meta-bottom text-[10px] font-mono text-slate-500 uppercase tracking-widest">HQ: JAKARTA, INDONESIA</span>
+              <span className="hero-meta-bottom text-[10px] font-mono text-slate-500 uppercase tracking-widest">SYS: ACTIVE V2.0</span>
+            </div>
+
+            {/* Right side Description + CTA */}
+            <div className="relative col-span-1 lg:col-span-6 lg:col-start-7 flex flex-col items-start lg:border-l lg:border-white/10 lg:pl-12 pt-2">
+              <p className="hero-eyebrow mb-5 text-[#2563EB] font-bold text-[10px] lg:text-xs tracking-[0.3em] uppercase flex items-center gap-3">
+                {/* On mobile, show it inline next to the text */}
+                <span className="lg:hidden inline-flex items-center text-white shrink-0">
+                  <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M12 4v16M4 12h16" strokeLinecap="round" className="animate-[pulse_1.8s_ease-in-out_infinite]" />
+                    <circle cx="12" cy="12" r="6" strokeWidth="1" strokeDasharray="3 2" className="animate-[spin_12s_linear_infinite]" />
+                  </svg>
+                </span>
+                <span>{text.eyebrow}</span>
+              </p>
+
+              <p className="hero-desc text-slate-300 font-medium text-base lg:text-xl leading-relaxed max-w-lg mb-10">
+                {text.description}
+              </p>
+
+              <div className="hero-cta">
+                <a
+                  href="/contact"
+                  className="group relative inline-flex items-center justify-center gap-4 px-8 py-4 bg-white hover:bg-slate-100 text-slate-900 font-bold text-[11px] lg:text-xs uppercase tracking-[0.2em] rounded-full transition-all duration-300 shadow-[0_0_20px_rgba(255,255,255,0.15)]"
+                >
+                  <span>{text.primaryBtn}</span>
+                  <span className="group-hover:rotate-45 transition-transform duration-300 text-lg leading-none">+</span>
+                </a>
+              </div>
+            </div>
+
+          </div>
+
         </div>
       </div>
 
-      {/* Scroll cue only. The client/industry count moved to TrustedBy, where
-          it belongs — down here it sat below the fold on shorter screens. */}
-      <div className="hero-foot absolute bottom-0 left-0 right-0 z-10 pointer-events-none">
-        <div className="w-full max-w-none px-6 lg:px-12 pb-8 flex items-end">
-          <div className="flex items-center gap-4">
-            {/* Mouse outline with a wheel dot travelling down it. The dot is
-                offset with a margin rather than -translate-x-1/2, because GSAP
-                writes to `transform` and would wipe out the centring. */}
-            <span className="hero-mouse relative block w-[26px] h-[42px] rounded-full border-2 border-slate-400/90">
-              <span className="hero-scroll-dash absolute left-1/2 -ml-[1.5px] top-[7px] block w-[3px] h-[8px] rounded-full bg-blue-600" />
-            </span>
-            <span className="text-xs sm:text-sm font-mono font-bold tracking-[0.28em] uppercase text-slate-700">
-              {text.scroll}
-            </span>
+      {/* Scroll cue (Baunfire style vertical text) */}
+      <div className="hero-foot absolute bottom-0 right-4 lg:right-10 z-20 pointer-events-none">
+        <div className="flex flex-col items-center gap-4 pb-12">
+          <span className="hero-mouse text-[10px] lg:text-[11px] font-mono font-bold tracking-[0.4em] uppercase text-white/70"
+            style={{ writingMode: "vertical-rl" }}>
+            {text.scroll}
+          </span>
+          <div className="relative h-16 w-[2px] overflow-hidden bg-white/10 rounded-full">
+            <span className="hero-scroll-dash absolute top-0 left-0 block w-full h-1/2 bg-orange-500 rounded-full shadow-[0_0_8px_rgba(249,115,22,0.8)]" />
           </div>
         </div>
       </div>

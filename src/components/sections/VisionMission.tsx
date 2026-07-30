@@ -9,14 +9,14 @@ import { ArrowRight, Sparkles, CheckCircle2, Zap, Rocket, Globe, ShieldCheck, Da
 
 const solutionsData = {
   en: {
-    sectionLabel: "OUR DIRECTION",
-    title: "Zellio Digital Solutions for Every Business Need",
+    sectionLabel: "WHAT WE DO",
+    title: "Digital Solutions Built for Your Business",
     items: [
       {
         id: "website",
         num: "01",
-        title: "Website",
-        desc: "Expand your market reach and elevate your brand presence with high-converting, ultrafast custom web applications and corporate portals.",
+        title: "Websites",
+        desc: "We build fast, secure, and beautiful websites that make your business look professional online and help you attract more clients.",
         cta: "Learn More",
         href: "/services/custom-website-development",
         image: "/woman-creative.png",
@@ -31,8 +31,8 @@ const solutionsData = {
       {
         id: "internal-system",
         num: "02",
-        title: "Sistem Internal",
-        desc: "Custom operational workflows, secure databases, and custom dashboard architectures built specifically to eliminate bottlenecks.",
+        title: "Internal Systems",
+        desc: "Custom operational software designed specifically for your team to eliminate manual paperwork and speed up your daily work.",
         cta: "Learn More",
         href: "/services/erp-system",
         image: "/woman-techy.png",
@@ -47,8 +47,8 @@ const solutionsData = {
       {
         id: "mobile-app",
         num: "03",
-        title: "Mobile App",
-        desc: "Engage your customers anywhere with sleek, native Android & iOS mobile applications designed for peak performance and user delight.",
+        title: "Mobile Apps",
+        desc: "Native iOS and Android apps that your customers will actually enjoy using, built with modern standards for a smooth experience.",
         cta: "Learn More",
         href: "/services/mobile-app-development",
         image: "/avatar-anisa.png",
@@ -64,7 +64,7 @@ const solutionsData = {
         id: "hris-payroll",
         num: "04",
         title: "HRIS & Payroll",
-        desc: "Streamline employee attendance, performance management, tax compliance, and automated payroll systems tailored for modern organizations.",
+        desc: "Easily manage your employees' attendance, leave requests, and automated monthly payroll without the headache of spreadsheets.",
         cta: "Learn More",
         href: "/services/hris-payroll-system",
         image: "/cute-asian-woman.png",
@@ -79,8 +79,8 @@ const solutionsData = {
       {
         id: "erp-system",
         num: "05",
-        title: "ERP System",
-        desc: "Comprehensive enterprise resource planning software integrating finance, inventory, supply chain, and operations in one centralized hub.",
+        title: "ERP Systems",
+        desc: "Connect your finance, inventory, and operations in one central system so you always know exactly how your business is doing.",
         cta: "Learn More",
         href: "/services/erp-system",
         image: "/asian-consultant.png",
@@ -95,14 +95,14 @@ const solutionsData = {
     ]
   },
   id: {
-    sectionLabel: "ARAH & SOLUSI",
-    title: "Solusi Digital ZELLIO untuk Semua Jenis Usaha",
+    sectionLabel: "LAYANAN KAMI",
+    title: "Solusi Digital untuk Bisnis Anda",
     items: [
       {
         id: "website",
         num: "01",
-        title: "Website",
-        desc: "Kembangkan usaha dan jangkauan pasar Anda dengan aplikasi web kustom dan profil perusahaan premium yang cepat, aman, dan berkonversi tinggi.",
+        title: "Pembuatan Website",
+        desc: "Kami membangun website yang cepat dan elegan untuk membantu bisnis Anda tampil lebih profesional dan menarik kepercayaan klien di internet.",
         cta: "Selengkapnya",
         href: "/services/custom-website-development",
         image: "/woman-creative.png",
@@ -117,8 +117,8 @@ const solutionsData = {
       {
         id: "internal-system",
         num: "02",
-        title: "Sistem Internal",
-        desc: "Alur kerja operasional kustom, database aman, dan arsitektur dasbor internal yang dibangun khusus untuk merampingkan hambatan operasional.",
+        title: "Sistem Internal Kustom",
+        desc: "Tinggalkan proses pencatatan manual. Kami membuatkan aplikasi khusus yang disesuaikan persis dengan alur kerja harian tim Anda.",
         cta: "Selengkapnya",
         href: "/services/erp-system",
         image: "/woman-techy.png",
@@ -133,8 +133,8 @@ const solutionsData = {
       {
         id: "mobile-app",
         num: "03",
-        title: "Mobile App",
-        desc: "Jangkau pelanggan di mana saja dengan aplikasi seluler Android & iOS native berkinerja tinggi yang memanjakan pengguna dan mendorong konversi.",
+        title: "Pembuatan Aplikasi Mobile",
+        desc: "Hadir langsung di genggaman pelanggan Anda melalui aplikasi Android dan iOS yang dirancang agar mudah digunakan siapa saja.",
         cta: "Selengkapnya",
         href: "/services/mobile-app-development",
         image: "/avatar-anisa.png",
@@ -149,8 +149,8 @@ const solutionsData = {
       {
         id: "hris-payroll",
         num: "04",
-        title: "HRIS & Payroll",
-        desc: "Kelola absensi karyawan, penilaian kinerja, kepatuhan pajak, dan sistem penggajian otomatis secara mulus dan akurat untuk perusahaan modern.",
+        title: "Sistem HRIS & Gaji",
+        desc: "Permudah bagian HR dalam mencatat absensi, pengajuan cuti, hingga pembuatan slip gaji bulanan karyawan secara otomatis.",
         cta: "Selengkapnya",
         href: "/services/hris-payroll-system",
         image: "/cute-asian-woman.png",
@@ -165,8 +165,8 @@ const solutionsData = {
       {
         id: "erp-system",
         num: "05",
-        title: "ERP System",
-        desc: "Sistem perencanaan sumber daya terintegrasi penuh yang menghubungkan keuangan, inventaris, rantai pasokan, dan operasional dalam satu pusat.",
+        title: "Sistem ERP Terpadu",
+        desc: "Pantau kesehatan bisnis Anda dengan sistem tunggal yang menyatukan laporan keuangan, stok gudang, dan operasional sekaligus.",
         cta: "Selengkapnya",
         href: "/services/erp-system",
         image: "/asian-consultant.png",

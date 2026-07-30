@@ -251,7 +251,7 @@ export default function Testimonials() {
     <section
       id="testimonials"
       aria-labelledby="testimonials-heading"
-      className="relative py-24 lg:py-32 bg-gradient-to-b from-[#F3F6F9] to-[#F8FAFC] text-slate-900 border-t border-slate-200/60 overflow-hidden"
+      className="relative py-24 lg:py-32 bg-[#F8FAFC] text-slate-900 border-t border-slate-200/60 overflow-hidden"
     >
       <div className="max-w-[1400px] mx-auto px-6">
         {/* Editorial header */}
@@ -322,9 +322,6 @@ export default function Testimonials() {
                 <Quote className="absolute top-6 right-6 w-20 h-20 text-blue-600/[0.03] pointer-events-none select-none" />
 
                 <div className="flex flex-col flex-1">
-                  <div className="mb-6 sm:mb-8">
-                    <Metric value={current.metricValue} label={current.metricLabel} />
-                  </div>
 
                   <blockquote className="flex-1 mb-8">
                     <p className="text-xl sm:text-2xl md:text-[1.75rem] font-bold tracking-tight leading-[1.4] text-slate-900">
@@ -380,9 +377,8 @@ export default function Testimonials() {
                     setDirection(i > active ? 1 : -1);
                     setActive(i);
                   }}
-                  className={`h-2 rounded-full transition-all duration-300 ${
-                    i === active ? "w-6 bg-blue-600" : "w-2 bg-slate-200 hover:bg-slate-300"
-                  }`}
+                  className={`h-2 rounded-full transition-all duration-300 ${i === active ? "w-6 bg-blue-600" : "w-2 bg-slate-200 hover:bg-slate-300"
+                    }`}
                   aria-label={`Go to slide ${i + 1}`}
                 />
               ))}

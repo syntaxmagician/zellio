@@ -7,7 +7,7 @@
   /* ── Primary: Blue ── */
   --primary: #2563EB;
   --primary-dark: #1D4ED8;
-  --primary-light: #DBEAFE;
+  --primary-light: #EFF6FF;
 
   /* ── Secondary: Lavender ── */
   --secondary: #9FA1FF;
@@ -30,6 +30,19 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  
+  /* Standard Tailwind Blues for reference (or leave default) */
+  --color-blue-50: #EFF6FF;
+  --color-blue-100: #DBEAFE;
+  --color-blue-200: #BFDBFE;
+  --color-blue-300: #93C5FD;
+  --color-blue-400: #60A5FA;
+  --color-blue-500: #3B82F6;
+  --color-blue-600: #2563EB;
+  --color-blue-700: #1D4ED8;
+  --color-blue-800: #1E40AF;
+  --color-blue-900: #1E3A8A;
+  --color-blue-950: #172554;
 }
 
 html {
@@ -77,9 +90,9 @@ body {
 }
 
 @keyframes pulse-ring {
-  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(37,99,235,0.4); }
-  70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(37,99,235,0); }
-  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(37,99,235,0); }
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255,58,45,0.4); }
+  70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(255,58,45,0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255,58,45,0); }
 }
 
 @keyframes progress-line {
@@ -126,9 +139,9 @@ body {
   animation-delay: 2s;
 }
 
-/* Gradient text — blue + lavender flow */
+/* Gradient text — orange-red + peach/coral flow */
 .gradient-text {
-  background: linear-gradient(135deg, #2563EB 0%, #9FA1FF 100%);
+  background: linear-gradient(135deg, #FF3A2D 0%, #FFAAA3 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;

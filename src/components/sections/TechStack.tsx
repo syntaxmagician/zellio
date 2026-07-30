@@ -154,7 +154,7 @@ export default function TechStack() {
 
   return (
     <section
-      id="stack"
+      id="tech"
       ref={sectionRef}
       aria-labelledby="stack-heading"
       className="relative bg-white border-t border-slate-200/60 py-20 lg:py-28"

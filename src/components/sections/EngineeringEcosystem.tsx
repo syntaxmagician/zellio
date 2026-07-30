@@ -105,7 +105,7 @@ export default function EngineeringEcosystem() {
       desc: "Tokenized UI kits and interactive user journeys designed in Figma.",
       meta: "Figma • Tokenized",
       icon: SiFigma,
-      color: "#3B82F6",
+      color: "#2563EB",
       side: "left",
       renderMiniUI: () => (
         <div className="mt-2.5 p-2 bg-slate-50 rounded-md border border-slate-100 flex items-center justify-between text-[9px] font-mono text-slate-500">
@@ -132,7 +132,7 @@ export default function EngineeringEcosystem() {
         <div className="mt-2.5 p-2 bg-slate-50 rounded-md border border-slate-100 text-[9px] font-mono text-slate-500 flex flex-col gap-1.5">
           <div className="flex justify-between items-center text-slate-400">
             <span>page.tsx</span>
-            <span className="text-[#3B82F6]">100% hydr</span>
+            <span className="text-[#2563EB]">100% hydr</span>
           </div>
           <div className="h-1.5 w-full bg-slate-200 rounded overflow-hidden">
             <div className="h-full bg-blue-600 rounded" style={{ width: "95%" }}></div>
@@ -146,7 +146,7 @@ export default function EngineeringEcosystem() {
       desc: "Robust, concurrent server applications using Node.js or Go services.",
       meta: "GraphQL • REST",
       icon: SiNodedotjs,
-      color: "#6366F1",
+      color: "#2563EB",
       side: "left",
       renderMiniUI: () => (
         <div className="mt-2.5 p-2 bg-slate-900 text-[#38BDF8] rounded-md text-[9px] font-mono leading-none">
@@ -160,7 +160,7 @@ export default function EngineeringEcosystem() {
       desc: "Highly optimized transactional databases and fast Redis key-value caches.",
       meta: "PostgreSQL • Redis",
       icon: SiPostgresql,
-      color: "#06B6D4",
+      color: "#2563EB",
       side: "right",
       renderMiniUI: () => (
         <div className="mt-2.5 p-2 bg-slate-50 rounded-md border border-slate-100 flex flex-col gap-1 text-[9px] font-mono text-slate-500">
@@ -181,7 +181,7 @@ export default function EngineeringEcosystem() {
       desc: "Secure container orchestration with Kubernetes on AWS / GCP.",
       meta: "Kubernetes • Docker",
       icon: SiKubernetes,
-      color: "#10B981",
+      color: "#2563EB",
       side: "right",
       renderMiniUI: () => (
         <div className="mt-2.5 p-2 bg-slate-50 rounded-md border border-slate-100 flex items-center justify-between text-[9px] font-mono text-slate-500">
@@ -199,15 +199,15 @@ export default function EngineeringEcosystem() {
       desc: "Live system health monitoring, telemetry metrics, and dashboards.",
       meta: "Grafana • Prometheus",
       icon: SiGrafana,
-      color: "#EC4899",
+      color: "#2563EB",
       side: "right",
       renderMiniUI: () => (
         <div className="mt-2.5 p-2 bg-slate-50 rounded-md border border-slate-100 flex flex-col gap-1">
           <div className="flex justify-between text-[9px] font-mono text-slate-500">
             <span>Traffic</span>
-            <span className="text-pink-600 font-bold">12.5k r/s</span>
+            <span className="text-blue-600 font-bold">12.5k r/s</span>
           </div>
-          <svg className="w-full h-4 text-pink-500" viewBox="0 0 100 20" fill="none">
+          <svg className="w-full h-4 text-blue-500" viewBox="0 0 100 20" fill="none">
             <path d="M0 15 Q20 5 40 12 T80 4 T100 10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
           </svg>
         </div>
@@ -219,7 +219,7 @@ export default function EngineeringEcosystem() {
       desc: "Continuous integration pipelines delivering zero-downtime rollouts.",
       meta: "CI/CD • Docker",
       icon: SiDocker,
-      color: "#F59E0B",
+      color: "#2563EB",
       side: "right",
       renderMiniUI: () => (
         <div className="mt-2.5 p-2 bg-emerald-950 text-emerald-400 rounded-md text-[9px] font-mono flex items-center justify-between">
@@ -237,7 +237,7 @@ export default function EngineeringEcosystem() {
   const rightCaps = capabilities.filter(c => c.side === "right");
 
   return (
-    <section className="py-16 lg:py-24 bg-[#FFFFFF] relative overflow-hidden border-t border-slate-100">
+    <section className="py-16 lg:py-24 bg-[#F8FAFC] relative overflow-hidden border-t border-slate-100">
       {/* Visual background accents */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] bg-blue-50/20 rounded-full blur-[140px] pointer-events-none z-0" />
       <div className="absolute top-10 left-10 w-96 h-96 bg-indigo-50/10 rounded-full blur-[90px] pointer-events-none z-0" />

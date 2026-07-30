@@ -16,6 +16,12 @@ export default function TeamSplashLoader() {
   const [logIndex, setLogIndex] = useState(0);
 
   useEffect(() => {
+    const isBot = typeof navigator !== "undefined" && /bot|google|baidu|bing|msn|duckduckbot|teoma|slurp|yandex|chrome-lighthouse|lighthouse/i.test(navigator.userAgent);
+    if (isBot || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setLogIndex(terminalLogs.length - 1);
+      return;
+    }
+
     // ~1500ms total timeout from page.tsx — 6 logs, ~230ms each.
     const interval = setInterval(() => {
       setLogIndex((prev) => {

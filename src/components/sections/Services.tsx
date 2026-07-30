@@ -132,7 +132,7 @@ export default function Services() {
   const text = localText[language];
 
   return (
-    <section id="services" className="relative py-20 lg:py-24 bg-[#ffffff] overflow-hidden border-t border-slate-200/40">
+    <section id="services" className="relative py-20 lg:py-24 bg-[#F8FAFC] overflow-hidden border-t border-slate-200/40">
       {/* Background blueprint grid */}
       <BlueprintGrid />
 

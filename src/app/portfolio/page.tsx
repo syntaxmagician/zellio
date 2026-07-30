@@ -219,7 +219,8 @@ export default function PortfolioPage() {
         const tl = gsap.timeline({ delay: 0.45, defaults: { ease: "power4.out" } });
         tl.from(".porto-eyebrow", { y: 16, opacity: 0, duration: 0.6 })
           .from(".porto-line", { yPercent: 115, duration: 1, stagger: 0.1 }, "-=0.35")
-          .from(".porto-rail", { y: 18, opacity: 0, duration: 0.7 }, "-=0.55");
+          .from(".porto-rail", { y: 18, opacity: 0, duration: 0.7 }, "-=0.55")
+          .from(".porto-video", { y: 32, opacity: 0, scale: 0.98, duration: 0.8 }, "-=0.4");
 
         // Project counter rolls up to the real archive size.
         const el = counterRef.current;
@@ -276,20 +277,16 @@ export default function PortfolioPage() {
 
       <main className="flex-grow pb-24 relative z-10">
 
-        {/* Asymmetrical Editorial Hero Section */}
+        {/* Asymmetrical Editorial Hero Section (Dark & Immersive) */}
         <section
-          className="w-full bg-[#FAFAFA] pt-40 pb-16 relative overflow-hidden border-b border-slate-200/60"
-          style={{
-            backgroundImage: `
-              linear-gradient(to right, rgba(148, 163, 184, 0.05) 1px, transparent 1px),
-              linear-gradient(to bottom, rgba(148, 163, 184, 0.05) 1px, transparent 1px)
-            `,
-            backgroundSize: "48px 48px",
-          }}
+          className="w-full bg-white pt-40 pb-20 relative overflow-hidden border-b border-slate-200"
         >
+          {/* Subtle Radial Glow */}
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(59,130,246,0.04),transparent_45%)]" />
+
           <div className="max-w-[1400px] mx-auto px-6 lg:px-12 relative z-10">
             <span className="porto-eyebrow flex items-center gap-3 mb-8">
-              <span className="w-1.5 h-1.5 rounded-full bg-blue-600" />
+              <span className="w-1.5 h-1.5 rounded-full bg-blue-600 shadow-[0_0_8px_rgba(59,130,246,0.3)]" />
               <span className="text-[11px] font-mono font-bold tracking-[0.3em] uppercase text-blue-600">
                 {language === "id" ? "Karya Kami" : "Our Work"}
               </span>
@@ -309,14 +306,14 @@ export default function PortfolioPage() {
                 </span>
               </h1>
 
-              <div className="porto-rail lg:w-[350px] flex-shrink-0 border-l-2 border-blue-500 pl-6 lg:mb-4">
+              <div className="porto-rail lg:w-[380px] flex-shrink-0 border-l-2 border-blue-500 pl-6 lg:mb-4">
                 <p className="text-[15px] font-medium text-slate-600 leading-relaxed">
                   {language === "id"
-                    ? "Koleksi kurasi platform korporat skalabel dan aplikasi performa tinggi yang telah kami luncurkan."
-                    : "A curated collection of scalable corporate platforms and high-performance applications we've deployed."}
+                    ? "Di Zellio, kami merancang platform digital, dasbor internal, dan sistem enterprise berkinerja tinggi. Jelajahi arsip karya terpilih kami."
+                    : "At Zellio, we engineer high-performance digital platforms, internal dashboards, and enterprise systems. Explore our curated archive of selected works."}
                 </p>
                 <div className="mt-6 flex items-center gap-3">
-                  <span className="w-10 h-px bg-slate-300 block" />
+                  <span className="w-10 h-px bg-slate-200 block" />
                   <span className="text-[10px] font-mono font-bold uppercase tracking-[0.2em] text-slate-500 stat-number">
                     <span ref={counterRef} data-target={filteredProjects.length}>
                       {filteredProjects.length}
@@ -325,6 +322,21 @@ export default function PortfolioPage() {
                   </span>
                 </div>
               </div>
+            </div>
+
+            {/* Featured Showreel Video */}
+            <div className="porto-video mt-16 relative w-full aspect-[16/9] md:aspect-[21/9] rounded-[24px] md:rounded-[32px] overflow-hidden bg-slate-900 shadow-2xl border border-slate-200 group">
+              <video
+                src="/lumina3.mp4"
+                autoPlay
+                loop
+                muted
+                playsInline
+                preload="auto"
+                className="w-full h-full object-cover transform scale-[1.01] transition-transform duration-1000 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none" />
+              <div className="absolute inset-0 ring-1 ring-inset ring-slate-200 rounded-[24px] md:rounded-[32px] pointer-events-none" />
             </div>
           </div>
         </section>

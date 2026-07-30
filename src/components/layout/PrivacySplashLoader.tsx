@@ -18,6 +18,12 @@ export default function PrivacySplashLoader() {
 
   // Terminal step progression
   useEffect(() => {
+    const isBot = typeof navigator !== "undefined" && /bot|google|baidu|bing|msn|duckduckbot|teoma|slurp|yandex|chrome-lighthouse|lighthouse/i.test(navigator.userAgent);
+    if (isBot || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setStepIndex(policySteps.length - 1);
+      return;
+    }
+
     const interval = setInterval(() => {
       setStepIndex((prev) => {
         if (prev < policySteps.length - 1) {

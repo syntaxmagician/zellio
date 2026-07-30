@@ -55,9 +55,9 @@ const localText = {
     para2: "Our methodology is centered around engineering craftsmanship and product aesthetic. We believe that software should not only be highly performant and secure, but also intuitive, elegant, and built to stand the test of time.",
     cta: "Learn About Us",
     stats: [
-      { label: "Projects Delivered", value: "150+" },
+      { label: "Projects Delivered", value: "15+" },
       { label: "Client Satisfaction", value: "98%" },
-      { label: "Enterprise Clients", value: "50+" },
+      { label: "Enterprise Clients", value: "5+" },
       { label: "Years Experience", value: "8+" }
     ],
     workflowLabel: "Our Process",
@@ -134,7 +134,7 @@ function EngineeringWorkflowSectionContent({ language }: { language: "en" | "id"
 
   return (
     <div className="w-full">
-      
+
       {/* Header Row (Restored to its original majestic size) */}
       <div className="flex flex-col lg:flex-row items-start lg:items-end justify-between gap-6 mb-16">
         <div className="max-w-2xl">
@@ -154,7 +154,7 @@ function EngineeringWorkflowSectionContent({ language }: { language: "en" | "id"
 
       {/* 2-Column Split */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
-        
+
         {/* Left Column: Dark Showcase (Original size) */}
         <div className="col-span-1 lg:col-span-5 relative">
           <LinearProcessShowcase />
@@ -163,7 +163,7 @@ function EngineeringWorkflowSectionContent({ language }: { language: "en" | "id"
         {/* Right Column: Comparison Table (Service Standard) */}
         <div className="col-span-1 lg:col-span-7">
           <div className="w-full relative">
-            
+
             <div className="mb-10">
               <h4 className="text-2xl md:text-3xl font-black text-slate-900 tracking-tight">
                 {language === "id" ? "Kualitas Tanpa Kompromi." : "Uncompromising Quality."}
@@ -174,14 +174,14 @@ function EngineeringWorkflowSectionContent({ language }: { language: "en" | "id"
             </div>
 
             <div className="w-full shadow-[0_8px_30px_rgb(0,0,0,0.02)] rounded-2xl overflow-hidden border border-slate-100">
-              
+
               {/* Headers */}
               <div className="grid grid-cols-12 items-stretch pb-0 mb-0">
                 <div className="col-span-7 bg-[#EAF2FC]/40 border-l border-t border-r border-blue-100/40 pt-5 pb-3 rounded-tl-2xl flex justify-center items-center">
                   <div className="relative w-28 md:w-36 h-10 flex items-center justify-center">
-                    <Image 
-                      src="/zellio3.png" 
-                      alt="Zellio" 
+                    <Image
+                      src="/zellio3.png"
+                      alt="Zellio"
                       width={200}
                       height={64}
                       className="h-10 md:h-11 w-auto object-contain scale-[3.2] md:scale-[3.5] origin-center"
@@ -200,11 +200,10 @@ function EngineeringWorkflowSectionContent({ language }: { language: "en" | "id"
                   const isLast = idx === comparisonFeatures.length - 1;
                   return (
                     <div key={idx} className="grid grid-cols-12 items-stretch border-b border-slate-100/85">
-                      
+
                       {/* ZELLIO column (Subtle blue background with Title, Desc, and Check Icon) */}
-                      <div className={`col-span-7 flex items-start gap-2.5 px-4 py-4 bg-[#EAF2FC]/40 border-x border-blue-100/40 ${
-                        isLast ? "rounded-bl-2xl" : ""
-                      }`}>
+                      <div className={`col-span-7 flex items-start gap-2.5 px-4 py-4 bg-[#EAF2FC]/40 border-x border-blue-100/40 ${isLast ? "rounded-bl-2xl" : ""
+                        }`}>
                         <div className="w-5 h-5 rounded-full bg-emerald-500 text-white flex items-center justify-center flex-shrink-0 mt-0.5 shadow-sm border border-emerald-400/20">
                           <Check size={11} strokeWidth={4} />
                         </div>
@@ -219,9 +218,8 @@ function EngineeringWorkflowSectionContent({ language }: { language: "en" | "id"
                       </div>
 
                       {/* Other column (Red cross and descriptive text) */}
-                      <div className={`col-span-5 flex items-start gap-2.5 px-4 py-4 bg-white border-r border-slate-200/60 ${
-                        isLast ? "rounded-br-2xl border-b border-slate-200/60" : ""
-                      }`}>
+                      <div className={`col-span-5 flex items-start gap-2.5 px-4 py-4 bg-white border-r border-slate-200/60 ${isLast ? "rounded-br-2xl border-b border-slate-200/60" : ""
+                        }`}>
                         <div className="w-5 h-5 rounded-full bg-rose-500 text-white flex items-center justify-center flex-shrink-0 mt-0.5 shadow-sm border border-rose-400/20">
                           <X size={11} strokeWidth={4} />
                         </div>
@@ -245,12 +243,6 @@ function EngineeringWorkflowSectionContent({ language }: { language: "en" | "id"
     </div>
   );
 }
-
-/**
- * Counts up to the numeric part of a stat ("150+" -> 150, keeping "+").
- * The value itself is animated, so this drives state via animate()'s onUpdate
- * rather than using a declarative whileInView transition.
- */
 function StatCounter({
   value,
   label,
@@ -308,7 +300,7 @@ export default function About() {
 
   return (
     <>
-      <section id="about" className="relative pt-24 pb-16 lg:pt-24 lg:pb-32 bg-[#FAFAFA] overflow-hidden">
+      <section id="about" className="relative pt-24 pb-16 lg:pt-24 lg:pb-32 bg-[#F8FAFC] overflow-hidden">
 
         {/* Subtle fine grid/grain style layout support */}
         <div className="absolute inset-0 opacity-[0.012] bg-[radial-gradient(#000_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none z-0" />

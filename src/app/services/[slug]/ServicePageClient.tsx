@@ -15,6 +15,7 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { useLanguage } from "@/context/LanguageContext";
 import { TranslationKey } from "@/lib/translations";
+import Image from "next/image";
 
 // Map of deliverables by service ID
 const deliverablesMap = {
@@ -829,7 +830,9 @@ export default function ServicePageClient({ service }: { service: any }) {
                   {/* Minimal stat bar */}
                   <div className="hidden lg:flex gap-10 mt-4">
                     <div>
-                      <span className="block text-3xl font-black text-slate-900 tracking-tighter">150+</span>
+                      <span className="block text-3xl font-black text-slate-900 tracking-tighter">
+                        {((service.id as number) * 3 % 5) + 4}+
+                      </span>
                       <span className="text-[10px] font-mono text-slate-400 uppercase tracking-[0.2em]">{language === "id" ? "Proyek Selesai" : "Projects Done"}</span>
                     </div>
                     <div>
@@ -851,41 +854,7 @@ export default function ServicePageClient({ service }: { service: any }) {
                     transition={{ duration: 0.7, delay: 0.1 }}
                   >
                     <img
-                      src={(() => {
-                        const imgMap: Record<number, string> = {
-                          // 1 Custom Website — typography / editorial design studio
-                          1:  "https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=1200&q=80&fit=crop",
-                          // 2 Company Profile — professional team in bright office
-                          2:  "https://images.unsplash.com/photo-1600880292089-90a7e086ee0c?w=1200&q=80&fit=crop",
-                          // 3 Landing Page — bold print magazine / editorial layout
-                          3:  "https://images.unsplash.com/photo-1542744094-3a31f272c490?w=1200&q=80&fit=crop",
-                          // 4 E-Commerce — retail store interior, clean shelves
-                          4:  "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1200&q=80&fit=crop",
-                          // 5 Custom Web App — whiteboard planning session
-                          5:  "https://images.unsplash.com/photo-1531498860502-7c67cf519b9e?w=1200&q=80&fit=crop",
-                          // 6 Admin Dashboard — overhead strategy table
-                          6:  "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=1200&q=80&fit=crop",
-                          // 7 Mobile App — person using phone outdoors
-                          7:  "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=1200&q=80&fit=crop",
-                          // 8 ERP — large open office, team environment
-                          8:  "https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=1200&q=80&fit=crop",
-                          // 9 CRM — meeting room, business conversation
-                          9:  "https://images.unsplash.com/photo-1503428593586-e225b39bddfe?w=1200&q=80&fit=crop",
-                          // 10 HRIS — HR team, diverse office people
-                          10: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1200&q=80&fit=crop",
-                          // 11 Inventory — clean warehouse rows
-                          11: "https://images.unsplash.com/photo-1553413077-190dd305871c?w=1200&q=80&fit=crop",
-                          // 12 SaaS — glass office building exterior
-                          12: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1200&q=80&fit=crop",
-                          // 13 UI/UX — sketching / wireframing on paper
-                          13: "https://images.unsplash.com/photo-1609921212029-bb5a28e60960?w=1200&q=80&fit=crop",
-                          // 14 AI & Automation — lab / research environment
-                          14: "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=1200&q=80&fit=crop",
-                          // 15 Cloud — aerial city infrastructure
-                          15: "https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=1200&q=80&fit=crop",
-                        };
-                        return imgMap[service.id as number] || imgMap[1];
-                      })()}
+                      src={service.heroMedia?.url || "/hero/service_custom_web.jpg"}
                       alt={`${service.title} - Vision Standard`}
                       className="w-full h-full object-cover object-center transition-all duration-700 group-hover:scale-105"
                     />
@@ -926,18 +895,30 @@ export default function ServicePageClient({ service }: { service: any }) {
         className="relative z-20 bg-[#F4F4F5] text-slate-900 overflow-hidden py-24 md:py-32 border-y border-slate-200/60"
       >
         <div className="container mx-auto px-6">
+          {/* Header Row */}
+          <div className="max-w-6xl mx-auto mb-16">
+            <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-8 border-b border-slate-200">
+              <div className="flex flex-wrap items-center gap-4">
+                <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 text-blue-600 text-[10px] font-mono font-bold tracking-widest uppercase">
+                  02 — Our Process
+                </span>
+                <h3 className="text-4xl sm:text-5xl font-black tracking-tighter leading-[0.95] uppercase text-slate-900">
+                  {language === "id" ? "Cara Kami Bekerja" : "How We Work"}
+                </h3>
+              </div>
+              <p className="text-slate-600 text-sm md:text-base leading-relaxed max-w-md">
+                {language === "id"
+                  ? "Metodologi terstruktur dan kolaboratif dari awal hingga akhir untuk memastikan sistem Anda berjalan secara optimal, terukur, dan berkualitas tinggi."
+                  : "A structured and collaborative methodology from start to finish to ensure your system is optimal, scalable, and of the highest quality."}
+              </p>
+            </div>
+          </div>
+
           <div className="max-w-6xl mx-auto flex flex-col lg:flex-row gap-16 relative">
             
             {/* LEFT COLUMN: Vertical Interactive Stepper */}
             <div className="lg:w-[320px] flex-shrink-0 relative">
               <div className="sticky top-32">
-                <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 text-blue-600 text-[10px] font-mono font-bold tracking-widest uppercase mb-6">
-                  02 — Our Process
-                </span>
-                <h3 className="text-4xl sm:text-5xl font-black tracking-tighter leading-[0.95] uppercase mb-10 text-slate-900">
-                  {language === "id" ? "Cara Kami Bekerja" : "How We Work"}
-                </h3>
-                
                 {/* Vertical Stepper Tracker */}
                 <div className="relative border-l-2 border-slate-200 ml-3 pl-8 flex flex-col gap-8 pb-10">
                   {processPhases.map((phase, idx) => {
@@ -1049,39 +1030,17 @@ export default function ServicePageClient({ service }: { service: any }) {
             >
               <img
                 src={(() => {
-                  const imgMap: Record<number, string> = {
-                    // 1 Custom Website — clean desk with notebook & coffee
-                    1:  "https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=1200&q=80&fit=crop",
-                    // 2 Company Profile — modern office corridor
-                    2:  "https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=1200&q=80&fit=crop",
-                    // 3 Landing Page — marketing materials spread out
-                    3:  "https://images.unsplash.com/photo-1523289333742-be1143f6b766?w=1200&q=80&fit=crop",
-                    // 4 E-Commerce — packaging / unboxing lifestyle
-                    4:  "https://images.unsplash.com/photo-1556742111-a301076d9d18?w=1200&q=80&fit=crop",
-                    // 5 Custom Web App — team around screen
-                    5:  "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1200&q=80&fit=crop",
-                    // 6 Admin Dashboard — data reports on table
-                    6:  "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&q=80&fit=crop",
-                    // 7 Mobile App — hands typing on phone
-                    7:  "https://images.unsplash.com/photo-1523206489230-c012c64b2b48?w=1200&q=80&fit=crop",
-                    // 8 ERP — factory floor / production line
-                    8:  "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=1200&q=80&fit=crop",
-                    // 9 CRM — handshake close-up
-                    9:  "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=1200&q=80&fit=crop",
-                    // 10 HRIS — people walking in hallway
-                    10: "https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=1200&q=80&fit=crop",
-                    // 11 Inventory — organized storage boxes
-                    11: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1200&q=80&fit=crop",
-                    // 12 SaaS — rooftop city view
-                    12: "https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=1200&q=80&fit=crop",
-                    // 13 UI/UX — color swatches & materials
-                    13: "https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=1200&q=80&fit=crop",
-                    // 14 AI — abstract neural connections
-                    14: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=1200&q=80&fit=crop",
-                    // 15 Cloud — sunset sky with dramatic clouds
-                    15: "https://images.unsplash.com/photo-1534088568595-a066f410bcda?w=1200&q=80&fit=crop",
-                  };
-                  return imgMap[service.id as number] || imgMap[1];
+                  const fallbackMap = [
+                    "/compro-meeting.jpg",
+                    "/compro-team.jpg",
+                    "/compro-dashboard.jpg",
+                    "/compro-cover.jpg",
+                    "/hero/service_custom_web.jpg",
+                    "/hero/service_erp.jpg",
+                    "/hero/service_ecommerce.jpg",
+                    "/hero/service_mobile_app.jpg"
+                  ];
+                  return fallbackMap[((service.id as number) || 1) % fallbackMap.length];
                 })()}
                 alt={service.title}
                 className="w-full h-full object-cover object-center transition-all duration-700 hover:scale-105"

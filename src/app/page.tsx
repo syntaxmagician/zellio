@@ -29,6 +29,12 @@ export default function Home() {
   const [splashDone, setSplashDone] = useState(false);
 
   useEffect(() => {
+    const isBot = typeof navigator !== "undefined" && /bot|google|baidu|bing|msn|duckduckbot|teoma|slurp|yandex|chrome-lighthouse|lighthouse/i.test(navigator.userAgent);
+    if (isBot) {
+      setSplashDone(true);
+      return;
+    }
+
     document.body.style.overflow = "hidden";
     return () => {
       document.body.style.overflow = "";

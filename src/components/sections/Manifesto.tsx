@@ -10,9 +10,9 @@ const localText = {
     statement:
       "ZELLIO is a software engineering and design studio. We partner with founders and enterprises to build digital products that hold up — under load, under audit, and under years of change.",
     stats: [
-      { label: "Projects Delivered", value: "150+" },
+      { label: "Projects Delivered", value: "15+" },
       { label: "Client Satisfaction", value: "98%" },
-      { label: "Enterprise Clients", value: "50+" },
+      { label: "Enterprise Clients", value: "5+" },
       { label: "Years Experience", value: "8+" },
     ],
   },

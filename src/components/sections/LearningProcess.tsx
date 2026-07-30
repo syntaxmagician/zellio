@@ -9,7 +9,7 @@ import {
   ClipboardCheck,
   Award,
 } from "lucide-react";
-import { learningSteps } from "@/lib/data";
+import { useLanguage } from "@/context/LanguageContext";
 
 const iconMap: Record<string, React.ElementType> = {
   ClipboardList,
@@ -19,9 +19,38 @@ const iconMap: Record<string, React.ElementType> = {
   Award,
 };
 
+const processData = {
+  en: {
+    badge: "Our Process",
+    title: "Working with ",
+    desc: "A transparent, structured workflow from our first discussion to your product's launch.",
+    steps: [
+      { step: 1, title: "Consultation", description: "Understanding your business goals and technical needs.", icon: "MessageSquare" },
+      { step: 2, title: "UI/UX Design", description: "Crafting interactive prototypes and brand visuals.", icon: "BookOpen" },
+      { step: 3, title: "Development", description: "Writing clean code and robust integrations.", icon: "ClipboardList" },
+      { step: 4, title: "QA Testing", description: "Strict performance and security checks.", icon: "ClipboardCheck" },
+      { step: 5, title: "Launch", description: "Safe deployment and ongoing maintenance.", icon: "Award" },
+    ]
+  },
+  id: {
+    badge: "Cara Kerja Kami",
+    title: "Proses Bersama ",
+    desc: "Tahapan kerja yang terstruktur dan transparan, mulai dari diskusi awal hingga produk digital Anda siap diluncurkan.",
+    steps: [
+      { step: 1, title: "Konsultasi", description: "Memahami tujuan bisnis dan kebutuhan teknis Anda.", icon: "MessageSquare" },
+      { step: 2, title: "Desain UI/UX", description: "Membuat prototipe interaktif dan desain visual.", icon: "BookOpen" },
+      { step: 3, title: "Pengembangan", description: "Penulisan kode bersih dan integrasi sistem.", icon: "ClipboardList" },
+      { step: 4, title: "Pengujian QA", description: "Uji coba performa dan keamanan secara ketat.", icon: "ClipboardCheck" },
+      { step: 5, title: "Peluncuran", description: "Rilis yang aman dan pemeliharaan lanjutan.", icon: "Award" },
+    ]
+  }
+};
+
 export default function LearningProcess() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const { language } = useLanguage();
+  const content = processData[language as "en" | "id"];
 
   return (
     <section className="py-24 lg:py-28 bg-white overflow-hidden">
@@ -34,16 +63,14 @@ export default function LearningProcess() {
           transition={{ duration: 0.6 }}
           className="text-center max-w-2xl mx-auto mb-16"
         >
-          <span className="inline-block px-4 py-1.5 rounded-full bg-teal-50 text-[#2563EB] text-xs font-semibold uppercase tracking-widest mb-4 border border-teal-100">
-            Learning Process
+          <span className="inline-block px-4 py-1.5 rounded-full bg-blue-50 text-[#2563EB] text-xs font-semibold uppercase tracking-widest mb-4 border border-blue-100">
+            {content.badge}
           </span>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0F172A] mb-4">
-            Your Journey With{" "}
-            <span className="gradient-text">ZELLIO</span>
+            {content.title}<span className="gradient-text">ZELLIO</span>
           </h2>
           <p className="text-[#64748B] leading-relaxed">
-            A structured, end-to-end learning experience designed to take you
-            from enrollment to certification.
+            {content.desc}
           </p>
         </motion.div>
 
@@ -55,12 +82,12 @@ export default function LearningProcess() {
               initial={{ width: 0 }}
               animate={isInView ? { width: "100%" } : { width: 0 }}
               transition={{ duration: 1.5, ease: "easeInOut", delay: 0.3 }}
-              className="h-full bg-gradient-to-r from-[#2563EB] via-[#9FA1FF] to-[#2563EB] rounded-full"
+              className="h-full bg-[#2563EB] rounded-full"
             />
           </div>
 
           <div className="grid grid-cols-5 gap-4 relative z-10">
-            {learningSteps.map((step, i) => {
+            {content.steps.map((step, i) => {
               const Icon = iconMap[step.icon];
               return (
                 <motion.div
@@ -71,19 +98,19 @@ export default function LearningProcess() {
                   className="flex flex-col items-center text-center"
                 >
                   {/* Step circle */}
-                  <div className="w-[104px] h-[104px] rounded-full bg-white border-2 border-gray-100 flex items-center justify-center mb-4 shadow-lg shadow-black/5 group cursor-default hover:border-[#9FA1FF] transition-colors">
-                    <div className="w-16 h-16 rounded-full bg-violet-50 flex items-center justify-center group-hover:bg-gradient-to-br group-hover:from-[#9FA1FF] group-hover:to-[#2563EB] transition-colors">
+                  <div className="w-[104px] h-[104px] rounded-full bg-white border-2 border-gray-100 flex items-center justify-center mb-4 shadow-lg shadow-black/5 group cursor-default hover:border-[#2563EB] transition-colors">
+                    <div className="w-16 h-16 rounded-full bg-blue-50 flex items-center justify-center group-hover:bg-[#2563EB] transition-colors">
                       {Icon && (
                         <Icon
                           size={26}
-                          className="text-[#9FA1FF] group-hover:text-white transition-colors"
+                          className="text-[#2563EB] group-hover:text-white transition-colors"
                         />
                       )}
                     </div>
                   </div>
                   {/* Step number */}
                   <span className="text-xs font-bold text-[#2563EB] uppercase tracking-wider mb-1">
-                    Step {step.step}
+                    {language === "en" ? `Step ${step.step}` : `Tahap ${step.step}`}
                   </span>
                   <h4 className="text-sm font-bold text-[#0F172A] mb-1">
                     {step.title}
@@ -99,7 +126,7 @@ export default function LearningProcess() {
 
         {/* Mobile Timeline (vertical) */}
         <div className="md:hidden space-y-1">
-          {learningSteps.map((step, i) => {
+          {content.steps.map((step, i) => {
             const Icon = iconMap[step.icon];
             return (
               <motion.div
@@ -112,17 +139,17 @@ export default function LearningProcess() {
               >
                 {/* Vertical line + circle */}
                 <div className="flex flex-col items-center">
-                  <div className="w-11 h-11 rounded-full bg-violet-50 border-2 border-violet-100 flex items-center justify-center flex-shrink-0">
-                    {Icon && <Icon size={20} className="text-[#9FA1FF]" />}
+                  <div className="w-11 h-11 rounded-full bg-blue-50 border-2 border-blue-100 flex items-center justify-center flex-shrink-0">
+                    {Icon && <Icon size={20} className="text-[#2563EB]" />}
                   </div>
-                  {i < learningSteps.length - 1 && (
-                    <div className="w-[2px] h-12 bg-gradient-to-b from-[#9FA1FF]/30 to-gray-100" />
+                  {i < content.steps.length - 1 && (
+                    <div className="w-[2px] h-12 bg-gradient-to-b from-[#2563EB]/20 to-gray-100" />
                   )}
                 </div>
                 {/* Content */}
                 <div className="pb-8">
                   <span className="text-xs font-bold text-[#2563EB]">
-                    Step {step.step}
+                    {language === "en" ? `Step ${step.step}` : `Tahap ${step.step}`}
                   </span>
                   <h4 className="text-sm font-bold text-[#0F172A]">
                     {step.title}

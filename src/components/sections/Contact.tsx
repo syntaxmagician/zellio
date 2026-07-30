@@ -48,7 +48,7 @@ const localText = {
     },
     contact: {
       label: "Contact Info",
-      address: "Jl. Blk. Duku, No.93, Cibubur",
+      address: "Jl. Blk. Duku No.93RT.12/RW.10, Cibubur, Kec. Ciracas, Kota Jakarta Timur, Daerah Khusus Ibukota Jakarta 13720",
       viewMap: "View on Google Maps"
     }
   },
@@ -79,7 +79,7 @@ const localText = {
     },
     contact: {
       label: "Info Kontak",
-      address: "Jl. Blk. Duku, No.93, Cibubur",
+      address: "Jl. Blk. Duku No.93RT.12/RW.10, Cibubur, Kec. Ciracas, Kota Jakarta Timur, Daerah Khusus Ibukota Jakarta 13720",
       viewMap: "Lihat di Google Maps"
     }
   }
@@ -188,7 +188,7 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="py-20 lg:py-24 bg-[#FAFAFA] border-t border-slate-200/50">
+    <section id="contact" className="py-20 lg:py-24 bg-[#F8FAFC] border-t border-slate-200/50">
       <div className="max-w-[1400px] mx-auto px-6">
 
         {/* Asymmetric Editorial Layout */}
@@ -641,7 +641,7 @@ export default function Contact() {
                       </div>
                       <div className="min-w-0">
                         <div className="text-[11px] font-bold text-white font-mono tracking-tight">
-                          Jl. Blk. Duku, No.93, Cibubur
+                          Jl. Blk. Duku No.93RT.12/RW.10, Cibubur, Kec. Ciracas, Kota Jakarta Timur, Daerah Khusus Ibukota Jakarta 13720
                         </div>
                         <div className="text-[9px] font-mono text-slate-400 mt-0.5">
                           {text.contact.viewMap} →

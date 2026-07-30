@@ -25,45 +25,17 @@ export const metadata: Metadata = {
   },
   description:
     "ZELLIO is a software house in Indonesia specializing in modern websites, custom web & mobile applications, enterprise software, SaaS platforms, and scalable digital solutions for growing businesses.",
-  keywords: [
-    // Brand
-    "ZELLIO",
-
-    // Software House
-    "software house indonesia",
-    "software house jakarta",
-    "software development company",
-    "custom software development",
-
-    // Website Development
-    "jasa pembuatan website",
-    "jasa pembuatan website perusahaan",
-    "jasa pembuatan website company profile",
-    "website development company",
-
-    // Web Application
-    "jasa pembuatan web aplikasi",
-    "web application development",
-    "custom web application",
-
-    // Mobile Application
-    "jasa pembuatan aplikasi",
-    "jasa pembuatan aplikasi android",
-    "jasa pembuatan aplikasi ios",
-    "mobile app development",
-
-    // Enterprise Solutions
-    "jasa pembuatan sistem informasi",
-    "enterprise software development",
-    "erp development",
-    "crm development",
-
-    // SaaS
-    "saas development",
-
-    // Design
-    "ui ux design"
-  ],
+  icons: {
+    icon: [
+      { url: '/zellio_logo.png', media: '(prefers-color-scheme: light)' },
+      { url: '/icon-light.png', media: '(prefers-color-scheme: dark)' },
+    ],
+    apple: [
+      { url: '/zellio_logo.png', media: '(prefers-color-scheme: light)' },
+      { url: '/icon-light.png', media: '(prefers-color-scheme: dark)' },
+    ]
+  },
+  keywords: ["ZELLIO", "digital engineering", "software development"],
   authors: [{ name: "ZELLIO Team" }],
   creator: "ZELLIO",
   publisher: "ZELLIO",
@@ -71,9 +43,9 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   openGraph: {
-    title: "ZELLIO — Software House Indonesia | Website, Web App & Enterprise Solutions",
+    title: "ZELLIO — Professional Digital Engineering Agency",
     description:
-      "ZELLIO is a software house in Indonesia specializing in modern websites, custom web & mobile applications, enterprise software, SaaS platforms, and scalable digital solutions for growing businesses.",
+      "ZELLIO is a professional digital engineering agency specializing in custom software, mobile apps, and scalable cloud solutions.",
     url: "https://zellio.id",
     siteName: "ZELLIO",
     locale: "en_US",
@@ -81,9 +53,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "ZELLIO — Software House Indonesia | Website, Web App & Enterprise Solutions",
+    title: "ZELLIO — Professional Digital Engineering Agency",
     description:
-      "ZELLIO is a software house in Indonesia specializing in modern websites, custom web & mobile applications, enterprise software, SaaS platforms, and scalable digital solutions for growing businesses.",
+      "ZELLIO is a professional digital engineering agency specializing in custom software, mobile apps, and scalable cloud solutions.",
   },
   robots: {
     index: true,
@@ -103,6 +75,7 @@ export const metadata: Metadata = {
 
 import { LanguageProvider } from "@/context/LanguageContext";
 import SmoothScroll from "@/components/providers/SmoothScroll";
+import TabTitle from "@/components/providers/TabTitle";
 
 export default function RootLayout({
   children,
@@ -126,7 +99,7 @@ export default function RootLayout({
               "url": "https://zellio.id",
               "logo": "https://zellio.id/icon.png",
               "image": "https://zellio.id/icon.png",
-              "description": "ZELLIO is an elite software house and digital agency specializing in custom software development, SaaS, and internal systems. Jasa pembuatan website corporate & sistem informasi kustom.",
+              "description": "ZELLIO is a professional software engineering agency specializing in custom web applications, mobile platforms, and enterprise solutions.",
               "address": {
                 "@type": "PostalAddress",
                 "addressCountry": "ID"
@@ -142,6 +115,7 @@ export default function RootLayout({
         style={{ fontFamily: "var(--font-plus-jakarta), var(--font-inter), system-ui, sans-serif" }}
       >
         <SmoothScroll />
+        <TabTitle />
         <LanguageProvider>
           {children}
         </LanguageProvider>

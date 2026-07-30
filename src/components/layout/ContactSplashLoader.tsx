@@ -16,6 +16,12 @@ export default function ContactSplashLoader() {
   const [stepIndex, setStepIndex] = useState(0);
 
   useEffect(() => {
+    const isBot = typeof navigator !== "undefined" && /bot|google|baidu|bing|msn|duckduckbot|teoma|slurp|yandex|chrome-lighthouse|lighthouse/i.test(navigator.userAgent);
+    if (isBot || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setStepIndex(connectionSteps.length - 1);
+      return;
+    }
+
     const interval = setInterval(() => {
       setStepIndex((prev) => {
         if (prev < connectionSteps.length - 1) {
@@ -36,12 +42,12 @@ export default function ContactSplashLoader() {
         y: "-100vh",
         transition: { duration: 0.8, ease: [0.76, 0, 0.24, 1] }
       }}
-      className="fixed inset-0 z-[99999] bg-[#0A0A0B] flex flex-col justify-between p-6 md:p-12 overflow-hidden pointer-events-auto font-mono text-[#00E5FF]"
+      className="fixed inset-0 z-[99999] bg-[#0A0A0B] flex flex-col justify-between p-6 md:p-12 overflow-hidden pointer-events-auto font-mono text-[#2563EB]"
     >
       {/* Top Left: Terminal Status */}
       <div className="flex items-center gap-3 pointer-events-none">
-        <span className="w-2 h-2 rounded-full bg-[#00E5FF] shadow-[0_0_8px_rgba(0,229,255,0.8)] animate-pulse" />
-        <span className="text-[10px] md:text-xs tracking-[0.2em] text-[#00E5FF]/80 uppercase font-bold">
+        <span className="w-2 h-2 rounded-full bg-[#2563EB] shadow-[0_0_8px_rgba(255,58,45,0.8)] animate-pulse" />
+        <span className="text-[10px] md:text-xs tracking-[0.2em] text-[#2563EB]/80 uppercase font-bold">
           LINK STATUS // HANDSHAKE
         </span>
       </div>
@@ -50,20 +56,20 @@ export default function ContactSplashLoader() {
       <div className="flex-1 flex flex-col lg:flex-row items-center justify-center gap-12 max-w-5xl mx-auto w-full px-4">
         
         {/* Left: Radar Scanning Scope */}
-        <div className="relative w-48 h-48 md:w-64 md:h-64 shrink-0 flex items-center justify-center border border-[#00E5FF]/20 rounded-full">
+        <div className="relative w-48 h-48 md:w-64 md:h-64 shrink-0 flex items-center justify-center border border-[#2563EB]/20 rounded-full">
           {/* Concentric rings */}
-          <div className="absolute w-[80%] h-[80%] border border-[#00E5FF]/10 rounded-full" />
-          <div className="absolute w-[60%] h-[60%] border border-[#00E5FF]/10 rounded-full" />
-          <div className="absolute w-[40%] h-[40%] border border-[#00E5FF]/10 rounded-full" />
-          <div className="absolute w-[20%] h-[20%] border border-[#00E5FF]/10 rounded-full" />
+          <div className="absolute w-[80%] h-[80%] border border-[#2563EB]/10 rounded-full" />
+          <div className="absolute w-[60%] h-[60%] border border-[#2563EB]/10 rounded-full" />
+          <div className="absolute w-[40%] h-[40%] border border-[#2563EB]/10 rounded-full" />
+          <div className="absolute w-[20%] h-[20%] border border-[#2563EB]/10 rounded-full" />
           
           {/* Crosshairs */}
-          <div className="absolute w-full h-[1px] bg-[#00E5FF]/15" />
-          <div className="absolute h-full w-[1px] bg-[#00E5FF]/15" />
+          <div className="absolute w-full h-[1px] bg-[#2563EB]/15" />
+          <div className="absolute h-full w-[1px] bg-[#2563EB]/15" />
           
           {/* Radar sweeping line */}
           <motion.div 
-            className="absolute top-0 bottom-0 left-1/2 w-1/2 origin-left bg-gradient-to-r from-[#00E5FF]/20 to-transparent"
+            className="absolute top-0 bottom-0 left-1/2 w-1/2 origin-left bg-gradient-to-r from-[#2563EB]/20 to-transparent"
             style={{ rotate: 0 }}
             animate={{ rotate: 360 }}
             transition={{ repeat: Infinity, duration: 2.5, ease: "linear" }}
@@ -77,7 +83,7 @@ export default function ContactSplashLoader() {
                 initial={{ opacity: 0, scale: 0 }}
                 animate={{ opacity: [0, 1, 0], scale: [0.5, 1.2, 1] }}
                 transition={{ duration: 1.5, repeat: Infinity, repeatDelay: 1 }}
-                className="absolute top-[25%] left-[30%] w-2 h-2 rounded-full bg-[#00E5FF] shadow-[0_0_10px_#00E5FF]"
+                className="absolute top-[25%] left-[30%] w-2 h-2 rounded-full bg-[#2563EB] shadow-[0_0_10px_#2563EB]"
               />
             )}
             {stepIndex >= 3 && (
@@ -86,7 +92,7 @@ export default function ContactSplashLoader() {
                 initial={{ opacity: 0, scale: 0 }}
                 animate={{ opacity: [0, 1, 0], scale: [0.5, 1.2, 1] }}
                 transition={{ duration: 1.5, repeat: Infinity, repeatDelay: 1.5, delay: 0.5 }}
-                className="absolute bottom-[35%] right-[25%] w-2 h-2 rounded-full bg-[#00E5FF] shadow-[0_0_10px_#00E5FF]"
+                className="absolute bottom-[35%] right-[25%] w-2 h-2 rounded-full bg-[#2563EB] shadow-[0_0_10px_#2563EB]"
               />
             )}
           </AnimatePresence>
@@ -108,11 +114,11 @@ export default function ContactSplashLoader() {
                 className={`text-xs md:text-sm tracking-wide font-mono ${
                   index === connectionSteps.length - 1 
                     ? "text-white font-bold" 
-                    : "text-[#00E5FF]/60"
+                    : "text-[#2563EB]/60"
                 }`}
               >
                 {index <= stepIndex && (
-                  <span className="mr-3 text-[#00E5FF]/30">LOG_{String(index + 1).padStart(2, '0')}</span>
+                  <span className="mr-3 text-[#2563EB]/30">LOG_{String(index + 1).padStart(2, '0')}</span>
                 )}
                 {index <= stepIndex && log}
               </motion.div>
@@ -125,15 +131,15 @@ export default function ContactSplashLoader() {
       {/* Bottom Row: Minimalist footer */}
       <div className="flex justify-between items-end pointer-events-none">
         <div className="flex flex-col gap-1">
-          <span className="text-[9px] md:text-[10px] tracking-[0.2em] text-[#00E5FF]/40 uppercase font-semibold">
+          <span className="text-[9px] md:text-[10px] tracking-[0.2em] text-[#2563EB]/40 uppercase font-semibold">
             COMMUNICATION DIVISION
           </span>
-          <span className="text-xs tracking-[0.1em] text-[#00E5FF]/30">
+          <span className="text-xs tracking-[0.1em] text-[#2563EB]/30">
             PORT-8443-HANDSHAKE
           </span>
         </div>
         
-        <div className="text-xs md:text-sm font-mono text-[#00E5FF]/50 flex items-center gap-2">
+        <div className="text-xs md:text-sm font-mono text-[#2563EB]/50 flex items-center gap-2">
           SIGNAL: {Math.min(100, Math.floor(((stepIndex + 1) / connectionSteps.length) * 100))}%
         </div>
       </div>

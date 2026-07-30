@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ArrowRight, ChevronDown, Monitor, BarChart2, Smartphone, Layers, Cloud, Palette, Globe, FileText, ShoppingBag, Database, Users, UserCheck, Package, Truck, Cpu, Brain } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { useLanguage } from "@/context/LanguageContext";
 import { servicesData } from "@/lib/data";
 
@@ -40,12 +41,16 @@ const iconMap: Record<string, React.ElementType> = {
 const getSlug = (title: string) => title.toLowerCase().replace(/[\s&/]+/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '');
 
 export default function Navbar() {
+  const pathname = usePathname();
   const { language, setLanguage, t } = useLanguage();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [hoveredItemId, setHoveredItemId] = useState<number | null>(null);
+
+  // Compute theme based on page and scroll status
+  const isDarkTheme = !scrolled && pathname === "/";
 
   // Monitor scroll for premium float transition
   useEffect(() => {
@@ -84,11 +89,12 @@ export default function Navbar() {
                 alt="Zellio Logo" 
                 width={240}
                 height={44}
-                className="w-auto object-contain drop-shadow-sm"
+                className="w-auto object-contain drop-shadow-sm transition-all duration-300"
                 style={{ 
                   height: '44px', 
                   transform: 'scale(3.2)', 
-                  transformOrigin: 'left center' 
+                  transformOrigin: 'left center',
+                  filter: isDarkTheme ? 'brightness(0) invert(1)' : 'brightness(0)'
                 }}
                 priority
               />
@@ -108,16 +114,26 @@ export default function Navbar() {
                       setHoveredItemId(null);
                     }}
                     className="group relative flex flex-col justify-center h-full cursor-pointer py-1"
-                  >
-                    <div className="flex items-center gap-1">
-                      <span className={`text-[13px] font-medium tracking-wide transition-colors duration-200 uppercase ${dropdownOpen ? "text-slate-900" : "text-slate-600 group-hover:text-slate-900"}`}>
-                        {language === "id" ? link.idKey : link.label}
-                      </span>
-                      <ChevronDown size={14} className={`text-slate-400 transition-all duration-300 ${dropdownOpen ? "rotate-180 text-slate-900" : "group-hover:text-slate-900"}`} />
-                    </div>
-                    
-                    {/* Subtle Hover Underline Animation */}
-                    <span className="absolute bottom-0 left-0 w-full h-[1.5px] bg-slate-900 origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out" />
+                >
+                  <div className="flex items-center gap-1">
+                    <span className={`text-[13px] font-medium tracking-wide transition-colors duration-200 uppercase ${
+                      isDarkTheme 
+                        ? "text-slate-300 group-hover:text-white" 
+                        : (dropdownOpen ? "text-slate-900" : "text-slate-600 group-hover:text-slate-900")
+                    }`}>
+                      {language === "id" ? link.idKey : link.label}
+                    </span>
+                    <ChevronDown size={14} className={`transition-all duration-300 ${
+                      isDarkTheme 
+                        ? "text-slate-400 group-hover:text-white" 
+                        : (dropdownOpen ? "rotate-180 text-slate-900" : "text-slate-400 group-hover:text-slate-900")
+                    }`} />
+                  </div>
+                  
+                  {/* Subtle Hover Underline Animation */}
+                  <span className={`absolute bottom-0 left-0 w-full h-[1.5px] origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out ${
+                    isDarkTheme ? "bg-white" : "bg-slate-900"
+                  }`} />
                     
                     {/* Premium Asymmetric Mega Menu with Framer Motion */}
                     <AnimatePresence>
@@ -213,12 +229,16 @@ export default function Navbar() {
                   href={link.href}
                   className="group relative flex items-center h-full cursor-pointer py-1"
                 >
-                  <span className="text-[13px] font-medium tracking-wide text-slate-600 group-hover:text-slate-900 transition-colors duration-200 uppercase">
+                  <span className={`text-[13px] font-medium tracking-wide transition-colors duration-200 uppercase ${
+                    isDarkTheme ? "text-slate-300 group-hover:text-white" : "text-slate-600 group-hover:text-slate-900"
+                  }`}>
                     {language === "id" ? link.idKey : link.label}
                   </span>
                   
                   {/* Subtle Hover Underline Animation */}
-                  <span className="absolute bottom-0 left-0 w-full h-[1.5px] bg-slate-900 origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out" />
+                  <span className={`absolute bottom-0 left-0 w-full h-[1.5px] origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out ${
+                    isDarkTheme ? "bg-white" : "bg-slate-900"
+                  }`} />
                 </Link>
               );
             })}
@@ -228,16 +248,28 @@ export default function Navbar() {
           <div className="flex items-center justify-end shrink-0 w-[180px] gap-6">
             
             {/* Minimal Segmented Language Control */}
-            <div className="flex items-center gap-1 bg-slate-100 border border-slate-200/60 rounded-full p-0.5 text-[11px] font-bold font-mono text-slate-500 shadow-inner">
+            <div className={`flex items-center gap-1 border rounded-full p-0.5 text-[11px] font-bold font-mono transition-all duration-300 ${
+              isDarkTheme 
+                ? "bg-white/5 border-white/10 text-slate-400" 
+                : "bg-slate-100 border-slate-200/60 text-slate-500 shadow-inner"
+            }`}>
               <button 
                 onClick={() => setLanguage("en")}
-                className={`px-2.5 py-1 rounded-full transition-all duration-200 ${language === "en" ? "bg-white text-slate-900 shadow-sm" : "hover:text-slate-800 opacity-60 hover:opacity-100"}`}
+                className={`px-2.5 py-1 rounded-full transition-all duration-200 ${
+                  language === "en" 
+                    ? (isDarkTheme ? "bg-white/15 text-white shadow-sm" : "bg-white text-slate-900 shadow-sm") 
+                    : (isDarkTheme ? "hover:text-white opacity-60 hover:opacity-100" : "hover:text-slate-800 opacity-60 hover:opacity-100")
+                }`}
               >
                 EN
               </button>
               <button 
                 onClick={() => setLanguage("id")}
-                className={`px-2.5 py-1 rounded-full transition-all duration-200 ${language === "id" ? "bg-white text-slate-900 shadow-sm" : "hover:text-slate-800 opacity-60 hover:opacity-100"}`}
+                className={`px-2.5 py-1 rounded-full transition-all duration-200 ${
+                  language === "id" 
+                    ? (isDarkTheme ? "bg-white/15 text-white shadow-sm" : "bg-white text-slate-900 shadow-sm") 
+                    : (isDarkTheme ? "hover:text-white opacity-60 hover:opacity-100" : "hover:text-slate-800 opacity-60 hover:opacity-100")
+                }`}
               >
                 ID
               </button>
@@ -248,7 +280,11 @@ export default function Navbar() {
               href="https://wa.me/6285158945811?text=Saya%20ingin%20kosultasi%20mengenai%20project%20yang%20saya%20sedang%20kembangkan%2C%20"
               target="_blank"
               rel="noopener noreferrer"
-              className="group inline-flex items-center gap-2 bg-slate-900 text-white rounded-full px-5 py-2.5 text-[12px] font-semibold tracking-wide transition-all duration-300 hover:bg-slate-800 hover:scale-[1.02] shadow-sm hover:shadow-md cursor-pointer whitespace-nowrap"
+              className={`group inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-[12px] font-semibold tracking-wide transition-all duration-300 hover:scale-[1.02] shadow-sm hover:shadow-md cursor-pointer whitespace-nowrap ${
+                isDarkTheme 
+                  ? "bg-white text-slate-900 hover:bg-slate-100" 
+                  : "bg-slate-900 text-white hover:bg-slate-800"
+              }`}
             >
               {language === "id" ? "Mulai Proyek" : "Start Project"}
               <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform duration-300" />
@@ -279,11 +315,12 @@ export default function Navbar() {
                 alt="Zellio Logo" 
                 width={160}
                 height={36}
-                className="w-auto object-contain drop-shadow-sm"
+                className="w-auto object-contain drop-shadow-sm transition-all duration-300"
                 style={{ 
                   height: '36px', 
                   transform: 'scale(3.2)', 
-                  transformOrigin: 'left center' 
+                  transformOrigin: 'left center',
+                  filter: (isDarkTheme && !mobileOpen) ? 'brightness(0) invert(1)' : 'brightness(0)'
                 }}
                 priority
               />
@@ -293,7 +330,9 @@ export default function Navbar() {
           {/* Mobile Toggle Button */}
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="p-2 z-20 text-slate-800 focus:outline-none"
+            className={`p-2 z-20 focus:outline-none transition-colors duration-300 ${
+              (isDarkTheme && !mobileOpen) ? "text-white" : "text-slate-800"
+            }`}
             aria-label="Toggle menu"
           >
             {mobileOpen ? <X size={24} /> : <Menu size={24} />}

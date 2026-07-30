@@ -115,7 +115,7 @@ export const clientLogos: ClientLogo[] = [
     slug: "batugin",
     name: "Batugin",
     sector: { en: "Healthcare Products", id: "Produk Kesehatan" },
-    src: "/batugin_prod.jpeg",
+    src: "/logo-batugin.svg",
     width: 110,
     height: 48,
   },

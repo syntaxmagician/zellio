@@ -57,7 +57,7 @@ function LogoTile({ client, language }: { client: ClientLogo; language: "en" | "
           alt={client.name}
           width={client.width}
           height={client.height}
-          className="max-w-full max-h-full w-auto h-auto grayscale opacity-55 group-hover:grayscale-0 group-hover:opacity-100 transition-[filter,opacity] duration-500 ease-out"
+          className="max-w-full max-h-full w-auto h-auto opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500 ease-out"
         />
       </div>
     </li>

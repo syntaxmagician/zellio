@@ -104,7 +104,7 @@ export default function WhyChoose() {
           variants={{
             visible: { transition: { staggerChildren: 0.08 } }
           }}
-          className="text-5xl sm:text-6xl md:text-7xl lg:text-[6rem] xl:text-[7rem] font-black tracking-tighter leading-[1.05] mb-8 max-w-[1200px]"
+          className="text-4xl sm:text-5xl md:text-6xl lg:text-[4.5rem] xl:text-[5.5rem] font-black tracking-tighter leading-[1.05] mb-8 max-w-[1000px]"
         >
           {words.map((w, idx) => (
             <span key={idx} className="inline-block overflow-hidden py-1 mr-3 md:mr-5">
@@ -127,7 +127,7 @@ export default function WhyChoose() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.45, ease: premiumEase }}
-          className="text-slate-500 font-medium text-lg md:text-xl lg:text-2xl leading-relaxed max-w-4xl mb-16"
+          className="text-slate-500 font-medium text-base md:text-lg lg:text-xl leading-relaxed max-w-3xl mb-12"
         >
           {text.manifesto}
         </motion.p>

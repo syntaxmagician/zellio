@@ -17,7 +17,8 @@ export default function SplashLoader({ onDone }: { onDone: () => void }) {
 
   useGSAP(
     () => {
-      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      const isBot = typeof navigator !== "undefined" && /bot|google|baidu|bing|msn|duckduckbot|teoma|slurp|yandex|chrome-lighthouse|lighthouse/i.test(navigator.userAgent);
+      if (isBot || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
         onDone();
         return;
       }
@@ -66,6 +67,7 @@ export default function SplashLoader({ onDone }: { onDone: () => void }) {
           height={1024}
           priority
           className="sl-burst w-[1536px] max-w-none h-auto select-none opacity-0"
+          style={{ filter: "brightness(0) saturate(100%) invert(32%) sepia(98%) saturate(1476%) hue-rotate(201deg) brightness(93%) contrast(98%)" }}
         />
       </div>
 
