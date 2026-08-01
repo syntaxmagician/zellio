@@ -183,7 +183,7 @@ export default function ServicesRail() {
       </div>
 
       {/* ── Main Showcase ────────────────────────────────────── */}
-      <div className="relative w-full" style={{ height: "clamp(480px, 65vh, 700px)" }}>
+      <div className="relative w-full min-h-[800px] lg:min-h-0 lg:h-[clamp(480px,65vh,700px)]">
         <div className="flex flex-col lg:flex-row h-full w-full">
 
           {/* LEFT: Large Illustration Panel & Horizontal Progress Navigation */}
