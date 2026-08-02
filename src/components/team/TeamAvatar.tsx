@@ -9,6 +9,27 @@ interface AvatarProps {
 }
 
 export default function TeamAvatar({ name, className = "w-full h-full" }: AvatarProps) {
+  const realPhotos: Record<string, string> = {
+    vico: "/vico.jpeg",
+    samuel: "/samuelsukarno.jpeg",
+    cavendio: "/dio.JPG",
+    hasyim: "/hasyim.JPG"
+  };
+
+  if (realPhotos[name]) {
+    const position = name === "samuel" ? "center" : "top";
+    return (
+      <Image 
+        src={realPhotos[name]} 
+        alt={`${name} photo`} 
+        width={400}
+        height={400}
+        className={className}
+        style={{ objectFit: 'cover', objectPosition: position }}
+      />
+    );
+  }
+
   // Map names to specific seeds for consistent, premium 3D human appearances
   const seedMap: Record<string, string> = {
     vico: "Felix", // Sharp, professional tech lead

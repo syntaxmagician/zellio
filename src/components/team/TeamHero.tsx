@@ -95,7 +95,7 @@ export default function TeamHero() {
             className="th-card relative lg:absolute lg:left-[25%] lg:bottom-[5%] w-full lg:w-[120px] xl:w-[140px] aspect-[4/5] bg-white border border-slate-200/80 rounded-[20px] p-3 shadow-lg group hover:shadow-xl transition-shadow duration-500 z-10 flex flex-col"
           >
             <div className="w-full flex-grow rounded-[12px] bg-emerald-950 relative overflow-hidden flex items-center justify-center">
-              <TeamAvatar name="samuel" className="w-[120%] h-[120%] mt-8 object-cover scale-110 group-hover:scale-105 transition-transform duration-700" />
+              <TeamAvatar name="samuel" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
             </div>
             <div className="mt-2 text-center">
               <span className="text-[8px] font-mono font-bold text-emerald-500 tracking-wider block">FRONTEND</span>

@@ -457,7 +457,7 @@ export default function ServicePageClient({ service }: { service: any }) {
         { title: "Data Prep", detail: "Cleaning, structuring, and labeling training data with secure pipelines.", metric: "Week 02" },
         { title: "Model Setup", detail: "Choosing frameworks (PyTorch, TensorFlow) and training base models.", metric: "Week 03" },
         { title: "AI Training", detail: "Fine-tuning parameters, validation tests, and optimization loops.", metric: "Sprint Phase" },
-        { title: "Integration", detail: "Building secure gateways connecting AI models with target applications.", metric: "99% Success" },
+        { title: "Integration", detail: "Building secure gateways connecting AI models with target applications.", metric: "Seamless" },
         { title: "Deployment", detail: "Setting up auto-scaling GPU environments and real-time model inference.", metric: "Live Inference" },
         { title: "Monitoring", detail: "Tracking accuracy drift, database updates, and cost-efficiency audits.", metric: "Continuous" }
       ] : [
@@ -465,7 +465,7 @@ export default function ServicePageClient({ service }: { service: any }) {
         { title: "Preparasi Data", detail: "Membersihkan, menyusun, dan melabeli data latihan dengan jalur pipa aman.", metric: "Minggu 02" },
         { title: "Setup Model", detail: "Memilih kerangka kerja (PyTorch, TensorFlow) dan melatih model dasar.", metric: "Minggu 03" },
         { title: "Pelatihan AI", detail: "Penyempurnaan parameter, pengujian validasi, dan siklus optimasi.", metric: "Fase Sprint" },
-        { title: "Integrasi", detail: "Membangun gerbang API aman yang menghubungkan model AI dengan aplikasi target.", metric: "99% Sukses" },
+        { title: "Integrasi", detail: "Membangun gerbang API aman yang menghubungkan model AI dengan aplikasi target.", metric: "Mulus" },
         { title: "Penyebaran", detail: "Menyiapkan lingkungan GPU auto-scaling dan inferensi model real-time.", metric: "Inferensi Aktif" },
         { title: "Pemantauan", detail: "Melacak pergeseran akurasi, pembaruan data, dan audit efisiensi biaya.", metric: "Berkelanjutan" }
       ];
@@ -803,10 +803,14 @@ export default function ServicePageClient({ service }: { service: any }) {
 
           </div>
         </div>
-      </motion.section>
-        {/* 02 OVERVIEW — Baunfire/Instrument split with editorial image */}
-        <section 
-          ref={overviewRef}
+        </motion.section>
+
+      {/* DYNAMIC LAYOUT: Extracted sections for reordering */}
+      {(() => {
+        const sectionOverview = (
+          <section 
+            key="overview"
+            ref={overviewRef}
           className="relative bg-white text-slate-900 overflow-hidden"
         >
           <div className="container mx-auto px-6">
@@ -828,18 +832,7 @@ export default function ServicePageClient({ service }: { service: any }) {
                     {language === "id" ? "Merancang Karya Digital yang Bermakna." : "Designed to Captivate. Built to Last."}
                   </h2>
                   {/* Minimal stat bar */}
-                  <div className="hidden lg:flex gap-10 mt-4">
-                    <div>
-                      <span className="block text-3xl font-black text-slate-900 tracking-tighter">
-                        {((service.id as number) * 3 % 5) + 4}+
-                      </span>
-                      <span className="text-[10px] font-mono text-slate-400 uppercase tracking-[0.2em]">{language === "id" ? "Proyek Selesai" : "Projects Done"}</span>
-                    </div>
-                    <div>
-                      <span className="block text-3xl font-black text-slate-900 tracking-tighter">99%</span>
-                      <span className="text-[10px] font-mono text-slate-400 uppercase tracking-[0.2em]">{language === "id" ? "Klien Puas" : "Client Satisfaction"}</span>
-                    </div>
-                  </div>
+
                 </motion.div>
 
                 {/* Right column — Editorial image + text */}
@@ -888,10 +881,12 @@ export default function ServicePageClient({ service }: { service: any }) {
           {/* Bottom divider line */}
           <div className="w-full h-px bg-slate-100" />
         </section>
+        );
 
-      {/* 03 METHODOLOGY / CREATIVE SPRINTS */}
-      <section 
-        ref={methodologyRef} 
+        const sectionMethodology = (
+          <section 
+            key="methodology"
+            ref={methodologyRef} 
         className="relative z-20 bg-[#F4F4F5] text-slate-900 overflow-hidden py-24 md:py-32 border-y border-slate-200/60"
       >
         <div className="container mx-auto px-6">
@@ -1001,10 +996,12 @@ export default function ServicePageClient({ service }: { service: any }) {
           </div>
         </div>
       </section>
+      );
 
-      {/* 04 KEY DELIVERABLES — Arounda-style outcomes grid */}
-      <section 
-        ref={deliverablesRef}
+      const sectionDeliverables = (
+        <section 
+          key="deliverables"
+          ref={deliverablesRef}
         className="py-24 md:py-32 relative z-10 bg-slate-50 text-slate-900"
       >
         <div className="container mx-auto px-6">
@@ -1085,9 +1082,10 @@ export default function ServicePageClient({ service }: { service: any }) {
           </div>
         </div>
       </section>
+      );
 
-      {/* COOPERATION BENEFITS — Premium Editorial */}
-      <section className="relative z-10 bg-stone-100 text-slate-900 overflow-hidden">
+      const sectionBenefits = (
+        <section key="benefits" className="relative z-10 bg-stone-100 text-slate-900 overflow-hidden">
         {/* Grain overlay */}
         <div className="absolute inset-0 opacity-40 pointer-events-none" style={{
           backgroundImage: "radial-gradient(circle, rgba(120,113,108,0.2) 1px, transparent 1px)",
@@ -1180,10 +1178,12 @@ export default function ServicePageClient({ service }: { service: any }) {
           </div>
         </div>
       </section>
+      );
 
-      {/* 05 TECHNOLOGY STACKS — Per-service */}
-      <section 
-        ref={orbitRef}
+      const sectionTechStack = (
+        <section 
+          key="tech"
+          ref={orbitRef}
         className="py-24 md:py-36 relative z-10 bg-[#070d1e] text-white overflow-hidden"
       >
         <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none" />
@@ -1281,6 +1281,17 @@ export default function ServicePageClient({ service }: { service: any }) {
           </div>
         </div>
       </section>
+      );
+
+      // Dynamically return layout based on service category
+      switch (service.category) {
+        case "Website": return [sectionOverview, sectionTechStack, sectionDeliverables, sectionBenefits, sectionMethodology];
+        case "Mobile": return [sectionDeliverables, sectionOverview, sectionMethodology, sectionTechStack, sectionBenefits];
+        case "Enterprise": return [sectionOverview, sectionMethodology, sectionBenefits, sectionTechStack, sectionDeliverables];
+        case "SaaS": return [sectionTechStack, sectionOverview, sectionDeliverables, sectionMethodology, sectionBenefits];
+        default: return [sectionOverview, sectionMethodology, sectionDeliverables, sectionBenefits, sectionTechStack];
+      }
+    })()}
 
       {/* 06 CTA BANNER (Work With Us) */}
       <section className="relative z-10 bg-[#eff6ff] py-24 md:py-32 overflow-hidden border-t border-slate-200/80 w-full">

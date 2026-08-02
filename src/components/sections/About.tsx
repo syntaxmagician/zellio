@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
-import { motion, animate, useInView, useReducedMotion } from "framer-motion";
+import { motion } from "framer-motion";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import Image from "next/image";
 import { useLanguage } from "@/context/LanguageContext";
@@ -19,8 +19,8 @@ const workflowData = {
       desc: "We write clean, typed code in modern frameworks (React/Next.js/Node) with rapid iterations and transparent feedback."
     },
     {
-      title: "System Forensics & QA",
-      desc: "Our engineers run rigorous automated testing, penetration tests, and security audits to guarantee zero defects."
+      title: "Security Review & QA",
+      desc: "Our engineers review application boundaries, authentication, authorization, input handling, and dependencies before launch."
     },
     {
       title: "Deployment & Scaling",
@@ -37,8 +37,8 @@ const workflowData = {
       desc: "Kami menulis kode bersih dan terstruktur dalam framework modern dengan iterasi cepat serta umpan balik transparan."
     },
     {
-      title: "Forensik Sistem & QA",
-      desc: "Insinyur kami menjalankan pengujian otomatis, uji penetrasi, dan audit keamanan sistem untuk menjamin bebas cacat."
+      title: "Review Keamanan & QA",
+      desc: "Kami melakukan analisis batas aplikasi, verifikasi alur autentikasi, dan pengecekan versi dependensi untuk memastikan integritas sistem."
     },
     {
       title: "Peluncuran & Skalabilitas",
@@ -50,35 +50,35 @@ const workflowData = {
 const localText = {
   en: {
     badge: "WHO WE ARE",
-    headline: "We build software that creates lasting business value.",
-    para1: "ZELLIO is an elite software engineering and design agency. We partner with visionaries and forward-thinking enterprises to design, architect, and ship digital products that redefine industries.",
-    para2: "Our methodology is centered around engineering craftsmanship and product aesthetic. We believe that software should not only be highly performant and secure, but also intuitive, elegant, and built to stand the test of time.",
+    headline: "We build systems that create real business value.",
+    para1: "ZELLIO is a professional Software House based in Indonesia. We partner with local and international businesses to design, architect, and ship custom digital systems.",
+    para2: "Our methodology focuses on reliability and problem-solving. We believe that software should be secure, performant, and tailored specifically to fit your unique operational workflows.",
     cta: "Learn About Us",
     stats: [
-      { label: "Projects Delivered", value: "15+" },
-      { label: "Client Satisfaction", value: "98%" },
-      { label: "Enterprise Clients", value: "5+" },
-      { label: "Years Experience", value: "8+" }
+      { label: "Core Tech Stacks", value: "4+" },
+      { label: "Enterprise Systems", value: "12+" },
+      { label: "Dedicated Engineers", value: "8+" },
+      { label: "Years Experience", value: "3+" }
     ],
     workflowLabel: "Our Process",
     workflowTitle: "How we build digital products.",
-    workflowDesc: "We combine engineering rigor, security auditing, and product thinking to ship software that drives momentum."
+    workflowDesc: "We combine standard software engineering practices with thorough planning to ship reliable systems."
   },
   id: {
     badge: "SIAPA KAMI",
-    headline: "Kami membangun perangkat lunak yang menciptakan nilai bisnis abadi.",
-    para1: "ZELLIO adalah agensi rekayasa perangkat lunak dan desain elit. Kami bermitra dengan para visioner dan perusahaan maju untuk merancang, mengarsiteki, dan meluncurkan produk digital yang mendefinisikan ulang industri.",
-    para2: "Metodologi kami berpusat pada keahlian rekayasa teknologi dan estetika produk. Kami percaya bahwa perangkat lunak tidak hanya harus berkinerja tinggi dan aman, tetapi juga intuitif, elegan, serta dibangun untuk bertahan lama.",
+    headline: "Kami membangun sistem yang memberi nilai nyata.",
+    para1: "ZELLIO adalah Software House profesional yang berbasis di Indonesia. Kami membantu berbagai skala bisnis untuk merancang, membangun, dan merilis sistem digital yang disesuaikan dengan kebutuhan mereka.",
+    para2: "Fokus utama kami adalah keandalan dan penyelesaian masalah. Kami percaya perangkat lunak harus aman, responsif, dan dirancang khusus agar pas dengan alur kerja perusahaan Anda.",
     cta: "Pelajari Tentang Kami",
     stats: [
-      { label: "Proyek Selesai", value: "15+" },
-      { label: "Kepuasan Klien", value: "98%" },
-      { label: "Klien Perusahaan", value: "10+" },
-      { label: "Tahun Pengalaman", value: "4+" }
+      { label: "Teknologi Inti", value: "4+" },
+      { label: "Sistem Enterprise", value: "12+" },
+      { label: "Engineer Dedikasi", value: "8+" },
+      { label: "Tahun Pengalaman", value: "3+" }
     ],
     workflowLabel: "Proses Kami",
-    workflowTitle: "Bagaimana kami membangun produk digital.",
-    workflowDesc: "Kami memadukan rekayasa teknologi, audit keamanan, dan pemikiran produk untuk meluncurkan sistem yang memacu pertumbuhan."
+    workflowTitle: "Bagaimana kami membangun sistem.",
+    workflowDesc: "Kami memadukan praktik rekayasa perangkat lunak standar industri dan perencanaan matang untuk hasil yang andal."
   }
 };
 
@@ -91,44 +91,44 @@ function EngineeringWorkflowSectionContent({ language }: { language: "en" | "id"
 
   const comparisonFeatures = [
     {
-      enTitle: "End-to-End Digital Ecosystems",
-      enDesc: "We build complete custom systems from codebase to secure cloud infrastructure.",
-      idTitle: "Ekosistem Digital End-to-End",
-      idDesc: "Kami membangun sistem kustom lengkap dari kode hingga infrastruktur cloud yang aman.",
+      enTitle: "Comprehensive IT Solutions",
+      enDesc: "We handle development from initial code up to cloud deployment.",
+      idTitle: "Solusi IT Menyeluruh",
+      idDesc: "Kami menangani pengembangan sejak penulisan kode hingga perilisan di cloud.",
       enOther: "Provide fragmented or single-feature solutions.",
       idOther: "Hanya menyediakan solusi terfragmentasi atau fitur tunggal."
     },
     {
-      enTitle: "Dedicated Concierge Support",
-      enDesc: "Direct 24/7 access to our senior engineering team whenever you need assistance.",
-      idTitle: "Dukungan Eksklusif Siaga",
-      idDesc: "Akses langsung 24/7 ke tim senior engineer kami kapan pun Anda membutuhkannya.",
-      enOther: "Limited response times, restricted to working hours.",
-      idOther: "Waktu respon terbatas, hanya pada jam kerja standar."
+      enTitle: "Dedicated Technical Team",
+      enDesc: "Direct communication with the engineers actively working on your project.",
+      idTitle: "Tim Teknis Khusus",
+      idDesc: "Komunikasi langsung dengan pengembang yang mengerjakan proyek Anda.",
+      enOther: "Support handled by automated bots or slow ticketing systems.",
+      idOther: "Dukungan ditangani oleh bot otomatis atau sistem tiket yang lambat."
     },
     {
-      enTitle: "Co-Creation & Transparent Updates",
-      enDesc: "Real-time Slack/Teams communication with regular progress reports.",
-      idTitle: "Ko-Kreasi & Pembaruan Transparan",
-      idDesc: "Komunikasi real-time via Slack/Teams dengan laporan progres berkala.",
-      enOther: "Opaque development cycles and slow communication.",
-      idOther: "Siklus pengembangan tertutup dan komunikasi lambat."
+      enTitle: "Transparent Timelines & Dashboards",
+      enDesc: "We provide structured project timelines (Gantt charts) and deploy a dedicated monitoring dashboard so clients can track our development progress in real-time.",
+      idTitle: "Timeline Transparan & Dashboard Klien",
+      idDesc: "Kami menyediakan estimasi lini masa proyek terstruktur (Gantt chart) dan membangun dashboard pemantauan khusus agar Anda dapat memantau progres pengerjaan kami secara real-time.",
+      enOther: "Opaque development cycles, hidden progress, and slow updates.",
+      idOther: "Siklus pengembangan tertutup, lini masa tidak jelas, dan progres disembunyikan."
     },
     {
-      enTitle: "Scalable & Future-Proof Builds",
-      enDesc: "We deliver rich, enterprise-ready features tailored to your business growth.",
-      idTitle: "Arsitektur Skalabel & Siap Masa Depan",
-      idDesc: "Menyediakan fitur lengkap skala enterprise yang siap menopang pertumbuhan bisnis.",
-      enOther: "Basic templates or feature-limited applications.",
-      idOther: "Menggunakan template dasar atau aplikasi dengan fitur terbatas."
+      enTitle: "Scalable Architecture",
+      enDesc: "Built using modern frameworks designed to handle increasing user loads.",
+      idTitle: "Arsitektur Skalabel",
+      idDesc: "Dibangun menggunakan framework modern yang dirancang untuk menangani beban tinggi.",
+      enOther: "Basic templates that break under heavy usage.",
+      idOther: "Template dasar yang lambat saat menangani lalu lintas padat."
     },
     {
-      enTitle: "Vetted Industry Excellence",
-      enDesc: "Proven track record of high-performance digital products across sectors.",
-      idTitle: "Rekam Jejak Industri Teruji",
-      idDesc: "Rekam jejak terbukti dalam membangun produk digital performa tinggi di berbagai sektor.",
-      enOther: "Unproven methodologies or generic, untested outcomes.",
-      idOther: "Metodologi belum teruji dengan hasil generik."
+      enTitle: "Experience Across Industries",
+      enDesc: "We have built platforms for logistics, legal, retail, and e-commerce.",
+      idTitle: "Pengalaman Berbagai Industri",
+      idDesc: "Kami telah membangun sistem untuk logistik, firma hukum, ritel, dan e-commerce.",
+      enOther: "Generic approaches ignoring specific industry requirements.",
+      idOther: "Pendekatan generik yang mengabaikan kebutuhan spesifik industri."
     }
   ];
 
@@ -166,7 +166,7 @@ function EngineeringWorkflowSectionContent({ language }: { language: "en" | "id"
 
             <div className="mb-10">
               <h4 className="text-2xl md:text-3xl font-black text-slate-900 tracking-tight">
-                {language === "id" ? "Kualitas Tanpa Kompromi." : "Uncompromising Quality."}
+                {language === "id" ? "Standar Layanan Kami." : "Our Service Standards."}
               </h4>
               <p className="text-slate-500 text-sm mt-2 font-medium">
                 {language === "id" ? "Bagaimana kami membedakan diri dari agensi lain." : "How we differentiate from other agencies."}
@@ -252,37 +252,19 @@ function StatCounter({
   label: string;
   delay: number;
 }) {
-  const target = parseInt(value.replace(/\D/g, ""), 10) || 0;
   const suffix = value.replace(/[\d\s]/g, "");
-
-  const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-80px" });
-  const reduceMotion = useReducedMotion();
-  const [display, setDisplay] = useState(reduceMotion ? target : 0);
-
-  useEffect(() => {
-    if (!inView || reduceMotion) return;
-    const controls = animate(0, target, {
-      duration: 1.4,
-      delay,
-      ease: [0.22, 1, 0.36, 1],
-      onUpdate: (latest) => setDisplay(Math.round(latest)),
-    });
-    return () => controls.stop();
-  }, [inView, target, delay, reduceMotion]);
+  const target = value.replace(/[^\d\s]/g, "");
 
   return (
     <motion.div
-      ref={ref}
       initial={{ opacity: 0, y: 14 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}
       transition={{ duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] }}
       className="border-t border-slate-200 pt-4"
     >
-      {/* tabular-nums keeps the digits from jittering while counting */}
       <div className="text-3xl md:text-4xl font-black text-slate-900 tracking-tight tabular-nums leading-none">
-        {display}
+        {target}
         <span className="text-blue-600">{suffix}</span>
       </div>
       <div className="text-[10px] font-mono font-bold tracking-[0.18em] uppercase text-slate-400 mt-2.5 leading-tight">

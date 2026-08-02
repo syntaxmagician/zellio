@@ -50,41 +50,27 @@ export const translations: Record<"en" | "id", any> = {
       note: "Note: Final timeline and pricing are subject to project complexity and specific technical requirements.",
       viewAll: "View All Services",
       elevate: "Elevate your digital presence.",
-      
+
       "custom-website-development": "Custom Website Development",
       "company-profile-website": "Company Profile Website",
-      "landing-page-development": "Landing Page Development",
       "e-commerce-development": "E-Commerce Development",
-      "custom-web-application": "Custom Web Application",
-      "admin-analytics-dashboards": "Admin & Analytics Dashboards",
       "mobile-app-development": "Mobile App Development",
       "erp-system-development": "ERP System Development",
       "crm-system-development": "CRM System Development",
       "hris-payroll-system": "HRIS & Payroll System",
-      "inventory-management-system": "Inventory Management System",
       "saas-platform-development": "SaaS Platform Development",
-      "ui-ux-product-design": "UI/UX & Product Design",
-      "ai-automation-development": "AI & Automation Development",
-      "cloud-infrastructure-devops": "Cloud Infrastructure & DevOps",
 
       desc: {
         "custom-website-development": "We build stunning, ultra-fast websites that look great on any screen and help your business make a lasting impression online.",
         "company-profile-website": "A professional digital home for your company. We help you build instant trust and introduce your business values to the world.",
-        "landing-page-development": "Beautiful, focused landing pages designed specifically to turn your ad campaign clicks into actual leads and customers.",
         "e-commerce-development": "Your own custom online store, fully equipped with automated shipping rates, secure payment gateways, and a clean checkout experience.",
-        "custom-web-application": "Tailored web applications built to simplify your team's workflow, manage business data, or bring your next SaaS product to life.",
-        "admin-analytics-dashboards": "Clean data dashboards that turn complex spreadsheets into visual, easy-to-read charts so you can monitor your business in real-time.",
         "mobile-app-development": "Responsive, native-feeling iOS and Android mobile apps designed with a focus on ease of use and smooth performance.",
         "erp-system-development": "A unified system to organize your finance, inventory, HR, and operations. We connect all your department workflows in one place.",
         "crm-system-development": "Keep track of customer leads, log sales progress, and automate email follow-ups to make selling a breeze for your team.",
         "hris-payroll-system": "Simplify HR work by automating employee clock-ins, leave approvals, payroll calculations, and digital payslip delivery.",
-        "inventory-management-system": "Say goodbye to pen and paper. Track stock levels, warehouse movements, and low-stock alerts automatically and accurately.",
         "saas-platform-development": "We take care of the complex stuff like multi-tenant setups, separate customer databases, and automated Stripe billing for your SaaS.",
-        "ui-ux-product-design": "Interactive Figma wireframes, real user tests, and premium design systems to ensure your product is a joy for people to use.",
-        "ai-automation-development": "We integrate smart AI tools and automated pipelines into your daily operations to handle repetitive tasks for your team.",
-        "cloud-infrastructure-devops": "Secure, reliable cloud setups on AWS or GCP. We ensure your application is scalable, safe, and lightning fast.",
       },
-      
+
       deep: {
         "custom-website-development": {
           problem: "Businesses often struggle with outdated, slow, or generic websites that fail to convert visitors into clients. In today's digital landscape, a slow website means lost revenue, and a generic template diminishes brand trust and authority.",
@@ -94,6 +80,16 @@ export const translations: Record<"en" | "id", any> = {
             { q: "Do you use templates like WordPress?", a: "No, we build completely custom frontend architectures using Next.js and React to ensure maximum performance, security, and unique branding." },
             { q: "Is the website optimized for mobile?", a: "Absolutely. We follow a mobile-first approach, ensuring that your website is responsive, fast, and intuitive on all devices, from smartphones to ultra-wide monitors." },
             { q: "Will I be able to update content myself?", a: "Yes. We integrate modern Headless CMS solutions (like Sanity or Strapi) that give you a highly intuitive dashboard to manage your content without touching code." }
+          ]
+        },
+        "company-profile-website": {
+          problem: "Many businesses fail to convey their value proposition clearly online, leading potential B2B partners and high-value clients to turn to competitors with more professional digital representations.",
+          target: "Established businesses, professional service firms, and industrial enterprises looking to project credibility, corporate identity, and attract institutional clients.",
+          methodology: "We design a tailored experience that tells your company's story. We focus on structured information architecture, clean typography, fast page loads, and clear call-to-actions that guide prospects directly to your sales team.",
+          faqs: [
+            { q: "What should be included in a company profile website?", a: "Typically, it includes your mission, core services, leadership team profile, past case studies, and clear contact forms. We customize this based on your industry." },
+            { q: "Is the site SEO-friendly?", a: "Yes, we implement complete meta tagging, schema markup, and speed optimizations so your business ranks high on search engines for brand queries." },
+            { q: "Can we add careers/blog pages later?", a: "Yes, we build modularly, allowing you to expand your website with new sub-pages or sections easily." }
           ]
         },
         "e-commerce-development": {
@@ -106,16 +102,6 @@ export const translations: Record<"en" | "id", any> = {
             { q: "Can the store handle flash sales with high traffic?", a: "Yes. We design the infrastructure using scalable cloud services and robust database caching strategies to ensure the site remains stable during high-traffic events." }
           ]
         },
-        "erp-system-development": {
-          problem: "As companies grow, they often rely on disjointed software for accounting, HR, and inventory. This fragmentation causes data silos, manual data entry errors, and a lack of real-time visibility into the company's overall health.",
-          target: "Mid-to-large scale enterprises, manufacturing companies, and distributors struggling with operational bottlenecks and fragmented data systems.",
-          methodology: "We begin with a thorough audit of your current standard operating procedures (SOPs). We map out the data flow between departments. Then, we architect a centralized database system and build custom modules tailored to your specific workflows—be it finance, procurement, or human resources. We prioritize role-based access control and strict data security protocols throughout the development.",
-          faqs: [
-            { q: "Is a custom ERP better than off-the-shelf software like SAP?", a: "A custom ERP is built around your specific workflows, eliminating the need to change your business processes to fit the software. It also avoids expensive, recurring user-license fees." },
-            { q: "How secure is the financial data?", a: "We implement banking-grade security standards, including database encryption, strict role-based access control (RBAC), and continuous security auditing." },
-            { q: "Can you migrate data from our old systems?", a: "Yes, we handle complex data migrations from legacy systems or spreadsheets, ensuring data integrity and a smooth transition to the new ERP." }
-          ]
-        },
         "mobile-app-development": {
           problem: "Reaching customers on the go is critical, but poorly built mobile apps drain batteries, crash frequently, and suffer from low retention rates. Building separate apps for iOS and Android can also double development time and costs.",
           target: "Startups, consumer brands, and enterprises aiming to create deep, persistent engagement with their user base through a dedicated presence on their smartphones.",
@@ -126,25 +112,44 @@ export const translations: Record<"en" | "id", any> = {
             { q: "Can the app work offline?", a: "Depending on the requirements, we can implement local databases (like SQLite) and background sync protocols so users can access core features without an internet connection." }
           ]
         },
-        "cloud-infrastructure-devops": {
-          problem: "Unpredictable server crashes, slow response times during traffic spikes, and cumbersome manual deployment processes cause significant downtime and engineering frustration. Security vulnerabilities in infrastructure can also lead to catastrophic data breaches.",
-          target: "High-traffic platforms, SaaS companies, and enterprise systems that require 99.9% uptime, strict security compliance, and automated scaling capabilities.",
-          methodology: "We design cloud architectures based on the principles of high availability and fault tolerance. We containerize your applications using Docker and orchestrate them with Kubernetes. We implement Continuous Integration and Continuous Deployment (CI/CD) pipelines using tools like GitHub Actions or GitLab CI, enabling your team to deploy updates safely and automatically without downtime.",
+        "erp-system-development": {
+          problem: "As companies grow, they often rely on disjointed software for accounting, HR, and inventory. This fragmentation causes data silos, manual data entry errors, and a lack of real-time visibility into the company's overall health.",
+          target: "Mid-to-large scale enterprises, manufacturing companies, and distributors struggling with operational bottlenecks and fragmented data systems.",
+          methodology: "We begin with a thorough audit of your current standard operating procedures (SOPs). We map out the data flow between departments. Then, we architect a centralized database system and build custom modules tailored to your specific workflows—be it finance, procurement, or human resources. We prioritize role-based access control and strict data security protocols throughout the development.",
           faqs: [
-            { q: "Which cloud providers do you work with?", a: "We are proficient in Amazon Web Services (AWS), Google Cloud Platform (GCP), and DigitalOcean, tailoring the choice to your specific scale and budget requirements." },
-            { q: "How do you handle sudden traffic spikes?", a: "We configure auto-scaling groups and load balancers that automatically provision additional server resources when traffic increases, and scale down when it subsides to optimize costs." },
-            { q: "Do you provide ongoing server monitoring?", a: "Yes, we set up robust monitoring and alerting systems using tools like Prometheus and Grafana to proactively address issues before they affect your users." }
+            { q: "Is a custom ERP better than off-the-shelf software like SAP?", a: "A custom ERP is built around your specific workflows, eliminating the need to change your business processes to fit the software. It also avoids expensive, recurring user-license fees." },
+            { q: "How secure is the financial data?", a: "We implement banking-grade security standards, including database encryption, strict role-based access control (RBAC), and continuous security auditing." },
+            { q: "Can you migrate data from our old systems?", a: "Yes, we handle complex data migrations from legacy systems or spreadsheets, ensuring data integrity and a smooth transition to the new ERP." }
           ]
         },
-        // Fallback detailed content for other services to avoid thin content
-        "default": {
-          problem: "Many organizations struggle with generic, off-the-shelf software solutions that do not fit their unique operational requirements. This leads to inefficient workflows, data silos, and a poor user experience for both employees and customers, ultimately hindering growth and competitive advantage.",
-          target: "Businesses and organizations that require specialized, high-performance digital solutions to overcome specific operational challenges and accelerate their digital transformation journey.",
-          methodology: "Our approach is rooted in deep collaboration. We start by analyzing your specific business challenges and user needs. Our engineering and design teams then work in tandem to prototype, build, and test a tailored solution. We utilize modern, scalable technologies and agile methodologies to ensure rapid delivery, continuous feedback, and a final product that perfectly aligns with your strategic goals.",
+        "crm-system-development": {
+          problem: "Sales teams often lose track of leads due to messy spreadsheets and disconnected communications, resulting in missed follow-ups and lost revenue opportunities.",
+          target: "Sales departments, real estate agencies, and service providers looking to streamline lead capture, track deals, and improve customer retention.",
+          methodology: "We build intuitive CRM systems centered around your sales funnel. We integrate communication logs, lead scoring, and automated task reminders, ensuring your sales agents can focus on closing deals rather than data entry.",
           faqs: [
-            { q: "How long does a typical project take?", a: "Timelines vary based on complexity, but most projects are delivered within 6 to 12 weeks. We provide a detailed roadmap during the initial consultation." },
-            { q: "Do you provide post-launch support and maintenance?", a: "Yes, we offer comprehensive SLA packages for continuous monitoring, bug fixing, security updates, and feature enhancements." },
-            { q: "Who owns the intellectual property (IP) of the software?", a: "Upon project completion and final payment, the intellectual property and source code are fully transferred to you." }
+            { q: "Can we integrate this with our website?", a: "Yes, we connect the CRM directly with your landing pages and contact forms to capture leads automatically." },
+            { q: "Can we automate follow-up emails?", a: "Absolutely. We set up automated email triggers based on sales stages or lead activity to maintain persistent contact." },
+            { q: "How secure is client contact data?", a: "We enforce strict database access control, data encryption, and role-based permissions to protect your proprietary lead database." }
+          ]
+        },
+        "hris-payroll-system": {
+          problem: "Manual HR tasks like tracking attendance, managing leave requests, and calculating monthly salaries are time-consuming and prone to human errors.",
+          target: "Growing teams and operations managers who want to reduce administrative overhead and streamline employee management.",
+          methodology: "We design a centralized HR platform that automates routine workflows. We build modules for digital attendance, automated leave approval paths, and a flexible payroll engine that calculates taxes and generates payslips instantly.",
+          faqs: [
+            { q: "How is employee attendance tracked?", a: "We support GPS-based clock-in via mobile devices, barcode scans, or integration with physical fingerprint devices." },
+            { q: "Does the system calculate Indonesian taxes (PPH 21)?", a: "Yes, the payroll engine is custom-configured to calculate PPH 21 and BPJS deductions accurately." },
+            { q: "Is employee data private and secure?", a: "Yes, we implement strict role-based access control (RBAC), ensuring that financial and salary records are only visible to authorized HR admins." }
+          ]
+        },
+        "saas-platform-development": {
+          problem: "Launching a SaaS product requires solving complex infrastructure hurdles like tenant isolation, secure subscription billing, and API quota management before you can even launch your core feature.",
+          target: "Tech startup founders and enterprises looking to launch commercial subscription-based software applications.",
+          methodology: "We build secure, multi-tenant SaaS foundations. We integrate robust database separation patterns, Stripe subscription engines with webhook sync, and clean billing analytics so you can focus entirely on your core product value.",
+          faqs: [
+            { q: "How is data isolated between different tenants?", a: "We implement tenant-keyed database isolation or separate database schemas to guarantee that no user can ever access another tenant's data." },
+            { q: "Can we support different subscription tiers?", a: "Yes, we build flexible plan configurations (monthly/yearly, seat-based, or usage-based billing) integrated with major payment portals." },
+            { q: "How do you handle API security?", a: "We deploy secure JWT token management, API key rotation schemes, and rate limiters to protect your platform from malicious requests." }
           ]
         }
       },
@@ -187,50 +192,46 @@ export const translations: Record<"en" | "id", any> = {
       note: "Catatan: Durasi pengerjaan dan biaya akhir disesuaikan dengan tingkat kesulitan serta kebutuhan spesifik proyek Anda.",
       viewAll: "Lihat Semua Layanan",
       elevate: "Tingkatkan reputasi digital bisnis Anda.",
-      
+
       "custom-website-development": "Pengembangan Web Kustom",
       "company-profile-website": "Website Profil Perusahaan",
-      "landing-page-development": "Pengembangan Landing Page",
       "e-commerce-development": "Pengembangan E-Commerce",
-      "custom-web-application": "Aplikasi Web Kustom",
-      "admin-analytics-dashboards": "Dashboard Admin & Analitik",
       "mobile-app-development": "Pembuatan Aplikasi Mobile",
       "erp-system-development": "Pengembangan Sistem ERP",
       "crm-system-development": "Pengembangan Sistem CRM",
       "hris-payroll-system": "Sistem HRIS & Payroll",
-      "inventory-management-system": "Sistem Manajemen Inventaris",
       "saas-platform-development": "Pengembangan Platform SaaS",
-      "ui-ux-product-design": "Desain UI/UX & Produk",
-      "ai-automation-development": "Pengembangan AI & Otomatisasi",
-      "cloud-infrastructure-devops": "Infrastruktur Cloud & DevOps",
 
       desc: {
         "custom-website-development": "Kami membuat website khusus yang elegan, cepat diakses, dan ramah Google untuk menaikkan citra profesional bisnis Anda.",
         "company-profile-website": "Website resmi perusahaan untuk membangun kepercayaan klien B2B, mengenalkan visi bisnis, dan memajang layanan Anda dengan rapi.",
-        "landing-page-development": "Halaman penawaran khusus yang fokus dan cepat untuk mengubah klik iklan Google atau Meta Ads Anda menjadi pembeli potensial.",
         "e-commerce-development": "Toko online kustom yang dilengkapi dengan keranjang belanja, gerbang pembayaran aman, dan kalkulator ongkir otomatis.",
-        "custom-web-application": "Sistem aplikasi web kustom untuk merapikan alur kerja internal kantor atau meluncurkan ide platform startup digital Anda.",
-        "admin-analytics-dashboards": "Dashboard visualisasi data untuk mengubah laporan rumit menjadi grafik interaktif yang mudah dipantau secara real-time.",
         "mobile-app-development": "Pembuatan aplikasi Android & iOS berkualitas tinggi menggunakan Flutter atau React Native agar nyaman digunakan oleh pelanggan.",
         "erp-system-development": "Sistem terpadu untuk menyelaraskan laporan keuangan, logistik gudang, divisi HR, dan operasional bisnis dalam satu platform.",
         "crm-system-development": "Permudah tim sales melacak prospek calon pelanggan, mencatat data kontak, dan mengirim email follow-up otomatis.",
         "hris-payroll-system": "Sistem manajemen karyawan untuk mengotomatiskan absensi harian, pengajuan izin cuti, hingga pembuatan slip gaji bulanan.",
-        "inventory-management-system": "Aplikasi pencatatan stok barang digital untuk memantau keluar masuk produk dan peringatan jika stok menipis secara akurat.",
         "saas-platform-development": "Pengembangan produk SaaS multi-tenant dengan pengelolaan database terpisah dan integrasi tagihan otomatis Stripe.",
-        "ui-ux-product-design": "Pembuatan prototipe interaktif di Figma, riset pengguna, dan perancangan tata letak agar produk Anda terasa premium dan mudah dipakai.",
-        "ai-automation-development": "Integrasi teknologi kecerdasan buatan dan bot asisten otomatis untuk menangani pekerjaan administratif harian tim Anda.",
-        "cloud-infrastructure-devops": "Setup server cloud AWS/GCP yang aman, kontainerisasi Docker, serta sistem pemantauan berkala agar web Anda selalu lancar.",
       },
-      
+
       deep: {
         "custom-website-development": {
           problem: "Banyak bisnis kesulitan karena website yang usang, lambat, atau menggunakan template generik yang gagal mengubah pengunjung menjadi klien. Di era digital ini, website yang lambat berarti hilangnya pendapatan, dan desain yang pasaran akan merusak kepercayaan merek Anda.",
           target: "Merek-merek modern, korporasi besar, dan agensi yang ingin membangun kehadiran online dominan yang mencerminkan posisi premium mereka di pasar.",
           methodology: "Kami memulai dengan menyelami identitas dan tujuan merek Anda. Tim desain kami membuat wireframe resolusi tinggi di Figma, memastikan setiap elemen visual selaras dengan citra Anda. Setelah disetujui, tim teknis kami membangun website menggunakan framework modern seperti React dan Next.js, mengoptimalkan kecepatan akses dan struktur SEO yang sempurna.",
           faqs: [
-            { q: "Apakah Anda menggunakan template seperti WordPress?", a: "Tidak, kami membangun arsitektur frontend yang sepenuhnya kustom menggunakan Next.js dan React untuk menjamin performa maksimal, keamanan, dan identitas merek yang unik." },
+            { q: "Apakah Anda menggunakan template seperti WordPress?", a: "Tidak, kami membangun arsitektur frontend yang sepenuhnya kustom menggunakan Next.js and React untuk menjamin performa maksimal, keamanan, dan identitas merek yang unik." },
             { q: "Apakah website ini responsif di HP?", a: "Tentu saja. Kami menerapkan pendekatan mobile-first, memastikan website Anda cepat, responsif, dan intuitif di semua perangkat, mulai dari smartphone hingga monitor layar lebar." },
             { q: "Bisakah saya memperbarui konten website sendiri?", a: "Bisa. Kami mengintegrasikan sistem CMS modern (seperti Sanity atau Strapi) yang memberi Anda dashboard intuitif untuk mengelola konten tanpa perlu menyentuh kode pemrograman." }
+          ]
+        },
+        "company-profile-website": {
+          problem: "Banyak bisnis gagal menyampaikan keunikan mereka secara jelas di internet, membuat calon mitra B2B atau klien besar ragu dan akhirnya memilih kompetitor yang profil digitalnya terlihat lebih meyakinkan dan profesional.",
+          target: "Perusahaan skala menengah ke atas, firma profesional, dan bisnis manufaktur yang ingin meningkatkan citra kredibilitas tinggi di hadapan klien korporat.",
+          methodology: "Kami mendesain profil perusahaan digital yang bercerita. Fokus kami ada pada penyusunan struktur informasi yang padat, tipografi bersih yang elegan, loading super cepat, serta tombol kontak terarah yang menghubungkan prospek langsung dengan tim sales Anda.",
+          faqs: [
+            { q: "Apa saja isi website profil perusahaan yang ideal?", a: "Mencakup sejarah, visi misi, produk/jasa unggulan, profil jajaran manajemen, portofolio kerja, serta halaman kontak yang jelas. Kami dapat menyiapkannya secara kustom sesuai industri Anda." },
+            { q: "Apakah website ini ramah pencarian Google (SEO)?", a: "Tentu saja. Kami menerapkan tagging meta lengkap, skema markup Google, serta optimasi kecepatan agar nama perusahaan Anda menduduki peringkat teratas saat dicari." },
+            { q: "Dapatkah kami menambah sub-halaman karir atau berita nanti?", a: "Ya. Arsitektur website kami rancang secara modular, sehingga mempermudah penambahan bagian baru tanpa perlu membuat ulang dari awal." }
           ]
         },
         "e-commerce-development": {
@@ -243,6 +244,16 @@ export const translations: Record<"en" | "id", any> = {
             { q: "Apakah website aman saat terjadi flash sale?", a: "Ya. Kami merancang arsitektur cloud yang dapat diskalakan serta strategi caching database yang kuat untuk memastikan website tetap stabil meski ada lonjakan pengunjung saat flash sale." }
           ]
         },
+        "mobile-app-development": {
+          problem: "Menjangkau pelanggan di mana saja sangatlah penting, namun aplikasi mobile yang dibuat asal-asalan akan menguras baterai, sering crash, dan banyak dihapus pengguna. Membuat aplikasi terpisah untuk iOS dan Android juga bisa melipatgandakan biaya dan waktu pengembangan.",
+          target: "Startup, merek konsumen, dan perusahaan yang ingin membangun interaksi yang dalam dan berkelanjutan dengan penggunanya melalui aplikasi smartphone khusus.",
+          methodology: "Kami memanfaatkan framework lintas platform (cross-platform) seperti Flutter atau React Native untuk membangun aplikasi yang berjalan layaknya aplikasi native di iOS and Android hanya dari satu basis kode. Fokus kami ada pada navigasi yang nyaman dan performa yang stabil. Kami melakukan pengujian ketat di perangkat nyata untuk menjamin stabilitas dan kecepatan.",
+          faqs: [
+            { q: "Apakah Anda membuat aplikasi untuk iOS dan Android?", a: "Ya, kami mengembangkan untuk kedua platform tersebut secara bersamaan menggunakan teknologi lintas platform, yang memangkas waktu pengembangan dan menjamin konsistensi pengalaman pengguna." },
+            { q: "Apakah Anda akan membantu merilis aplikasi ke App Store?", a: "Tentu saja. Kami mengurus seluruh proses perilisan, termasuk optimasi deskripsi toko, pemenuhan syarat publikasi, dan pendaftaran akun pengembang." },
+            { q: "Bisakah aplikasinya digunakan saat tidak ada internet (offline)?", a: "Bisa. Sesuai kebutuhan, kami dapat mengimplementasikan database lokal (seperti SQLite) sehingga pengguna tetap bisa mengakses fitur-fitur penting tanpa koneksi internet." }
+          ]
+        },
         "erp-system-development": {
           problem: "Seiring berkembangnya perusahaan, penggunaan banyak software terpisah untuk keuangan, HR, dan gudang sering menyebabkan data yang terisolasi, kesalahan input manual, dan hilangnya visibilitas menyeluruh atas kondisi perusahaan.",
           target: "Perusahaan skala menengah ke atas, pabrik manufaktur, dan distributor yang kesulitan dengan operasional yang lambat dan sistem data yang terpecah-pecah.",
@@ -253,34 +264,34 @@ export const translations: Record<"en" | "id", any> = {
             { q: "Bisakah memindahkan data dari sistem kami yang lama?", a: "Tentu. Kami dapat membantu proses migrasi data yang kompleks dari sistem warisan (legacy systems) atau file Excel lama Anda ke dalam sistem ERP yang baru dengan aman." }
           ]
         },
-        "mobile-app-development": {
-          problem: "Menjangkau pelanggan di mana saja sangatlah penting, namun aplikasi mobile yang dibuat asal-asalan akan menguras baterai, sering crash, dan banyak dihapus pengguna. Membuat aplikasi terpisah untuk iOS dan Android juga bisa melipatgandakan biaya dan waktu pengembangan.",
-          target: "Startup, merek konsumen, dan perusahaan yang ingin membangun interaksi yang dalam dan berkelanjutan dengan penggunanya melalui aplikasi smartphone khusus.",
-          methodology: "Kami memanfaatkan framework lintas platform (cross-platform) seperti Flutter atau React Native untuk membangun aplikasi yang berjalan layaknya aplikasi native di iOS dan Android hanya dari satu basis kode. Fokus kami ada pada navigasi yang nyaman dan performa yang stabil. Kami melakukan pengujian ketat di perangkat nyata untuk menjamin stabilitas dan kecepatan.",
+        "crm-system-development": {
+          problem: "Tim sales sering kali kehilangan prospek karena pencatatan manual yang berantakan di spreadsheet, mengakibatkan tindak lanjut yang terlambat dan hilangnya potensi penjualan.",
+          target: "Divisi sales, agen properti, dan penyedia jasa yang ingin merapikan alur prospek masuk, melacak negosiasi, dan meningkatkan retensi pelanggan.",
+          methodology: "Kami membangun sistem CRM intuitif yang disesuaikan dengan corong penjualan (sales funnel) Anda. Kami menyatukan log obrolan, pengingat tugas otomatis, dan laporan performa sales dalam satu dashboard terintegrasi.",
           faqs: [
-            { q: "Apakah Anda membuat aplikasi untuk iOS dan Android?", a: "Ya, kami mengembangkan untuk kedua platform tersebut secara bersamaan menggunakan teknologi lintas platform, yang memangkas waktu pengembangan dan menjamin konsistensi pengalaman pengguna." },
-            { q: "Apakah Anda akan membantu merilis aplikasi ke App Store?", a: "Tentu saja. Kami mengurus seluruh proses perilisan, termasuk optimasi deskripsi toko, pemenuhan syarat publikasi, dan pendaftaran akun pengembang." },
-            { q: "Bisakah aplikasinya digunakan saat tidak ada internet (offline)?", a: "Bisa. Sesuai kebutuhan, kami dapat mengimplementasikan database lokal (seperti SQLite) sehingga pengguna tetap bisa mengakses fitur-fitur penting tanpa koneksi internet." }
+            { q: "Apakah CRM ini bisa dihubungkan ke website kami?", a: "Ya, kami menghubungkan CRM secara langsung dengan formulir kontak website Anda agar data prospek masuk secara otomatis." },
+            { q: "Bisa mengirimkan email follow-up otomatis?", a: "Tentu saja. Kami mengonfigurasi pemicu email otomatis berdasarkan tahapan prospek untuk membantu tim sales menjaga komunikasi." },
+            { q: "Bagaimana keamanan data kontak pelanggan kami?", a: "Kami menerapkan enkripsi database dan pembatasan hak akses karyawan agar basis data pelanggan Anda terlindungi dengan aman." }
           ]
         },
-        "cloud-infrastructure-devops": {
-          problem: "Server yang sering down, respon lambat saat pengunjung ramai, serta proses rilis pembaruan manual sangat membuang waktu teknisi. Selain itu, celah keamanan pada infrastruktur dapat berujung pada kebocoran data yang fatal bagi reputasi bisnis.",
-          target: "Platform dengan lalu lintas tinggi, perusahaan SaaS, dan sistem enterprise yang membutuhkan jaminan uptime 99.9%, kepatuhan keamanan yang ketat, dan kemampuan ekspansi server otomatis.",
-          methodology: "Kami merancang arsitektur cloud berdasarkan prinsip ketersediaan tinggi (high availability). Kami mengemas aplikasi Anda menggunakan Docker dan mengelolanya dengan Kubernetes. Kami mengimplementasikan jalur otomatisasi CI/CD, yang memungkinkan tim Anda merilis fitur baru secara aman tanpa menghentikan layanan (zero downtime).",
+        "hris-payroll-system": {
+          problem: "Tugas HR manual seperti melacak kehadiran, menyetujui izin cuti, dan menghitung gaji bulanan membutuhkan waktu lama serta rentan kesalahan hitung.",
+          target: "Perusahaan dengan tim yang terus berkembang dan manajer operasional yang ingin memotong birokrasi administratif karyawan.",
+          methodology: "Kami merancang platform HRIS terpusat untuk mengotomatiskan alur kerja harian HR. Kami membuat modul absensi digital, persetujuan cuti otomatis, dan mesin penggajian (payroll) yang menghitung pajak serta BPJS secara instan.",
           faqs: [
-            { q: "Layanan cloud apa saja yang biasa Anda gunakan?", a: "Kami sangat berpengalaman menggunakan Amazon Web Services (AWS), Google Cloud Platform (GCP), dan DigitalOcean, menyesuaikan dengan skala kebutuhan dan anggaran Anda." },
-            { q: "Bagaimana sistem mengatasi lonjakan pengunjung mendadak?", a: "Kami mengkonfigurasi sistem auto-scaling dan penyeimbang beban (load balancer) yang secara otomatis akan menambah kapasitas server saat pengunjung ramai, dan menurunkannya saat sepi untuk menghemat biaya." },
-            { q: "Apakah ada layanan pemantauan server berkelanjutan?", a: "Ya, kami menyiapkan sistem pemantauan dan peringatan otomatis menggunakan alat seperti Prometheus dan Grafana untuk mendeteksi potensi masalah sebelum berdampak pada pengguna." }
+            { q: "Bagaimana cara pencatatan absensi karyawan?", a: "Kami mendukung absensi berbasis lokasi GPS melalui HP, pemindaian kode QR, maupun integrasi dengan mesin sidik jari fisik." },
+            { q: "Apakah sistem ini mendukung perhitungan pajak PPh 21?", a: "Ya, mesin payroll kami dikonfigurasi untuk menghitung potongan PPh 21 dan BPJS Ketenagakerjaan/Kesehatan secara akurat sesuai regulasi Indonesia." },
+            { q: "Bagaimana keamanan data pribadi karyawan?", a: "Kami menerapkan kontrol akses ketat sehingga data slip gaji dan catatan pribadi hanya dapat diakses oleh admin HR yang berwenang." }
           ]
         },
-        "default": {
-          problem: "Banyak organisasi terjebak menggunakan software template pasaran yang tidak cocok dengan kebutuhan operasional spesifik mereka. Hal ini memicu ketidakefisienan alur kerja, silo data antar divisi, dan pengalaman pengguna yang buruk, yang akhirnya menghambat laju pertumbuhan bisnis.",
-          target: "Bisnis dan instansi yang membutuhkan solusi digital khusus dan berkinerja tinggi untuk menembus tantangan operasional harian serta mempercepat transformasi digital mereka.",
-          methodology: "Pendekatan kami berakar pada kolaborasi yang mendalam. Kami mulai dengan menganalisis tantangan bisnis Anda. Tim desain dan teknis kami kemudian bekerja sama merancang prototipe, membangun, dan menguji solusi yang dirancang khusus. Kami menggunakan teknologi modern untuk memastikan rilis cepat, perbaikan berkelanjutan, dan hasil akhir yang sejalan dengan target strategis Anda.",
+        "saas-platform-development": {
+          problem: "Meluncurkan produk SaaS membutuhkan penyelesaian masalah infrastruktur yang rumit seperti pemisahan data penyewa (tenant), sistem tagihan langganan, dan manajemen kuota API sebelum Anda sempat membuat fitur utama.",
+          target: "Founder startup teknologi dan perusahaan yang ingin merilis produk perangkat lunak berbasis langganan komersial.",
+          methodology: "Kami membangun fondasi SaaS multi-tenant yang aman. Kami mengintegrasikan pola pemisahan database, mesin langganan Stripe/Xendit dengan sinkronisasi webhook, dan analitik tagihan agar Anda bisa fokus sepenuhnya pada nilai produk.",
           faqs: [
-            { q: "Berapa lama waktu rata-rata pengembangan proyek?", a: "Waktu pengerjaan bervariasi sesuai kompleksitas, namun rata-rata proyek kami selesaikan dalam waktu 6 hingga 12 minggu. Kami akan memberikan peta jalan (roadmap) detail di awal." },
-            { q: "Apakah ada layanan perbaikan dan pemeliharaan setelah rilis?", a: "Ya, kami menawarkan paket SLA komprehensif untuk pemantauan berkelanjutan, perbaikan bug, pembaruan keamanan, dan penambahan fitur baru." },
-            { q: "Siapa yang memiliki hak cipta (IP) dari software yang dibuat?", a: "Setelah proyek selesai dan pembayaran dilunasi sepenuhnya, seluruh hak kekayaan intelektual (IP) dan source code sepenuhnya menjadi milik Anda." }
+            { q: "Bagaimana data dipisahkan antar penyewa (tenant) berbeda?", a: "Kami menerapkan isolasi database dengan kunci tenant atau skema database terpisah untuk menjamin data tidak akan pernah bocor antar penyewa." },
+            { q: "Apakah sistem mendukung berbagai tingkatan paket langganan?", a: "Tentu. Kami merancang konfigurasi paket yang fleksibel (bulanan/tahunan, kuota pengguna, atau tagihan berbasis penggunaan) terintegrasi dengan portal pembayaran." },
+            { q: "Bagaimana cara menangani keamanan API?", a: "Kami menerapkan manajemen token JWT yang aman, skema rotasi kunci API, serta pembatas laju kueri (rate limiter) untuk melindungi sistem Anda dari serangan luar." }
           ]
         }
       },

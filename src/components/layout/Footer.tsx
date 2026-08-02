@@ -117,6 +117,14 @@ export default function Footer() {
               <p className="text-[#94A3B8] text-sm leading-relaxed mb-6 max-w-sm">
                 {text.desc}
               </p>
+              
+              {/* E-E-A-T Real World Identity */}
+              <div className="text-[#94A3B8] text-sm leading-relaxed mb-6 max-w-sm">
+                <p className="font-bold text-white mb-1">Jakarta HQ</p>
+                <p>Jl. Blk. Duku No.93, Cibubur, Ciracas</p>
+                <p>Jakarta Timur, DKI Jakarta 13720</p>
+                <p>Indonesia</p>
+              </div>
 
               {/* Social Links */}
               <div className="flex items-center gap-3">

@@ -43,7 +43,7 @@ const localText = {
     cards: {
       location: "Cibubur, Jakarta",
       status: "Available for new projects",
-      projects: "120+ projects delivered",
+      projects: "12+ projects delivered",
       response: "Average response < 12h"
     },
     contact: {

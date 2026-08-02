@@ -90,14 +90,14 @@ export default function WhyChoose() {
   return (
     <section id="why-choose" className="py-16 lg:py-24 bg-[#FFFFFF] overflow-hidden relative">
       <div className="max-w-[1400px] mx-auto px-6 relative z-10">
-        
+
         {/* Section Label */}
         <span className="text-xs sm:text-sm md:text-base font-mono font-bold tracking-[0.2em] uppercase text-blue-600 mb-4 block">
           {text.label}
         </span>
 
         {/* Viewport-Dominating Manifesto Headline */}
-        <motion.h2 
+        <motion.h2
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "100px" }} // Reduced restriction so it always triggers
@@ -192,9 +192,9 @@ export default function WhyChoose() {
                   <motion.p
                     className="text-slate-500 font-medium text-sm md:text-base leading-relaxed mt-2"
                     initial={{ height: 0, opacity: 0 }}
-                    animate={{ 
-                      height: isVisible ? "auto" : 0, 
-                      opacity: isVisible ? 1 : 0 
+                    animate={{
+                      height: isVisible ? "auto" : 0,
+                      opacity: isVisible ? 1 : 0
                     }}
                     transition={{ duration: 0.35, ease: premiumEase }}
                   >

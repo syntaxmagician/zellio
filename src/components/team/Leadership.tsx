@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Cpu, Palette, Layers, Terminal, Activity, ArrowRight } from "lucide-react";
+import { FaLinkedin } from "react-icons/fa";
 import TeamAvatar from "./TeamAvatar";
 
 interface LeaderData {
@@ -15,6 +16,7 @@ interface LeaderData {
   philosophy: string;
   icon: React.ElementType;
   theme: "blue" | "emerald" | "indigo";
+  linkedin: string;
 }
 
 const leaders: LeaderData[] = [
@@ -27,7 +29,8 @@ const leaders: LeaderData[] = [
     tech: ["System Architecture", "Cloud Infrastructure", "Go", "Node.js", "Docker"],
     philosophy: "\"Great architecture isn't about the tools you use, but the complexity you hide.\"",
     icon: Cpu,
-    theme: "blue"
+    theme: "blue",
+    linkedin: "https://www.linkedin.com/in/vikotegarramdhani/"
   },
   {
     name: "Samuel Sukarno",
@@ -38,7 +41,8 @@ const leaders: LeaderData[] = [
     tech: ["React", "Next.js", "TypeScript", "Framer Motion", "TailwindCSS"],
     philosophy: "\"Interfaces should disappear so users only notice the product.\"",
     icon: Palette,
-    theme: "emerald"
+    theme: "emerald",
+    linkedin: "https://www.linkedin.com/in/samuel-sukarno-922357149/"
   },
   {
     name: "Muhammad Cavendio",
@@ -49,7 +53,8 @@ const leaders: LeaderData[] = [
     tech: ["Node.js", "Express", "PostgreSQL", "Redis", "GraphQL"],
     philosophy: "\"Data integrity and performance at scale are the lifeblood of any digital ecosystem.\"",
     icon: Layers,
-    theme: "indigo"
+    theme: "indigo",
+    linkedin: "https://www.linkedin.com/in/muhammad-rizky-cavendio-218645238/"
   },
   {
     name: "Hasyim Ridwan",
@@ -60,7 +65,8 @@ const leaders: LeaderData[] = [
     tech: ["Go", "Node.js", "Docker", "AWS", "Kubernetes"],
     philosophy: "\"A good server doesn't complain, it just works silently.\"",
     icon: Terminal,
-    theme: "blue"
+    theme: "blue",
+    linkedin: "https://www.linkedin.com/in/mohamad-hasyim-ridwan-1a1762b8/"
   }
 ];
 
@@ -176,9 +182,20 @@ export default function Leadership() {
               {/* Data Specs */}
               <div className="flex-1 flex flex-col justify-center space-y-6 relative z-10">
                 <div>
-                  <h3 className="text-2xl font-black text-slate-900 tracking-tight leading-none mb-1">
-                    {activeLeader.name}
-                  </h3>
+                  <div className="flex items-center gap-3 mb-1">
+                    <h3 className="text-2xl font-black text-slate-900 tracking-tight leading-none">
+                      {activeLeader.name}
+                    </h3>
+                    <a 
+                      href={activeLeader.linkedin} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="text-slate-400 hover:text-[#0A66C2] transition-colors"
+                      title="View LinkedIn Profile"
+                    >
+                      <FaLinkedin className="w-5 h-5" />
+                    </a>
+                  </div>
                   <p className={`text-sm font-bold ${activeLeader.theme === 'blue' ? 'text-blue-500' : activeLeader.theme === 'emerald' ? 'text-emerald-500' : 'text-indigo-500'}`}>
                     {activeLeader.role}
                   </p>

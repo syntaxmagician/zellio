@@ -19,20 +19,26 @@ import {
 const illustrationMap: Record<number, React.FC<{ isHovered: boolean }>> = {
   1: WebDevIllustration,
   2: DashboardIllustration,
-  3: MobileAppIllustration,
   4: ITSystemsIllustration,
-  5: CloudDevOpsIllustration,
-  6: UIDesignIllustration,
+  7: MobileAppIllustration,
+  8: CloudDevOpsIllustration,
+  9: UIDesignIllustration,
+  10: WebDevIllustration,
+  11: DashboardIllustration,
+  12: CloudDevOpsIllustration
 };
 
 // Background palette per service for the large illustration panel (light colors)
 const bgPalette: Record<number, { bg: string; accent: string }> = {
   1: { bg: "#F8FAFC", accent: "#2563EB" },
   2: { bg: "#F1F5F9", accent: "#2563EB" },
-  3: { bg: "#FFFBEB", accent: "#f59e0b" },
   4: { bg: "#FDF2F8", accent: "#ec4899" },
-  5: { bg: "#FAF5FF", accent: "#8b5cf6" },
-  6: { bg: "#FFF1F2", accent: "#e11d48" },
+  7: { bg: "#FFFBEB", accent: "#f59e0b" },
+  8: { bg: "#FAF5FF", accent: "#8b5cf6" },
+  9: { bg: "#FFF1F2", accent: "#e11d48" },
+  10: { bg: "#F0F9FF", accent: "#0284c7" },
+  11: { bg: "#F0FDF4", accent: "#16a34a" },
+  12: { bg: "#FDF4FF", accent: "#d946ef" },
 };
 
 const localText = {
@@ -44,10 +50,10 @@ const localText = {
     tags: [
       ["Web Design", "SEO-Optimized", "Responsive", "Next.js"],
       ["Corporate Identity", "CMS", "B2B Focused", "SEO"],
-      ["Conversion-Focused", "Google Ads", "A/B Testing", "Performance"],
-      ["Payment Gateway", "Inventory", "Cart System", "Courier API"],
-      ["SaaS-Ready", "API Integration", "React", "Node.js"],
-      ["Analytics", "Real-Time Data", "Charts", "Admin Panel"],
+      ["Payment Gateway", "Inventory", "Cart System", "Performance"],
+      ["iOS & Android", "React Native", "API Integration", "UX Design"],
+      ["Centralized Data", "Automation", "Finance", "Scalable"],
+      ["Analytics", "Lead Tracking", "Sales Funnel", "Admin Panel"],
     ],
   },
   id: {
@@ -58,10 +64,10 @@ const localText = {
     tags: [
       ["Desain Web", "SEO-Optimized", "Responsif", "Next.js"],
       ["Identitas Korporat", "CMS", "Fokus B2B", "SEO"],
-      ["Berfokus Konversi", "Google Ads", "A/B Testing", "Performa"],
-      ["Payment Gateway", "Inventori", "Keranjang Belanja", "API Kurir"],
-      ["Siap-SaaS", "Integrasi API", "React", "Node.js"],
-      ["Analitik", "Data Real-Time", "Grafik", "Panel Admin"],
+      ["Payment Gateway", "Inventori", "Sistem Keranjang", "Performa"],
+      ["iOS & Android", "React Native", "Integrasi API", "Desain UX"],
+      ["Data Terpusat", "Otomatisasi", "Keuangan", "Skalabel"],
+      ["Analitik", "Pelacakan Prospek", "Sales Funnel", "Panel Admin"],
     ],
   },
 };

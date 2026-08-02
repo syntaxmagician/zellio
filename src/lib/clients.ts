@@ -103,14 +103,7 @@ export const clientLogos: ClientLogo[] = [
     height: 45,
     hidden: true,
   },
-  {
-    slug: "kimiafarma",
-    name: "Kimia Farma",
-    sector: { en: "Healthcare & Pharma", id: "Farmasi & Kesehatan" },
-    src: "/kimiafarma.jpeg",
-    width: 140,
-    height: 48,
-  },
+
   {
     slug: "batugin",
     name: "Batugin",

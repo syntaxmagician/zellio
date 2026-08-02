@@ -3,10 +3,7 @@
 // ============================================================
 
 export interface StoryDetail {
-  introduction: string;
-  challenge: string;
-  approach: string;
-  impact: string;
+  body: string;
 }
 
 export interface Story {
@@ -38,38 +35,204 @@ export interface Story {
 
 export const insightsData: Story[] = [
   {
-    slug: "synergy-in-motion",
+    slug: "origins-of-zellio",
     category: "CULTURE",
-    title: "Synergy in Motion",
-    desc: "Behind ZELLIO's blueprints are teams working in a unified rhythm to craft digital assets that are as robust as they are beautiful.",
+    title: "The Origins of ZELLIO: Why We Founded Our Own Agency",
+    desc: "How a group of former colleagues reunited to rebuild the standard of software development in Indonesia.",
     img: "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=1200&auto=format&fit=crop",
-    tags: ["Collaboration", "Agile", "Team"],
+    tags: ["Origins", "Engineering Ethics", "Transparency"],
     buttonText: "Read Story",
     duration: "Ongoing",
-    author: "ZELLIO Culture Team",
-    date: "July 15, 2026",
+    author: "ZELLIO Founders",
+    date: "August 02, 2026",
     readTime: "4 Min Read",
-    techStack: ["Slack", "Figma", "Jira", "Notion"],
+    techStack: ["Next.js", "PostgreSQL", "Docker", "Gantt Planning"],
     id: {
-      title: "Sinergi dalam Aksi",
-      desc: "Di balik cetak biru ZELLIO terdapat tim-tim yang bekerja dalam ritme yang terpadu untuk merancang aset digital yang kokoh sekaligus indah.",
+      title: "Asal-usul ZELLIO: Mengapa Kami Mendirikan Agensi Sendiri",
+      desc: "Bagaimana sekelompok mantan kolega bersatu kembali untuk membangun standar baru pengembangan perangkat lunak di Indonesia.",
       buttonText: "Baca Selengkapnya",
       details: {
-        introduction: "Di balik setiap baris kode yang stabil dan setiap desain antarmuka yang elegan di ZELLIO, terdapat proses kolaborasi yang intim. Kami percaya bahwa rekayasa perangkat lunak bukan sekadar pekerjaan teknis individu, melainkan simfoni kerja sama tim yang berjalan dalam satu irama. Kami membangun lingkungan kerja yang inklusif di mana pemikiran kritis dihargai dan setiap kontribusi dihargai.",
-        challenge: "Menyelaraskan komunikasi antara desainer UI/UX, teknisi backend, dan tim QA sering kali menjadi tantangan terbesar dalam agensi perangkat lunak. Tanpa sinkronisasi yang baik, detail fungsional sering kali hilang dalam transisi desain ke kode. Selain itu, perbedaan zona waktu dan gaya kerja dapat menghambat kemajuan proyek.",
-        approach: "Kami menerapkan metodologi Agile yang disederhanakan dengan siklus iterasi harian. Setiap pagi dimulai dengan sinkronisasi kilat 10 menit untuk mendeteksi hambatan teknis secara dini, didukung oleh platform kolaborasi terintegrasi. Kami juga menggunakan sesi tinjauan desain bersama secara teratur untuk memastikan keselarasan visual.",
-        impact: "Hasilnya adalah pengurangan waktu revisi hingga 40% dan peningkatan akurasi translasi desain visual ke kode produksi hingga 100%. Tim bekerja dengan kepuasan tinggi dan tingkat retensi karyawan kami mencapai rekor tertinggi."
+        body: `
+          <h2 class="text-2xl md:text-3xl mt-0 mb-6 text-slate-900 font-bold">Berawal dari Satu Visi yang Sama</h2>
+          <p>Kami, para pendiri ZELLIO, awalnya adalah rekan kerja di satu perusahaan teknologi yang sama. Selama bekerja bersama, kami membentuk sinergi yang kuat dan saling melengkapi keahlian satu sama lain. Meskipun perjalanan karier sempat memisahkan kami ke tempat kerja yang berbeda-beda, ikatan profesional dan mimpi bersama tetap terjaga. Kami akhirnya bersepakat untuk bersatu kembali dan mendirikan ZELLIO.</p>
+          <p>Langkah ini bukan hanya untuk memajukan karier individu kami, melainkan dorongan kuat untuk memiliki bisnis perusahaan sendiri yang membawa standar baru dalam pengembangan sistem.</p>
+          <br />
+          <h2 class="text-2xl md:text-3xl mt-8 mb-6 text-slate-900 font-bold">Keresahan Terhadap Layanan Pembuatan Sistem Murah</h2>
+          <p>Latar belakang berdirinya ZELLIO didasari oleh keprihatinan kami terhadap industri pembuatan perangkat lunak di Indonesia. Kami sering melihat penawaran pembuatan website atau sistem dengan harga sangat murah, namun hasilnya sangat kritis bagi bisnis klien: pengembang sulit dihubungi (jarang membalas pesan), tidak ada pembaruan berkala, sistem sering mengalami kerusakan (crash), dan kode dasarnya berantakan.</p>
+          <blockquote class="pl-6 border-l-4 border-blue-600 bg-blue-50/50 py-4 pr-4 rounded-r-xl my-8 italic text-slate-700">
+            "Perangkat lunak yang murah di awal sering kali menjadi investasi termahal yang merusak operasional bisnis Anda."
+          </blockquote>
+          <br />
+          <h2 class="text-2xl md:text-3xl mt-8 mb-6 text-slate-900 font-bold">Misi ZELLIO: Membangun Sistem yang Kuat dan Transparan</h2>
+          <p>Di ZELLIO, kami berkomitmen untuk mematahkan stigma tersebut. Kami ingin membangun sistem yang tangguh, terstruktur dengan kode bersih, dan mudah dikembangkan untuk jangka panjang. Lebih dari itu, kami mengutamakan transparansi dan komunikasi yang andal. Oleh karena itu, kami memberikan estimasi lini masa (timeline) yang realistis menggunakan Gantt chart dan membangun dashboard pemantauan proyek khusus agar setiap klien dapat melihat progres pengerjaan kami secara real-time.</p>
+        `
       }
     },
     en: {
-      title: "Synergy in Motion",
-      desc: "Behind ZELLIO's blueprints are teams working in a unified rhythm to craft digital assets that are as robust as they are beautiful.",
+      title: "The Origins of ZELLIO: Why We Founded Our Own Agency",
+      desc: "How a group of former colleagues reunited to rebuild the standard of software development in Indonesia.",
       buttonText: "Read Story",
       details: {
-        introduction: "Behind every stable line of code and elegant interface at ZELLIO lies an intimate process of collaboration. We believe that software engineering is not just isolated technical labor, but a team symphony operating in unison. We foster an inclusive environment where critical thinking is encouraged and every contribution is valued.",
-        challenge: "Bridging the communication gap between UI/UX designers, backend engineers, and QA specialists is often the biggest hurdle in software agencies. Without proper synchronization, critical design details get lost in translation. Time-zone differences and varied working styles can also create drag.",
-        approach: "We implement a streamlined Agile methodology featuring tight daily iterations. Each morning starts with a 10-minute standup to spot technical bottlenecks early, backed by integrated collaboration platforms. We also hold regular co-design reviews to ensure absolute visual alignment.",
-        impact: "This approach reduced revision loops by 40% and improved design-to-code accuracy to 100%. The team operates with high satisfaction, leading to our highest-ever employee retention rates."
+        body: `
+          <h2 class="text-2xl md:text-3xl mt-0 mb-6 text-slate-900 font-bold">Reuniting Under a Shared Vision</h2>
+          <p>The founders of ZELLIO originally started as colleagues at the same technology company. Over years of working together, we formed a tight-knit synergy, combining our strengths in design, backend architecture, and project execution. Even after our careers took us to different organizations, our professional bond and shared dream remained intact. We eventually agreed to reunite and establish ZELLIO.</p>
+          <p>This step was not just to advance our personal careers, but to build our own enterprise that raises the standard of software development in our region.</p>
+          <br />
+          <h2 class="text-2xl md:text-3xl mt-8 mb-6 text-slate-900 font-bold">Frustration with Cheap, Broken Software</h2>
+          <p>The driving force behind ZELLIO was our shared frustration with the current state of local software development. We noticed a flooding market of dirt-cheap website and system offers. However, the post-sale reality for these clients was disastrous: developers rarely replied to messages, systems were left unmaintained, and the codebases were so unstable they frequently crashed, halting business operations.</p>
+          <blockquote class="pl-6 border-l-4 border-blue-600 bg-blue-50/50 py-4 pr-4 rounded-r-xl my-8 italic text-slate-700">
+            "Cheap software initially almost always becomes the most expensive mistake for a growing company."
+          </blockquote>
+          <br />
+          <h2 class="text-2xl md:text-3xl mt-8 mb-6 text-slate-900 font-bold">The ZELLIO Promise: Clean Systems & Real-time Transparency</h2>
+          <p>At ZELLIO, we are dedicated to breaking this cycle. We focus on building resilient, clean-coded systems that scale effortlessly. But just as importantly, we prioritize professional communication. Every project is backed by a structured Gantt timeline and a dedicated progress monitoring dashboard, giving clients full, real-time visibility into the code we ship.</p>
+        `
+      }
+    }
+  },
+  {
+    slug: "eureka-logistics-case-study",
+    category: "CASE STUDY",
+    title: "Sistem Internal Logistics (Multi Business Unit)",
+    desc: "Sistem Informasi Operasional Terintegrasi untuk mendigitalisasi alur kerja logistik di 2 unit bisnis sekaligus.",
+    img: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=1200&auto=format&fit=crop",
+    tags: ["Logistics", "ERP Integration", "Real-time Dashboard"],
+    buttonText: "Lihat Studi Kasus",
+    duration: "4 Months",
+    author: "ZELLIO Engineering",
+    date: "August 02, 2026",
+    readTime: "6 Min Read",
+    techStack: ["Next.js", "Odoo ERP API", "PostgreSQL", "TailwindCSS", "WebSockets"],
+    id: {
+      title: "Sistem Internal Logistics (Multi Business Unit)",
+      desc: "Sistem Informasi Operasional Terintegrasi untuk mendigitalisasi alur kerja logistik di 2 unit bisnis sekaligus.",
+      buttonText: "Lihat Studi Kasus",
+      details: {
+        body: `
+          <h2 class="text-2xl md:text-3xl mt-0 mb-6 text-slate-900 font-bold">Latar Belakang & Tantangan</h2>
+          <p>Eureka Logistics membutuhkan digitalisasi menyeluruh untuk menghubungkan operasional lapangan dengan sistem manajemen pusat di 2 unit bisnis secara real-time. Proses sebelumnya bersifat manual dan terfragmentasi, memicu keterlambatan koordinasi dan risiko kesalahan input data operasional, terutama pada pengelolaan armada dan klaim keuangan driver.</p>
+          <p>Tantangan teknis utama mencakup:</p>
+          <ul class="list-disc pl-6 my-4 space-y-2">
+            <li>Manajemen kompleks dari <strong>7 jenis tarif SO (Sales Order)</strong> yang harus terintegrasi dinamis dengan sistem Quotation.</li>
+            <li>Validasi bertingkat yang ketat untuk persetujuan penawaran harga operasional.</li>
+            <li>Sinkronisasi data pengiriman, penyerahan Surat Jalan (SJ), perhitungan Uang Jalan, serta add cost (biaya tambahan tak terduga) di perjalanan.</li>
+          </ul>
+          <br />
+          <h2 class="text-2xl md:text-3xl mt-8 mb-6 text-slate-900 font-bold">Solusi ZELLIO: Sistem Informasi Operasional Terintegrasi</h2>
+          <p>Kami merancang dan mengembangkan platform manajemen logistik khusus yang secara penuh mendigitalisasi seluruh alur kerja operasional Eureka Logistics. Sistem ini menghubungkan admin kantor, manajer operasional, dispatcher armada, hingga akuntansi ke dalam satu ekosistem terpadu.</p>
+          <p>Dengan <strong>real-time operational dashboard</strong> yang ditenagai oleh koneksi WebSocket, semua perubahan status armada, posisi pengiriman, serta pembaruan dokumen Surat Jalan (SJ) langsung tersinkronisasi secara otomatis tanpa perlu memuat ulang halaman (page refresh). Data mutasi pengiriman langsung diintegrasikan dengan <strong>Odoo ERP API</strong> secara instan untuk efisiensi pembukuan keuangan perusahaan.</p>
+          <br />
+          <h3 class="text-xl md:text-2xl mt-8 mb-4 text-slate-900 font-bold">Kemampuan Utama Sistem (Core Capabilities)</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 my-6">
+            <div class="p-5 rounded-xl border border-slate-200 bg-white">
+              <h4 class="font-bold text-slate-900 mb-2">Manajemen Sales Order (SO) & Quotation</h4>
+              <p class="text-sm text-slate-600">Menangani 7 jenis struktur tarif SO yang terhubung ke Quotation dengan persetujuan bertingkat untuk meminimalisir kesalahan harga.</p>
+            </div>
+            <div class="p-5 rounded-xl border border-slate-200 bg-white">
+              <h4 class="font-bold text-slate-900 mb-2">Manajemen Surat Jalan (SJ) & Keuangan Sopir</h4>
+              <p class="text-sm text-slate-600">Pelacakan fisik SJ, perhitungan otomatis Uang Jalan, serta Add Cost jalan tol/parkir/ban bocor secara transparan.</p>
+            </div>
+            <div class="p-5 rounded-xl border border-slate-200 bg-white">
+              <h4 class="font-bold text-slate-900 mb-2">Integrasi Odoo ERP</h4>
+              <p class="text-sm text-slate-600">Sinkronisasi data transaksi otomatis dengan modul accounting Odoo untuk efisiensi audit internal perusahaan.</p>
+            </div>
+            <div class="p-5 rounded-xl border border-slate-200 bg-white">
+              <h4 class="font-bold text-slate-900 mb-2">Real-time Vehicle & Driver Monitoring</h4>
+              <p class="text-sm text-slate-600">Dashboard operasional dinamis yang otomatis memperbarui status muatan, kurir, dan performa armada logistik secara instan.</p>
+            </div>
+          </div>
+          <br />
+          <h2 class="text-2xl md:text-3xl mt-12 mb-6 text-slate-900 font-bold">Antarmuka Sistem (The Interface)</h2>
+          <p class="mb-8">Berikut adalah tangkapan layar antarmuka sistem Eureka Logistics yang telah dideploy ke produksi. Semua data sensitif (seperti nama pelanggan, email, nomor telepon, dan nominal keuangan tertentu) telah disamarkan melalui proses Gaussian blur demi menjaga keamanan informasi klien.</p>
+          <div class="flex flex-col gap-10">
+            <div class="border border-slate-200 rounded-2xl overflow-hidden bg-white p-4 shadow-sm">
+              <p class="text-xs font-mono text-slate-400 mb-3 uppercase tracking-wider">1. Dashboard Utama Operasional</p>
+              <img src="/el dashboard auto.jpeg" alt="Dashboard Utama Eureka Logistics" class="w-full h-auto rounded-lg object-contain border border-slate-100" />
+            </div>
+            <div class="border border-slate-200 rounded-2xl overflow-hidden bg-white p-4 shadow-sm">
+              <p class="text-xs font-mono text-slate-400 mb-3 uppercase tracking-wider">2. Pemantauan Kendaraan Logistik (Vehicle Monitoring)</p>
+              <img src="/vehicle monitoring el.jpeg" alt="Vehicle Monitoring" class="w-full h-auto rounded-lg object-contain border border-slate-100" />
+            </div>
+            <div class="border border-slate-200 rounded-2xl overflow-hidden bg-white p-4 shadow-sm">
+              <p class="text-xs font-mono text-slate-400 mb-3 uppercase tracking-wider">3. Pemantauan Status & Kinerja Driver</p>
+              <img src="/driver monitoring el.jpeg" alt="Driver Monitoring" class="w-full h-auto rounded-lg object-contain border border-slate-100" />
+            </div>
+            <div class="border border-slate-200 rounded-2xl overflow-hidden bg-white p-4 shadow-sm">
+              <p class="text-xs font-mono text-slate-400 mb-3 uppercase tracking-wider">4. Pembuatan & Manajemen Sales Order (SO)</p>
+              <img src="/el so.jpeg" alt="Sales Order Management" class="w-full h-auto rounded-lg object-contain border border-slate-100" />
+            </div>
+            <div class="border border-slate-200 rounded-2xl overflow-hidden bg-white p-4 shadow-sm">
+              <p class="text-xs font-mono text-slate-400 mb-3 uppercase tracking-wider">5. Laporan & Rekap Penjualan (Sales Report)</p>
+              <img src="/el sales report.jpeg" alt="Sales Report" class="w-full h-auto rounded-lg object-contain border border-slate-100" />
+            </div>
+          </div>
+        `
+      }
+    },
+    en: {
+      title: "Sistem Internal Logistics (Multi Business Unit)",
+      desc: "Integrated Operational Information System to digitalize logistics workflows for 2 business units simultaneously.",
+      buttonText: "View Case Study",
+      details: {
+        body: `
+          <h2 class="text-2xl md:text-3xl mt-0 mb-6 text-slate-900 font-bold">The Challenge</h2>
+          <p>Eureka Logistics required a comprehensive digital transformation to connect their field operations with central management across 2 separate business units in real-time. The previous manual processes led to coordination delays, delivery tracking blindspots, and higher risks of transaction discrepancies, particularly around driver allowances and cargo invoices.</p>
+          <p>Key technical constraints included:</p>
+          <ul class="list-disc pl-6 my-4 space-y-2">
+            <li>Handling <strong>7 distinct Sales Order (SO) tariff structures</strong> that map dynamically to Quotations.</li>
+            <li>Enforcing complex, multi-tiered validation workflows for custom quote approvals.</li>
+            <li>Tracking trip milestones, Delivery Notes (Surat Jalan), driver allowances (Uang Jalan), and unexpected on-road additional costs.</li>
+          </ul>
+          <br />
+          <h2 class="text-2xl md:text-3xl mt-8 mb-6 text-slate-900 font-bold">What We Built: Integrated Operations Management Platform</h2>
+          <p>ZELLIO designed and developed a bespoke logistics management platform that fully digitalizes Eureka Logistics' daily workflows. The platform unites office administrators, dispatchers, truck drivers, and accountants into a single, cohesive application.</p>
+          <p>By implementing a <strong>real-time operational dashboard</strong> built on top of secure WebSockets, fleet status changes and delivery progress update instantly across active client devices without requiring manual page reloads. Shipping manifests and operational records sync automatically via <strong>Odoo ERP API</strong> to facilitate automated bookkeeping.</p>
+          <br />
+          <h3 class="text-xl md:text-2xl mt-8 mb-4 text-slate-900 font-bold">Core Capabilities</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 my-6">
+            <div class="p-5 rounded-xl border border-slate-200 bg-white">
+              <h4 class="font-bold text-slate-900 mb-2">Sales Order & Quotation Engine</h4>
+              <p class="text-sm text-slate-600">Supports 7 complex tariff structures dynamically linked to quotations, requiring role-based validation to minimize price leakage.</p>
+            </div>
+            <div class="p-5 rounded-xl border border-slate-200 bg-white">
+              <h4 class="font-bold text-slate-900 mb-2">Trip Expense & Add-Cost Billing</h4>
+              <p class="text-sm text-slate-600">Automates calculation of driver allowances, road tolls, and unforeseen maintenance costs while digitizing physical receipt logs.</p>
+            </div>
+            <div class="p-5 rounded-xl border border-slate-200 bg-white">
+              <h4 class="font-bold text-slate-900 mb-2">Direct Odoo ERP Integration</h4>
+              <p class="text-sm text-slate-600">Automatically exports billing data, ledger details, and shipping records directly into corporate Odoo modules for real-time auditing.</p>
+            </div>
+            <div class="p-5 rounded-xl border border-slate-200 bg-white">
+              <h4 class="font-bold text-slate-900 mb-2">Real-time Vehicle & Driver Monitoring</h4>
+              <p class="text-sm text-slate-600">A high-performance WebSocket dashboard that updates delivery routes, driver assignments, and vehicle utilization instantly.</p>
+            </div>
+          </div>
+          <br />
+          <h2 class="text-2xl md:text-3xl mt-12 mb-6 text-slate-900 font-bold">The Interface</h2>
+          <p class="mb-8">Below are authentic screenshots of the Eureka Logistics interface running in production. To preserve client privacy, all sensitive data fields (including client names, email addresses, phone numbers, and financials) have been securely redacted/blurred via a Gaussian filter.</p>
+          <div class="flex flex-col gap-10">
+            <div class="border border-slate-200 rounded-2xl overflow-hidden bg-white p-4 shadow-sm">
+              <p class="text-xs font-mono text-slate-400 mb-3 uppercase tracking-wider">1. Core Operational Dashboard</p>
+              <img src="/el dashboard auto.jpeg" alt="Eureka Logistics Operational Dashboard" class="w-full h-auto rounded-lg object-contain border border-slate-100" />
+            </div>
+            <div class="border border-slate-200 rounded-2xl overflow-hidden bg-white p-4 shadow-sm">
+              <p class="text-xs font-mono text-slate-400 mb-3 uppercase tracking-wider">2. Vehicle Monitoring & Fleet Dispatch</p>
+              <img src="/vehicle monitoring el.jpeg" alt="Vehicle Monitoring" class="w-full h-auto rounded-lg object-contain border border-slate-100" />
+            </div>
+            <div class="border border-slate-200 rounded-2xl overflow-hidden bg-white p-4 shadow-sm">
+              <p class="text-xs font-mono text-slate-400 mb-3 uppercase tracking-wider">3. Driver Activity & Trip Statuses</p>
+              <img src="/driver monitoring el.jpeg" alt="Driver Monitoring" class="w-full h-auto rounded-lg object-contain border border-slate-100" />
+            </div>
+            <div class="border border-slate-200 rounded-2xl overflow-hidden bg-white p-4 shadow-sm">
+              <p class="text-xs font-mono text-slate-400 mb-3 uppercase tracking-wider">4. Sales Order (SO) Management</p>
+              <img src="/el so.jpeg" alt="Sales Order Management" class="w-full h-auto rounded-lg object-contain border border-slate-100" />
+            </div>
+            <div class="border border-slate-200 rounded-2xl overflow-hidden bg-white p-4 shadow-sm">
+              <p class="text-xs font-mono text-slate-400 mb-3 uppercase tracking-wider">5. Operational Sales Reports & Analytics</p>
+              <img src="/el sales report.jpeg" alt="Sales Report" class="w-full h-auto rounded-lg object-contain border border-slate-100" />
+            </div>
+          </div>
+        `
       }
     }
   },
@@ -91,10 +254,19 @@ export const insightsData: Story[] = [
       desc: "Fokus kami adalah pada sistem yang bersih, terdokumentasi, dan tangguh. Lingkungan yang tenang melahirkan kualitas struktur terbaik.",
       buttonText: "Baca Selengkapnya",
       details: {
-        introduction: "Rekayasa perangkat lunak yang hebat tidak dibangun dalam ketergesaan. Di ZELLIO, kami mendedikasikan waktu untuk merancang arsitektur sistem yang bersih dan terdokumentasi dengan baik sebelum kode pertama ditulis. Kami percaya bahwa fondasi yang kokoh adalah kunci stabilitas jangka panjang.",
-        challenge: "Banyak perusahaan menghadapi 'utang teknis' (technical debt) yang menumpuk karena kode yang ditulis terburu-buru demi mengejar tenggat waktu. Akibatnya, sistem menjadi sulit diperbarui, lambat, dan rentan terhadap celah keamanan seiring pertumbuhan bisnis.",
-        approach: "Kami menerapkan standar pemrograman global yang ketat, termasuk tinjauan kode sejawat (peer reviews) secara wajib, integrasi pengujian otomatis (CI/CD), dan arsitektur modular yang memisahkan logika bisnis dari lapisan presentasi.",
-        impact: "Sistem yang kami bangun memiliki tingkat kegagalan produksi mendekati nol. Waktu yang dibutuhkan untuk menambahkan fitur baru berkurang hingga 50% karena kode kami mudah dipahami oleh pengembang mana pun."
+        body: `
+          <p class="text-xl font-medium text-slate-800 mb-6">Rekayasa perangkat lunak yang hebat tidak dibangun dalam ketergesaan. Di ZELLIO, kami mendedikasikan waktu untuk merancang arsitektur sistem yang bersih dan terdokumentasi dengan baik sebelum kode pertama ditulis.</p>
+          <p>Banyak perusahaan menghadapi "utang teknis" yang menumpuk karena kode yang ditulis terburu-buru demi mengejar tenggat waktu. Akibatnya, sistem menjadi sulit diperbarui, lambat, dan rentan terhadap celah keamanan seiring pertumbuhan bisnis.</p>
+          <br />
+          <h3 class="text-xl md:text-2xl mt-8 mb-4 text-slate-900 font-bold border-b border-slate-200 pb-2">Pendekatan Arsitektur Kami</h3>
+          <p>Kami menerapkan standar pemrograman global yang ketat, termasuk tinjauan kode sejawat (peer reviews) secara wajib, integrasi pengujian otomatis (CI/CD), dan arsitektur modular yang memisahkan logika bisnis dari lapisan presentasi.</p>
+          <ul class="list-disc pl-6 my-6 space-y-2">
+            <li>Sistem bebas bug dengan tingkat kegagalan produksi mendekati nol.</li>
+            <li>Pembuatan fitur baru menjadi 50% lebih cepat karena basis kode yang rapi.</li>
+            <li>Keamanan infrastruktur yang tahan terhadap perubahan skala.</li>
+          </ul>
+          <p>Pada akhirnya, fondasi yang kokoh adalah investasi terbaik yang bisa dilakukan oleh perusahaan mana pun.</p>
+        `
       }
     },
     en: {
@@ -102,190 +274,369 @@ export const insightsData: Story[] = [
       desc: "We focus on clean, documented, and resilient systems. A calm, focused environment leads to the highest quality of structural integrity.",
       buttonText: "Read Story",
       details: {
-        introduction: "Great software engineering is not built in a rush. At ZELLIO, we dedicate time to craft clean and well-documented system architectures before the first line of code is written. We believe a strong foundation is the key to long-term stability.",
-        challenge: "Many companies face mounting 'technical debt' due to rushed code written under tight deadlines. Consequently, systems become difficult to update, sluggish, and vulnerable to security flaws as the business scales.",
-        approach: "We enforce strict global coding standards, including mandatory peer code reviews, automated integration testing (CI/CD), and modular architecture that cleanly separates business logic from the presentation layer.",
-        impact: "The systems we build maintain a near-zero production failure rate. The development time needed for adding new features was reduced by 50% because our codebase remains highly readable and maintainable."
+        body: `
+          <p class="text-xl font-medium text-slate-800 mb-6">Great software engineering is not built in a rush. At ZELLIO, we dedicate time to craft clean and well-documented system architectures before the first line of code is written.</p>
+          <p>Many companies face mounting "technical debt" due to rushed code written under tight deadlines. Consequently, systems become difficult to update, sluggish, and vulnerable to security flaws as the business scales.</p>
+          <br />
+          <h3 class="text-xl md:text-2xl mt-8 mb-4 text-slate-900 font-bold border-b border-slate-200 pb-2">Our Architectural Approach</h3>
+          <p>We enforce strict global coding standards, including mandatory peer code reviews, automated integration testing (CI/CD), and modular architecture that cleanly separates business logic from the presentation layer.</p>
+          <ul class="list-disc pl-6 my-6 space-y-2">
+            <li>Bug-free deployments with a near-zero production failure rate.</li>
+            <li>Development time for new features cut by 50% due to an incredibly readable codebase.</li>
+            <li>Infrastructure security that effortlessly scales with demand.</li>
+          </ul>
+          <p>Ultimately, a strong foundation is the best long-term investment any enterprise can make.</p>
+        `
       }
     }
   },
   {
-    slug: "anatomy-of-modern-crm",
-    category: "PRODUCT",
-    title: "The Anatomy of a Modern CRM",
-    desc: "Re-engineering customer management starts with understanding the human element. Every great system begins with simple sketches and ideas.",
-    img: "https://images.unsplash.com/photo-1497032628192-86f99bcd76bc?q=80&w=1200&auto=format&fit=crop",
-    tags: ["CRM", "Strategy", "UX"],
-    buttonText: "View Case Study",
-    duration: "3 Months",
-    author: "Product Strategy Lab",
-    date: "May 12, 2026",
-    readTime: "6 Min Read",
-    techStack: ["React", "PostgreSQL", "Node.js", "Tailwind CSS"],
+    slug: "hris-corporate-case-study",
+    category: "CASE STUDY",
+    title: "Sistem HRIS & Portal Karyawan Terintegrasi",
+    desc: "Platform HRIS terpadu dengan Single Sign-On (SSO), rekrutmen Kanban otomatis, dan 18+ modul pengajuan karyawan.",
+    img: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=1200&auto=format&fit=crop",
+    tags: ["HRIS", "SSO Integration", "Kanban Recruitment"],
+    buttonText: "Lihat Studi Kasus",
+    duration: "6 Months",
+    author: "ZELLIO Engineering",
+    date: "August 02, 2026",
+    readTime: "7 Min Read",
+    techStack: ["Next.js", "Express.js", "Redis SSO", "PostgreSQL", "React Flow"],
     id: {
-      title: "Anatomi CRM Modern",
-      desc: "Merancang ulang manajemen pelanggan dimulai dengan memahami aspek manusiawi. Sistem hebat lahir dari coretan ide sederhana.",
+      title: "Sistem HRIS & Portal Karyawan Terintegrasi",
+      desc: "Platform HRIS terpadu dengan Single Sign-On (SSO), rekrutmen Kanban otomatis, dan 18+ modul pengajuan karyawan.",
       buttonText: "Lihat Studi Kasus",
       details: {
-        introduction: "Manajemen Hubungan Pelanggan (CRM) sering kali dianggap sebagai sistem yang rumit, dipenuhi tombol membingungkan, dan tidak ramah pengguna. ZELLIO membedah ulang paradigma ini untuk membangun CRM yang intuitif dan berfokus pada efisiensi kerja staf penjualan.",
-        challenge: "CRM konvensional sering diabaikan oleh tim sales karena terlalu rumit untuk memasukkan data transaksi harian. Hal ini menyebabkan hilangnya data berharga dan ketidakakuratan laporan penjualan perusahaan.",
-        approach: "Kami melakukan riset langsung di lapangan untuk memetakan alur kerja tim sales. Kami merancang antarmuka bersih dengan fitur pengenalan suara, otomatisasi input data, serta dasbor visual yang memberikan gambaran performa secara instan.",
-        impact: "Peningkatan produktivitas tim sales hingga 35% karena waktu administrasi berkurang drastis. Manajemen perusahaan kini mendapatkan laporan analisis pasar yang jauh lebih akurat dan real-time."
+        body: `
+          <h2 class="text-2xl md:text-3xl mt-0 mb-6 text-slate-900 font-bold">Latar Belakang & Tantangan</h2>
+          <p>Sebuah perusahaan berskala besar dengan ratusan karyawan membutuhkan satu sistem HRIS tersentralisasi untuk merapikan alur kerja administrasi karyawan yang sebelumnya terfragmentasi di berbagai aplikasi. Tantangan utama mencakup:</p>
+          <ul class="list-disc pl-6 my-4 space-y-2">
+            <li>Proses rekrutmen yang tidak efisien dari pendaftaran kandidat hingga onboarding.</li>
+            <li>Kebutuhan <strong>Single Sign-On (SSO)</strong> yang aman untuk mengakses seluruh ekosistem internal perusahaan dengan satu kredensial.</li>
+            <li>Kebutuhan digitalisasi penuh untuk <strong>18 modul pengajuan karyawan</strong> yang dinamis dan terintegrasi dengan struktur persetujuan bertingkat (approval workflow).</li>
+          </ul>
+          <br />
+          <h2 class="text-2xl md:text-3xl mt-8 mb-6 text-slate-900 font-bold">Solusi ZELLIO: Portal Karyawan & HRIS Terpadu</h2>
+          <p>Kami merancang dan mengembangkan sistem HRIS kustom lengkap dengan fitur SSO terpusat. Solusi ini mencakup siklus lengkap dari hulu ke hilir (End-to-End Employee Lifecycle):</p>
+          <ul class="list-disc pl-6 my-4 space-y-2">
+            <li><strong>Public-to-Private Candidate Portal</strong>: Calon karyawan menerima tautan privat yang aman untuk mengunggah dokumen pribadi mereka secara mandiri, mengurangi beban kerja admin HR dalam memasukkan data.</li>
+            <li><strong>Kanban Recruitment Pipeline</strong>: Tim HR dan user manajer memantau serta memperbarui status kandidat menggunakan papan Kanban interaktif (Accept, Reject, Pending). Setelah kandidat disetujui untuk diterima, data langsung dikonversi menjadi data karyawan aktif secara instan.</li>
+            <li><strong>Custom Printable PDF Generation</strong>: Sistem secara otomatis menghasilkan dokumen kontrak kerja, surat pengangkatan, atau lembar KPI sesuai dengan format resmi/kop surat perusahaan yang dapat langsung dicetak.</li>
+            <li><strong>Single Sign-On (SSO)</strong>: Sistem login terpadu menggunakan Redis Session Store dan OAuth2 untuk otentikasi aman di semua anak aplikasi internal perusahaan.</li>
+          </ul>
+          <br />
+          <h3 class="text-xl md:text-2xl mt-8 mb-4 text-slate-900 font-bold">18 Modul Pengajuan Karyawan yang Didukung</h3>
+          <p>Sistem ini memfasilitasi 18 jenis alur kerja pengajuan operasional dan administratif secara digital:</p>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 my-6">
+            <div class="p-4 rounded-xl border border-slate-200 bg-white">
+              <div class="flex items-center gap-2 mb-2">
+                <span class="p-1.5 rounded-lg bg-blue-50 text-blue-600 text-xs font-bold font-mono">01</span>
+                <h4 class="font-bold text-slate-900 text-sm">Permintaan SDM</h4>
+              </div>
+              <p class="text-xs text-slate-500">Pengajuan penambahan personel baru oleh kepala divisi.</p>
+            </div>
+            <div class="p-4 rounded-xl border border-slate-200 bg-white">
+              <div class="flex items-center gap-2 mb-2">
+                <span class="p-1.5 rounded-lg bg-blue-50 text-blue-600 text-xs font-bold font-mono">02</span>
+                <h4 class="font-bold text-slate-900 text-sm">Kesehatan</h4>
+              </div>
+              <p class="text-xs text-slate-500">Klaim asuransi kesehatan, kacamata, dan rawat jalan.</p>
+            </div>
+            <div class="p-4 rounded-xl border border-slate-200 bg-white">
+              <div class="flex items-center gap-2 mb-2">
+                <span class="p-1.5 rounded-lg bg-blue-50 text-blue-600 text-xs font-bold font-mono">03</span>
+                <h4 class="font-bold text-slate-900 text-sm">Promosi</h4>
+              </div>
+              <p class="text-xs text-slate-500">Usulan kenaikan jabatan karyawan oleh manajer terkait.</p>
+            </div>
+            <div class="p-4 rounded-xl border border-slate-200 bg-white">
+              <div class="flex items-center gap-2 mb-2">
+                <span class="p-1.5 rounded-lg bg-blue-50 text-blue-600 text-xs font-bold font-mono">04</span>
+                <h4 class="font-bold text-slate-900 text-sm">Demosi</h4>
+              </div>
+              <p class="text-xs text-slate-500">Proses penurunan jabatan karyawan berdasarkan evaluasi kinerja.</p>
+            </div>
+            <div class="p-4 rounded-xl border border-slate-200 bg-white">
+              <div class="flex items-center gap-2 mb-2">
+                <span class="p-1.5 rounded-lg bg-blue-50 text-blue-600 text-xs font-bold font-mono">05</span>
+                <h4 class="font-bold text-slate-900 text-sm">Mutasi</h4>
+              </div>
+              <p class="text-xs text-slate-500">Pemindahan area kerja atau rotasi departemen karyawan.</p>
+            </div>
+            <div class="p-4 rounded-xl border border-slate-200 bg-white">
+              <div class="flex items-center gap-2 mb-2">
+                <span class="p-1.5 rounded-lg bg-blue-50 text-blue-600 text-xs font-bold font-mono">06</span>
+                <h4 class="font-bold text-slate-900 text-sm">Kenaikan Gaji</h4>
+              </div>
+              <p class="text-xs text-slate-500">Pengajuan penyesuaian gaji berkala atau kompensasi khusus.</p>
+            </div>
+            <div class="p-4 rounded-xl border border-slate-200 bg-white">
+              <div class="flex items-center gap-2 mb-2">
+                <span class="p-1.5 rounded-lg bg-blue-50 text-blue-600 text-xs font-bold font-mono">07</span>
+                <h4 class="font-bold text-slate-900 text-sm">Pengangkatan</h4>
+              </div>
+              <p class="text-xs text-slate-500">Perubahan status dari karyawan kontrak (PKWT) menjadi karyawan tetap.</p>
+            </div>
+            <div class="p-4 rounded-xl border border-slate-200 bg-white">
+              <div class="flex items-center gap-2 mb-2">
+                <span class="p-1.5 rounded-lg bg-blue-50 text-blue-600 text-xs font-bold font-mono">08</span>
+                <h4 class="font-bold text-slate-900 text-sm">Perpanjangan Kontrak</h4>
+              </div>
+              <p class="text-xs text-slate-500">Pembaruan masa kontrak kerja bagi staf PKWT aktif.</p>
+            </div>
+            <div class="p-4 rounded-xl border border-slate-200 bg-white">
+              <div class="flex items-center gap-2 mb-2">
+                <span class="p-1.5 rounded-lg bg-blue-50 text-blue-600 text-xs font-bold font-mono">09</span>
+                <h4 class="font-bold text-slate-900 text-sm">Pemutusan Kontrak</h4>
+              </div>
+              <p class="text-xs text-slate-500">Prosedur formal pengakhiran kerja karena habis masa kontrak.</p>
+            </div>
+            <div class="p-4 rounded-xl border border-slate-200 bg-white">
+              <div class="flex items-center gap-2 mb-2">
+                <span class="p-1.5 rounded-lg bg-blue-50 text-blue-600 text-xs font-bold font-mono">10</span>
+                <h4 class="font-bold text-slate-900 text-sm">Cuti</h4>
+              </div>
+              <p class="text-xs text-slate-500">Pengajuan cuti tahunan, sakit bersertifikat, atau cuti khusus melahirkan.</p>
+            </div>
+            <div class="p-4 rounded-xl border border-slate-200 bg-white">
+              <div class="flex items-center gap-2 mb-2">
+                <span class="p-1.5 rounded-lg bg-blue-50 text-blue-600 text-xs font-bold font-mono">11</span>
+                <h4 class="font-bold text-slate-900 text-sm">Perjalanan Dinas</h4>
+              </div>
+              <p class="text-xs text-slate-500">Permohonan uang saku, tiket, dan hotel untuk penugasan luar kota.</p>
+            </div>
+            <div class="p-4 rounded-xl border border-slate-200 bg-white">
+              <div class="flex items-center gap-2 mb-2">
+                <span class="p-1.5 rounded-lg bg-blue-50 text-blue-600 text-xs font-bold font-mono">12</span>
+                <h4 class="font-bold text-slate-900 text-sm">Perjalanan Dinas Training</h4>
+              </div>
+              <p class="text-xs text-slate-500">Pembiayaan dan surat tugas acara pelatihan/seminar eksternal.</p>
+            </div>
+            <div class="p-4 rounded-xl border border-slate-200 bg-white">
+              <div class="flex items-center gap-2 mb-2">
+                <span class="p-1.5 rounded-lg bg-blue-50 text-blue-600 text-xs font-bold font-mono">13</span>
+                <h4 class="font-bold text-slate-900 text-sm">Keterangan Tidak Absen</h4>
+              </div>
+              <p class="text-xs text-slate-500">Form klarifikasi lupa absen mesin biometrik atau tugas luar dadakan.</p>
+            </div>
+            <div class="p-4 rounded-xl border border-slate-200 bg-white">
+              <div class="flex items-center gap-2 mb-2">
+                <span class="p-1.5 rounded-lg bg-blue-50 text-blue-600 text-xs font-bold font-mono">14</span>
+                <h4 class="font-bold text-slate-900 text-sm">Izin Tidak Masuk</h4>
+              </div>
+              <p class="text-xs text-slate-500">Pemberitahuan izin berhalangan hadir dengan melampirkan berkas bukti.</p>
+            </div>
+            <div class="p-4 rounded-xl border border-slate-200 bg-white">
+              <div class="flex items-center gap-2 mb-2">
+                <span class="p-1.5 rounded-lg bg-blue-50 text-blue-600 text-xs font-bold font-mono">15</span>
+                <h4 class="font-bold text-slate-900 text-sm">Pelatihan</h4>
+              </div>
+              <p class="text-xs text-slate-500">Program keikutsertaan sertifikasi atau pengembangan kompetensi internal.</p>
+            </div>
+            <div class="p-4 rounded-xl border border-slate-200 bg-white">
+              <div class="flex items-center gap-2 mb-2">
+                <span class="p-1.5 rounded-lg bg-blue-50 text-blue-600 text-xs font-bold font-mono">16</span>
+                <h4 class="font-bold text-slate-900 text-sm">Pengunduran Diri</h4>
+              </div>
+              <p class="text-xs text-slate-500">Pemberitahuan pengunduran diri 30 hari sebelumnya dan pelaporan handover.</p>
+            </div>
+            <div class="p-4 rounded-xl border border-slate-200 bg-white">
+              <div class="flex items-center gap-2 mb-2">
+                <span class="p-1.5 rounded-lg bg-blue-50 text-blue-600 text-xs font-bold font-mono">17</span>
+                <h4 class="font-bold text-slate-900 text-sm">PHK / Pensiun</h4>
+              </div>
+              <p class="text-xs text-slate-500">Prosedur akhir penyelesaian pesangon, BPJS, dan administrasi masa pensiun.</p>
+            </div>
+            <div class="p-4 rounded-xl border border-slate-200 bg-white">
+              <div class="flex items-center gap-2 mb-2">
+                <span class="p-1.5 rounded-lg bg-blue-50 text-blue-600 text-xs font-bold font-mono">18</span>
+                <h4 class="font-bold text-slate-900 text-sm">Rekomendasi Keluar</h4>
+              </div>
+              <p class="text-xs text-slate-500">Generate surat referensi (paklaring) otomatis berdasar catatan HRIS positif.</p>
+            </div>
+          </div>
+          <br />
+          <h2 class="text-2xl md:text-3xl mt-12 mb-6 text-slate-900 font-bold">Antarmuka Portal (The Interface)</h2>
+          <p class="mb-8">Berikut adalah visualisasi antarmuka sistem portal HRIS terpusat ini. Seluruh data identitas karyawan, nomor dokumen, profil pribadi, dan komponen gaji bersifat rahasia dan telah disamarkan secara permanen menggunakan <i>Gaussian Blur</i> demi menjaga keamanan privasi.</p>
+          <div class="flex flex-col gap-10">
+            <div class="border border-slate-200 rounded-2xl overflow-hidden bg-white p-4 shadow-sm">
+              <p class="text-xs font-mono text-slate-400 mb-3 uppercase tracking-wider">1. Dashboard Portal Utama & Statistik HR</p>
+              <img src="/hr1.png" alt="Dashboard Utama HRIS" class="w-full h-auto rounded-lg object-contain border border-slate-100" />
+            </div>
+            <div class="border border-slate-200 rounded-2xl overflow-hidden bg-white p-4 shadow-sm">
+              <p class="text-xs font-mono text-slate-400 mb-3 uppercase tracking-wider">2. Alur Pengajuan Surat & Form Karyawan (18 Modul)</p>
+              <img src="/hr2.png" alt="Form Pengajuan Karyawan" class="w-full h-auto rounded-lg object-contain border border-slate-100" />
+            </div>
+            <div class="border border-slate-200 rounded-2xl overflow-hidden bg-white p-4 shadow-sm">
+              <p class="text-xs font-mono text-slate-400 mb-3 uppercase tracking-wider">3. Monitoring Perekrutan & Kanban Board Pelamar</p>
+              <img src="/hr3.png" alt="Kanban Board Rekrutmen" class="w-full h-auto rounded-lg object-contain border border-slate-100" />
+            </div>
+            <div class="border border-slate-200 rounded-2xl overflow-hidden bg-white p-4 shadow-sm">
+              <p class="text-xs font-mono text-slate-400 mb-3 uppercase tracking-wider">4. Manajemen Profil & Berkas Kandidat</p>
+              <img src="/hr4.png" alt="Profil Kandidat" class="w-full h-auto rounded-lg object-contain border border-slate-100" />
+            </div>
+          </div>
+        `
       }
     },
     en: {
-      title: "The Anatomy of a Modern CRM",
-      desc: "Re-engineering customer management starts with understanding the human element. Every great system begins with simple sketches and ideas.",
+      title: "Sistem HRIS & Portal Karyawan Terintegrasi",
+      desc: "Integrated HRIS platform with Single Sign-On (SSO), automated Kanban recruitment, and 18+ employee request modules.",
       buttonText: "View Case Study",
       details: {
-        introduction: "Customer Relationship Management (CRM) tools are often criticized for being overly complex, cluttered, and frustrating to use. ZELLIO re-engineered this paradigm to build an intuitive CRM that prioritizes real-world sales team workflows.",
-        challenge: "Conventional CRMs are frequently ignored by sales representatives because logging daily interactions is tedious. This causes data loss and leads to highly inaccurate corporate sales forecasting.",
-        approach: "We conducted active field research to map actual sales agent workflows. Based on this, we designed a clean interface featuring voice-to-text logging, automated data capture, and an instant visual performance dashboard.",
-        impact: "Sales team productivity increased by 35% due to a drastic reduction in administrative overhead. Executive leadership now receives highly accurate, real-time sales pipeline reports."
-      }
-    }
-  },
-  {
-    slug: "pixels-with-purpose",
-    category: "DESIGN",
-    title: "Pixels with Purpose",
-    desc: "Before any pixels are pushed, we map out user journeys on paper. Rigorous planning ensures that our interfaces are highly intuitive.",
-    img: "https://images.unsplash.com/photo-1586281380349-632531db7ed4?q=80&w=1200&auto=format&fit=crop",
-    tags: ["UI/UX", "Research", "Wireframe"],
-    buttonText: "Read Story",
-    duration: "Ongoing",
-    author: "Creative UX Studio",
-    date: "April 05, 2026",
-    readTime: "4 Min Read",
-    techStack: ["Figma", "Adobe CC", "Miro", "Principle"],
-    id: {
-      title: "Piksel dengan Makna",
-      desc: "Sebelum menyentuh layar, kami memetakan perjalanan pengguna di atas kertas. Perencanaan matang memastikan antarmuka yang intuitif.",
-      buttonText: "Baca Selengkapnya",
-      details: {
-        introduction: "Desain yang hebat bukan hanya tentang keindahan visual, tetapi tentang bagaimana produk tersebut bekerja. Di ZELLIO, kami tidak memulai proses desain langsung di depan komputer. Kami memulainya dengan mendengarkan pengguna dan mencoret sketsa di atas kertas.",
-        challenge: "Banyak produk digital gagal karena desainer langsung fokus pada estetika warna dan elemen tanpa memikirkan kemudahan navigasi pengguna. Hal ini menyebabkan tingginya angka pengguna yang meninggalkan aplikasi di tengah jalan.",
-        approach: "Kami melakukan wawancara mendalam dengan pengguna target, merancang prototipe kertas dengan ketelitian tinggi, dan melakukan uji coba kegunaan secara berkala untuk mengevaluasi setiap interaksi sebelum masuk ke tahap pengodean.",
-        impact: "Desain kami menghasilkan peningkatan metrik retensi pengguna hingga 60% dan memangkas waktu orientasi pengguna baru menjadi di bawah dua menit tanpa bantuan tim support."
-      }
-    },
-    en: {
-      title: "Pixels with Purpose",
-      desc: "Before any pixels are pushed, we map out user journeys on paper. Rigorous planning ensures that our interfaces are highly intuitive.",
-      buttonText: "Read Story",
-      details: {
-        introduction: "Great design is not just about visual aesthetics; it is about how a product works. At ZELLIO, we never start the design process in front of a screen. We begin by listening to users and sketching wireframes on paper.",
-        challenge: "Many digital products fail because designers rush into colors and details without resolving the core navigation paths. This leads to user confusion and very high drop-off rates.",
-        approach: "We conduct deep user interviews, map out detailed interactive wireframes, and run continuous usability tests to evaluate and refine micro-interactions before handing assets over to developers.",
-        impact: "Our designs yielded a 60% increase in user retention metrics and cut new user onboarding time to under two minutes, eliminating the need for extensive support documentation."
-      }
-    }
-  },
-  {
-    slug: "unified-mobile-ecosystems",
-    category: "MOBILE",
-    title: "Unified Mobile Ecosystems",
-    desc: "Creating seamless experiences across devices requires a holistic view of the entire operational workspace and human interaction.",
-    img: "https://images.unsplash.com/photo-1531482615713-2afd69097998?q=80&w=1200&auto=format&fit=crop",
-    tags: ["Mobile", "Ecosystem", "Human"],
-    buttonText: "View Case Study",
-    duration: "4 Months",
-    author: "Mobile Engineering Group",
-    date: "March 18, 2026",
-    readTime: "5 Min Read",
-    techStack: ["React Native", "Expo", "Redux Toolkit", "GraphQL"],
-    id: {
-      title: "Ekosistem Mobile Terpadu",
-      desc: "Menciptakan pengalaman mulus di berbagai perangkat menuntut pandangan holistik terhadap seluruh ruang kerja operasional.",
-      buttonText: "Lihat Studi Kasus",
-      details: {
-        introduction: "Di era mobilitas tinggi, aplikasi seluler tidak boleh berjalan sendiri. Aplikasi tersebut harus menjadi bagian integral dari ekosistem digital perusahaan, terhubung secara instan dengan sistem web dan server utama.",
-        challenge: "Menjaga konsistensi data secara real-time antara aplikasi mobile dan portal web admin sering kali membebani jaringan dan baterai perangkat pengguna. Selain itu, sinkronisasi luring (offline sync) merupakan tantangan teknis yang berat.",
-        approach: "Kami membangun arsitektur sinkronisasi data pintar yang menggunakan antrean lokal (local database queue) saat offline dan menyinkronkan data secara otomatis saat koneksi internet kembali pulih tanpa membebani memori.",
-        impact: "Aplikasi mobile kami berjalan mulus bahkan di daerah dengan koneksi internet terbatas. Efisiensi operasional lapangan meningkat sebesar 45% berkat akses informasi yang andal."
-      }
-    },
-    en: {
-      title: "Unified Mobile Ecosystems",
-      desc: "Creating seamless experiences across devices requires a holistic view of the entire operational workspace and human interaction.",
-      buttonText: "View Case Study",
-      details: {
-        introduction: "In a mobile-first world, apps cannot exist in isolation. They must be an integrated branch of a company's digital ecosystem, syncing instantly with centralized web dashboards and main databases.",
-        challenge: "Maintaining real-time data consistency between mobile units and the admin web platform often drains bandwidth and battery. Additionally, robust offline synchronization is exceptionally difficult to implement.",
-        approach: "We engineered a smart local-first sync pipeline that caches transactions locally during network drops and syncs them automatically in background queues once connectivity is restored.",
-        impact: "Our mobile apps perform flawlessly in low-connectivity areas. Operational field efficiency rose by 45% because field workers can trust the data displayed on their screens."
-      }
-    }
-  },
-  {
-    slug: "microservices-vs-monoliths",
-    category: "INFRASTRUCTURE",
-    title: "Microservices vs Monoliths",
-    desc: "Our architectural philosophy is mirrored in the spaces we design: clean, scalable, transparent, and built to withstand massive capacity.",
-    img: "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1200&auto=format&fit=crop",
-    tags: ["Scaling", "Cloud", "Space"],
-    buttonText: "Read Story",
-    duration: "Continuous",
-    author: "Infrastructure Dev Group",
-    date: "February 22, 2026",
-    readTime: "5 Min Read",
-    techStack: ["Kubernetes", "AWS", "gRPC", "Go"],
-    id: {
-      title: "Mikroservis vs Monolit",
-      desc: "Filosofi arsitektur infrastruktur kami tercermin dalam sistem yang bersih, skalabel, transparan, dan tahan beban tinggi.",
-      buttonText: "Baca Selengkapnya",
-      details: {
-        introduction: "Memilih arsitektur server yang tepat adalah keputusan krusial yang menentukan masa depan produk digital. ZELLIO membantu perusahaan menyeimbangkan pilihan antara kestabilan monolit dan fleksibilitas mikroservis.",
-        challenge: "Banyak perusahaan bermigrasi ke mikroservis terlalu dini, sehingga menciptakan kompleksitas yang tidak perlu dan pembengkakan biaya infrastruktur cloud tanpa peningkatan kinerja yang signifikan.",
-        approach: "Kami melakukan analisis beban sistem secara mendalam. Kami merekomendasikan arsitektur modular monolit pada tahap awal, dan secara bertahap memisahkan modul-modul berbeban tinggi menjadi servis terpisah ketika trafik melonjak.",
-        impact: "Penghematan biaya server bulanan hingga 30% serta jaminan stabilitas sistem yang mampu menangani lonjakan transaksi mendadak tanpa kendala operasional."
-      }
-    },
-    en: {
-      title: "Microservices vs Monoliths",
-      desc: "Our architectural philosophy is mirrored in the spaces we design: clean, scalable, transparent, and built to withstand massive capacity.",
-      buttonText: "Read Story",
-      details: {
-        introduction: "Choosing the correct backend architecture is a critical crossroad for any digital business. ZELLIO guides enterprises through the trade-offs between monolithic simplicity and microservices flexibility.",
-        challenge: "Many companies migrate to microservices prematurely, leading to unnecessary complex orchestrations and ballooning cloud bills without actual performance improvements.",
-        approach: "We conduct deep query and traffic analysis. We advocate for a modular monolith starting point, selectively decoupling high-demand business features into isolated services only when demand spikes.",
-        impact: "This strategic alignment reduced monthly server costs by 30% while ensuring the architecture easily scales during sudden transactional peaks without degradation."
-      }
-    }
-  },
-  {
-    slug: "rapid-prototyping-labs",
-    category: "INNOVATION",
-    title: "Rapid Prototyping Labs",
-    desc: "Transforming raw ideas into prototypes is a collaborative celebration. We believe the best digital products are born from strong human connections.",
-    img: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=1200&auto=format&fit=crop",
-    tags: ["Prototyping", "R&D", "Culture"],
-    buttonText: "Read Story",
-    duration: "2 Weeks",
-    author: "Innovation Lab",
-    date: "January 14, 2026",
-    readTime: "4 Min Read",
-    techStack: ["Next.js", "Supabase", "Vercel", "Tailwind CSS"],
-    id: {
-      title: "Laboratorium Prototipe Cepat",
-      desc: "Mengubah ide mentah menjadi prototipe adalah perayaan kolaboratif. Produk terbaik lahir dari hubungan kerja sama yang erat.",
-      buttonText: "Baca Selengkapnya",
-      details: {
-        introduction: "Dalam bisnis digital, kecepatan validasi ide adalah segalanya. Melalui divisi Lab Prototipe Cepat ZELLIO, kami membantu founder membuktikan konsep bisnis mereka menjadi produk nyata dalam waktu singkat.",
-        challenge: "Proses validasi ide sering kali memakan waktu berbulan-bulan karena terjebak dalam diskusi teori dan dokumen perencanaan yang terlalu panjang tanpa melihat wujud produk yang sebenarnya.",
-        approach: "Kami merancang siklus R&D kilat 2 minggu: minggu pertama fokus pada penentuan alur inti dan desain antarmuka dasar, minggu kedua diisi dengan pengodean intensif untuk meluncurkan Minimum Viable Product (MVP) yang fungsional.",
-        impact: "Founder dapat mempresentasikan prototipe nyata ke calon investor atau pengguna awal dalam 14 hari, mempercepat siklus pendanaan dan keputusan arah pengembangan produk."
-      }
-    },
-    en: {
-      title: "Rapid Prototyping Labs",
-      desc: "Transforming raw ideas into prototypes is a collaborative celebration. We believe the best digital products are born from strong human connections.",
-      buttonText: "Read Story",
-      details: {
-        introduction: "In the startup landscape, validating ideas rapidly is the difference between survival and failure. ZELLIO's Innovation Lab helps founders materialize raw concepts into testable products in record time.",
-        challenge: "Validating business hypotheses often takes months, bogged down by excessive market research documents and theoretical discussions instead of hands-on product usage.",
-        approach: "We design a focused 2-week sprint: Week 1 maps the core user flows and high-fidelity mockups, and Week 2 is dedicated to coding an interactive MVP for real user testing.",
-        impact: "Founders can pitch a working prototype to stakeholders or initial investors in just 14 days, accelerating funding rounds and product feedback loops."
+        body: `
+          <h2 class="text-2xl md:text-3xl mt-0 mb-6 text-slate-900 font-bold">The Challenge</h2>
+          <p>A large enterprise scale company with hundreds of employees needed a centralized HRIS system to streamline employee administration workflows that were previously fragmented across various disparate applications. Key challenges included:</p>
+          <ul class="list-disc pl-6 my-4 space-y-2">
+            <li>An inefficient recruitment process from candidate registration to onboarding.</li>
+            <li>The absolute need for a secure <strong>Single Sign-On (SSO)</strong> to access the entire internal corporate app ecosystem using just one credential.</li>
+            <li>Full digitization requirement for <strong>18 highly-dynamic employee request modules</strong>, all integrated with a multi-tiered approval workflow structure.</li>
+          </ul>
+          <br />
+          <h2 class="text-2xl md:text-3xl mt-8 mb-6 text-slate-900 font-bold">What We Built: Integrated Employee Portal & HRIS</h2>
+          <p>We designed and developed a bespoke, comprehensive HRIS system with a centralized SSO feature. This solution covers the entire End-to-End Employee Lifecycle:</p>
+          <ul class="list-disc pl-6 my-4 space-y-2">
+            <li><strong>Public-to-Private Candidate Portal</strong>: Prospective employees receive a secure, private link to upload their personal documents independently, heavily reducing HR admin data entry workload.</li>
+            <li><strong>Kanban Recruitment Pipeline</strong>: The HR team and user managers track and update candidate status using an interactive Kanban board (Accept, Reject, Pending). Once accepted, candidate data is instantly converted into active employee records.</li>
+            <li><strong>Custom Printable PDF Generation</strong>: The system automatically generates employment contracts, appointment letters, and KPI sheets according to the official corporate letterhead formats for direct printing.</li>
+            <li><strong>Single Sign-On (SSO)</strong>: A unified login system powered by a Redis Session Store and OAuth2 for secure authentication across all internal corporate subsidiary applications.</li>
+          </ul>
+          <br />
+          <h3 class="text-xl md:text-2xl mt-8 mb-4 text-slate-900 font-bold">18 Supported Employee Workflow Modules</h3>
+          <p>The system digitally facilitates 18 types of operational and administrative request workflows:</p>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 my-6">
+            <div class="p-4 rounded-xl border border-slate-200 bg-white">
+              <div class="flex items-center gap-2 mb-2">
+                <span class="p-1.5 rounded-lg bg-blue-50 text-blue-600 text-xs font-bold font-mono">01</span>
+                <h4 class="font-bold text-slate-900 text-sm">HR Request</h4>
+              </div>
+            </div>
+            <div class="p-4 rounded-xl border border-slate-200 bg-white">
+              <div class="flex items-center gap-2 mb-2">
+                <span class="p-1.5 rounded-lg bg-blue-50 text-blue-600 text-xs font-bold font-mono">02</span>
+                <h4 class="font-bold text-slate-900 text-sm">Health Benefits</h4>
+              </div>
+            </div>
+            <div class="p-4 rounded-xl border border-slate-200 bg-white">
+              <div class="flex items-center gap-2 mb-2">
+                <span class="p-1.5 rounded-lg bg-blue-50 text-blue-600 text-xs font-bold font-mono">03</span>
+                <h4 class="font-bold text-slate-900 text-sm">Promotion</h4>
+              </div>
+            </div>
+            <div class="p-4 rounded-xl border border-slate-200 bg-white">
+              <div class="flex items-center gap-2 mb-2">
+                <span class="p-1.5 rounded-lg bg-blue-50 text-blue-600 text-xs font-bold font-mono">04</span>
+                <h4 class="font-bold text-slate-900 text-sm">Demotion</h4>
+              </div>
+            </div>
+            <div class="p-4 rounded-xl border border-slate-200 bg-white">
+              <div class="flex items-center gap-2 mb-2">
+                <span class="p-1.5 rounded-lg bg-blue-50 text-blue-600 text-xs font-bold font-mono">05</span>
+                <h4 class="font-bold text-slate-900 text-sm">Transfer</h4>
+              </div>
+            </div>
+            <div class="p-4 rounded-xl border border-slate-200 bg-white">
+              <div class="flex items-center gap-2 mb-2">
+                <span class="p-1.5 rounded-lg bg-blue-50 text-blue-600 text-xs font-bold font-mono">06</span>
+                <h4 class="font-bold text-slate-900 text-sm">Salary Raise</h4>
+              </div>
+            </div>
+            <div class="p-4 rounded-xl border border-slate-200 bg-white">
+              <div class="flex items-center gap-2 mb-2">
+                <span class="p-1.5 rounded-lg bg-blue-50 text-blue-600 text-xs font-bold font-mono">07</span>
+                <h4 class="font-bold text-slate-900 text-sm">Appointment</h4>
+              </div>
+            </div>
+            <div class="p-4 rounded-xl border border-slate-200 bg-white">
+              <div class="flex items-center gap-2 mb-2">
+                <span class="p-1.5 rounded-lg bg-blue-50 text-blue-600 text-xs font-bold font-mono">08</span>
+                <h4 class="font-bold text-slate-900 text-sm">Contract Extension</h4>
+              </div>
+            </div>
+            <div class="p-4 rounded-xl border border-slate-200 bg-white">
+              <div class="flex items-center gap-2 mb-2">
+                <span class="p-1.5 rounded-lg bg-blue-50 text-blue-600 text-xs font-bold font-mono">09</span>
+                <h4 class="font-bold text-slate-900 text-sm">Termination</h4>
+              </div>
+            </div>
+            <div class="p-4 rounded-xl border border-slate-200 bg-white">
+              <div class="flex items-center gap-2 mb-2">
+                <span class="p-1.5 rounded-lg bg-blue-50 text-blue-600 text-xs font-bold font-mono">10</span>
+                <h4 class="font-bold text-slate-900 text-sm">Time Off / Leave</h4>
+              </div>
+            </div>
+            <div class="p-4 rounded-xl border border-slate-200 bg-white">
+              <div class="flex items-center gap-2 mb-2">
+                <span class="p-1.5 rounded-lg bg-blue-50 text-blue-600 text-xs font-bold font-mono">11</span>
+                <h4 class="font-bold text-slate-900 text-sm">Business Trip</h4>
+              </div>
+            </div>
+            <div class="p-4 rounded-xl border border-slate-200 bg-white">
+              <div class="flex items-center gap-2 mb-2">
+                <span class="p-1.5 rounded-lg bg-blue-50 text-blue-600 text-xs font-bold font-mono">12</span>
+                <h4 class="font-bold text-slate-900 text-sm">Training Trip</h4>
+              </div>
+            </div>
+            <div class="p-4 rounded-xl border border-slate-200 bg-white">
+              <div class="flex items-center gap-2 mb-2">
+                <span class="p-1.5 rounded-lg bg-blue-50 text-blue-600 text-xs font-bold font-mono">13</span>
+                <h4 class="font-bold text-slate-900 text-sm">Missing Attendance</h4>
+              </div>
+            </div>
+            <div class="p-4 rounded-xl border border-slate-200 bg-white">
+              <div class="flex items-center gap-2 mb-2">
+                <span class="p-1.5 rounded-lg bg-blue-50 text-blue-600 text-xs font-bold font-mono">14</span>
+                <h4 class="font-bold text-slate-900 text-sm">Permission Note</h4>
+              </div>
+            </div>
+            <div class="p-4 rounded-xl border border-slate-200 bg-white">
+              <div class="flex items-center gap-2 mb-2">
+                <span class="p-1.5 rounded-lg bg-blue-50 text-blue-600 text-xs font-bold font-mono">15</span>
+                <h4 class="font-bold text-slate-900 text-sm">Training Request</h4>
+              </div>
+            </div>
+            <div class="p-4 rounded-xl border border-slate-200 bg-white">
+              <div class="flex items-center gap-2 mb-2">
+                <span class="p-1.5 rounded-lg bg-blue-50 text-blue-600 text-xs font-bold font-mono">16</span>
+                <h4 class="font-bold text-slate-900 text-sm">Resignation</h4>
+              </div>
+            </div>
+            <div class="p-4 rounded-xl border border-slate-200 bg-white">
+              <div class="flex items-center gap-2 mb-2">
+                <span class="p-1.5 rounded-lg bg-blue-50 text-blue-600 text-xs font-bold font-mono">17</span>
+                <h4 class="font-bold text-slate-900 text-sm">Layoff / Retirement</h4>
+              </div>
+            </div>
+            <div class="p-4 rounded-xl border border-slate-200 bg-white">
+              <div class="flex items-center gap-2 mb-2">
+                <span class="p-1.5 rounded-lg bg-blue-50 text-blue-600 text-xs font-bold font-mono">18</span>
+                <h4 class="font-bold text-slate-900 text-sm">Exit Reference</h4>
+              </div>
+            </div>
+          </div>
+          <br />
+          <h2 class="text-2xl md:text-3xl mt-12 mb-6 text-slate-900 font-bold">The Interface</h2>
+          <p class="mb-8">Below is a visualization of the deployed HRIS portal interface. All employee identity data, document numbers, personal profiles, and salary components are strictly confidential and have been permanently redacted using <i>Gaussian Blur</i> to safeguard data privacy.</p>
+          <div class="flex flex-col gap-10">
+            <div class="border border-slate-200 rounded-2xl overflow-hidden bg-white p-4 shadow-sm">
+              <p class="text-xs font-mono text-slate-400 mb-3 uppercase tracking-wider">1. Main Portal Dashboard & HR Stats</p>
+              <img src="/hr1.png" alt="HRIS Main Dashboard" class="w-full h-auto rounded-lg object-contain border border-slate-100" />
+            </div>
+            <div class="border border-slate-200 rounded-2xl overflow-hidden bg-white p-4 shadow-sm">
+              <p class="text-xs font-mono text-slate-400 mb-3 uppercase tracking-wider">2. Employee Form & Letter Workflows</p>
+              <img src="/hr2.png" alt="Employee Request Forms" class="w-full h-auto rounded-lg object-contain border border-slate-100" />
+            </div>
+            <div class="border border-slate-200 rounded-2xl overflow-hidden bg-white p-4 shadow-sm">
+              <p class="text-xs font-mono text-slate-400 mb-3 uppercase tracking-wider">3. Recruitment Kanban Board Tracker</p>
+              <img src="/hr3.png" alt="Recruitment Kanban Board" class="w-full h-auto rounded-lg object-contain border border-slate-100" />
+            </div>
+            <div class="border border-slate-200 rounded-2xl overflow-hidden bg-white p-4 shadow-sm">
+              <p class="text-xs font-mono text-slate-400 mb-3 uppercase tracking-wider">4. HRD Dashboard & Document Management</p>
+              <img src="/hr4.png" alt="Candidate Profile" class="w-full h-auto rounded-lg object-contain border border-slate-100" />
+            </div>
+          </div>
+        `
       }
     }
   }

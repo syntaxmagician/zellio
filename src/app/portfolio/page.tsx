@@ -20,6 +20,8 @@ type Project = {
   images?: string[];
   icon: React.ElementType;
   accent: string;
+  url?: string;
+  isPrivate?: boolean;
 };
 
 const projects: Project[] = [
@@ -35,6 +37,7 @@ const projects: Project[] = [
     image: "/batugin_compro.jpeg",
     icon: Globe,
     accent: "text-rose-600 bg-rose-50 border-rose-100",
+    url: "https://batugin.id/",
   },
   {
     title: "Master Diskon",
@@ -48,6 +51,7 @@ const projects: Project[] = [
     image: "/MasterDiskon.png",
     icon: Globe,
     accent: "text-blue-600 bg-blue-50 border-blue-100",
+    url: "https://masterdiskon.com/id-id",
   },
   {
     title: "Raja Cepat",
@@ -61,6 +65,7 @@ const projects: Project[] = [
     image: "/Raja Cepat.png",
     icon: Smartphone,
     accent: "text-red-600 bg-red-50 border-red-100",
+    url: "https://rajacepat.com/id",
   },
   {
     title: "Jaja ID",
@@ -74,6 +79,7 @@ const projects: Project[] = [
     image: "/jaja id web.png",
     icon: Laptop,
     accent: "text-emerald-600 bg-emerald-50 border-emerald-100",
+    url: "https://jaja.id/",
   },
   {
     title: "Jaja Auto",
@@ -87,6 +93,7 @@ const projects: Project[] = [
     image: "/jaja auto.png",
     icon: Laptop,
     accent: "text-indigo-600 bg-indigo-50 border-indigo-100",
+    url: "https://auto.jaja.id/",
   },
   {
     title: "Campos Law Firm",
@@ -100,6 +107,7 @@ const projects: Project[] = [
     image: "/Campos Law Firm.png",
     icon: Laptop,
     accent: "text-amber-600 bg-amber-50 border-amber-100",
+    url: "https://camposlawfirm.com/",
   },
   {
     title: "Eureka Logistics Portal",
@@ -113,6 +121,7 @@ const projects: Project[] = [
     image: "/elogs web.jpeg",
     icon: Globe,
     accent: "text-teal-600 bg-teal-50 border-teal-100",
+    url: "https://eurekalogistics.co.id/id",
   },
   {
     title: "Eureka Internal ERP",
@@ -122,10 +131,12 @@ const projects: Project[] = [
       id: "Sistem ERP berskala Enterprise full-module. Mencakup keseluruhan manajemen mulai dari penjualan, monitoring unit, service unit, pembuatan invoice otomatis, hingga integrasi data vendor lengkap dengan ekstraksi harga PO.", 
       en: "Full-module Enterprise-scale ERP System. Covers overall management from sales, unit monitoring, service, automated invoice generation, to vendor data integration." 
     },
-    tags: ["Angular", "Chart.js", "Java", "Oracle"],
+    tags: ["Next.js", "Odoo ERP API", "WebSockets", "TailwindCSS"],
     image: "/elogs dash.png",
     icon: LineChart,
     accent: "text-cyan-600 bg-cyan-50 border-cyan-100",
+    url: "/insights/eureka-logistics-case-study",
+    isPrivate: true,
   },
   {
     title: "HR Management CMS",
@@ -135,10 +146,12 @@ const projects: Project[] = [
       id: "Dashboard internal tersentralisasi khusus tim HR. Mengotomatisasi absensi, pengajuan cuti, perhitungan KPI, generasi slip gaji, hingga memonitor proses rekrutmen kandidat secara efisien.", 
       en: "Centralized internal dashboard dedicated to the HR team. Automates attendance, leave requests, KPI calculations, payroll generation, and candidate recruitment monitoring." 
     },
-    tags: ["React", "Laravel REST API", "MySQL"],
+    tags: ["Next.js", "Express.js", "Redis SSO", "PostgreSQL"],
     image: "/HR CMS Das.png",
     icon: LineChart,
     accent: "text-rose-600 bg-rose-50 border-rose-100",
+    url: "/insights/hris-corporate-case-study",
+    isPrivate: true,
   },
   {
     title: "Beego SuperApp",
@@ -152,6 +165,7 @@ const projects: Project[] = [
     images: ["/beego1.png", "/beego2.png"],
     icon: Smartphone,
     accent: "text-yellow-600 bg-yellow-50 border-yellow-100",
+    url: "https://play.google.com/store/apps/details?id=com.beego.mobile",
   },
   {
     title: "Warung BungaPagi Ecosystem",
@@ -165,6 +179,7 @@ const projects: Project[] = [
     image: "/warungbungaweb.png",
     icon: Globe,
     accent: "text-fuchsia-600 bg-fuchsia-50 border-fuchsia-100",
+    url: "https://warungpagipagi.com/",
   },
   {
     title: "Guruino",
@@ -434,6 +449,11 @@ export default function PortfolioPage() {
                         <span className="text-[10px] font-mono font-bold uppercase tracking-widest text-slate-400">
                           / {project.type}
                         </span>
+                        {project.isPrivate && (
+                          <span className="text-[10px] font-mono font-bold uppercase tracking-widest px-2 py-1 rounded-sm bg-slate-900 text-white ml-auto">
+                            {language === "id" ? "Sistem Internal Privat" : "Private Internal System"}
+                          </span>
+                        )}
                       </div>
                       
                       <h3 className="text-2xl md:text-3xl font-black text-slate-900 tracking-tight mb-4 group-hover:text-blue-600 transition-colors">
@@ -443,6 +463,18 @@ export default function PortfolioPage() {
                       <p className="text-sm font-medium text-slate-500 leading-relaxed mb-6 line-clamp-2 md:line-clamp-3">
                         {project.desc[language as "id" | "en"]}
                       </p>
+
+                      {project.url && (
+                        <a 
+                          href={project.url}
+                          target={project.isPrivate ? "_self" : "_blank"}
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-2 text-[11px] font-bold text-blue-600 hover:text-blue-700 transition-colors uppercase tracking-widest mb-4"
+                        >
+                          {project.isPrivate ? (language === "id" ? "Baca Studi Kasus" : "Read Case Study") : (language === "id" ? "Kunjungi Website" : "Visit Website")}
+                          <ArrowUpRight size={14} strokeWidth={3} />
+                        </a>
+                      )}
 
                       {/* Tech Tags */}
                       <div className="flex flex-wrap gap-2 pt-5 border-t border-slate-100 mt-auto">

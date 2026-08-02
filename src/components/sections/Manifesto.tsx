@@ -10,10 +10,10 @@ const localText = {
     statement:
       "ZELLIO is a software engineering and design studio. We partner with founders and enterprises to build digital products that hold up — under load, under audit, and under years of change.",
     stats: [
-      { label: "Projects Delivered", value: "15+" },
-      { label: "Client Satisfaction", value: "98%" },
-      { label: "Enterprise Clients", value: "5+" },
-      { label: "Years Experience", value: "8+" },
+      { label: "Core Tech Stacks", value: "4+" },
+      { label: "Enterprise Systems", value: "12+" },
+      { label: "Dedicated Engineers", value: "8+" },
+      { label: "Years Experience", value: "3+" },
     ],
   },
   id: {
@@ -21,10 +21,10 @@ const localText = {
     statement:
       "ZELLIO adalah studio rekayasa perangkat lunak dan desain. Kami bermitra dengan founder dan perusahaan untuk membangun produk digital yang tetap tangguh — di bawah beban, audit, dan perubahan bertahun-tahun.",
     stats: [
-      { label: "Proyek Selesai", value: "15+" },
-      { label: "Kepuasan Klien", value: "98%" },
-      { label: "Klien Perusahaan", value: "10+" },
-      { label: "Tahun Pengalaman", value: "4+" },
+      { label: "Teknologi Inti", value: "4+" },
+      { label: "Sistem Enterprise", value: "12+" },
+      { label: "Engineer Dedikasi", value: "8+" },
+      { label: "Tahun Pengalaman", value: "3+" },
     ],
   },
 };
@@ -61,24 +61,6 @@ export default function Manifesto() {
             },
           }
         );
-
-        // Stat counters roll up once when the row enters. Zero them out first so
-        // the count is always visible, never a jump from the SSR final value.
-        gsap.utils.toArray<HTMLElement>(".man-stat-value").forEach((el) => {
-          const target = Number(el.dataset.target ?? 0);
-          const suffix = el.dataset.suffix ?? "";
-          const state = { value: 0 };
-          el.textContent = `0${suffix}`;
-          gsap.to(state, {
-            value: target,
-            duration: 2,
-            ease: "power2.out",
-            scrollTrigger: { trigger: ".man-stats", start: "top 82%", once: true },
-            onUpdate: () => {
-              el.textContent = `${Math.round(state.value)}${suffix}`;
-            },
-          });
-        });
 
         gsap.from(".man-stat", {
           y: 18,

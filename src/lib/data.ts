@@ -12,10 +12,10 @@ export const navLinks = [
 ];
 
 export const stats = [
-  { value: 15, suffix: "+", label: "Projects Delivered" },
-  { value: 98, suffix: "%", label: "Client Satisfaction" },
-  { value: 5, suffix: "+", label: "Enterprise Clients" },
-  { value: 6, suffix: "+", label: "Years Experience" },
+  { value: 4, suffix: "+", label: "Core Tech Stacks" },
+  { value: 12, suffix: "+", label: "Enterprise Systems" },
+  { value: 8, suffix: "+", label: "Dedicated Engineers" },
+  { value: 3, suffix: "+", label: "Years Experience" },
 ];
 
 export const missionItems = [
@@ -77,18 +77,6 @@ export const servicesData = [
     heroMedia: { type: "image" as const, url: "/hero/service_company_profile.jpg" }
   },
   {
-    id: 3,
-    category: "Website",
-    icon: "FileText",
-    title: "Landing Page Development",
-    description: "Halaman web khusus yang berfokus untuk mengubah pengunjung dari kampanye iklan Anda menjadi pelanggan potensial.",
-    duration: "1-2 Weeks",
-    level: "Premium",
-    color: "#f59e0b",
-    bgColor: "#fef3c7",
-    heroMedia: { type: "image" as const, url: "/hero/service_landing_page.jpg" }
-  },
-  {
     id: 4,
     category: "Website",
     icon: "ShoppingBag",
@@ -99,30 +87,6 @@ export const servicesData = [
     color: "#ec4899",
     bgColor: "#fce7f3",
     heroMedia: { type: "image" as const, url: "/hero/service_ecommerce.jpg" }
-  },
-  {
-    id: 5,
-    category: "Web App",
-    icon: "Layers",
-    title: "Custom Web Application",
-    description: "Aplikasi web khusus yang dirancang untuk mempermudah alur kerja internal Anda atau mewujudkan ide produk digital Anda.",
-    duration: "8-12 Weeks",
-    level: "Enterprise",
-    color: "#8b5cf6",
-    bgColor: "#ede9fe",
-    heroMedia: { type: "image" as const, url: "/compro-meeting.jpg" }
-  },
-  {
-    id: 6,
-    category: "Dashboard",
-    icon: "BarChart2",
-    title: "Admin & Analytics Dashboards",
-    description: "Ubah data rumit menjadi grafik yang mudah dipahami. Pantau kinerja bisnis secara real-time melalui dashboard visual yang interaktif.",
-    duration: "6-10 Weeks",
-    level: "Enterprise",
-    color: "#e11d48",
-    bgColor: "#ffe4e6",
-    heroMedia: { type: "image" as const, url: "/hero/service_admin_dash.jpg" }
   },
   {
     id: 7,
@@ -173,18 +137,6 @@ export const servicesData = [
     heroMedia: { type: "image" as const, url: "/hero/service_hris.jpg" }
   },
   {
-    id: 11,
-    category: "Enterprise",
-    icon: "Package",
-    title: "Inventory Management System",
-    description: "Pantau pergerakan stok barang Anda secara akurat tanpa harus pusing dengan pencatatan manual di gudang.",
-    duration: "6-12 Weeks",
-    level: "Enterprise",
-    color: "#84cc16",
-    bgColor: "#ecfccb",
-    heroMedia: { type: "image" as const, url: "/hero/service_inventory.jpg" }
-  },
-  {
     id: 12,
     category: "SaaS",
     icon: "Cpu",
@@ -195,42 +147,6 @@ export const servicesData = [
     color: "#a855f7",
     bgColor: "#f3e8ff",
     heroMedia: { type: "image" as const, url: "/hero/service_saas.jpg" }
-  },
-  {
-    id: 13,
-    category: "Design",
-    icon: "Palette",
-    title: "UI/UX & Product Design",
-    description: "Desain antarmuka yang indah dan pengalaman pengguna yang intuitif untuk memastikan produk digital Anda menyenangkan saat dipakai.",
-    duration: "3-6 Weeks",
-    level: "Premium",
-    color: "#6366f1",
-    bgColor: "#e0e7ff",
-    heroMedia: { type: "image" as const, url: "/hero/service_uiux.jpg" }
-  },
-  {
-    id: 14,
-    category: "AI",
-    icon: "Brain",
-    title: "AI & Automation Development",
-    description: "Kami membantu mengintegrasikan teknologi AI agar tim Anda bisa menghemat waktu dari pekerjaan manual yang berulang.",
-    duration: "8-16 Weeks",
-    level: "Enterprise",
-    color: "#14b8a6",
-    bgColor: "#ccfbf1",
-    heroMedia: { type: "image" as const, url: "/hero/service_ai.jpg" }
-  },
-  {
-    id: 15,
-    category: "Cloud",
-    icon: "Cloud",
-    title: "Cloud Infrastructure & DevOps",
-    description: "Dukungan server cloud yang kokoh. Kami memastikan aplikasi Anda selalu menyala, aman, dan dapat diakses dengan cepat setiap saat.",
-    duration: "3-6 Weeks",
-    level: "Enterprise",
-    color: "#0284c7",
-    bgColor: "#e0f2fe",
-    heroMedia: { type: "image" as const, url: "/hero/service_cloud.jpg" }
   }
 ];
 
@@ -308,49 +224,4 @@ export const developmentProcess = [
 // Fallback export
 export const learningSteps = developmentProcess;
 
-export const testimonials = [
-  {
-    id: 1,
-    name: "Rizky Pratama",
-    position: "CTO",
-    company: "FinTech Solutions",
-    avatar: "RP",
-    rating: 5,
-    review:
-      "ZELLIO built our core payment dashboard. The level of professionalism, clean code, and speed of delivery exceeded our expectations. The real-time tracking graphs load instantly.",
-    color: "#2563EB",
-  },
-  {
-    id: 2,
-    name: "Sari Dewi Kusuma",
-    position: "Product Director",
-    company: "RetailFlow Indonesia",
-    avatar: "SD",
-    rating: 5,
-    review:
-      "We hired them to build our multi-vendor e-commerce platform and admin portal. The system is extremely fast, responsive on mobile, and scales beautifully during high-traffic flash sales.",
-    color: "#8B5CF6",
-  },
-  {
-    id: 3,
-    name: "Budi Santoso",
-    position: "CEO",
-    company: "LogiChain Logistics",
-    avatar: "BS",
-    rating: 5,
-    review:
-      "Their custom ERP system streamlined our logistics operations. The admin dashboard displays real-time tracking data across 5 provinces flawlessly. Our operational efficiency increased by 30%.",
-    color: "#059669",
-  },
-  {
-    id: 4,
-    name: "Anisa Rahman",
-    position: "Co-Founder",
-    company: "EduSpace Platform",
-    avatar: "AR",
-    rating: 5,
-    review:
-      "They designed and built our SaaS web platform from scratch. The UI/UX is outstanding, and the backend is highly scalable. A truly elite tech partner that delivers what they promise.",
-    color: "#D97706",
-  },
-];
+export const testimonials: any[] = [];

@@ -150,7 +150,7 @@ export default function LinearProcessShowcase() {
                 <span className="text-[8px] text-emerald-500 flex items-center gap-1"><Check size={9} /> Pass</span>
               </div>
               <p className="text-white/80 font-medium leading-relaxed text-[11px]">
-                Run query fuzzing tests, database penetration scans, and XSS prevention checks.
+                Review application boundaries, authentication, authorization, input handling, and dependency versions.
               </p>
               <div className="flex items-center justify-between border-t border-white/5 pt-2 text-[9px] text-white/40">
                 <span className="flex items-center gap-1 font-mono"><Terminal size={9} /> check-sec.sh</span>

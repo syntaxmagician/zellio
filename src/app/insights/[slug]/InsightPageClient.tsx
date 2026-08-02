@@ -170,39 +170,11 @@ export default function InsightPageClient({ story }: { story: Story }) {
             <div className="lg:col-span-8 order-1 lg:order-2">
               <div className="prose prose-lg prose-slate max-w-none prose-headings:font-black prose-headings:tracking-tight prose-a:text-blue-600 prose-img:rounded-xl">
                 
-                {/* Section: Context */}
-                <h2 className="text-2xl md:text-3xl mt-0 mb-6 text-slate-900">
-                  {language === 'id' ? "Konteks & Visi" : "The Context & Vision"}
-                </h2>
-                <p className="text-slate-600 text-lg leading-relaxed mb-10">
-                  {details.introduction}
-                </p>
-
-                {/* Section: Challenge */}
-                <h2 className="text-2xl md:text-3xl mt-12 mb-6 text-slate-900">
-                  {language === 'id' ? "Tantangan Utama" : "The Core Challenge"}
-                </h2>
-                <div className="pl-6 border-l-4 border-blue-600 bg-blue-50/50 py-4 pr-4 rounded-r-xl mb-10">
-                  <p className="text-slate-700 text-lg leading-relaxed italic m-0">
-                    {details.challenge}
-                  </p>
-                </div>
-
-                {/* Section: Approach */}
-                <h2 className="text-2xl md:text-3xl mt-12 mb-6 text-slate-900">
-                  {language === 'id' ? "Pendekatan Strategis" : "Strategic Approach"}
-                </h2>
-                <p className="text-slate-600 text-lg leading-relaxed mb-10">
-                  {details.approach}
-                </p>
-
-                {/* Section: Impact */}
-                <h2 className="text-2xl md:text-3xl mt-12 mb-6 text-slate-900">
-                  {language === 'id' ? "Dampak & Hasil" : "Impact & Results"}
-                </h2>
-                <p className="text-slate-600 text-lg leading-relaxed mb-10">
-                  {details.impact}
-                </p>
+                {/* Dynamic, organic HTML content representing custom markdown styling */}
+                <div 
+                  className="text-slate-600 text-lg leading-relaxed space-y-6"
+                  dangerouslySetInnerHTML={{ __html: content.details.body }} 
+                />
 
               </div>
             </div>

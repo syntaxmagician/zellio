@@ -289,10 +289,10 @@ function ScreenSecurity() {
   }, []);
 
   const auditLines = [
-    { id: 1, text: "XSS & CSRF security audits" },
-    { id: 2, text: "Zero-day vulnerability checks" },
-    { id: 3, text: "Database fuzzing protocols" },
-    { id: 4, text: "TLS 1.3 encryption status" },
+    { id: 1, text: "Input boundary checks" },
+    { id: 2, text: "Authentication testing" },
+    { id: 3, text: "Authorization audits" },
+    { id: 4, text: "Dependency checks" },
   ];
 
   return (
