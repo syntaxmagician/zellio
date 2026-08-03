@@ -74,7 +74,7 @@ const localText = {
     cards: {
       location: "Cibubur, Jakarta",
       status: "Tersedia untuk proyek baru",
-      projects: "120+ proyek selesai",
+      projects: "12+ proyek selesai",
       response: "Respon rata-rata < 12 jam"
     },
     contact: {

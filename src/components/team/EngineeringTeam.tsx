@@ -7,7 +7,7 @@ import TeamAvatar from "./TeamAvatar";
 
 interface Member {
   name: string;
-  id: "rendra" | "cynthia" | "kenji" | "sarah";
+  id: "cynthia" | "kenji" | "sarah" | "alwi";
   role: string;
   exp: string;
   projects: string;
@@ -15,52 +15,21 @@ interface Member {
   nftIcon: React.ElementType;
   nftColor: string;
   nftType: string;
+  linkedin?: string;
 }
 
 const members: Member[] = [
   {
-    name: "Rendra Wijaya",
-    id: "rendra",
-    role: "Lead Cloud Architect",
-    exp: "2 Years Exp",
-    projects: "8+ Migrations",
-    skills: ["AWS", "Terraform", "Docker"],
-    nftIcon: Cloud,
-    nftColor: "text-blue-500 bg-blue-500/10 border-blue-500/20",
-    nftType: "CLOUD_INFRA"
-  },
-  {
-    name: "Cynthia Amanda",
-    id: "cynthia",
-    role: "Lead UI/UX Designer",
-    exp: "3 Years Exp",
-    projects: "11+ Brand Systems",
-    skills: ["Figma", "Prototyping", "UX Audit"],
-    nftIcon: PenTool,
-    nftColor: "text-pink-500 bg-pink-500/10 border-pink-500/20",
-    nftType: "DESIGN_TOKEN"
-  },
-  {
-    name: "Kenji Tanaka",
-    id: "kenji",
-    role: "Senior Systems Engineer",
-    exp: "3 Years Exp",
-    projects: "14+ Go Services",
-    skills: ["Go", "gRPC", "PostgreSQL"],
-    nftIcon: Terminal,
-    nftColor: "text-amber-500 bg-amber-500/10 border-amber-500/20",
-    nftType: "RUST_GO_CORE"
-  },
-  {
-    name: "Sarah Salsabila",
-    id: "sarah",
-    role: "QA & Automation Lead",
-    exp: "4 Years Exp",
-    projects: "18+ Releases Checked",
-    skills: ["Playwright", "CI/CD", "Jest"],
-    nftIcon: Rocket,
+    name: "Alwi Rianto",
+    id: "alwi",
+    role: "Engineering Contributor",
+    exp: "2 Years+",
+    projects: "3+ Projects",
+    skills: ["Fullstack", "Web Platform", "Node.js"],
+    nftIcon: Braces,
     nftColor: "text-emerald-500 bg-emerald-500/10 border-emerald-500/20",
-    nftType: "AUTOMATION"
+    nftType: "CONTRIBUTOR",
+    linkedin: "https://www.linkedin.com/in/alwian-rianto-8929a02aa/"
   }
 ];
 
@@ -74,10 +43,10 @@ export default function EngineeringTeam() {
         {/* Section Header */}
         <div className="mb-12">
           <span className="text-[10px] font-mono font-bold text-slate-400 tracking-[0.2em] uppercase block mb-2">
-            ENGINEERING TEAM
+            ENGINEERING Team / Contributors
           </span>
           <h2 className="text-3xl md:text-4xl font-black text-slate-900 tracking-tight">
-            The core architecture squad.
+            The core contributors squad.
           </h2>
         </div>
 
@@ -129,7 +98,14 @@ export default function EngineeringTeam() {
                       {member.role}
                     </span>
                     <h3 className="text-sm font-black text-slate-800 tracking-tight mt-0.5">
-                      {member.name}
+                      {member.linkedin ? (
+                        <a href={member.linkedin} target="_blank" rel="noopener noreferrer" className="hover:text-blue-600 transition-colors flex items-center gap-1.5">
+                          {member.name}
+                          <svg className="w-3 h-3 text-blue-500" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                        </a>
+                      ) : (
+                        member.name
+                      )}
                     </h3>
                   </div>
 

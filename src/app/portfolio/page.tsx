@@ -125,11 +125,11 @@ const projects: Project[] = [
   },
   {
     title: "Eureka Internal ERP",
-    category: { id: "Sistem ERP Korporat", en: "Enterprise ERP System" },
+    category: { id: "Sistem ERP Korporat", en: "Production ERP System" },
     type: "Internal Dashboard",
     desc: { 
-      id: "Sistem ERP berskala Enterprise full-module. Mencakup keseluruhan manajemen mulai dari penjualan, monitoring unit, service unit, pembuatan invoice otomatis, hingga integrasi data vendor lengkap dengan ekstraksi harga PO.", 
-      en: "Full-module Enterprise-scale ERP System. Covers overall management from sales, unit monitoring, service, automated invoice generation, to vendor data integration." 
+      id: "Sistem ERP skala produksi full-module. Mencakup keseluruhan manajemen mulai dari penjualan, monitoring unit, service unit, pembuatan invoice otomatis, hingga integrasi data vendor lengkap dengan ekstraksi harga PO.", 
+      en: "Full-module Production-scale ERP System. Covers overall management from sales, unit monitoring, service, automated invoice generation, to vendor data integration." 
     },
     tags: ["Next.js", "Odoo ERP API", "WebSockets", "TailwindCSS"],
     image: "/elogs dash.png",
@@ -324,15 +324,15 @@ export default function PortfolioPage() {
               <div className="porto-rail lg:w-[380px] flex-shrink-0 border-l-2 border-blue-500 pl-6 lg:mb-4">
                 <p className="text-[15px] font-medium text-slate-600 leading-relaxed">
                   {language === "id"
-                    ? "Di Zellio, kami merancang platform digital, dasbor internal, dan sistem enterprise berkinerja tinggi. Jelajahi arsip karya terpilih kami."
-                    : "At Zellio, we engineer high-performance digital platforms, internal dashboards, and enterprise systems. Explore our curated archive of selected works."}
+                    ? "Di Zellio, kami merancang platform digital, dasbor internal, dan sistem produksi berkinerja tinggi. Jelajahi arsip karya terpilih kami."
+                    : "At Zellio, we engineer high-performance digital platforms, internal dashboards, and scalable systems. Explore our curated archive of selected works."}
                 </p>
                 <div className="mt-6 flex items-center gap-3">
                   <span className="w-10 h-px bg-slate-200 block" />
                   <span className="text-[10px] font-mono font-bold uppercase tracking-[0.2em] text-slate-500 stat-number">
-                    <span ref={counterRef} data-target={filteredProjects.length}>
-                      {filteredProjects.length}
-                    </span>{" "}
+                    <span ref={counterRef} data-target={12}>
+                      12
+                    </span>+{" "}
                     {language === "id" ? "Proyek Terpilih" : "Selected Projects"}
                   </span>
                 </div>

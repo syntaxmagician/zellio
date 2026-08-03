@@ -176,7 +176,7 @@ export default function LinearProcessShowcase() {
                 <span className="text-[8px] text-white/30 flex items-center gap-1"><ArrowRight size={9} /> Released</span>
               </div>
               <p className="text-white/80 font-medium leading-relaxed text-[11px]">
-                Containerize app stack via Docker & setup high-availability Kubernetes scaling patterns.
+                Containerize app stack via Docker & setup production-ready orchestration.
               </p>
               <div className="flex items-center justify-between border-t border-white/5 pt-2 text-[9px] text-white/40">
                 <span className="flex items-center gap-1 font-mono"><GitBranch size={9} /> production</span>

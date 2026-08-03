@@ -13,7 +13,7 @@ export const navLinks = [
 
 export const stats = [
   { value: 4, suffix: "+", label: "Core Tech Stacks" },
-  { value: 12, suffix: "+", label: "Enterprise Systems" },
+  { value: 12, suffix: "+", label: "Production Systems" },
   { value: 8, suffix: "+", label: "Dedicated Engineers" },
   { value: 3, suffix: "+", label: "Years Experience" },
 ];
@@ -35,7 +35,7 @@ export const missionItems = [
     icon: "Award",
     title: "High-Performance Systems",
     description:
-      "We don't settle for slow. We build custom websites, dashboards, and enterprise platforms optimized for speed and high traffic.",
+      "We don't settle for slow. We build custom websites, dashboards, and scalable platforms optimized for speed and high traffic.",
   },
   {
     icon: "Users",
@@ -83,7 +83,7 @@ export const servicesData = [
     title: "E-Commerce Development",
     description: "Toko online milik Anda sendiri, lengkap dengan fitur pembayaran otomatis, penghitungan ongkos kirim, dan manajemen stok yang rapi.",
     duration: "6-10 Weeks",
-    level: "Enterprise",
+    level: "Production",
     color: "#ec4899",
     bgColor: "#fce7f3",
     heroMedia: { type: "image" as const, url: "/hero/service_ecommerce.jpg" }
@@ -102,36 +102,36 @@ export const servicesData = [
   },
   {
     id: 8,
-    category: "Enterprise",
+    category: "System",
     icon: "Database",
     title: "ERP System Development",
     description: "Sistem pusat yang cerdas untuk menghubungkan keuangan, inventaris, dan operasional harian dalam satu platform terintegrasi.",
     duration: "12-24 Weeks",
-    level: "Enterprise",
+    level: "Production",
     color: "#dc2626",
     bgColor: "#fee2e2",
     heroMedia: { type: "image" as const, url: "/hero/service_erp.jpg" }
   },
   {
     id: 9,
-    category: "Enterprise",
+    category: "System",
     icon: "Users",
     title: "CRM System Development",
     description: "Sistem manajemen agar tim sales Anda dapat melacak prospek dan berinteraksi dengan pelanggan secara lebih terorganisir.",
     duration: "8-16 Weeks",
-    level: "Enterprise",
+    level: "Production",
     color: "#4f46e5",
     bgColor: "#e0e7ff",
     heroMedia: { type: "image" as const, url: "/hero/service_crm.jpg" }
   },
   {
     id: 10,
-    category: "Enterprise",
+    category: "System",
     icon: "UserCheck",
     title: "HRIS & Payroll System",
     description: "Sistem HR modern untuk menyederhanakan manajemen absensi, pengaturan cuti, hingga pendistribusian slip gaji bulanan.",
     duration: "10-18 Weeks",
-    level: "Enterprise",
+    level: "Production",
     color: "#06b6d4",
     bgColor: "#cffafe",
     heroMedia: { type: "image" as const, url: "/hero/service_hris.jpg" }
@@ -143,7 +143,7 @@ export const servicesData = [
     title: "SaaS Platform Development",
     description: "Pengembangan platform SaaS menyeluruh, mencakup sistem pembayaran berlangganan yang aman dan arsitektur pengguna yang andal.",
     duration: "12-20 Weeks",
-    level: "Enterprise",
+    level: "Production",
     color: "#a855f7",
     bgColor: "#f3e8ff",
     heroMedia: { type: "image" as const, url: "/hero/service_saas.jpg" }
@@ -156,7 +156,7 @@ export const trainingPrograms = servicesData;
 export const whyChooseItems = [
   {
     icon: "Code2",
-    title: "Elite Developers",
+    title: "Dedicated Engineers",
     description:
       "Our developers write clean, maintainable, and well-documented code using modern React, Node, and TypeScript ecosystems.",
     color: "#2563EB",

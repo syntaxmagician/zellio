@@ -11,7 +11,7 @@ const localText = {
       "ZELLIO is a software engineering and design studio. We partner with founders and enterprises to build digital products that hold up — under load, under audit, and under years of change.",
     stats: [
       { label: "Core Tech Stacks", value: "4+" },
-      { label: "Enterprise Systems", value: "12+" },
+      { label: "Production Systems", value: "12+" },
       { label: "Dedicated Engineers", value: "8+" },
       { label: "Years Experience", value: "3+" },
     ],
@@ -22,7 +22,7 @@ const localText = {
       "ZELLIO adalah studio rekayasa perangkat lunak dan desain. Kami bermitra dengan founder dan perusahaan untuk membangun produk digital yang tetap tangguh — di bawah beban, audit, dan perubahan bertahun-tahun.",
     stats: [
       { label: "Teknologi Inti", value: "4+" },
-      { label: "Sistem Enterprise", value: "12+" },
+      { label: "Sistem Produksi", value: "12+" },
       { label: "Engineer Dedikasi", value: "8+" },
       { label: "Tahun Pengalaman", value: "3+" },
     ],

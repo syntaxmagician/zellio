@@ -4,16 +4,17 @@ import React from "react";
 import Image from "next/image";
 
 interface AvatarProps {
-  name: "vico" | "samuel" | "cavendio" | "rendra" | "cynthia" | "kenji" | "sarah" | "hasyim";
+  name: "vico" | "samuel" | "cavendio" | "rendra" | "cynthia" | "kenji" | "sarah" | "hasyim" | "alwi";
   className?: string;
 }
 
 export default function TeamAvatar({ name, className = "w-full h-full" }: AvatarProps) {
   const realPhotos: Record<string, string> = {
-    vico: "/vico.jpeg",
-    samuel: "/samuelsukarno.jpeg",
+    vico: "/vicotegar.JPG",
+    samuel: "/samuel.JPG",
     cavendio: "/dio.JPG",
-    hasyim: "/hasyim.JPG"
+    hasyim: "/hasyim.JPG",
+    alwi: "/alwirianto.JPG"
   };
 
   if (realPhotos[name]) {

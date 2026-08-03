@@ -17,23 +17,23 @@ import { clientLogos, type ClientLogo } from "@/lib/clients";
 
 const localText = {
   en: {
-    badge: "Trusted By",
-    headline: "Companies that run on our code.",
-    desc: "Twelve organizations across ten industries — travel, logistics, legal, education, healthcare and beyond — operate on systems engineered by ZELLIO.",
-    listLabel: "Our clients",
+    badge: "Team Experience",
+    headline: "Platforms built by our team.",
+    desc: "Five clients across various industries operate on 12+ projects engineered by members of the ZELLIO team.",
+    listLabel: "Supported projects",
     tally: [
-      { value: "12", label: "Clients" },
-      { value: "10", label: "Industries" },
+      { value: "5", label: "Clients" },
+      { value: "12+", label: "Projects" },
     ],
   },
   id: {
-    badge: "Dipercaya Oleh",
-    headline: "Perusahaan yang berjalan di atas kode kami.",
-    desc: "Dua belas organisasi dari sepuluh industri — travel, logistik, hukum, pendidikan, kesehatan, dan lainnya — beroperasi dengan sistem yang dibangun ZELLIO.",
-    listLabel: "Klien kami",
+    badge: "Pengalaman Tim",
+    headline: "Platform yang dibangun oleh tim kami.",
+    desc: "Lima klien dari berbagai industri beroperasi dengan 12+ proyek yang direkayasa oleh anggota tim ZELLIO.",
+    listLabel: "Proyek tim",
     tally: [
-      { value: "12", label: "Klien" },
-      { value: "10", label: "Industri" },
+      { value: "5", label: "Klien" },
+      { value: "12+", label: "Proyek" },
     ],
   },
 };

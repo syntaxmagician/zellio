@@ -11,11 +11,11 @@ const localText = {
     eyebrow: "Greetings! We Are ZELLIO",
     slogan: ["Building digital", "systems that last."],
     description:
-      "We are a creative team of designers, developers, and strategists building elevated websites and custom enterprise systems.",
+      "We are a creative team of designers, developers, and strategists building elevated websites and scalable custom platforms.",
     primaryBtn: "Get to know us",
     secondaryBtn: "Explore Our Work",
     scroll: "Scroll",
-    foot: "10 Clients — 9 Industries",
+    foot: "5 Clients — 12+ Projects",
   },
   id: {
     eyebrow: "KAMI ADALAH ZELLIO",
@@ -25,7 +25,7 @@ const localText = {
     primaryBtn: "Mulai proyek",
     secondaryBtn: "Lihat Portofolio",
     scroll: "Scroll",
-    foot: "10 Klien — 9 Industri",
+    foot: "5 Klien — 12+ Proyek",
   },
 };
 

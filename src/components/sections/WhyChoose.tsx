@@ -10,7 +10,7 @@ const localText = {
     manifesto: "Many software projects fail not because of technology, but because they are built with rushed architecture, short-term thinking, and code that cannot evolve. Cheap software often becomes the most expensive business decision. At ZELLIO, we engineer software that remains maintainable, scalable, secure, and reliable for years.",
     principles: [
       {
-        title: "Elite Engineers",
+        title: "Dedicated Engineers",
         description: "Our team consists of top-tier full-stack developers, UI/UX designers, and cloud architects working dedicatedly for your project."
       },
       {
@@ -18,12 +18,12 @@ const localText = {
         description: "We leverage cutting-edge tech stacks (React, Next.js, Node, TypeScript) for maximum performance, security, and scalability."
       },
       {
-        title: "Enterprise Security",
-        description: "Security is integrated into every layer from day one, adhering to global standards and protecting your digital infrastructure."
+        title: "Security Review",
+        description: "Security is integrated into every layer from day one, following industry best practices and protecting your digital infrastructure."
       },
       {
         title: "Reliable Delivery",
-        description: "We combine elite engineering with an agile, transparent development process to guarantee your project's success on time."
+        description: "We combine dedicated engineering with an agile, transparent development process to ensure reliable delivery on time."
       }
     ]
   },
@@ -32,7 +32,7 @@ const localText = {
     manifesto: "Banyak proyek perangkat lunak gagal bukan karena teknologinya, melainkan karena dibangun dengan arsitektur yang terburu-buru, pemikiran jangka pendek, dan kode yang tidak dapat berkembang. Perangkat lunak murah sering kali menjadi keputusan bisnis yang paling mahal. Di ZELLIO, kami merancang perangkat lunak yang tetap dapat dipelihara, berskala besar, aman, dan andal selama bertahun-tahun.",
     principles: [
       {
-        title: "Insinyur Elit",
+        title: "Engineer Dedikasi",
         description: "Tim kami terdiri dari pengembang full-stack, desainer UI/UX, dan arsitek cloud tingkat atas yang bekerja secara dedikatif untuk proyek Anda."
       },
       {
@@ -40,12 +40,12 @@ const localText = {
         description: "Kami memanfaatkan teknologi terbaru (React, Next.js, Node, TypeScript) demi performa, keamanan, dan skalabilitas sistem yang maksimal."
       },
       {
-        title: "Keamanan Enterprise",
-        description: "Keamanan diintegrasikan ke dalam setiap lapisan sejak hari pertama, mematuhi standar global dan melindungi infrastruktur digital Anda."
+        title: "Tinjauan Keamanan",
+        description: "Keamanan diintegrasikan ke dalam setiap lapisan sejak hari pertama, mengikuti praktik terbaik industri dan melindungi infrastruktur digital Anda."
       },
       {
         title: "Pengiriman Andal",
-        description: "Kami memadukan rekayasa teknologi elit dengan proses pengembangan yang transparan dan tangkas untuk menjamin keberhasilan proyek Anda tepat waktu."
+        description: "Kami memadukan rekayasa teknologi berdedikasi dengan proses pengembangan yang transparan dan tangkas untuk memastikan pengiriman yang andal tepat waktu."
       }
     ]
   }

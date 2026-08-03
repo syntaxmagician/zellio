@@ -56,7 +56,7 @@ const localText = {
     cta: "Learn About Us",
     stats: [
       { label: "Core Tech Stacks", value: "4+" },
-      { label: "Enterprise Systems", value: "12+" },
+      { label: "Production Systems", value: "12+" },
       { label: "Dedicated Engineers", value: "8+" },
       { label: "Years Experience", value: "3+" }
     ],
@@ -72,7 +72,7 @@ const localText = {
     cta: "Pelajari Tentang Kami",
     stats: [
       { label: "Teknologi Inti", value: "4+" },
-      { label: "Sistem Enterprise", value: "12+" },
+      { label: "Sistem Produksi", value: "12+" },
       { label: "Engineer Dedikasi", value: "8+" },
       { label: "Tahun Pengalaman", value: "3+" }
     ],
