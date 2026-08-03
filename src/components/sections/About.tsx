@@ -57,7 +57,7 @@ const localText = {
     stats: [
       { label: "Core Tech Stacks", value: "4+" },
       { label: "Production Systems", value: "12+" },
-      { label: "Dedicated Engineers", value: "8+" },
+      { label: "Dedicated Engineers", value: "5" },
       { label: "Years Experience", value: "3+" }
     ],
     workflowLabel: "Our Process",

@@ -20,13 +20,13 @@ import { FaAws } from "react-icons/fa";
 const localText = {
   en: {
     badge: "TECHNOLOGY ECOSYSTEM",
-    title: "Architected with modern,\nenterprise core tools.",
-    subtitle: "We use stable, high-performance open-source systems to compose our enterprise blueprints."
+    title: "Architected with modern,\nproduction core tools.",
+    subtitle: "We use stable, high-performance open-source systems to compose our production blueprints."
   },
   id: {
     badge: "EKOSISTEM TEKNOLOGI",
     title: "Dirancang dengan perkakas\nmodern berstandar korporat.",
-    subtitle: "Kami menggunakan sistem sumber terbuka yang stabil dan berkinerja tinggi untuk merakit solusi enterprise kami."
+    subtitle: "Kami menggunakan sistem sumber terbuka yang stabil dan berkinerja tinggi untuk merakit solusi perangkat lunak kami."
   }
 };
 

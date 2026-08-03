@@ -69,14 +69,9 @@ export default function EngineeringCulture() {
               </p>
             </div>
 
-            <div className="mt-4 flex items-center justify-between border-t border-slate-100 pt-4">
-              <div className="flex flex-col">
-                <span className="text-2xl font-black text-slate-900 tracking-tighter">99/100</span>
-                <span className="text-[8px] font-mono font-bold text-slate-400 uppercase">Lighthouse Core</span>
-              </div>
-              <div className="w-8 h-8 rounded-full bg-emerald-50 border border-emerald-100 flex items-center justify-center">
-                <div className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-ping" />
-              </div>
+            <div className="mt-4 flex gap-1.5 border-t border-slate-100 pt-4">
+              <span className="px-2 py-1 rounded bg-slate-50 border border-slate-150 text-[9px] font-mono font-bold text-slate-500">Low Latency</span>
+              <span className="px-2 py-1 rounded bg-slate-50 border border-slate-150 text-[9px] font-mono font-bold text-slate-500">High Scalability</span>
             </div>
           </div>
 
@@ -109,13 +104,13 @@ export default function EngineeringCulture() {
                 Accessibility matters
               </h3>
               <p className="text-xs md:text-sm font-medium text-slate-500 leading-relaxed">
-                Enterprise software must be usable by everyone. We build inclusive, WCAG-compliant digital experiences.
+                Software must be usable by everyone. We build inclusive, standards-compliant digital experiences.
               </p>
             </div>
 
             <div className="mt-4 flex gap-1.5 border-t border-slate-100 pt-4">
-              <span className="px-2 py-1 rounded bg-slate-50 border border-slate-150 text-[9px] font-mono font-bold text-slate-500">WCAG AAA</span>
-              <span className="px-2 py-1 rounded bg-slate-50 border border-slate-150 text-[9px] font-mono font-bold text-slate-500">100% ARIA</span>
+              <span className="px-2 py-1 rounded bg-slate-50 border border-slate-150 text-[9px] font-mono font-bold text-slate-500">Inclusive Design</span>
+              <span className="px-2 py-1 rounded bg-slate-50 border border-slate-150 text-[9px] font-mono font-bold text-slate-500">A11y Compliant</span>
             </div>
           </div>
 

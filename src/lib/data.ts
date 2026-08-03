@@ -14,7 +14,7 @@ export const navLinks = [
 export const stats = [
   { value: 4, suffix: "+", label: "Core Tech Stacks" },
   { value: 12, suffix: "+", label: "Production Systems" },
-  { value: 8, suffix: "+", label: "Dedicated Engineers" },
+  { value: 5, suffix: "", label: "Dedicated Engineers" },
   { value: 3, suffix: "+", label: "Years Experience" },
 ];
 

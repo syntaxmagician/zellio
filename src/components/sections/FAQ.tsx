@@ -11,8 +11,8 @@ const localText = {
     desc: "Everything you need to know about our workflow, technology, and engineering standards before we build together.",
     readTimeLabel: "Reading Time",
     readTimeValue: "5 Min Read",
-    transparencyLabel: "Transparency",
-    transparencyValue: "0% Outsourced",
+    transparencyLabel: "Collaboration",
+    transparencyValue: "Direct with Engineers",
     faqList: [
       {
         q: "What types of digital projects do you handle?",
@@ -50,8 +50,8 @@ const localText = {
     desc: "Semua yang perlu Anda ketahui tentang alur kerja, teknologi, dan standar koding kami sebelum kita membangun bersama.",
     readTimeLabel: "Waktu Baca",
     readTimeValue: "5 Menit",
-    transparencyLabel: "Transparansi",
-    transparencyValue: "0% Outsourcing",
+    transparencyLabel: "Kolaborasi",
+    transparencyValue: "Langsung dengan Engineer",
     faqList: [
       {
         q: "Jenis proyek digital apa saja yang Anda tangani?",

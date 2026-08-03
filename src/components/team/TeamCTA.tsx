@@ -23,7 +23,7 @@ export default function TeamCTA() {
         </h2>
         
         <p className="text-base sm:text-lg font-medium text-slate-500 leading-relaxed max-w-2xl mx-auto mb-6">
-          We're always looking for engineers who care about quality, performance, and craftsmanship. If you're ready to engineer the future of enterprise software, let's talk.
+          We're always looking for engineers who care about quality, performance, and craftsmanship. If you're ready to engineer the future of reliable software, let's talk.
         </p>
 
         <div className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">

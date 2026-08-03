@@ -390,8 +390,9 @@ export default function PortfolioPage() {
             <AnimatePresence mode="popLayout">
               {paginatedProjects.map((project, idx) => {
                 const Icon = project.icon;
-                // Asymmetric logic: 1st project spans 2 columns, then regular grid.
-                const isFeatured = idx === 0 || idx === 6; 
+                // Asymmetric editorial logic: pattern repeats every 10 items perfectly.
+                // 1 wide, 1 narrow -> 3 narrow -> 1 narrow, 1 wide -> 3 narrow.
+                const isFeatured = idx % 10 === 0 || idx % 10 === 6;
                 
                 return (
                   <motion.div

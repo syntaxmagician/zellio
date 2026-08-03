@@ -1,23 +1,24 @@
 "use client";
 
-import React, { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
-import { Hammer, ShieldCheck, Milestone } from "lucide-react";
+import React, { useRef, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Hammer, ShieldCheck, Milestone, ArrowRight } from "lucide-react";
 import TeamAvatar from "./TeamAvatar";
 import AuroraFlowHero from "../ui/AuroraFlowHero";
 import { gsap, useGSAP } from "@/lib/gsap";
 import { isReady } from "@/lib/ready";
 
-// Kept in sync with team/page.tsx — the splash sets this before the hero can be seen.
+const teamList = [
+  { name: "Vico Tegar", id: "vico", role: "Chief Architect" },
+  { name: "Samuel Sukarno", id: "samuel", role: "Lead Frontend" },
+  { name: "Muhammad Cavendio", id: "cavendio", role: "Backend Engineer" },
+  { name: "Hasyim Ridwan", id: "hasyim", role: "DevOps Engineer" },
+  { name: "Alwi Rianto", id: "alwi", role: "Engineering Contributor" },
+];
 
 export default function TeamHero() {
   const containerRef = useRef<HTMLDivElement>(null);
-
-  const { scrollY } = useScroll();
-  const y1 = useTransform(scrollY, [0, 500], [0, -20]);
-  const y2 = useTransform(scrollY, [0, 500], [0, 15]);
-  const y3 = useTransform(scrollY, [0, 500], [0, -35]);
-  const y4 = useTransform(scrollY, [0, 500], [0, 25]);
+  const [activeId, setActiveId] = useState<string>("vico");
 
   useGSAP(
     () => {
@@ -28,9 +29,14 @@ export default function TeamHero() {
           .from(".th-title", { y: 26, opacity: 0, duration: 0.8 }, "-=0.25")
           .from(".th-desc", { y: 16, opacity: 0, duration: 0.6 }, "-=0.5")
           .from(
-            ".th-card",
-            { y: 24, opacity: 0, scale: 0.94, duration: 0.7, stagger: 0.09 },
+            ".th-item",
+            { y: 16, opacity: 0, duration: 0.6, stagger: 0.08 },
             "-=0.45"
+          )
+          .from(
+            ".th-photo",
+            { scale: 0.96, opacity: 0, duration: 0.8 },
+            "-=0.5"
           );
 
         let fallback: ReturnType<typeof setTimeout> | undefined;
@@ -60,7 +66,7 @@ export default function TeamHero() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center mb-16 lg:mb-20">
 
         {/* Left Side: Content */}
-        <div className="lg:col-span-6 space-y-5 lg:space-y-6">
+        <div className="lg:col-span-5 space-y-5 lg:space-y-6">
           <div className="th-badge inline-block px-3 py-1 rounded-full bg-white text-[#2563EB] text-[10px] sm:text-xs font-bold uppercase tracking-widest border border-blue-100 shadow-sm">
             Meet The Builders.
           </div>
@@ -68,68 +74,88 @@ export default function TeamHero() {
             Engineering is never a solo effort.
           </h1>
           <p className="th-desc text-slate-500 font-medium text-sm sm:text-base leading-relaxed max-w-xl">
-            Behind every enterprise platform is a multidisciplinary team of designers, software engineers, architects, and strategists dedicated to building products that stand the test of time.
+            Behind every production system is a multidisciplinary team of designers, software engineers, architects, and strategists dedicated to building products that stand the test of time.
           </p>
         </div>
 
-        {/* Right Side: NFT Portraits Editorial Composition */}
-        <div className="lg:col-span-6 grid grid-cols-2 gap-4 lg:block lg:relative lg:h-[420px] w-full">
+        {/* Right Side: Editorial Hover Gallery (Editorial composition replacing old NFT Cards) */}
+        <div className="lg:col-span-7 w-full">
+          
+          {/* Mobile Layout (Circular profile badges, clean & premium) */}
+          <div className="lg:hidden grid grid-cols-2 sm:grid-cols-3 gap-6 w-full py-4 justify-items-center">
+            {teamList.map((member) => (
+              <div key={member.id} className="flex flex-col items-center text-center">
+                <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full overflow-hidden bg-slate-900 border border-slate-100 shadow-lg relative">
+                  <TeamAvatar name={member.id as any} className="w-[120%] h-[120%] object-cover scale-110 mt-2" />
+                </div>
+                <span className="text-[8px] font-mono font-bold text-blue-500 tracking-wider block uppercase mt-3">{member.role}</span>
+                <h3 className="text-xs font-black text-slate-800 tracking-tight mt-0.5">{member.name}</h3>
+              </div>
+            ))}
+          </div>
 
-          {/* Portrait 1: Leader (Vico Tegar) */}
-          <motion.div
-            style={{ y: y1 }}
-            className="th-card relative lg:absolute lg:left-[0%] lg:top-[5%] w-full lg:w-[130px] xl:w-[150px] aspect-[4/5] bg-white border border-slate-200/80 rounded-[20px] p-3 shadow-lg group hover:shadow-xl transition-shadow duration-500 z-20 flex flex-col"
-          >
-            <div className="w-full flex-grow rounded-[12px] bg-slate-950 relative overflow-hidden flex items-center justify-center">
-              <TeamAvatar name="vico" className="w-[120%] h-[120%] mt-8 object-cover scale-110 group-hover:scale-105 transition-transform duration-700" />
+          {/* Desktop Layout (Interactive typographic selection + animated fluid display) */}
+          <div className="hidden lg:grid grid-cols-12 gap-8 w-full h-[420px] items-center">
+            
+            {/* Left part: Names list (Interactive hover list) */}
+            <div className="col-span-7 flex flex-col justify-center space-y-4 pr-4">
+              {teamList.map((member) => {
+                const isActive = activeId === member.id;
+                return (
+                  <div
+                    key={member.id}
+                    onMouseEnter={() => setActiveId(member.id)}
+                    className="th-item group cursor-pointer py-2.5 border-b border-slate-100 hover:border-slate-300 transition-all duration-300 relative flex items-center justify-between"
+                  >
+                    <div>
+                      <span className={`text-[8px] font-mono font-bold tracking-widest uppercase block transition-colors duration-300 ${isActive ? "text-blue-500" : "text-slate-400"}`}>
+                        {member.role}
+                      </span>
+                      <h3 className={`text-xl xl:text-2xl font-black tracking-tight mt-1 transition-all duration-300 ${isActive ? "text-slate-900 translate-x-3" : "text-slate-400 group-hover:text-slate-600"}`}>
+                        {member.name}
+                      </h3>
+                    </div>
+                    {isActive && (
+                      <motion.div
+                        layoutId="activePointer"
+                        className="text-blue-500 mr-2"
+                        transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                      >
+                        <ArrowRight size={18} strokeWidth={2.5} />
+                      </motion.div>
+                    )}
+                  </div>
+                );
+              })}
             </div>
-            <div className="mt-2 text-center">
-              <span className="text-[8px] font-mono font-bold text-blue-500 tracking-wider block">LEADER</span>
-              <h3 className="text-[11px] font-black text-slate-800 tracking-tight leading-none mt-0.5">Vico Tegar</h3>
-            </div>
-          </motion.div>
 
-          {/* Portrait 2: Frontend (Samuel Sukarno) */}
-          <motion.div
-            style={{ y: y2 }}
-            className="th-card relative lg:absolute lg:left-[25%] lg:bottom-[5%] w-full lg:w-[120px] xl:w-[140px] aspect-[4/5] bg-white border border-slate-200/80 rounded-[20px] p-3 shadow-lg group hover:shadow-xl transition-shadow duration-500 z-10 flex flex-col"
-          >
-            <div className="w-full flex-grow rounded-[12px] bg-emerald-950 relative overflow-hidden flex items-center justify-center">
-              <TeamAvatar name="samuel" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+            {/* Right part: Portrait showcase (Dynamic canvas) */}
+            <div className="th-photo col-span-5 relative w-full h-full rounded-[28px] overflow-hidden bg-slate-950 shadow-2xl border border-slate-200/20">
+              <AnimatePresence mode="wait">
+                {teamList.map((member) => {
+                  const isActive = activeId === member.id;
+                  if (!isActive) return null;
+                  return (
+                    <motion.div
+                      key={member.id}
+                      initial={{ opacity: 0, scale: 1.04 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 1.04 }}
+                      transition={{ duration: 0.45, ease: [0.25, 1, 0.5, 1] }}
+                      className="absolute inset-0 w-full h-full"
+                    >
+                      <TeamAvatar 
+                        name={member.id as any} 
+                        className="w-[120%] h-[120%] object-cover opacity-90" 
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent pointer-events-none" />
+                    </motion.div>
+                  );
+                })}
+              </AnimatePresence>
             </div>
-            <div className="mt-2 text-center">
-              <span className="text-[8px] font-mono font-bold text-emerald-500 tracking-wider block">FRONTEND</span>
-              <h3 className="text-[11px] font-black text-slate-800 tracking-tight leading-none mt-0.5">Samuel Sukarno</h3>
-            </div>
-          </motion.div>
 
-          {/* Portrait 3: Backend (Muhammad Cavendio) */}
-          <motion.div
-            style={{ y: y3 }}
-            className="th-card relative lg:absolute lg:left-[50%] lg:top-[5%] w-full lg:w-[130px] xl:w-[150px] aspect-[4/5] bg-white border border-slate-200/80 rounded-[20px] p-3 shadow-lg group hover:shadow-xl transition-shadow duration-500 z-30 flex flex-col"
-          >
-            <div className="w-full flex-grow rounded-[12px] bg-indigo-950 relative overflow-hidden flex items-center justify-center">
-              <TeamAvatar name="cavendio" className="w-[120%] h-[120%] mt-8 object-cover scale-110 group-hover:scale-105 transition-transform duration-700" />
-            </div>
-            <div className="mt-2 text-center">
-              <span className="text-[8px] font-mono font-bold text-indigo-500 tracking-wider block">BACKEND</span>
-              <h3 className="text-[11px] font-black text-slate-800 tracking-tight leading-none mt-0.5">Muhammad Cavendio</h3>
-            </div>
-          </motion.div>
-
-          {/* Portrait 4: Server (Hasyim Ridwan) */}
-          <motion.div
-            style={{ y: y4 }}
-            className="th-card relative lg:absolute lg:left-[75%] lg:bottom-[5%] w-full lg:w-[120px] xl:w-[140px] aspect-[4/5] bg-white border border-slate-200/80 rounded-[20px] p-3 shadow-lg group hover:shadow-xl transition-shadow duration-500 z-40 flex flex-col"
-          >
-            <div className="w-full flex-grow rounded-[12px] bg-sky-950 relative overflow-hidden flex items-center justify-center">
-              <TeamAvatar name="hasyim" className="w-[120%] h-[120%] mt-8 object-cover scale-110 group-hover:scale-105 transition-transform duration-700" />
-            </div>
-            <div className="mt-2 text-center">
-              <span className="text-[8px] font-mono font-bold text-sky-500 tracking-wider block">DEVOPS</span>
-              <h3 className="text-[11px] font-black text-slate-800 tracking-tight leading-none mt-0.5">Hasyim Ridwan</h3>
-            </div>
-          </motion.div>
+          </div>
 
         </div>
       </div>
