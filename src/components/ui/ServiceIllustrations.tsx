@@ -48,7 +48,7 @@ export const WebDevIllustration: React.FC<IllustrationProps> = ({ isHovered }) =
         style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
         className="w-full h-full absolute inset-0 flex items-center justify-center"
       >
-        <svg viewBox="0 0 100 100" fill="none" className="w-[85%] h-[85%] overflow-visible" strokeLinejoin="round">
+        <svg viewBox="0 0 100 100" fill="none" className="w-[85%] h-[85%] overflow-visible" strokeLinejoin="round" aria-hidden="true" focusable="false">
           
           {/* Base Block (Bottom) */}
           <motion.g animate={{ opacity: isHovered ? 1 : 0.6 }} transition={{ duration: 0.8, ease: SLOW_EASE }}>
@@ -114,7 +114,7 @@ export const WebDevIllustration: React.FC<IllustrationProps> = ({ isHovered }) =
 export const DashboardIllustration: React.FC<IllustrationProps> = ({ isHovered }) => {
   return (
     <div className="w-full h-full relative flex items-center justify-center">
-      <svg viewBox="0 0 100 100" fill="none" className="w-[85%] h-[85%] overflow-visible" strokeLinejoin="round">
+      <svg viewBox="0 0 100 100" fill="none" className="w-[85%] h-[85%] overflow-visible" strokeLinejoin="round" aria-hidden="true" focusable="false">
         {/* Isometric Grid Floor */}
         <motion.g animate={{ opacity: isHovered ? 0.8 : 0.4 }} transition={{ duration: 0.8, ease: SLOW_EASE }}>
           {/* Base plane */}
@@ -169,7 +169,7 @@ export const DashboardIllustration: React.FC<IllustrationProps> = ({ isHovered }
 export const MobileAppIllustration: React.FC<IllustrationProps> = ({ isHovered }) => {
   return (
     <div className="w-full h-full relative flex items-center justify-center">
-      <svg viewBox="0 0 100 100" fill="none" className="w-[85%] h-[85%] overflow-visible" strokeLinejoin="round">
+      <svg viewBox="0 0 100 100" fill="none" className="w-[85%] h-[85%] overflow-visible" strokeLinejoin="round" aria-hidden="true" focusable="false">
         <motion.g animate={{ y: isHovered ? 2 : -2 }} transition={{ duration: 3, repeat: Infinity, repeatType: "reverse", ease: "easeInOut" }}>
           
           {/* Base Phone Body */}
@@ -240,7 +240,7 @@ export const ITSystemsIllustration: React.FC<IllustrationProps> = ({ isHovered }
 
   return (
     <div className="w-full h-full relative flex items-center justify-center">
-      <svg viewBox="0 0 100 100" fill="none" className="w-[85%] h-[85%] overflow-visible" strokeLinejoin="round">
+      <svg viewBox="0 0 100 100" fill="none" className="w-[85%] h-[85%] overflow-visible" strokeLinejoin="round" aria-hidden="true" focusable="false">
         <motion.g 
           animate={{ 
             y: [0, -3, 0],
@@ -339,7 +339,7 @@ export const ITSystemsIllustration: React.FC<IllustrationProps> = ({ isHovered }
 export const CloudDevOpsIllustration: React.FC<IllustrationProps> = ({ isHovered }) => {
   return (
     <div className="w-full h-full relative flex items-center justify-center">
-      <svg viewBox="0 0 100 100" fill="none" className="w-[85%] h-[85%] overflow-visible" strokeLinejoin="round">
+      <svg viewBox="0 0 100 100" fill="none" className="w-[85%] h-[85%] overflow-visible" strokeLinejoin="round" aria-hidden="true" focusable="false">
         <motion.g animate={{ opacity: isHovered ? 1 : 0.5 }} transition={{ duration: 0.8, ease: SLOW_EASE }}>
           
           {/* Back Cube */}
@@ -382,7 +382,7 @@ export const CloudDevOpsIllustration: React.FC<IllustrationProps> = ({ isHovered
 export const UIDesignIllustration: React.FC<IllustrationProps> = ({ isHovered }) => {
   return (
     <div className="w-full h-full relative flex items-center justify-center">
-      <svg viewBox="0 0 100 100" fill="none" className="w-[85%] h-[85%] overflow-visible" strokeLinejoin="round">
+      <svg viewBox="0 0 100 100" fill="none" className="w-[85%] h-[85%] overflow-visible" strokeLinejoin="round" aria-hidden="true" focusable="false">
         <motion.g animate={{ opacity: isHovered ? 1 : 0.6 }} transition={{ duration: 0.8, ease: SLOW_EASE }}>
           
           {/* Series of vertical plates stepped isometrically */}

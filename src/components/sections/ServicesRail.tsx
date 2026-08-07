@@ -224,7 +224,7 @@ export default function ServicesRail() {
               >
                 FIG 0{active + 1}
               </span>
-              <span className="text-[10px] font-mono text-slate-400 tracking-widest">
+              <span className="text-[10px] font-mono text-slate-600 tracking-widest">
                 / {String(total).padStart(2, "0")}
               </span>
             </div>
@@ -320,9 +320,9 @@ export default function ServicesRail() {
                 <button
                   onClick={() => go(-1)}
                   aria-label="Previous service"
-                  className="w-8 h-8 rounded-full border border-slate-200/80 flex items-center justify-center text-slate-400 hover:text-slate-900 hover:border-slate-300 transition-all duration-200"
+                  className="w-8 h-8 rounded-full border border-slate-200/80 flex items-center justify-center text-slate-600 hover:text-slate-900 hover:border-slate-300 transition-all duration-200"
                 >
-                  <ChevronLeft size={16} />
+                  <ChevronLeft size={16} aria-hidden="true" />
                 </button>
                 
                 {/* Index Indicator */}
@@ -335,7 +335,7 @@ export default function ServicesRail() {
                 <button
                   onClick={() => go(1)}
                   aria-label="Next service"
-                  className="w-8 h-8 rounded-full border border-slate-200/80 flex items-center justify-center text-slate-400 hover:text-slate-900 hover:border-slate-300 transition-all duration-200"
+                  className="w-8 h-8 rounded-full border border-slate-200/80 flex items-center justify-center text-slate-600 hover:text-slate-900 hover:border-slate-300 transition-all duration-200"
                 >
                   <ChevronRight size={16} />
                 </button>
@@ -380,7 +380,7 @@ export default function ServicesRail() {
                   className="flex flex-col gap-6 max-w-xl"
                 >
                   {/* Category Indicator (Premium Monospace) */}
-                  <div className="flex items-center gap-2 text-[10px] md:text-xs font-mono tracking-[0.25em] uppercase text-slate-400 select-none">
+                  <div className="flex items-center gap-2 text-[10px] md:text-xs font-mono tracking-[0.25em] uppercase text-slate-600 select-none">
                     <span>[{String(active + 1).padStart(2, "0")} // {service.category}]</span>
                   </div>
 
@@ -400,7 +400,7 @@ export default function ServicesRail() {
                   </p>
 
                   {/* Tags (Sleek Monospace Inline list) */}
-                  <div className="text-[10px] md:text-xs font-mono tracking-widest text-slate-400 uppercase select-none leading-relaxed">
+                  <div className="text-[10px] md:text-xs font-mono tracking-widest text-slate-600 uppercase select-none leading-relaxed">
                     {tags.join("  //  ")}
                   </div>
 
@@ -410,12 +410,12 @@ export default function ServicesRail() {
                   {/* Specs Table (Clean tech specifications) */}
                   <div className="flex flex-wrap items-center gap-x-6 gap-y-3 text-xs md:text-sm font-mono text-slate-500 select-none">
                     <div className="flex items-center">
-                      <span className="text-slate-400 uppercase tracking-widest mr-2">DUR. //</span>
+                      <span className="text-slate-600 uppercase tracking-widest mr-2">DUR. //</span>
                       <span className="text-slate-800 font-bold">{service.duration}</span>
                     </div>
                     <div className="w-1.5 h-1.5 rounded-full bg-slate-300" />
                     <div className="flex items-center">
-                      <span className="text-slate-400 uppercase tracking-widest mr-2">TIER //</span>
+                      <span className="text-slate-600 uppercase tracking-widest mr-2">TIER //</span>
                       <span className="text-slate-800 font-bold">{service.level}</span>
                     </div>
                   </div>
@@ -446,7 +446,7 @@ export default function ServicesRail() {
 
         {/* Mobile: horizontal dot scroller caption */}
         <div className="absolute bottom-0 left-0 right-0 lg:hidden bg-gradient-to-t from-[#FAFAFA] via-[#FAFAFA]/80 to-transparent pt-12 pb-6 px-6 flex items-center justify-between pointer-events-none">
-          <span className="text-[10px] font-mono text-slate-400 uppercase tracking-widest">
+          <span className="text-[10px] font-mono text-slate-600 uppercase tracking-widest">
             FIG 0{active + 1} / {String(total).padStart(2, "0")}
           </span>
           <div className="flex items-center gap-1.5 pointer-events-auto">

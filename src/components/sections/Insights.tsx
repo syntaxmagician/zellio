@@ -121,7 +121,7 @@ export default function Insights() {
                 <div className="mt-4">
                   <Link href={`/insights/${activeStory.slug}`} className="group inline-flex items-center gap-2 text-sm font-bold text-white bg-slate-900 hover:bg-slate-800 px-7 py-3.5 rounded-full transition-all duration-300 shadow-md hover:shadow-xl">
                     <span>{activeStory[language].buttonText}</span>
-                    <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+                    <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
                   </Link>
                 </div>
               </motion.div>
@@ -148,7 +148,7 @@ export default function Insights() {
 
         {/* Thumbnail Strip (Native Swipe/Scroll) */}
         <div className="flex flex-col gap-4 relative z-20">
-           <div className="flex justify-between items-center text-slate-400 text-[10px] font-mono tracking-[0.2em] uppercase">
+           <div className="flex justify-between items-center text-slate-600 text-[10px] font-mono tracking-[0.2em] uppercase">
              <span>01 &mdash; 07 Stories</span>
              <span>Swipe to Explore</span>
            </div>

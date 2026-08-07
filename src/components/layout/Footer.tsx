@@ -4,10 +4,6 @@ import Link from "next/link";
 import {
   ArrowUp,
   Globe,
-  MessageSquare,
-  Share2,
-  Video,
-  Code2,
 } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 import Image from "next/image";
@@ -18,29 +14,26 @@ const localText = {
     backToTop: "Back to top",
     footerLinks: {
       Company: [
-        { label: "About Zellio", href: "#about" },
-        { label: "Vision & Mission", href: "#vision-mission" },
-        { label: "Our Team", href: "#" },
-        { label: "Careers", href: "#" },
-        { label: "Press", href: "#" },
+        { label: "About Zellio", href: "/#about" },
+        { label: "Our Team", href: "/team" },
+        { label: "Contact", href: "/contact" },
       ],
       Services: [
-        { label: "UI/UX Design", href: "#services" },
-        { label: "Custom Web Dev", href: "#services" },
-        { label: "Admin Dashboards", href: "#services" },
-        { label: "Mobile Apps", href: "#services" },
-        { label: "Business Systems", href: "#services" },
+        { label: "UI/UX Design", href: "/services" },
+        { label: "Custom Web Dev", href: "/services" },
+        { label: "Admin Dashboards", href: "/services" },
+        { label: "Mobile Apps", href: "/services" },
+        { label: "Business Systems", href: "/services" },
       ],
       Resources: [
-        { label: "Blog", href: "#" },
-        { label: "Case Studies", href: "#" },
-        { label: "Client Portal", href: "#" },
-        { label: "FAQs", href: "#faq" },
-        { label: "System Status", href: "#" },
+        { label: "Portfolio", href: "/portfolio" },
+        { label: "FAQs", href: "/#faq" },
       ],
       Contact: [
         { label: "Get in Touch", href: "/contact" },
         { label: "Request a Quote", href: "/contact?intent=quote" },
+      ],
+      Legal: [
         { label: "Privacy Policy", href: "/privacy-policy" },
         { label: "Terms of Service", href: "/terms-of-service" },
         { label: "Cookie Policy", href: "/cookie-policy" },
@@ -52,29 +45,26 @@ const localText = {
     backToTop: "Kembali ke atas",
     footerLinks: {
       Perusahaan: [
-        { label: "Tentang Zellio", href: "#about" },
-        { label: "Visi & Misi", href: "#vision-mission" },
-        { label: "Tim Kami", href: "#" },
-        { label: "Karir", href: "#" },
-        { label: "Berita", href: "#" },
+        { label: "Tentang Zellio", href: "/#about" },
+        { label: "Tim Kami", href: "/team" },
+        { label: "Kontak", href: "/contact" },
       ],
       Layanan: [
-        { label: "Desain UI/UX", href: "#services" },
-        { label: "Website Kustom", href: "#services" },
-        { label: "Dashboard Admin", href: "#services" },
-        { label: "Aplikasi Mobile", href: "#services" },
-        { label: "Sistem IT Kustom", href: "#services" },
+        { label: "Desain UI/UX", href: "/services" },
+        { label: "Website Kustom", href: "/services" },
+        { label: "Dashboard Admin", href: "/services" },
+        { label: "Aplikasi Mobile", href: "/services" },
+        { label: "Sistem IT Kustom", href: "/services" },
       ],
       Sumber: [
-        { label: "Blog", href: "#" },
-        { label: "Studi Kasus", href: "#" },
-        { label: "Portal Klien", href: "#" },
-        { label: "Pertanyaan (FAQ)", href: "#faq" },
-        { label: "Status Sistem", href: "#" },
+        { label: "Portofolio", href: "/portfolio" },
+        { label: "Pertanyaan (FAQ)", href: "/#faq" },
       ],
       Kontak: [
         { label: "Hubungi Kami", href: "/contact" },
         { label: "Minta Penawaran", href: "/contact?intent=quote" },
+      ],
+      Legal: [
         { label: "Kebijakan Privasi", href: "/privacy-policy" },
         { label: "Syarat & Ketentuan", href: "/terms-of-service" },
         { label: "Kebijakan Cookie", href: "/cookie-policy" },
@@ -84,11 +74,7 @@ const localText = {
 };
 
 const socials = [
-  { icon: Globe, href: "http://linkedin.com/company/zellio-id", label: "LinkedIn" },
-  { icon: MessageSquare, href: "#", label: "Twitter" },
-  { icon: Share2, href: "#", label: "Instagram" },
-  { icon: Video, href: "#", label: "YouTube" },
-  { icon: Code2, href: "#", label: "GitHub" },
+  { icon: Globe, href: "https://www.linkedin.com/company/zellio-id", label: "LinkedIn" },
 ];
 
 export default function Footer() {
@@ -146,9 +132,9 @@ export default function Footer() {
             <div className="lg:col-span-7 grid grid-cols-2 md:grid-cols-4 gap-8">
               {Object.entries(text.footerLinks).map(([title, links]) => (
                 <div key={title} className="flex flex-col">
-                  <h4 className="text-white text-xs font-bold uppercase tracking-wider mb-5">
+                  <p className="text-white text-xs font-bold uppercase tracking-wider mb-5">
                     {title}
-                  </h4>
+                  </p>
                   <ul className="space-y-3.5">
                     {links.map((link, index) => (
                       <li key={index}>
@@ -170,20 +156,21 @@ export default function Footer() {
         {/* Bottom Footer */}
         <div className="border-t border-white/5 bg-[#090D1A]">
           <div className="section-container py-6 flex flex-col md:flex-row items-center justify-between gap-4">
-            <p className="text-[#64748B] text-sm text-center md:text-left">
+            <p className="text-[#94A3B8] text-sm text-center md:text-left">
               &copy; {new Date().getFullYear()} ZELLIO. All rights reserved.
             </p>
 
             {/* Bottom Legal Links */}
-            <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs text-[#64748B]">
+            {/* Bottom Legal Links — different labels from footer columns to avoid identical-name collisions */}
+            <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs text-[#94A3B8]">
               <Link href={`/${language}/privacy-policy`} className="hover:text-white transition-colors">
-                {language === "en" ? "Privacy Policy" : "Kebijakan Privasi"}
+                {language === "en" ? "Privacy" : "Privasi"}
               </Link>
               <Link href={`/${language}/terms-of-service`} className="hover:text-white transition-colors">
-                {language === "en" ? "Terms of Service" : "Syarat & Ketentuan"}
+                {language === "en" ? "Terms" : "Ketentuan"}
               </Link>
               <Link href={`/${language}/cookie-policy`} className="hover:text-white transition-colors">
-                {language === "en" ? "Cookie Policy" : "Kebijakan Cookie"}
+                {language === "en" ? "Cookies" : "Cookie"}
               </Link>
             </div>
 

@@ -206,7 +206,7 @@ function EngineeringWorkflowSectionContent({ language }: { language: "en" | "id"
                       <div className={`col-span-7 flex items-start gap-2.5 px-4 py-4 bg-[#EAF2FC]/40 border-x border-blue-100/40 ${isLast ? "rounded-bl-2xl" : ""
                         }`}>
                         <div className="w-5 h-5 rounded-full bg-emerald-500 text-white flex items-center justify-center flex-shrink-0 mt-0.5 shadow-sm border border-emerald-400/20">
-                          <Check size={11} strokeWidth={4} />
+                          <Check size={11} strokeWidth={4} aria-hidden="true" />
                         </div>
                         <div className="flex-1 min-w-0">
                           <p className="font-bold text-slate-800 text-xs md:text-[14px] leading-snug">
@@ -222,7 +222,7 @@ function EngineeringWorkflowSectionContent({ language }: { language: "en" | "id"
                       <div className={`col-span-5 flex items-start gap-2.5 px-4 py-4 bg-white border-r border-slate-200/60 ${isLast ? "rounded-br-2xl border-b border-slate-200/60" : ""
                         }`}>
                         <div className="w-5 h-5 rounded-full bg-rose-500 text-white flex items-center justify-center flex-shrink-0 mt-0.5 shadow-sm border border-rose-400/20">
-                          <X size={11} strokeWidth={4} />
+                          <X size={11} strokeWidth={4} aria-hidden="true" />
                         </div>
                         <div className="flex-1 min-w-0">
                           <p className="text-slate-500 text-[11px] md:text-[13px] font-medium leading-relaxed mt-0.5">

@@ -8,13 +8,14 @@ const plusJakarta = Plus_Jakarta_Sans({
   variable: "--font-plus-jakarta",
   subsets: ["latin"],
   display: "swap",
-  weight: ["300", "400", "500", "600", "700", "800"],
+  weight: ["400", "500", "600", "700", "800"],
 });
 
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
   display: "swap",
+  weight: ["400", "500", "600"],
 });
 
 export const metadata: Metadata = {
@@ -27,12 +28,12 @@ export const metadata: Metadata = {
     "ZELLIO is a software house in Indonesia specializing in modern websites, custom web & mobile applications, enterprise software, SaaS platforms, and scalable digital solutions for growing businesses.",
   icons: {
     icon: [
-      { url: '/zellio_logo.png', media: '(prefers-color-scheme: light)' },
-      { url: '/icon-light.png', media: '(prefers-color-scheme: dark)' },
+      { url: '/icon-light.png', media: '(prefers-color-scheme: light)' },
+      { url: '/icon-dark.png', media: '(prefers-color-scheme: dark)' },
+      { url: '/icon.png' },
     ],
     apple: [
-      { url: '/zellio_logo.png', media: '(prefers-color-scheme: light)' },
-      { url: '/icon-light.png', media: '(prefers-color-scheme: dark)' },
+      { url: '/icon.png' },
     ]
   },
   keywords: ["ZELLIO", "software house Indonesia", "web development", "custom software"],

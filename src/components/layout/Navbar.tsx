@@ -451,7 +451,7 @@ export default function Navbar() {
                   </div>
 
                   <a
-                    href="https://wa.me/6285158945811"
+              href="https://wa.me/6285158945811?text=Saya%20ingin%20kosultasi%20mengenai%20project%20yang%20saya%20sedang%20kembangkan%2C%20"
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={() => setMobileOpen(false)}

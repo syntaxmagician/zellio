@@ -48,7 +48,7 @@ const rowTwo = clientLogos.filter((c) => !c.hidden && !ROW_ONE.includes(c.slug))
 function LogoTile({ client, language }: { client: ClientLogo; language: "en" | "id" }) {
   return (
     <li className="group w-[176px] sm:w-[204px] h-[96px] sm:h-[104px] mr-8 sm:mr-12 flex-shrink-0 flex flex-col items-center justify-center gap-3 select-none">
-      <span className="text-[9px] font-mono font-bold uppercase tracking-[0.18em] text-slate-400 group-hover:text-blue-600 transition-colors duration-300 whitespace-nowrap">
+      <span className="text-[9px] font-mono font-bold uppercase tracking-[0.18em] text-slate-600 group-hover:text-blue-600 transition-colors duration-300 whitespace-nowrap">
         {client.sector[language]}
       </span>
       <div className="flex-1 min-h-0 flex items-center justify-center">
@@ -213,7 +213,7 @@ export default function TrustedBy() {
               <span className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight tabular-nums">
                 {t.value}
               </span>
-              <span className="text-[10px] font-mono font-bold tracking-[0.25em] uppercase text-slate-500">
+              <span className="text-[10px] font-mono font-bold tracking-[0.25em] uppercase text-slate-600">
                 {t.label}
               </span>
             </div>

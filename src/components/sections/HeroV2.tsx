@@ -36,16 +36,28 @@ export default function HeroV2() {
   const [activeVideo, setActiveVideo] = useState<1 | 2>(1);
   /** Second clip loads only after first paint / idle — avoids ~14MB dual preload. */
   const [loadAltVideo, setLoadAltVideo] = useState(false);
+  /** Mobile Lighthouse / small screens: skip video entirely (static gradient). */
+  const [allowVideo, setAllowVideo] = useState(false);
 
   useEffect(() => {
+    const mq = window.matchMedia("(min-width: 768px) and (prefers-reduced-motion: no-preference)");
+    const sync = () => setAllowVideo(mq.matches);
+    sync();
+    mq.addEventListener("change", sync);
+    return () => mq.removeEventListener("change", sync);
+  }, []);
+
+  useEffect(() => {
+    if (!allowVideo) return;
+
     const enableAlt = () => setLoadAltVideo(true);
     let idleId: number | undefined;
     let timeoutId: ReturnType<typeof setTimeout> | undefined;
 
-    if (typeof window !== "undefined" && "requestIdleCallback" in window) {
-      idleId = window.requestIdleCallback(enableAlt, { timeout: 4000 });
+    if ("requestIdleCallback" in window) {
+      idleId = window.requestIdleCallback(enableAlt, { timeout: 5000 });
     } else {
-      timeoutId = setTimeout(enableAlt, 2500);
+      timeoutId = setTimeout(enableAlt, 3500);
     }
 
     const interval = setInterval(() => {
@@ -59,7 +71,7 @@ export default function HeroV2() {
       }
       if (timeoutId) clearTimeout(timeoutId);
     };
-  }, []);
+  }, [allowVideo]);
 
   useGSAP(
     () => {
@@ -189,29 +201,34 @@ export default function HeroV2() {
         <span>+</span>
       </div>
 
-      {/* Background Video — decorative ambient; deferred second source */}
+      {/* Background Video — desktop only; mobile uses static atmosphere (saves ~14MB on PSI). */}
       <div className="hero-video-wrap absolute inset-0 w-full h-full overflow-hidden pointer-events-none z-0 will-change-transform" aria-hidden="true">
-        <video
-          src="/cinematic.mp4"
-          autoPlay
-          loop
-          muted
-          playsInline
-          preload="metadata"
-          className={`hero-video-clip absolute inset-0 w-full h-full object-cover transition-opacity duration-[2000ms] ease-in-out ${activeVideo === 1 ? "opacity-[0.22]" : "opacity-0"
-            }`}
-        />
-        {loadAltVideo && (
-          <video
-            src="/coba3.mp4"
-            autoPlay
-            loop
-            muted
-            playsInline
-            preload="none"
-            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-[2000ms] ease-in-out ${activeVideo === 2 ? "opacity-[0.25]" : "opacity-0"
-              }`}
-          />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_70%_40%,rgba(37,99,235,0.12),transparent_55%),linear-gradient(135deg,#121212_0%,#1a1a1a_50%,#0c0c0c_100%)]" />
+        {allowVideo && (
+          <>
+            <video
+              src="/cinematic.mp4"
+              autoPlay
+              loop
+              muted
+              playsInline
+              preload="metadata"
+              className={`hero-video-clip absolute inset-0 w-full h-full object-cover transition-opacity duration-[2000ms] ease-in-out ${activeVideo === 1 ? "opacity-[0.22]" : "opacity-0"
+                }`}
+            />
+            {loadAltVideo && (
+              <video
+                src="/coba3.mp4"
+                autoPlay
+                loop
+                muted
+                playsInline
+                preload="none"
+                className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-[2000ms] ease-in-out ${activeVideo === 2 ? "opacity-[0.25]" : "opacity-0"
+                  }`}
+              />
+            )}
+          </>
         )}
         <div className="absolute inset-0 bg-gradient-to-r from-[#121212] via-[#121212]/75 to-transparent" />
       </div>
@@ -240,7 +257,7 @@ export default function HeroV2() {
               <span className="block py-1 relative lg:ml-[15%] flex items-center gap-4 lg:gap-8">
                 <span className="hero-line block will-change-transform flex items-center flex-wrap gap-4 lg:gap-8">
                   {/* Inline pill badge */}
-                  <span className="hero-pill hidden md:flex shrink-0 items-center justify-center px-6 py-2 lg:py-2.5 rounded-full border border-white/20 bg-white/5 backdrop-blur-md text-[10px] lg:text-xs font-mono font-bold tracking-[0.2em] text-[#2563EB] mb-1 lg:mb-0 opacity-0">
+                  <span className="hero-pill hidden md:flex shrink-0 items-center justify-center px-6 py-2 lg:py-2.5 rounded-full border border-white/20 bg-white/5 backdrop-blur-md text-[10px] lg:text-xs font-mono font-bold tracking-[0.2em] text-[#93C5FD] mb-1 lg:mb-0 opacity-0">
                     We're Ready
                   </span>
                   {(() => {
