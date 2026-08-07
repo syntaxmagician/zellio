@@ -35,7 +35,7 @@ export const metadata: Metadata = {
       { url: '/icon-light.png', media: '(prefers-color-scheme: dark)' },
     ]
   },
-  keywords: ["ZELLIO", "digital engineering", "software development"],
+  keywords: ["ZELLIO", "software house Indonesia", "web development", "custom software"],
   authors: [{ name: "ZELLIO Team" }],
   creator: "ZELLIO",
   publisher: "ZELLIO",

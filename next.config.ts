@@ -47,6 +47,15 @@ const nextConfig: NextConfig = {
       },
     ];
   },
+  async redirects() {
+    return [
+      {
+        source: "/DIGIFORE-Company-Profile.html",
+        destination: "/en",
+        permanent: true,
+      },
+    ];
+  },
   async headers() {
     return [
       {

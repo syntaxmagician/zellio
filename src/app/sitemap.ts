@@ -6,86 +6,79 @@ import { projects } from '@/lib/portfolioData';
 
 const BASE_URL = 'https://zellio.id';
 
+/** Canonical URLs match middleware locale prefix (/en/...). */
+function url(path = ''): string {
+  const normalized = path.replace(/^\//, '');
+  return normalized ? `${BASE_URL}/en/${normalized}` : `${BASE_URL}/en`;
+}
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const serviceUrls = servicesData.map((service) => ({
-    url: `${BASE_URL}/services/${slugify(service.title)}`,
+    url: url(`services/${slugify(service.title)}`),
     lastModified: new Date(),
-    changeFrequency: 'weekly' as const,
+    changeFrequency: 'monthly' as const,
     priority: 0.8,
   }));
 
   const insightUrls = insightsData.map((insight) => ({
-    url: `${BASE_URL}/insights/${insight.slug}`,
+    url: url(`insights/${insight.slug}`),
     lastModified: new Date(),
-    changeFrequency: 'weekly' as const,
+    changeFrequency: 'monthly' as const,
     priority: 0.7,
   }));
 
   const portfolioUrls = projects.map((project) => ({
-    url: `${BASE_URL}/portfolio/${project.slug}`,
+    url: url(`portfolio/${project.slug}`),
     lastModified: new Date(),
-    changeFrequency: 'weekly' as const,
+    changeFrequency: 'monthly' as const,
     priority: 0.8,
   }));
 
   return [
     {
-      url: BASE_URL,
+      url: url(),
       lastModified: new Date(),
-      changeFrequency: 'yearly',
+      changeFrequency: 'weekly',
       priority: 1,
     },
     {
-      url: `${BASE_URL}/llms.txt`,
+      url: url('portfolio'),
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.9,
     },
     {
-      url: `${BASE_URL}/llms-full.txt`,
+      url: url('services'),
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.9,
+    },
+    {
+      url: url('team'),
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.8,
     },
     {
-      url: `${BASE_URL}/portfolio`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.9,
-    },
-    {
-      url: `${BASE_URL}/services`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.9,
-    },
-    {
-      url: `${BASE_URL}/team`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${BASE_URL}/contact`,
+      url: url('contact'),
       lastModified: new Date(),
       changeFrequency: 'yearly',
       priority: 0.7,
     },
     {
-      url: `${BASE_URL}/privacy-policy`,
+      url: url('privacy-policy'),
       lastModified: new Date(),
       changeFrequency: 'yearly',
       priority: 0.3,
     },
     {
-      url: `${BASE_URL}/terms-of-service`,
+      url: url('terms-of-service'),
       lastModified: new Date(),
       changeFrequency: 'yearly',
       priority: 0.3,
     },
     {
-      url: `${BASE_URL}/cookie-policy`,
+      url: url('cookie-policy'),
       lastModified: new Date(),
       changeFrequency: 'yearly',
       priority: 0.3,
@@ -95,4 +88,3 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...portfolioUrls,
   ];
 }
-
