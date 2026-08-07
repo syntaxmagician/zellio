@@ -150,11 +150,12 @@ export default function TrustedBy() {
         {/* Editorial header — same grammar as the other section headers */}
         <div className="flex flex-col lg:flex-row items-start lg:items-end justify-between gap-6 mb-10 lg:mb-12">
           <motion.div
-            initial={{ opacity: 0, y: rise }}
+            initial={false}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.6, ease: premiumEase }}
             className="max-w-2xl"
+            style={{ opacity: 1 }}
           >
             <span className="text-[10px] font-mono font-bold tracking-[0.25em] uppercase text-blue-600 mb-4 block">
               {text.badge}

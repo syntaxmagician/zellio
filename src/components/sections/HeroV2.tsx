@@ -47,7 +47,24 @@ export default function HeroV2() {
     () => {
       const mm = gsap.matchMedia();
 
-      mm.add("(prefers-reduced-motion: no-preference)", () => {
+      // Mobile + reduced motion: paint hero copy immediately (LCP/SI).
+      mm.add("(max-width: 767px), (prefers-reduced-motion: reduce)", () => {
+        gsap.set(
+          [
+            ".hero-eyebrow",
+            ".hero-line",
+            ".hero-desc",
+            ".hero-cta",
+            ".hero-foot",
+            ".hero-meta",
+            ".hero-pill",
+            ".hero-meta-bottom",
+          ],
+          { clearProps: "all", opacity: 1, y: 0, yPercent: 0, scale: 1 }
+        );
+      });
+
+      mm.add("(min-width: 768px) and (prefers-reduced-motion: no-preference)", () => {
         // ---- Intro timeline (plays once the splash releases the page) ----
         const tl = gsap.timeline({ paused: true, defaults: { ease: "power4.out" } });
 
@@ -78,22 +95,17 @@ export default function HeroV2() {
             { clipPath: "inset(0% 0% 0% 0%)", duration: 1.2, ease: "expo.out" },
             0.25
           )
-          // Lands early rather than last — it used to appear ~5s after load,
-          // by which point the reader has usually scrolled past it.
           .from(".hero-foot", { y: 12, opacity: 0, duration: 0.6 }, 0.5);
 
-        // The splash now plays on every visit, so wait for it — unless it has
-        // already finished (e.g. this is a remount after a language switch).
         let fallback: ReturnType<typeof setTimeout> | undefined;
         const play = () => tl.play();
         if (isReady()) {
           play();
         } else {
           window.addEventListener("zellio:ready", play, { once: true });
-          fallback = setTimeout(play, 4000);
+          fallback = setTimeout(play, 1200);
         }
 
-        // ---- Scroll-linked exit: copy drifts up, video sinks slower ----
         gsap
           .timeline({
             scrollTrigger: {
@@ -106,7 +118,6 @@ export default function HeroV2() {
           .to(".hero-copy", { y: -90, opacity: 0 }, 0)
           .to(".hero-video-wrap", { y: 140, scale: 1.06 }, 0);
 
-        // Scroll hint: the wheel dot falls and fades, then restarts.
         gsap
           .timeline({ repeat: -1, repeatDelay: 0.4 })
           .fromTo(
@@ -118,7 +129,6 @@ export default function HeroV2() {
           .to(".hero-scroll-dash", { y: 16, duration: 1.05, ease: "power2.inOut" }, 0)
           .to(".hero-scroll-dash", { opacity: 0, duration: 0.35, ease: "power1.in" }, 0.7);
 
-        // A slow bob on the body keeps the cue alive between dot cycles.
         gsap.to(".hero-mouse", {
           y: 4,
           duration: 1.6,
@@ -132,13 +142,6 @@ export default function HeroV2() {
           if (fallback) clearTimeout(fallback);
         };
       });
-
-      mm.add("(prefers-reduced-motion: reduce)", () => {
-        gsap.set(
-          [".hero-eyebrow", ".hero-line", ".hero-desc", ".hero-cta", ".hero-foot", ".hero-meta", ".hero-pill", ".hero-meta-bottom"],
-          { clearProps: "all" }
-        );
-      });
     },
     { scope: sectionRef, dependencies: [language], revertOnUpdate: true }
   );
@@ -149,13 +152,20 @@ export default function HeroV2() {
       ref={sectionRef}
       className="relative min-h-screen w-full flex flex-col bg-[#121212] overflow-hidden"
     >
-      {/* Background Typography - Faded Outline */}
-      <div className="absolute right-[-10%] top-[10%] lg:top-[15%] text-[45vw] lg:text-[28vw] font-black leading-none pointer-events-none select-none opacity-80"
-        style={{ WebkitTextStroke: "1px rgba(255,255,255,0.03)", color: "transparent" }}>
+      {/* Background Typography — desktop only. On mobile this giant webfont
+          text was chosen as LCP and added ~2.5s element-render delay. */}
+      <div
+        className="hidden lg:block absolute right-[-10%] top-[15%] text-[28vw] font-black leading-none pointer-events-none select-none opacity-80"
+        style={{ WebkitTextStroke: "1px rgba(255,255,255,0.03)", color: "transparent", fontFamily: "system-ui, sans-serif" }}
+        aria-hidden="true"
+      >
         Z E L L
       </div>
-      <div className="absolute right-[-15%] bottom-[5%] lg:bottom-[5%] text-[45vw] lg:text-[28vw] font-black leading-none pointer-events-none select-none opacity-80"
-        style={{ WebkitTextStroke: "1px rgba(255,255,255,0.03)", color: "transparent" }}>
+      <div
+        className="hidden lg:block absolute right-[-15%] bottom-[5%] text-[28vw] font-black leading-none pointer-events-none select-none opacity-80"
+        style={{ WebkitTextStroke: "1px rgba(255,255,255,0.03)", color: "transparent", fontFamily: "system-ui, sans-serif" }}
+        aria-hidden="true"
+      >
         I O
       </div>
 
@@ -193,7 +203,7 @@ export default function HeroV2() {
         <div className="w-full max-w-[1400px] mx-auto pointer-events-auto relative">
 
           {/* Top Left Label (Studio Intro) */}
-          <div className="hero-meta absolute top-[-50px] lg:top-[-80px] left-0 flex flex-col gap-2 opacity-0">
+          <div className="hero-meta absolute top-[-50px] lg:top-[-80px] left-0 flex flex-col gap-2 max-lg:opacity-100 opacity-0">
             <span className="text-[10px] font-mono font-bold tracking-[0.2em] text-[#60A5FA] uppercase">[ 01 // STUDIO INTRODUCTION ]</span>
             <span className="text-[10px] font-mono tracking-widest text-slate-300">EST. 2025</span>
           </div>

@@ -8,14 +8,16 @@ const plusJakarta = Plus_Jakarta_Sans({
   variable: "--font-plus-jakarta",
   subsets: ["latin"],
   display: "swap",
-  weight: ["400", "500", "600", "700", "800"],
+  weight: ["400", "600", "700", "800"],
+  preload: true,
 });
 
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
-  display: "swap",
-  weight: ["400", "500", "600"],
+  display: "optional",
+  weight: ["400", "500"],
+  preload: false,
 });
 
 export const metadata: Metadata = {
