@@ -2,6 +2,7 @@ import { MetadataRoute } from 'next';
 import { servicesData } from '@/lib/data';
 import { slugify } from "@/lib/slug";
 import { insightsData } from '@/lib/insightsData';
+import { projects } from '@/lib/portfolioData';
 
 const BASE_URL = 'https://zellio.id';
 
@@ -19,6 +20,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: new Date(),
     changeFrequency: 'weekly' as const,
     priority: 0.7,
+  }));
+
+  const portfolioUrls = projects.map((project) => ({
+    url: `${BASE_URL}/portfolio/${project.slug}`,
+    lastModified: new Date(),
+    changeFrequency: 'weekly' as const,
+    priority: 0.8,
   }));
 
   return [
@@ -84,5 +92,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     ...serviceUrls,
     ...insightUrls,
+    ...portfolioUrls,
   ];
 }
+
