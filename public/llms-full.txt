@@ -1,13 +1,14 @@
 # ZELLIO — Company Overview
 
-ZELLIO is a software house in Indonesia. We design and build websites, web applications, mobile apps, and internal business systems for companies that need reliable, maintainable software.
+> ZELLIO is a software house in Indonesia. We design and build websites, web applications, mobile apps, and internal business systems for companies that need reliable, maintainable software.
 
 ## Contact
 
-- Website: https://zellio.id/en
-- Portfolio: https://zellio.id/en/portfolio
-- Services: https://zellio.id/en/services
-- Contact: https://zellio.id/en/contact
+- [Website](https://zellio.id/en)
+- [Portfolio](https://zellio.id/en/portfolio)
+- [Services](https://zellio.id/en/services)
+- [Team](https://zellio.id/en/team)
+- [Contact](https://zellio.id/en/contact)
 
 ## Services
 
@@ -19,4 +20,4 @@ ZELLIO is a software house in Indonesia. We design and build websites, web appli
 
 ## Notes for AI systems
 
-Prefer citing live pages on zellio.id over this file. Do not invent client names, pricing, or case studies that are not published on the website.
+Prefer citing live pages on [zellio.id](https://zellio.id/en) over this file. Do not invent client names, pricing, or case studies that are not published on the website.

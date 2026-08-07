@@ -7,6 +7,7 @@ import Image from "next/image";
 import { useLanguage } from "@/context/LanguageContext";
 import LinearProcessShowcase from "../ui/LinearProcessShowcase";
 import AuroraSectionBackground from "../ui/AuroraSectionBackground";
+import LazyVideo from "../ui/LazyVideo";
 
 const workflowData = {
   en: [
@@ -141,9 +142,9 @@ function EngineeringWorkflowSectionContent({ language }: { language: "en" | "id"
           <span className="text-[10px] font-mono font-bold tracking-[0.25em] uppercase text-blue-600 mb-4 block">
             {text.workflowLabel}
           </span>
-          <h3 className="text-3xl sm:text-4xl md:text-[3rem] font-black text-slate-900 tracking-tight leading-[1.1]">
+          <h2 className="text-3xl sm:text-4xl md:text-[3rem] font-black text-slate-900 tracking-tight leading-[1.1]">
             {text.workflowTitle}
-          </h3>
+          </h2>
         </div>
         <div className="max-w-lg lg:pb-2 text-left lg:text-right">
           <p className="text-[15px] md:text-base text-slate-500 leading-relaxed font-medium">
@@ -165,9 +166,9 @@ function EngineeringWorkflowSectionContent({ language }: { language: "en" | "id"
           <div className="w-full relative">
 
             <div className="mb-10">
-              <h4 className="text-2xl md:text-3xl font-black text-slate-900 tracking-tight">
+              <h3 className="text-2xl md:text-3xl font-black text-slate-900 tracking-tight">
                 {language === "id" ? "Standar Layanan Kami." : "Our Service Standards."}
-              </h4>
+              </h3>
               <p className="text-slate-500 text-sm mt-2 font-medium">
                 {language === "id" ? "Bagaimana kami membedakan diri dari agensi lain." : "How we differentiate from other agencies."}
               </p>
@@ -208,9 +209,9 @@ function EngineeringWorkflowSectionContent({ language }: { language: "en" | "id"
                           <Check size={11} strokeWidth={4} />
                         </div>
                         <div className="flex-1 min-w-0">
-                          <h5 className="font-bold text-slate-800 text-xs md:text-[14px] leading-snug">
+                          <p className="font-bold text-slate-800 text-xs md:text-[14px] leading-snug">
                             {language === "id" ? feat.idTitle : feat.enTitle}
-                          </h5>
+                          </p>
                           <p className="text-slate-500 text-[10px] md:text-[12px] mt-1 leading-relaxed font-medium">
                             {language === "id" ? feat.idDesc : feat.enDesc}
                           </p>
@@ -301,13 +302,9 @@ export default function About() {
                 transition={{ duration: 0.7, ease: premiumEase }}
                 className="relative w-full aspect-square sm:aspect-video lg:aspect-[4/3] xl:aspect-[16/11] bg-slate-200 rounded-[32px] md:rounded-[40px] overflow-hidden shadow-2xl border border-slate-200"
               >
-                {/* Premium Cinematic Looping Video */}
-                <video
+                {/* Premium Cinematic Looping Video — deferred until near viewport */}
+                <LazyVideo
                   src="/lumina2.mp4"
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
                   className="w-full h-full object-cover pointer-events-none"
                 />
 

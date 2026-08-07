@@ -34,12 +34,31 @@ export default function HeroV2() {
   const text = localText[language];
   const sectionRef = useRef<HTMLElement>(null);
   const [activeVideo, setActiveVideo] = useState<1 | 2>(1);
+  /** Second clip loads only after first paint / idle — avoids ~14MB dual preload. */
+  const [loadAltVideo, setLoadAltVideo] = useState(false);
 
   useEffect(() => {
+    const enableAlt = () => setLoadAltVideo(true);
+    let idleId: number | undefined;
+    let timeoutId: ReturnType<typeof setTimeout> | undefined;
+
+    if (typeof window !== "undefined" && "requestIdleCallback" in window) {
+      idleId = window.requestIdleCallback(enableAlt, { timeout: 4000 });
+    } else {
+      timeoutId = setTimeout(enableAlt, 2500);
+    }
+
     const interval = setInterval(() => {
       setActiveVideo((prev) => (prev === 1 ? 2 : 1));
     }, 8000);
-    return () => clearInterval(interval);
+
+    return () => {
+      clearInterval(interval);
+      if (idleId !== undefined && "cancelIdleCallback" in window) {
+        window.cancelIdleCallback(idleId);
+      }
+      if (timeoutId) clearTimeout(timeoutId);
+    };
   }, []);
 
   useGSAP(
@@ -170,30 +189,30 @@ export default function HeroV2() {
         <span>+</span>
       </div>
 
-      {/* Background Video */}
-      <div className="hero-video-wrap absolute inset-0 w-full h-full overflow-hidden pointer-events-none z-0 will-change-transform">
-        {/* Base Video */}
+      {/* Background Video — decorative ambient; deferred second source */}
+      <div className="hero-video-wrap absolute inset-0 w-full h-full overflow-hidden pointer-events-none z-0 will-change-transform" aria-hidden="true">
         <video
           src="/cinematic.mp4"
           autoPlay
           loop
           muted
           playsInline
-          preload="auto"
+          preload="metadata"
           className={`hero-video-clip absolute inset-0 w-full h-full object-cover transition-opacity duration-[2000ms] ease-in-out ${activeVideo === 1 ? "opacity-[0.22]" : "opacity-0"
             }`}
         />
-        {/* Alternate Video */}
-        <video
-          src="/coba3.mp4"
-          autoPlay
-          loop
-          muted
-          playsInline
-          preload="auto"
-          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-[2000ms] ease-in-out ${activeVideo === 2 ? "opacity-[0.25]" : "opacity-0"
-            }`}
-        />
+        {loadAltVideo && (
+          <video
+            src="/coba3.mp4"
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="none"
+            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-[2000ms] ease-in-out ${activeVideo === 2 ? "opacity-[0.25]" : "opacity-0"
+              }`}
+          />
+        )}
         <div className="absolute inset-0 bg-gradient-to-r from-[#121212] via-[#121212]/75 to-transparent" />
       </div>
 
@@ -203,8 +222,8 @@ export default function HeroV2() {
 
           {/* Top Left Label (Studio Intro) */}
           <div className="hero-meta absolute top-[-50px] lg:top-[-80px] left-0 flex flex-col gap-2 opacity-0">
-            <span className="text-[10px] font-mono font-bold tracking-[0.2em] text-[#2563EB] uppercase">[ 01 // STUDIO INTRODUCTION ]</span>
-            <span className="text-[10px] font-mono tracking-widest text-slate-500">EST. 2025</span>
+            <span className="text-[10px] font-mono font-bold tracking-[0.2em] text-[#60A5FA] uppercase">[ 01 // STUDIO INTRODUCTION ]</span>
+            <span className="text-[10px] font-mono tracking-widest text-slate-300">EST. 2025</span>
           </div>
 
           {/* Asymmetric Header */}
@@ -246,8 +265,8 @@ export default function HeroV2() {
           <div className="relative grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-0 mt-8 lg:mt-20">
 
             {/* Rotating Text Ring — editorial stamp, agency style */}
-            <div className="hidden lg:flex absolute left-[28%] top-[35%] -translate-x-1/2 -translate-y-1/2 items-center justify-center pointer-events-none">
-              <svg className="w-52 h-52" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+            <div className="hidden lg:flex absolute left-[28%] top-[35%] -translate-x-1/2 -translate-y-1/2 items-center justify-center pointer-events-none" aria-hidden="true">
+              <svg className="w-52 h-52" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" role="presentation" focusable="false">
                 <defs>
                   <path id="text-circle-path" d="M 100,100 m -72,0 a 72,72 0 1,1 144,0 a 72,72 0 1,1 -144,0" />
                 </defs>
@@ -293,16 +312,16 @@ export default function HeroV2() {
 
             {/* Left side meta tags (Coordinates etc) */}
             <div className="hidden lg:flex col-span-5 flex-col justify-end gap-1 pb-4">
-              <span className="hero-meta-bottom text-[10px] font-mono text-slate-500 uppercase tracking-widest">HQ: JAKARTA, INDONESIA</span>
-              <span className="hero-meta-bottom text-[10px] font-mono text-slate-500 uppercase tracking-widest">SYS: ACTIVE V2.0</span>
+              <span className="hero-meta-bottom text-[10px] font-mono text-slate-300 uppercase tracking-widest">HQ: JAKARTA, INDONESIA</span>
+              <span className="hero-meta-bottom text-[10px] font-mono text-slate-300 uppercase tracking-widest">SYS: ACTIVE V2.0</span>
             </div>
 
             {/* Right side Description + CTA */}
             <div className="relative col-span-1 lg:col-span-6 lg:col-start-7 flex flex-col items-start lg:border-l lg:border-white/10 lg:pl-12 pt-2">
-              <p className="hero-eyebrow mb-5 text-[#2563EB] font-bold text-[10px] lg:text-xs tracking-[0.3em] uppercase flex items-center gap-3">
+              <p className="hero-eyebrow mb-5 text-[#60A5FA] font-bold text-[10px] lg:text-xs tracking-[0.3em] uppercase flex items-center gap-3">
                 {/* On mobile, show it inline next to the text */}
-                <span className="lg:hidden inline-flex items-center text-white shrink-0">
-                  <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <span className="lg:hidden inline-flex items-center text-white shrink-0" aria-hidden="true">
+                  <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" role="presentation" focusable="false">
                     <path d="M12 4v16M4 12h16" strokeLinecap="round" className="animate-[pulse_1.8s_ease-in-out_infinite]" />
                     <circle cx="12" cy="12" r="6" strokeWidth="1" strokeDasharray="3 2" className="animate-[spin_12s_linear_infinite]" />
                   </svg>

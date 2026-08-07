@@ -40,7 +40,7 @@ const localText = {
       ],
       Contact: [
         { label: "Get in Touch", href: "/contact" },
-        { label: "Request a Quote", href: "/contact" },
+        { label: "Request a Quote", href: "/contact?intent=quote" },
         { label: "Privacy Policy", href: "/privacy-policy" },
         { label: "Terms of Service", href: "/terms-of-service" },
         { label: "Cookie Policy", href: "/cookie-policy" },
@@ -74,7 +74,7 @@ const localText = {
       ],
       Kontak: [
         { label: "Hubungi Kami", href: "/contact" },
-        { label: "Minta Penawaran", href: "/contact" },
+        { label: "Minta Penawaran", href: "/contact?intent=quote" },
         { label: "Kebijakan Privasi", href: "/privacy-policy" },
         { label: "Syarat & Ketentuan", href: "/terms-of-service" },
         { label: "Kebijakan Cookie", href: "/cookie-policy" },

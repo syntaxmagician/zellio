@@ -40,13 +40,18 @@ export const metadata: Metadata = {
   creator: "ZELLIO",
   publisher: "ZELLIO",
   alternates: {
-    canonical: "/",
+    canonical: "/en",
+    languages: {
+      en: "/en",
+      id: "/id",
+      "x-default": "/en",
+    },
   },
   openGraph: {
     title: "ZELLIO — Professional Digital Engineering Agency",
     description:
       "ZELLIO is a professional digital engineering agency specializing in custom software, mobile apps, and scalable cloud solutions.",
-    url: "https://zellio.id",
+    url: "https://zellio.id/en",
     siteName: "ZELLIO",
     locale: "en_US",
     type: "website",
@@ -96,7 +101,7 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "ProfessionalService",
               "name": "ZELLIO",
-              "url": "https://zellio.id",
+              "url": "https://zellio.id/en",
               "logo": "https://zellio.id/icon.png",
               "image": "https://zellio.id/icon.png",
               "description": "ZELLIO is a professional software engineering agency specializing in custom web applications, mobile platforms, and enterprise solutions.",

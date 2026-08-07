@@ -255,6 +255,8 @@ export default function Navbar() {
             }`}>
               <button 
                 onClick={() => setLanguage("en")}
+                aria-label="Switch to English"
+                aria-pressed={language === "en"}
                 className={`px-2.5 py-1 rounded-full transition-all duration-200 ${
                   language === "en" 
                     ? (isDarkTheme ? "bg-white/15 text-white shadow-sm" : "bg-white text-slate-900 shadow-sm") 
@@ -265,6 +267,8 @@ export default function Navbar() {
               </button>
               <button 
                 onClick={() => setLanguage("id")}
+                aria-label="Ganti ke Bahasa Indonesia"
+                aria-pressed={language === "id"}
                 className={`px-2.5 py-1 rounded-full transition-all duration-200 ${
                   language === "id" 
                     ? (isDarkTheme ? "bg-white/15 text-white shadow-sm" : "bg-white text-slate-900 shadow-sm") 
@@ -430,12 +434,16 @@ export default function Navbar() {
                   <div className="flex items-center gap-1 bg-slate-100 border border-slate-200/60 rounded-full p-0.5 text-[11px] font-bold font-mono text-slate-500 shadow-inner">
                     <button 
                       onClick={() => setLanguage("en")}
+                      aria-label="Switch to English"
+                      aria-pressed={language === "en"}
                       className={`px-2.5 py-1 rounded-full transition-all duration-200 ${language === "en" ? "bg-white text-slate-900 shadow-sm" : "hover:text-slate-800 opacity-60 hover:opacity-100"}`}
                     >
                       EN
                     </button>
                     <button 
                       onClick={() => setLanguage("id")}
+                      aria-label="Ganti ke Bahasa Indonesia"
+                      aria-pressed={language === "id"}
                       className={`px-2.5 py-1 rounded-full transition-all duration-200 ${language === "id" ? "bg-white text-slate-900 shadow-sm" : "hover:text-slate-800 opacity-60 hover:opacity-100"}`}
                     >
                       ID

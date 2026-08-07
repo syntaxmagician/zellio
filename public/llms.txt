@@ -4,8 +4,8 @@
 
 ZELLIO builds websites, web applications, mobile apps, and internal business systems for companies that need reliable, maintainable software.
 
-Website: https://zellio.id
-Contact: https://zellio.id/en/contact
+- [Website](https://zellio.id/en): Main homepage
+- [Contact](https://zellio.id/en/contact): Get in touch with the team
 
 ## What we do
 
@@ -17,7 +17,8 @@ Contact: https://zellio.id/en/contact
 
 ## Preferred sources
 
-- Homepage: https://zellio.id/en
-- Services: https://zellio.id/en/services
-- Portfolio: https://zellio.id/en/portfolio
-- Team: https://zellio.id/en/team
+- [Homepage](https://zellio.id/en)
+- [Services](https://zellio.id/en/services)
+- [Portfolio](https://zellio.id/en/portfolio)
+- [Team](https://zellio.id/en/team)
+- [Contact](https://zellio.id/en/contact)

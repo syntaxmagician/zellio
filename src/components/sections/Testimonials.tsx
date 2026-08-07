@@ -70,7 +70,7 @@ export default function Testimonials() {
         {/* Left Column */}
         <div className="flex-shrink-0 w-full lg:w-[300px] flex flex-col justify-between text-center lg:text-left z-10 py-2">
           <div>
-            <span className="text-xs font-mono font-bold tracking-[0.25em] text-cyan-300 block mb-2 relative">
+            <span className="text-xs font-mono font-bold tracking-[0.25em] text-cyan-200 block mb-2 relative">
               {text.badge}
               <span className="block w-10 h-[2.5px] bg-cyan-400 mt-2 mx-auto lg:mx-0"></span>
             </span>
@@ -133,9 +133,9 @@ export default function Testimonials() {
                     </div>
                     
                     <div>
-                      <h4 className="font-extrabold text-[13px] text-white uppercase tracking-wider">
+                      <h3 className="font-extrabold text-[13px] text-white uppercase tracking-wider">
                         {t.name}
-                      </h4>
+                      </h3>
                       <p className="text-[10px] font-bold tracking-widest text-[#38bdf8] mt-1 uppercase">
                         {t.company}
                       </p>

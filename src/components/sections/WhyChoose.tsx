@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useLanguage } from "@/context/LanguageContext";
+import LazyVideo from "../ui/LazyVideo";
 
 const localText = {
   en: {
@@ -144,12 +145,8 @@ export default function WhyChoose() {
                and soften it. */
             className="w-full max-w-[1024px] mx-auto h-[280px] md:h-[320px] lg:h-[380px] xl:h-[420px] rounded-[32px] md:rounded-[40px] overflow-hidden border border-slate-200/60 shadow-[0_20px_50px_-15px_rgba(0,0,0,0.03)] relative bg-white"
           >
-            <video
+            <LazyVideo
               src="/globe.mp4"
-              autoPlay
-              loop
-              muted
-              playsInline
               className="w-full h-full object-cover pointer-events-none"
             />
           </motion.div>

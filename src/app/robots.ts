@@ -28,8 +28,6 @@ export default function robots(): MetadataRoute.Robots {
         disallow: [
           "/api/",
           "/admin/",
-          "/llms.txt",
-          "/llms-full.txt",
           "/DIGIFORE-Company-Profile.html",
           ...removedPaths,
         ],

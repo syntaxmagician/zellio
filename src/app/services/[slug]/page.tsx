@@ -1,5 +1,6 @@
 import { servicesData } from "@/lib/data";
 import { slugify } from "@/lib/slug";
+import { canonicalPath } from "@/lib/seo";
 import { notFound } from "next/navigation";
 import ServicePageClient from "./ServicePageClient";
 import type { Metadata } from "next";
@@ -15,12 +16,18 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     };
   }
 
+  const path = `services/${slug}`;
+
   return {
     title: `${service.title} — ZELLIO`,
     description: service.description,
+    alternates: {
+      canonical: canonicalPath(path),
+    },
     openGraph: {
       title: `${service.title} — ZELLIO`,
       description: service.description,
+      url: canonicalPath(path),
       type: "website",
     },
   };

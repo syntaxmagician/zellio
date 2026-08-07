@@ -62,11 +62,21 @@ export default function Insights() {
             </motion.h2>
           </div>
           <div className="hidden md:flex gap-3">
-             <button onClick={handlePrev} disabled={activeIndex === 0} className="w-12 h-12 rounded-full border border-slate-200 flex items-center justify-center hover:bg-slate-100 text-slate-600 disabled:opacity-30 transition-colors">
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"/></svg>
+             <button
+               onClick={handlePrev}
+               disabled={activeIndex === 0}
+               aria-label={language === "id" ? "Cerita sebelumnya" : "Previous story"}
+               className="w-12 h-12 rounded-full border border-slate-200 flex items-center justify-center hover:bg-slate-100 text-slate-600 disabled:opacity-30 transition-colors"
+             >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"/></svg>
              </button>
-             <button onClick={handleNext} disabled={activeIndex === insightsData.length - 1} className="w-12 h-12 rounded-full border border-slate-200 flex items-center justify-center hover:bg-slate-100 text-slate-600 disabled:opacity-30 transition-colors">
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"/></svg>
+             <button
+               onClick={handleNext}
+               disabled={activeIndex === insightsData.length - 1}
+               aria-label={language === "id" ? "Cerita berikutnya" : "Next story"}
+               className="w-12 h-12 rounded-full border border-slate-200 flex items-center justify-center hover:bg-slate-100 text-slate-600 disabled:opacity-30 transition-colors"
+             >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"/></svg>
              </button>
           </div>
         </div>
@@ -148,7 +158,9 @@ export default function Insights() {
               {insightsData.map((s, i) => (
                 <button 
                   key={i} 
-                  onClick={() => setActiveIndex(i)} 
+                  onClick={() => setActiveIndex(i)}
+                  aria-label={s[language].title}
+                  aria-pressed={activeIndex === i}
                   className={`relative shrink-0 w-[140px] h-[90px] md:w-[200px] md:h-[120px] rounded-[16px] overflow-hidden snap-start transition-all duration-500 ease-out group ${
                     activeIndex === i 
                       ? 'ring-2 ring-blue-500 ring-offset-4 ring-offset-[#FAFAFA] opacity-100 scale-100 shadow-md' 
