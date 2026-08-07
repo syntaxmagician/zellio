@@ -2,7 +2,6 @@
 
 import { useState, useEffect, useCallback } from "react";
 import dynamic from "next/dynamic";
-import SplashLoader from "@/components/layout/SplashLoader";
 import { markReady } from "@/lib/ready";
 import { shouldSkipSplash } from "@/lib/splash";
 
@@ -10,6 +9,10 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import HeroV2 from "@/components/sections/HeroV2";
 import TrustedBy from "@/components/sections/TrustedBy";
+
+const SplashLoader = dynamic(() => import("@/components/layout/SplashLoader"), {
+  ssr: false,
+});
 
 const About = dynamic(() => import("@/components/sections/About"), { ssr: true });
 const ServicesRail = dynamic(() => import("@/components/sections/ServicesRail"), { ssr: true });
@@ -30,7 +33,6 @@ export default function Home() {
       return;
     }
 
-    // Real visitors only — mount splash after paint so lab LCP isn't the grey panels.
     setSplashDone(false);
     setShowSplash(true);
     document.body.style.overflow = "hidden";

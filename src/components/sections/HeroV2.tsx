@@ -1,9 +1,7 @@
 "use client";
 
 import { useRef, useState, useEffect } from "react";
-import { ArrowRight } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
-import { gsap, useGSAP } from "@/lib/gsap";
 import { isReady } from "@/lib/ready";
 
 const localText = {
@@ -43,37 +41,27 @@ export default function HeroV2() {
     return () => mq.removeEventListener("change", sync);
   }, []);
 
-  useGSAP(
-    () => {
-      const mm = gsap.matchMedia();
+  // Desktop-only GSAP — keep the library off the mobile critical path / LCP.
+  useEffect(() => {
+    const desktopMotion = window.matchMedia(
+      "(min-width: 768px) and (prefers-reduced-motion: no-preference)"
+    );
+    if (!desktopMotion.matches) return;
 
-      // Mobile + reduced motion: paint hero copy immediately (LCP/SI).
-      mm.add("(max-width: 767px), (prefers-reduced-motion: reduce)", () => {
-        gsap.set(
-          [
-            ".hero-eyebrow",
-            ".hero-line",
-            ".hero-desc",
-            ".hero-cta",
-            ".hero-foot",
-            ".hero-meta",
-            ".hero-pill",
-            ".hero-meta-bottom",
-          ],
-          { clearProps: "all", opacity: 1, y: 0, yPercent: 0, scale: 1 }
-        );
-      });
+    let cancelled = false;
+    let revert: (() => void) | undefined;
+    let removeReady: (() => void) | undefined;
+    let fallback: ReturnType<typeof setTimeout> | undefined;
 
-      mm.add("(min-width: 768px) and (prefers-reduced-motion: no-preference)", () => {
-        // ---- Intro timeline (plays once the splash releases the page) ----
+    (async () => {
+      const { gsap } = await import("@/lib/gsap");
+      if (cancelled || !sectionRef.current) return;
+
+      const ctx = gsap.context(() => {
         const tl = gsap.timeline({ paused: true, defaults: { ease: "power4.out" } });
 
         tl.fromTo(".hero-meta", { y: -10, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6 })
-          .from(
-            ".hero-line",
-            { yPercent: 120, duration: 1, stagger: 0.09 },
-            "-=0.35"
-          )
+          .from(".hero-line", { yPercent: 120, duration: 1, stagger: 0.09 }, "-=0.35")
           .fromTo(
             ".hero-pill",
             { scale: 0.8, opacity: 0 },
@@ -97,12 +85,13 @@ export default function HeroV2() {
           )
           .from(".hero-foot", { y: 12, opacity: 0, duration: 0.6 }, 0.5);
 
-        let fallback: ReturnType<typeof setTimeout> | undefined;
         const play = () => tl.play();
         if (isReady()) {
           play();
         } else {
-          window.addEventListener("zellio:ready", play, { once: true });
+          const onReady = () => play();
+          window.addEventListener("zellio:ready", onReady, { once: true });
+          removeReady = () => window.removeEventListener("zellio:ready", onReady);
           fallback = setTimeout(play, 1200);
         }
 
@@ -136,15 +125,18 @@ export default function HeroV2() {
           repeat: -1,
           yoyo: true,
         });
+      }, sectionRef);
 
-        return () => {
-          window.removeEventListener("zellio:ready", play);
-          if (fallback) clearTimeout(fallback);
-        };
-      });
-    },
-    { scope: sectionRef, dependencies: [language], revertOnUpdate: true }
-  );
+      revert = () => ctx.revert();
+    })();
+
+    return () => {
+      cancelled = true;
+      removeReady?.();
+      if (fallback) clearTimeout(fallback);
+      revert?.();
+    };
+  }, [language]);
 
   return (
     <section
