@@ -10,83 +10,111 @@ import { useLanguage } from "@/context/LanguageContext";
 const policyText = {
   en: {
     title: "Privacy Policy",
-    lastUpdated: "Last Updated: June 2026",
+    lastUpdated: "Last Updated: August 2026",
     sections: [
       {
         id: "sec-1",
         icon: Database,
         designator: "COLLECTION",
-        heading: "1. What We Collect & Why",
-        content: "We only collect information that you choose to share with us—like your name, email, phone number, and project details when you fill out our contact form. We use this information solely to chat with you about your projects and understand how we can help your business grow."
+        heading: "1. What We Collect — and Nothing More",
+        content: "At ZELLIO, we operate on a strict \"minimum necessary\" principle. We only collect information you actively provide when reaching out to us — typically your name, email address, phone number, and the details of your project or inquiry. We do not scrape social profiles, run background checks, or collect behavioral data without your explicit awareness. If you consult with us, you share what you're comfortable sharing. That's the only deal we operate on."
       },
       {
         id: "sec-2",
         icon: Shield,
-        designator: "USE",
-        heading: "2. How We Use Your Details",
-        content: "Your data is used to plan, build, and deploy the digital systems you hire us for. We'll use it to stay in touch, share project updates, and make sure we're delivering exactly what you need. We will never sell, lease, or distribute your information to marketers."
+        designator: "PURPOSE",
+        heading: "2. Why We Use Your Information",
+        content: "The information you provide is used exclusively to serve you: responding to project inquiries, preparing technical proposals, coordinating development timelines, and delivering progress updates during active engagements. We may occasionally send relevant industry insights if you've opted in — and opting out is always one click away. We will never use your data to retarget you with ads, resell it to lead brokers, or hand it to third-party marketing services."
       },
       {
         id: "sec-3",
         icon: Lock,
         designator: "SECURITY",
-        heading: "3. Keeping Your Data Safe",
-        content: "We treat your information with the same respect and care we treat our own code. We store your data on secure cloud services and implement industry-standard security safeguards to protect it from unauthorized access, loss, or misuse."
+        heading: "3. How We Protect Your Data",
+        content: "We apply the same standards of craftsmanship to your data security as we do to the code we ship. All data is stored on enterprise-grade cloud infrastructure with encryption at rest and in transit. Access is restricted to team members directly involved in your project, and internal access logs are maintained. While no system is immune to all risk — we're transparent about that — we continuously audit our own security posture and apply patches as threats evolve."
       },
       {
         id: "sec-4",
         icon: Share2,
         designator: "SHARING",
-        heading: "4. Sharing with Trusted Partners",
-        content: "To keep our website and systems running, we use standard tools like cloud hosting providers (e.g. Vercel). We only share the absolute minimum data necessary with these trusted partners to get the job done, and we ensure they uphold high security standards too."
+        heading: "4. When Data Is Shared — and With Whom",
+        content: "We do not sell, rent, or trade your personal data to any third party. Period. Where necessary to deliver our services — such as using cloud hosting providers like Vercel or communication tools — only the absolute minimum required data is shared with those vendors, and they are contractually bound to handle it responsibly. If we are ever required to disclose information by law or legal order, we will notify you to the extent legally permitted and limit disclosure to what is strictly required."
       },
       {
         id: "sec-5",
+        icon: CheckCircle2,
+        designator: "YOUR_RIGHTS",
+        heading: "5. Your Rights Over Your Data",
+        content: "You have full rights over the information you've provided us. At any time, you may request to access a copy of your data, ask us to correct inaccurate records, or request permanent deletion from our systems. You may also withdraw any previously given consent for communications. To exercise any of these rights, simply email legal@zellio.id — we respond promptly and without friction."
+      },
+      {
+        id: "sec-6",
         icon: HelpCircle,
-        designator: "CONTACT",
-        heading: "5. Get in Touch",
-        content: "Your data belongs to you. If you ever want us to delete your contact details, or if you have any questions about how we handle privacy, please drop us a friendly email at legal@zellio.id and we'll take care of it right away."
+        designator: "COOKIES",
+        heading: "6. Cookies on This Website",
+        content: "This website uses a small number of cookies to maintain language preferences across sessions and gather anonymous aggregate analytics via tools like Google Analytics. We do not use advertising cookies or cross-site tracking cookies. You can configure your browser to refuse cookies at any time — note that some functional elements of the site may behave differently if session cookies are blocked. See our dedicated Cookie Policy page for more granular detail."
+      },
+      {
+        id: "sec-7",
+        icon: Database,
+        designator: "CHANGES",
+        heading: "7. Policy Updates & How to Reach Us",
+        content: "This policy reflects how ZELLIO operates today and will be updated whenever our practices materially change — always with a visible revision date at the top. We won't bury major changes in legal jargon. For questions, correction requests, or deletion of your data, reach out to us directly at legal@zellio.id. We're a real team of engineers and designers in Indonesia, and we take these responsibilities seriously."
       }
     ]
   },
   id: {
     title: "Kebijakan Privasi",
-    lastUpdated: "Pembaruan Terakhir: Juni 2026",
+    lastUpdated: "Pembaruan Terakhir: Agustus 2026",
     sections: [
       {
         id: "sec-1",
         icon: Database,
         designator: "COLLECTION",
-        heading: "1. Data yang Kami Kumpulkan",
-        content: "Kami hanya mengumpulkan informasi yang Anda bagikan secara sukarela—seperti nama, email, nomor telepon, dan kebutuhan proyek saat Anda mengisi formulir kontak. Kami menggunakan data ini murni untuk berkomunikasi dengan Anda mengenai proyek yang ingin dibuat."
+        heading: "1. Data yang Kami Kumpulkan — Tidak Lebih",
+        content: "ZELLIO beroperasi dengan prinsip \"minimum yang diperlukan\". Kami hanya mengumpulkan informasi yang Anda berikan secara aktif saat menghubungi kami — biasanya nama, alamat email, nomor telepon, dan detail proyek atau pertanyaan Anda. Kami tidak mengikis profil media sosial, melakukan pemeriksaan latar belakang, atau mengumpulkan data perilaku tanpa sepengetahuan Anda."
       },
       {
         id: "sec-2",
         icon: Shield,
-        designator: "USE",
-        heading: "2. Bagaimana Kami Menggunakan Data Anda",
-        content: "Informasi Anda digunakan untuk menganalisis, merancang, dan mengembangkan software yang Anda percayakan kepada kami. Kami tidak pernah menjual, menyewakan, atau menyebarkan data pribadi Anda kepada pihak ketiga untuk kepentingan iklan atau pemasaran."
+        designator: "PURPOSE",
+        heading: "2. Mengapa Kami Menggunakan Informasi Anda",
+        content: "Informasi yang Anda berikan digunakan semata-mata untuk melayani Anda: merespons pertanyaan proyek, menyiapkan proposal teknis, mengoordinasikan timeline pengembangan, dan memberikan pembaruan progres selama proyek berjalan. Kami tidak akan pernah menggunakan data Anda untuk menargetkan iklan, menjualnya ke broker data pihak ketiga, atau menyerahkannya ke layanan pemasaran manapun."
       },
       {
         id: "sec-3",
         icon: Lock,
         designator: "SECURITY",
-        heading: "3. Keamanan Data Anda",
-        content: "Kami menjaga kerahasiaan informasi Anda dengan sangat serius, sama seperti kami menjaga kode aplikasi kami sendiri. Kami menyimpan data pada infrastruktur cloud yang aman dan menggunakan enkripsi standar untuk mencegah kebocoran data atau akses tanpa izin."
+        heading: "3. Cara Kami Melindungi Data Anda",
+        content: "Kami menerapkan standar yang sama pada keamanan data Anda seperti yang kami terapkan pada kode yang kami kirimkan. Semua data disimpan di infrastruktur cloud tingkat enterprise dengan enkripsi saat istirahat dan dalam transit. Akses dibatasi hanya untuk anggota tim yang langsung terlibat dalam proyek Anda, dan log akses internal dikelola. Kami terus mengaudit postur keamanan kami sendiri dan menerapkan patch seiring berkembangnya ancaman."
       },
       {
         id: "sec-4",
         icon: Share2,
         designator: "SHARING",
-        heading: "4. Layanan Pihak Ketiga",
-        content: "Untuk menjalankan website dan aplikasi, kami bekerja sama dengan layanan infrastruktur terpercaya (seperti cloud hosting). Kami hanya membagikan data seminimal mungkin yang diperlukan untuk menjalankan sistem, dan memastikan mereka juga menjaga standar keamanan yang tinggi."
+        heading: "4. Kapan Data Dibagikan — dan Kepada Siapa",
+        content: "Kami tidak menjual, menyewakan, atau memperdagangkan data pribadi Anda kepada pihak manapun. Di mana diperlukan untuk memberikan layanan kami — seperti menggunakan penyedia hosting cloud atau alat komunikasi — hanya data minimum yang diperlukan yang dibagikan, dan mereka terikat secara kontraktual untuk menanganinya dengan bertanggung jawab. Jika kami diwajibkan oleh hukum untuk mengungkapkan informasi, kami akan memberi tahu Anda sejauh diizinkan secara hukum."
       },
       {
         id: "sec-5",
+        icon: CheckCircle2,
+        designator: "YOUR_RIGHTS",
+        heading: "5. Hak-Hak Anda atas Data",
+        content: "Anda memiliki hak penuh atas informasi yang Anda berikan kepada kami. Kapan saja, Anda dapat meminta salinan data Anda, meminta kami memperbaiki catatan yang tidak akurat, atau meminta penghapusan permanen dari sistem kami. Anda juga dapat menarik persetujuan yang sebelumnya diberikan untuk komunikasi. Untuk menggunakan hak-hak ini, cukup email ke legal@zellio.id — kami merespons dengan cepat."
+      },
+      {
+        id: "sec-6",
         icon: HelpCircle,
-        designator: "CONTACT",
-        heading: "5. Hubungi Kami",
-        content: "Data Anda adalah hak Anda sepenuhnya. Jika Anda ingin kami menghapus riwayat kontak Anda, atau memiliki pertanyaan mengenai kebijakan privasi ini, silakan hubungi kami dengan santai via email di legal@zellio.id."
+        designator: "COOKIES",
+        heading: "6. Cookie di Website Ini",
+        content: "Website ini menggunakan sejumlah kecil cookie untuk mempertahankan preferensi bahasa antar sesi dan mengumpulkan analitik agregat anonim melalui alat seperti Google Analytics. Kami tidak menggunakan cookie iklan atau cookie pelacakan lintas situs. Anda dapat mengonfigurasi browser untuk menolak cookie kapan saja. Lihat halaman Kebijakan Cookie kami untuk detail lebih lengkap."
+      },
+      {
+        id: "sec-7",
+        icon: Database,
+        designator: "CHANGES",
+        heading: "7. Pembaruan Kebijakan & Cara Menghubungi Kami",
+        content: "Kebijakan ini mencerminkan cara ZELLIO beroperasi saat ini dan akan diperbarui setiap kali praktik kami berubah secara material — selalu dengan tanggal revisi yang terlihat di bagian atas. Untuk pertanyaan, permintaan koreksi, atau penghapusan data Anda, hubungi kami langsung di legal@zellio.id. Kami adalah tim nyata yang berbasis di Indonesia, dan kami menganggap tanggung jawab ini dengan serius."
       }
     ]
   }

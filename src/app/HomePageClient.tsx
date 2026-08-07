@@ -17,6 +17,7 @@ import WhyChoose from "@/components/sections/WhyChoose";
 import SelectedWork from "@/components/sections/SelectedWork";
 import Comparison from "@/components/sections/Comparison";
 import Insights from "@/components/sections/Insights";
+import Testimonials from "@/components/sections/Testimonials";
 
 
 import FAQ from "@/components/sections/FAQ";
@@ -64,7 +65,7 @@ export default function Home() {
           <WhyChoose />
           {/* <Comparison /> */}
           <Insights />
-
+          <Testimonials />
 
           <FAQ />
           <Contact />

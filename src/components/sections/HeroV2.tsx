@@ -18,7 +18,7 @@ const localText = {
     foot: "5 Clients — 12+ Projects",
   },
   id: {
-    eyebrow: "KAMI ADALAH ZELLIO",
+    eyebrow: "HAI ! KAMI ADALAH ZELLIO",
     slogan: ["Membangun sistem", "digital yang abadi."],
     description:
       "Kami adalah tim desainer, developer, dan arsitek perangkat lunak yang membangun sistem digital premium berstandar industri.",

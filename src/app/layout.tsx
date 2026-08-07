@@ -86,7 +86,7 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${plusJakarta.variable} ${inter.variable} h-full antialiased overflow-x-hidden`}
+      className={`${plusJakarta.variable} ${inter.variable} h-full antialiased overflow-x-clip`}
     >
       <head>
         <script
@@ -111,7 +111,7 @@ export default function RootLayout({
       </head>
       <body
         suppressHydrationWarning
-        className="min-h-full flex flex-col overflow-x-hidden"
+        className="min-h-full flex flex-col overflow-x-clip"
         style={{ fontFamily: "var(--font-plus-jakarta), var(--font-inter), system-ui, sans-serif" }}
       >
         <SmoothScroll />

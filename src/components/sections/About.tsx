@@ -73,7 +73,7 @@ const localText = {
     stats: [
       { label: "Teknologi Inti", value: "4+" },
       { label: "Sistem Produksi", value: "12+" },
-      { label: "Engineer Dedikasi", value: "8+" },
+      { label: "Engineer Dedikasi", value: "5" },
       { label: "Tahun Pengalaman", value: "3+" }
     ],
     workflowLabel: "Proses Kami",

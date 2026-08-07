@@ -33,6 +33,8 @@ export interface Story {
   };
 }
 
+import { caseStudiesData } from "./caseStudiesData";
+
 export const insightsData: Story[] = [
   {
     slug: "origins-of-zellio",
@@ -90,6 +92,7 @@ export const insightsData: Story[] = [
       }
     }
   },
+  ...caseStudiesData,
   {
     slug: "eureka-logistics-case-study",
     category: "CASE STUDY",

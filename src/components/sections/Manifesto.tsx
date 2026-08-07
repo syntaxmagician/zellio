@@ -8,7 +8,7 @@ const localText = {
   en: {
     badge: "Who We Are",
     statement:
-      "ZELLIO is a software engineering and design studio. We partner with founders and enterprises to build digital products that hold up — under load, under audit, and under years of change.",
+      "ZELLIO is a software engineering and design studio. We partner with founders and modern businesses to build digital products that hold up — under load, under audit, and under years of change.",
     stats: [
       { label: "Core Tech Stacks", value: "4+" },
       { label: "Production Systems", value: "12+" },
@@ -23,7 +23,7 @@ const localText = {
     stats: [
       { label: "Teknologi Inti", value: "4+" },
       { label: "Sistem Produksi", value: "12+" },
-      { label: "Engineer Dedikasi", value: "8+" },
+      { label: "Engineer Dedikasi", value: "5" },
       { label: "Tahun Pengalaman", value: "3+" },
     ],
   },

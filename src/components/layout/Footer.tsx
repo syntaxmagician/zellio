@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import {
   ArrowUp,
   Globe,
@@ -28,7 +29,7 @@ const localText = {
         { label: "Custom Web Dev", href: "#services" },
         { label: "Admin Dashboards", href: "#services" },
         { label: "Mobile Apps", href: "#services" },
-        { label: "Enterprise Systems", href: "#services" },
+        { label: "Business Systems", href: "#services" },
       ],
       Resources: [
         { label: "Blog", href: "#" },
@@ -104,7 +105,7 @@ export default function Footer() {
 
             {/* Brand Column (Left - Spans 5) */}
             <div className="lg:col-span-5 flex flex-col justify-start">
-              <a href="#home" className="flex items-center mb-4 group">
+              <Link href={`/${language}`} className="flex items-center mb-4 group">
                 <Image
                   src="/zellio3.png"
                   alt="Zellio Logo"
@@ -113,7 +114,7 @@ export default function Footer() {
                   className="h-12 md:h-16 w-auto object-contain scale-[2.4] md:scale-[2.6] origin-left brightness-0 invert group-hover:opacity-90 transition-opacity duration-300"
                   style={{ width: 'auto' }}
                 />
-              </a>
+              </Link>
               <p className="text-[#94A3B8] text-sm leading-relaxed mb-6 max-w-sm">
                 {text.desc}
               </p>
@@ -151,12 +152,12 @@ export default function Footer() {
                   <ul className="space-y-3.5">
                     {links.map((link, index) => (
                       <li key={index}>
-                        <a
-                          href={link.href}
+                        <Link
+                          href={`/${language}${link.href === '/' ? '' : link.href.startsWith('/#') ? link.href.substring(1) : link.href}`}
                           className="text-[#94A3B8] text-sm hover:text-white transition-colors duration-200"
                         >
                           {link.label}
-                        </a>
+                        </Link>
                       </li>
                     ))}
                   </ul>
@@ -175,15 +176,15 @@ export default function Footer() {
 
             {/* Bottom Legal Links */}
             <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs text-[#64748B]">
-              <a href="/privacy-policy" className="hover:text-white transition-colors">
+              <Link href={`/${language}/privacy-policy`} className="hover:text-white transition-colors">
                 {language === "en" ? "Privacy Policy" : "Kebijakan Privasi"}
-              </a>
-              <a href="/terms-of-service" className="hover:text-white transition-colors">
+              </Link>
+              <Link href={`/${language}/terms-of-service`} className="hover:text-white transition-colors">
                 {language === "en" ? "Terms of Service" : "Syarat & Ketentuan"}
-              </a>
-              <a href="/cookie-policy" className="hover:text-white transition-colors">
+              </Link>
+              <Link href={`/${language}/cookie-policy`} className="hover:text-white transition-colors">
                 {language === "en" ? "Cookie Policy" : "Kebijakan Cookie"}
-              </a>
+              </Link>
             </div>
 
             <button

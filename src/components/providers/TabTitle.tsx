@@ -3,11 +3,7 @@
 import { useEffect, useRef } from "react";
 
 const AWAY_MESSAGES = [
-  "Don't leave. We were just getting started. ✦",
-  "Your next big project misses you.",
-  "Come back — greatness is waiting.",
-  "Still here. Build. Are you? ✦",
-  "We noticed. Come back when you're ready.",
+  "ZELLIO 💔 Left so soon?",
 ];
 
 /**

@@ -10,83 +10,139 @@ import { useLanguage } from "@/context/LanguageContext";
 const policyText = {
   en: {
     title: "Terms of Service",
-    lastUpdated: "Last Updated: June 2026",
+    lastUpdated: "Last Updated: August 2026",
     sections: [
       {
         id: "sec-1",
         icon: Shield,
-        designator: "WELCOME",
-        heading: "1. Welcome to Zellio",
-        content: "Hello and welcome to Zellio! We're thrilled to have you here. By using our website, reaching out for projects, or hiring us to build your software, you're agreeing to these terms. If you don't agree, that's completely fine, but it means we won't be able to work together or offer our services to you."
+        designator: "ACCEPTANCE",
+        heading: "1. Accepting These Terms",
+        content: "By accessing this website, submitting a project inquiry, or entering into a service agreement with ZELLIO, you acknowledge that you have read, understood, and agreed to these terms. If any part of this document conflicts with a signed project contract, the terms in the project contract take precedence."
       },
       {
         id: "sec-2",
         icon: Code2,
-        designator: "OUR_WORK",
-        heading: "2. How We Work Together",
-        content: "Our goal is to build amazing digital products for you—whether that's a new website, a custom mobile app, or a complex software system. The exact details, timelines, and costs of what we'll build together will always be clearly written down in a separate, friendly project agreement before we write a single line of code."
+        designator: "SCOPE",
+        heading: "2. What We Build Together",
+        content: "ZELLIO provides end-to-end digital product development: websites, web applications, mobile apps, internal business systems, and ongoing technical maintenance. The exact scope of every engagement — features, deliverables, milestones, and deadlines — is always documented in a separate project agreement that both parties sign before any development begins. Nothing is assumed; everything is documented."
       },
       {
         id: "sec-3",
         icon: Database,
-        designator: "OWNERSHIP",
-        heading: "3. Who Owns What",
-        content: "We believe in fairness. While we retain the rights to our underlying frameworks and the core tools we use every day, you get a perpetual license to use, run, and modify the custom software we build specifically for your business once the project is fully paid for. Simple as that."
+        designator: "PAYMENT",
+        heading: "3. Payment Structure",
+        content: "Project payments follow a milestone-based structure. A minimum deposit of 50% is required before development begins. The remaining balance is due upon final delivery or at agreed-upon milestones. All payments are made via bank transfer to ZELLIO's official accounts. Invoices are issued with clear breakdowns of work completed."
       },
       {
         id: "sec-4",
-        icon: UserCheck,
-        designator: "TEAMWORK",
-        heading: "4. Your Role in the Project",
-        content: "Great software is built through collaboration. To keep everything on schedule, we'll need you to share your requirements, feedback, and any necessary assets (like logos or server access) in a timely manner. If things get delayed on your end, it might push back our delivery dates, but we'll always communicate with you along the way."
+        icon: Code2,
+        designator: "REVISIONS",
+        heading: "4. Revisions & Change Requests",
+        content: "Each project package includes a defined number of revision rounds, specified in the project agreement. Revisions within scope are handled at no additional cost. Requests that fall outside the original scope — such as new features, additional pages, or architectural changes — are treated as change orders with separate cost estimates and timelines, which we always discuss with you transparently before proceeding."
       },
       {
         id: "sec-5",
+        icon: Database,
+        designator: "OWNERSHIP",
+        heading: "5. Intellectual Property & Ownership",
+        content: "Upon full payment, the custom source code, designs, and assets we build specifically for your project become your property. You receive a perpetual, non-exclusive license to use, modify, and deploy them. However, ZELLIO retains rights to its proprietary frameworks, internal tools, and reusable components that pre-date your project. Third-party libraries used in your project remain governed by their respective open-source licenses."
+      },
+      {
+        id: "sec-6",
+        icon: Shield,
+        designator: "WARRANTY",
+        heading: "6. Warranty & Post-Launch Support",
+        content: "Every ZELLIO project includes a complimentary bug-fix warranty period as outlined in your contract — typically 30 to 90 days after launch. This warranty covers functional defects in the code we delivered. It does not cover issues caused by unauthorized modifications by third parties, changes to external APIs beyond our control, or new feature requests. Extended maintenance agreements are available as a separate engagement."
+      },
+      {
+        id: "sec-7",
+        icon: UserCheck,
+        designator: "CANCELLATION",
+        heading: "7. Project Cancellation",
+        content: "If a project is cancelled after development has commenced, charges will be calculated based on the percentage of work completed to date. Deposits already paid are non-refundable to the extent that they cover work already delivered. We will provide a transparent progress report and any completed deliverables up to the cancellation point."
+      },
+      {
+        id: "sec-8",
         icon: Lock,
+        designator: "CONFIDENTIALITY",
+        heading: "8. Confidentiality & Non-Disclosure",
+        content: "ZELLIO treats all client business information, system architectures, and proprietary data with strict confidentiality. We will not share your project details, internal processes, or data with any third party without your explicit written consent — except where required by law. This obligation survives the end of our business relationship."
+      },
+      {
+        id: "sec-9",
+        icon: Shield,
         designator: "LIABILITY",
-        heading: "5. Keeping Expectations Clear",
-        content: "We take immense pride in our code, but software is complex and sometimes unpredictable. To the extent allowed by law, we can't be held financially responsible for indirect issues like lost profits or unexpected server downtime after hand-off. We promise to do our best work, and we ask that you use the systems responsibly."
+        heading: "9. Limitation of Liability & Force Majeure",
+        content: "ZELLIO's total liability for any claim arising from a project is limited to the total amount paid for that specific project. We are not liable for indirect losses such as lost revenue, business interruptions, or third-party claims. Delays or failures caused by events beyond reasonable control — including natural disasters, ISP outages, or government regulations — are considered force majeure and exempt from liability."
       }
     ]
   },
   id: {
     title: "Syarat dan Ketentuan",
-    lastUpdated: "Pembaruan Terakhir: Juni 2026",
+    lastUpdated: "Pembaruan Terakhir: Agustus 2026",
     sections: [
       {
         id: "sec-1",
         icon: Shield,
-        designator: "WELCOME",
-        heading: "1. Selamat Datang di Zellio",
-        content: "Halo dan selamat datang! Kami senang Anda ada di sini. Dengan menelusuri website kami atau bekerja sama dalam sebuah proyek, Anda setuju dengan ketentuan ini. Jika Anda kurang nyaman dengan aturan ini, tidak apa-apa, tapi sayangnya kita mungkin tidak bisa bekerja sama lebih jauh."
+        designator: "ACCEPTANCE",
+        heading: "1. Menerima Ketentuan Ini",
+        content: "Dengan mengakses website ini, mengirimkan pertanyaan proyek, atau menandatangani perjanjian layanan dengan ZELLIO, Anda mengakui bahwa Anda telah membaca, memahami, dan menyetujui ketentuan ini. Jika ada bagian dari dokumen ini yang bertentangan dengan kontrak proyek yang telah ditandatangani, ketentuan dalam kontrak proyek yang berlaku."
       },
       {
         id: "sec-2",
         icon: Code2,
-        designator: "OUR_WORK",
-        heading: "2. Cara Kita Bekerja Sama",
-        content: "Fokus utama kami adalah menciptakan produk digital yang luar biasa untuk Anda—baik itu website, aplikasi mobile, maupun sistem internal. Semua detail mengenai waktu pengerjaan, harga, dan fitur akan selalu kita sepakati bersama secara tertulis sebelum proyek dimulai, jadi tidak ada kejutan di akhir."
+        designator: "SCOPE",
+        heading: "2. Lingkup Layanan Kami",
+        content: "ZELLIO menyediakan pengembangan produk digital end-to-end: website, aplikasi web, aplikasi mobile, sistem bisnis internal, dan pemeliharaan teknis berkelanjutan. Ruang lingkup setiap pekerjaan — fitur, deliverables, milestone, dan tenggat waktu — selalu didokumentasikan dalam perjanjian proyek terpisah yang ditandatangani kedua pihak sebelum pengembangan dimulai."
       },
       {
         id: "sec-3",
         icon: Database,
-        designator: "OWNERSHIP",
-        heading: "3. Kepemilikan Sistem",
-        content: "Kami percaya pada kerja sama yang adil. Kami tetap memiliki hak atas framework dasar yang kami gunakan, namun setelah pembayaran proyek lunas, Anda bebas menggunakan, menjalankan, dan memodifikasi aplikasi yang kami buat khusus untuk bisnis Anda. Sangat sederhana dan transparan."
+        designator: "PAYMENT",
+        heading: "3. Struktur Pembayaran",
+        content: "Pembayaran proyek mengikuti struktur berbasis milestone. Deposit minimum 50% diperlukan sebelum pengembangan dimulai. Sisa pembayaran jatuh tempo saat penyerahan akhir atau pada milestone yang telah disepakati. Semua pembayaran dilakukan melalui transfer bank ke rekening resmi ZELLIO dengan invoice yang mencantumkan rincian pekerjaan yang telah diselesaikan."
       },
       {
         id: "sec-4",
-        icon: UserCheck,
-        designator: "TEAMWORK",
-        heading: "4. Peran Anda dalam Proyek",
-        content: "Aplikasi yang hebat lahir dari komunikasi yang baik. Agar proyek selesai tepat waktu, kami sangat membutuhkan bantuan Anda untuk memberikan feedback, materi desain, atau akses yang diperlukan sesuai jadwal. Keterlambatan dari pihak Anda tentu bisa menggeser tenggat waktu, tapi tenang saja, kita akan selalu berkoordinasi."
+        icon: Code2,
+        designator: "REVISIONS",
+        heading: "4. Revisi & Permintaan Perubahan",
+        content: "Setiap paket proyek mencakup jumlah putaran revisi yang ditentukan dalam perjanjian proyek. Revisi dalam lingkup ditangani tanpa biaya tambahan. Permintaan yang berada di luar lingkup awal — seperti fitur baru, halaman tambahan, atau perubahan arsitektur — diperlakukan sebagai change order dengan estimasi biaya dan timeline terpisah yang selalu kami diskusikan secara transparan sebelum melanjutkan."
       },
       {
         id: "sec-5",
+        icon: Database,
+        designator: "OWNERSHIP",
+        heading: "5. Hak Kekayaan Intelektual & Kepemilikan",
+        content: "Setelah pembayaran penuh, source code kustom, desain, dan aset yang kami buat khusus untuk proyek Anda menjadi milik Anda. Anda menerima lisensi perpetual untuk menggunakan, memodifikasi, dan men-deploy-nya. Namun, ZELLIO mempertahankan hak atas framework proprietary, tools internal, dan komponen reusable yang sudah ada sebelum proyek Anda. Library pihak ketiga yang digunakan tetap tunduk pada lisensi open-source masing-masing."
+      },
+      {
+        id: "sec-6",
+        icon: Shield,
+        designator: "WARRANTY",
+        heading: "6. Garansi & Dukungan Pasca-Launch",
+        content: "Setiap proyek ZELLIO menyertakan periode garansi perbaikan bug gratis seperti yang tercantum dalam kontrak Anda — biasanya 30 hingga 90 hari setelah launch. Garansi ini mencakup cacat fungsional pada kode yang kami deliver. Garansi tidak mencakup masalah yang disebabkan oleh modifikasi tidak sah oleh pihak ketiga, perubahan API eksternal di luar kendali kami, atau permintaan fitur baru."
+      },
+      {
+        id: "sec-7",
+        icon: UserCheck,
+        designator: "CANCELLATION",
+        heading: "7. Pembatalan Proyek",
+        content: "Jika proyek dibatalkan setelah pengembangan dimulai, biaya akan dihitung berdasarkan persentase pekerjaan yang telah diselesaikan. Deposit yang sudah dibayarkan tidak dapat dikembalikan sejauh telah mencakup pekerjaan yang sudah di-deliver. Kami akan memberikan laporan progres transparan dan semua deliverables yang telah selesai hingga titik pembatalan."
+      },
+      {
+        id: "sec-8",
         icon: Lock,
+        designator: "CONFIDENTIALITY",
+        heading: "8. Kerahasiaan & Non-Disclosure",
+        content: "ZELLIO memperlakukan semua informasi bisnis klien, arsitektur sistem, dan data proprietary dengan kerahasiaan ketat. Kami tidak akan membagikan detail proyek, proses internal, atau data Anda kepada pihak ketiga manapun tanpa persetujuan tertulis eksplisit dari Anda — kecuali jika diwajibkan oleh hukum. Kewajiban ini tetap berlaku setelah hubungan bisnis kita berakhir."
+      },
+      {
+        id: "sec-9",
+        icon: Shield,
         designator: "LIABILITY",
-        heading: "5. Harapan dan Tanggung Jawab",
-        content: "Kami sangat bangga dengan kualitas pekerjaan kami, namun dunia software terkadang sulit diprediksi secara absolut. Sesuai batasan hukum, kami tidak dapat dimintai pertanggungjawaban finansial atas hal-hal di luar kendali seperti server yang down atau hilangnya potensi keuntungan setelah sistem diserahkan. Kami berjanji memberikan yang terbaik, dan kami harap Anda menggunakannya dengan bijak."
+        heading: "9. Batasan Tanggung Jawab & Force Majeure",
+        content: "Total tanggung jawab ZELLIO untuk setiap klaim yang timbul dari sebuah proyek dibatasi pada jumlah total yang dibayarkan untuk proyek tersebut. Kami tidak bertanggung jawab atas kerugian tidak langsung seperti pendapatan yang hilang atau gangguan bisnis. Keterlambatan atau kegagalan yang disebabkan oleh kejadian di luar kendali wajar — termasuk bencana alam, gangguan ISP, atau regulasi pemerintah — dianggap sebagai force majeure."
       }
     ]
   }

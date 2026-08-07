@@ -83,7 +83,7 @@ export default function Navbar() {
           
           {/* LEFT: Logo */}
           <div className="relative w-[180px] lg:w-[240px] h-10 shrink-0">
-            <Link href="/" className="absolute left-0 top-1/2 -translate-y-1/2 flex items-center">
+            <Link href={`/${language}`} className="absolute left-0 top-1/2 -translate-y-1/2 flex items-center">
               <Image 
                 src="/zellio3.png" 
                 alt="Zellio Logo" 
@@ -154,7 +154,7 @@ export default function Navbar() {
                                 return (
                                   <Link
                                     key={service.id}
-                                    href={`/services/${getSlug(service.title)}`}
+                                    href={`/${language}/services/${getSlug(service.title)}`}
                                     onMouseEnter={() => setHoveredItemId(service.id)}
                                     onMouseLeave={() => setHoveredItemId(null)}
                                     onClick={() => setDropdownOpen(false)}
@@ -206,7 +206,7 @@ export default function Navbar() {
                                   </span>
                                </div>
                                <Link
-                                  href="/services"
+                                  href={`/${language}/services`}
                                   onClick={() => setDropdownOpen(false)}
                                   className="flex items-center gap-1.5 text-[12px] font-bold text-blue-600 hover:text-blue-700 bg-blue-50 hover:bg-blue-100 px-4 py-2 rounded-full transition-all duration-300 group/link"
                                >
@@ -226,7 +226,7 @@ export default function Navbar() {
               return (
                 <Link 
                   key={link.href} 
-                  href={link.href}
+                  href={`/${language}${link.href === '/' ? '' : link.href.startsWith('/#') ? link.href.substring(1) : link.href}`}
                   className="group relative flex items-center h-full cursor-pointer py-1"
                 >
                   <span className={`text-[13px] font-medium tracking-wide transition-colors duration-200 uppercase ${
@@ -309,7 +309,7 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-20 px-6">
           {/* Mobile Logo */}
           <div className="relative w-[160px] h-10 shrink-0 z-20">
-            <Link href="/" className="absolute left-0 top-1/2 -translate-y-1/2 flex items-center">
+            <Link href={`/${language}`} className="absolute left-0 top-1/2 -translate-y-1/2 flex items-center">
               <Image 
                 src="/zellio3.png" 
                 alt="Zellio Logo" 
@@ -379,7 +379,7 @@ export default function Navbar() {
                               {servicesData.map((service) => (
                                 <Link
                                   key={service.id}
-                                  href={`/services/${getSlug(service.title)}`}
+                                  href={`/${language}/services/${getSlug(service.title)}`}
                                   onClick={() => setMobileOpen(false)}
                                   className="text-[15px] font-bold text-slate-600 hover:text-blue-600 py-1"
                                 >
@@ -401,7 +401,7 @@ export default function Navbar() {
                       transition={{ delay: i * 0.05 + 0.1 }}
                     >
                       <Link
-                        href={link.href}
+                        href={`/${language}${link.href === '/' ? '' : link.href.startsWith('/#') ? link.href.substring(1) : link.href}`}
                         onClick={() => setMobileOpen(false)}
                         className="text-2xl font-bold tracking-tight text-slate-900 hover:text-blue-600 transition-colors block"
                       >

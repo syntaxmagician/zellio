@@ -11,7 +11,7 @@ const localText = {
     principles: [
       {
         title: "Dedicated Engineers",
-        description: "Our team consists of top-tier full-stack developers, UI/UX designers, and cloud architects working dedicatedly for your project."
+        description: "Our team consists of full-stack developers, UI/UX designers, and technical specialists working dedicatedly on each project."
       },
       {
         title: "Modern Technology Stack",
@@ -33,7 +33,7 @@ const localText = {
     principles: [
       {
         title: "Engineer Dedikasi",
-        description: "Tim kami terdiri dari pengembang full-stack, desainer UI/UX, dan arsitek cloud tingkat atas yang bekerja secara dedikatif untuk proyek Anda."
+        description: "Tim kami terdiri dari pengembang full-stack, desainer UI/UX, dan spesialis teknis yang bekerja secara berdedikasi untuk setiap proyek."
       },
       {
         title: "Teknologi Modern",

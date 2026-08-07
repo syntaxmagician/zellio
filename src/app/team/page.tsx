@@ -33,7 +33,7 @@ export default function TeamPage() {
           <TeamHero />
           <Leadership />
           <EngineeringTeam />
-          <EngineeringCulture />
+          {/* <EngineeringCulture /> */}
           <TechEcosystem />
           <TeamCTA />
         </main>

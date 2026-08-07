@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { Shield, Database, Code2, UserCheck, Lock, CheckCircle2 } from "lucide-react";
+import { Shield, Database, Code2, UserCheck, Lock, HelpCircle } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { useLanguage } from "@/context/LanguageContext";
@@ -10,83 +10,97 @@ import { useLanguage } from "@/context/LanguageContext";
 const policyText = {
   en: {
     title: "Cookie Policy",
-    lastUpdated: "Last Updated: Juni 2026",
+    lastUpdated: "Last Updated: August 2026",
     sections: [
       {
         id: "sec-1",
         icon: Shield,
-        designator: "COOKIE_DEFINITION",
-        heading: "1. What Are Cookies?",
-        content: "Cookies are small text files containing a string of characters that are placed on your computer or mobile device when you visit a website. They are widely used by website owners to make their websites work efficiently, improve user experience, and provide performance analytics."
+        designator: "DEFINITION",
+        heading: "1. What Are Cookies — The Honest Explanation",
+        content: "Cookies are small text files that a website places on your browser or device when you visit. They're not programs, they can't execute code, and they can't carry viruses. At their core, they're just a way for a website to remember things between visits — like your preferred language or whether you've already seen a notification. ZELLIO uses cookies sparingly and only for legitimate operational purposes."
       },
       {
         id: "sec-2",
         icon: Database,
-        designator: "COOKIE_USAGE",
-        heading: "2. How We Use Cookies",
-        content: "Zellio Digital utilizes cookies to enhance the load times of our custom web interfaces, secure contact portals, and retain your selected language configuration across sessions. These cookies help us understand how users navigate our service detail pages so we can optimize our digital architectures."
+        designator: "HOW_WE_USE",
+        heading: "2. How ZELLIO Actually Uses Cookies",
+        content: "We use cookies for two specific purposes: first, to remember your selected language (Indonesian or English) so you don't have to reselect it every time you return; and second, to collect anonymous, aggregate traffic analytics that help us understand which pages and content are most useful. We do not use cookies to identify you personally, track you across other websites, or build behavioral profiles for advertising."
       },
       {
         id: "sec-3",
         icon: Code2,
-        designator: "COOKIE_TYPES",
-        heading: "3. Types of Cookies We Deploy",
-        content: "We use first-party cookies that are essential for the technical delivery of our pages (e.g., maintaining language states). We also use third-party analytics cookies (such as Google Analytics) to aggregate anonymous user metrics, allowing us to evaluate performance, scroll speeds, and asset delivery."
+        designator: "TYPES",
+        heading: "3. The Exact Types of Cookies We Deploy",
+        content: "Essential cookies keep the site functional — for example, maintaining your language selection across pages. These cannot be turned off without breaking site functionality. Analytics cookies (Google Analytics 4) collect anonymized metrics: page views, session duration, and general navigation patterns. No personally identifiable information is stored through analytics cookies. We do not deploy advertising cookies, retargeting cookies, or any form of cross-site tracking."
       },
       {
         id: "sec-4",
         icon: UserCheck,
-        designator: "COOKIE_MANAGEMENT",
-        heading: "4. Managing Cookie Preferences",
-        content: "Most web browsers allow you to manage cookies through their settings interfaces. You can choose to clear existing cookies, block all incoming cookies, or set alerts for new cookie placements. Please note that blocking essential cookies may disrupt parts of our interactive dashboard showcases."
+        designator: "MANAGEMENT",
+        heading: "4. Managing & Disabling Cookies",
+        content: "You can control cookies directly through your browser settings. In Chrome: Settings → Privacy & Security → Cookies. In Firefox: Settings → Privacy & Security → Cookies and Site Data. In Safari: Preferences → Privacy → Manage Website Data. You can choose to block all cookies, delete existing ones, or allow only essential cookies. If you block essential cookies, some features (like language persistence) will not function as expected."
       },
       {
         id: "sec-5",
         icon: Lock,
-        designator: "COOKIE_CONTACT",
-        heading: "5. Cookie Inquiries",
-        content: "For additional details regarding our tracking technologies or automated cookie compliance protocols, please reach out to our legal and data protection team at privacy@zellio.id."
+        designator: "THIRD_PARTY",
+        heading: "5. Third-Party Services & Their Cookies",
+        content: "We embed Google Analytics on this site, which sets its own first-party cookies in your browser to collect anonymized usage data. Google's data practices are governed by the Google Privacy Policy at policies.google.com/privacy. If you wish to opt out of Google Analytics tracking specifically across all websites, Google provides a browser add-on at tools.google.com/dlpage/gaoptout. We have no control over cookies set by other services you may link to from our site."
+      },
+      {
+        id: "sec-6",
+        icon: HelpCircle,
+        designator: "UPDATES",
+        heading: "6. Policy Updates & Contact",
+        content: "This Cookie Policy may be updated when we introduce new tools or change how we handle tracking technologies. We will update the date at the top of this page and, for significant changes, publish a note on our website. If you have questions about our specific cookie practices or want to request that your data be excluded from analytics, contact us at privacy@zellio.id."
       }
     ]
   },
   id: {
     title: "Kebijakan Cookie",
-    lastUpdated: "Pembaruan Terakhir: Oktober 2024",
+    lastUpdated: "Pembaruan Terakhir: Agustus 2026",
     sections: [
       {
         id: "sec-1",
         icon: Shield,
-        designator: "COOKIE_DEFINITION",
-        heading: "1. Apa itu Cookie?",
-        content: "Cookie adalah file teks kecil berisi rangkaian karakter yang ditempatkan di komputer atau perangkat seluler Anda saat mengunjungi sebuah situs web. Cookie digunakan secara luas oleh pemilik situs untuk membuat situs mereka bekerja dengan efisien, meningkatkan pengalaman pengguna, serta menyediakan analitik performa."
+        designator: "DEFINITION",
+        heading: "1. Apa Itu Cookie — Penjelasan Jujur",
+        content: "Cookie adalah file teks kecil yang ditempatkan website di browser atau perangkat Anda saat Anda berkunjung. Cookie bukan program — tidak dapat menjalankan kode, tidak dapat membawa virus. Pada dasarnya, cookie hanyalah cara bagi website untuk mengingat sesuatu di antara kunjungan — seperti bahasa pilihan Anda atau apakah Anda sudah pernah melihat notifikasi tertentu. ZELLIO menggunakan cookie secara hemat dan hanya untuk keperluan operasional yang sah."
       },
       {
         id: "sec-2",
         icon: Database,
-        designator: "COOKIE_USAGE",
-        heading: "2. Bagaimana Kami Menggunakan Cookie",
-        content: "Zellio Digital menggunakan cookie untuk mempercepat waktu muat antarmuka web kustom kami, mengamankan portal kontak, dan mempertahankan konfigurasi bahasa pilihan Anda di setiap sesi. Cookie ini membantu kami memahami cara pengguna bernavigasi sehingga kami dapat mengoptimalkan arsitektur digital kami."
+        designator: "HOW_WE_USE",
+        heading: "2. Bagaimana ZELLIO Menggunakan Cookie",
+        content: "Kami menggunakan cookie untuk dua tujuan spesifik: pertama, untuk mengingat bahasa yang Anda pilih (Indonesia atau Inggris) sehingga Anda tidak perlu memilih ulang setiap kali kembali; dan kedua, untuk mengumpulkan analitik traffic anonim yang membantu kami memahami halaman dan konten mana yang paling bermanfaat. Kami tidak menggunakan cookie untuk mengidentifikasi Anda secara pribadi atau membangun profil perilaku untuk iklan."
       },
       {
         id: "sec-3",
         icon: Code2,
-        designator: "COOKIE_TYPES",
+        designator: "TYPES",
         heading: "3. Jenis Cookie yang Kami Terapkan",
-        content: "Kami menggunakan cookie pihak pertama yang esensial untuk pengiriman teknis halaman kami (mis. mempertahankan status bahasa). Kami juga menggunakan cookie analitik pihak ketiga (seperti Google Analytics) untuk mengumpulkan metrik pengguna anonim guna mengevaluasi performa, kecepatan gulir, dan pengiriman aset."
+        content: "Cookie esensial menjaga fungsi situs — misalnya, mempertahankan pilihan bahasa Anda antar halaman. Cookie ini tidak dapat dimatikan tanpa merusak fungsionalitas situs. Cookie analitik (Google Analytics 4) mengumpulkan metrik yang dianonimkan: tampilan halaman, durasi sesi, dan pola navigasi umum. Tidak ada informasi yang dapat mengidentifikasi pribadi yang disimpan melalui cookie analitik. Kami tidak menerapkan cookie iklan, cookie retargeting, atau pelacakan lintas situs dalam bentuk apapun."
       },
       {
         id: "sec-4",
         icon: UserCheck,
-        designator: "COOKIE_MANAGEMENT",
-        heading: "4. Mengelola Preferensi Cookie",
-        content: "Sebagian besar browser web memungkinkan Anda untuk mengelola cookie melalui antarmuka pengaturan mereka. Anda dapat memilih untuk menghapus cookie yang ada, memblokir semua cookie yang masuk, atau mengatur peringatan untuk penempatan cookie baru. Harap dicatat bahwa memblokir cookie esensial dapat mengganggu bagian dari tampilan dashboard interaktif kami."
+        designator: "MANAGEMENT",
+        heading: "4. Mengelola & Menonaktifkan Cookie",
+        content: "Anda dapat mengontrol cookie langsung melalui pengaturan browser Anda. Di Chrome: Pengaturan → Privasi & Keamanan → Cookie. Di Firefox: Pengaturan → Privasi & Keamanan → Cookie dan Data Situs. Di Safari: Preferensi → Privasi → Kelola Data Situs Web. Anda dapat memblokir semua cookie, menghapus yang sudah ada, atau hanya mengizinkan cookie esensial. Jika Anda memblokir cookie esensial, beberapa fitur seperti persistensi bahasa tidak akan berfungsi sebagaimana mestinya."
       },
       {
         id: "sec-5",
         icon: Lock,
-        designator: "COOKIE_CONTACT",
-        heading: "5. Pertanyaan Mengenai Cookie",
-        content: "Untuk detail tambahan mengenai teknologi pelacakan kami atau protokol kepatuhan cookie otomatis kami, silakan hubungi tim perlindungan data dan hukum kami di privacy@zellio.id."
+        designator: "THIRD_PARTY",
+        heading: "5. Layanan Pihak Ketiga & Cookie Mereka",
+        content: "Kami menyematkan Google Analytics di situs ini, yang menetapkan cookie pihak pertamanya sendiri di browser Anda untuk mengumpulkan data penggunaan yang dianonimkan. Praktik data Google diatur oleh Kebijakan Privasi Google di policies.google.com/privacy. Jika Anda ingin menolak pelacakan Google Analytics secara khusus di semua situs, Google menyediakan add-on browser di tools.google.com/dlpage/gaoptout. Kami tidak memiliki kendali atas cookie yang ditetapkan oleh layanan lain yang mungkin Anda tautkan dari situs kami."
+      },
+      {
+        id: "sec-6",
+        icon: HelpCircle,
+        designator: "UPDATES",
+        heading: "6. Pembaruan Kebijakan & Kontak",
+        content: "Kebijakan Cookie ini dapat diperbarui ketika kami memperkenalkan alat baru atau mengubah cara kami menangani teknologi pelacakan. Kami akan memperbarui tanggal di bagian atas halaman ini dan, untuk perubahan signifikan, akan mempublikasikan catatan di website kami. Jika Anda memiliki pertanyaan tentang praktik cookie spesifik kami atau ingin meminta data Anda dikecualikan dari analitik, hubungi kami di privacy@zellio.id."
       }
     ]
   }

@@ -45,7 +45,7 @@ const localText = {
   en: {
     badge: "Our Expertise",
     headline: "Custom IT solutions.",
-    desc: "Purpose-built engineering for modern enterprises. From scalable backend architectures to pixel-perfect interfaces, we build software that drives momentum.",
+    desc: "Purpose-built engineering for modern businesses. From scalable backend architectures to pixel-perfect interfaces, we build software that drives momentum.",
     explore: "Explore service",
     tags: [
       ["Web Design", "SEO-Optimized", "Responsive", "Next.js"],

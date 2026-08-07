@@ -27,7 +27,7 @@ const localText = {
   en: {
     expertise: "OUR EXPERTISE",
     custom: "Custom IT Solutions",
-    desc: "Purpose-built engineering for modern enterprises. From scalable backend architectures to pixel-perfect interfaces, we build software that drives momentum.",
+    desc: "Purpose-built engineering for modern businesses. From scalable backend architectures to pixel-perfect interfaces, we build software that drives momentum.",
   },
   id: {
     expertise: "KEAHLIAN KAMI",

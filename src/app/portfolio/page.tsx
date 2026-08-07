@@ -10,204 +10,15 @@ import { ArrowRight, ArrowUpRight, Laptop, Smartphone, LineChart, Globe } from "
 import { useLanguage } from "@/context/LanguageContext";
 import { gsap, useGSAP } from "@/lib/gsap";
 
-type Project = {
-  title: string;
-  category: { id: string; en: string };
-  type: "Website" | "Internal Dashboard" | "APP";
-  desc: { id: string; en: string };
-  tags: string[];
-  image?: string;
-  images?: string[];
-  icon: React.ElementType;
-  accent: string;
-  url?: string;
-  isPrivate?: boolean;
-};
+import { projects } from "@/lib/portfolioData";
+import type { Project } from "@/lib/portfolioData";
 
-const projects: Project[] = [
-  {
-    title: "Batugin",
-    category: { id: "Farmasi & Kesehatan", en: "Healthcare & Pharmaceuticals" },
-    type: "Website",
-    desc: { 
-      id: "Website Company Profile resmi untuk lini produk kesehatan unggulan Batugin. Menghadirkan informasi produk terpercaya dengan desain medis yang bersih, profesional, dan edukatif.", 
-      en: "Official Company Profile website for the Batugin healthcare product line. Presents trusted product information with a clean, professional, and educational medical design." 
-    },
-    tags: ["Next.js", "TailwindCSS", "Framer Motion"],
-    image: "/batugin_compro.jpeg",
-    icon: Globe,
-    accent: "text-rose-600 bg-rose-50 border-rose-100",
-    url: "https://batugin.id/",
-  },
-  {
-    title: "Master Diskon",
-    category: { id: "Travel & Perhotelan", en: "Travel & Hospitality" },
-    type: "Internal Dashboard",
-    desc: { 
-      id: "Aplikasi Web Dashboard komprehensif untuk travel agent. Memfasilitasi manajemen pencarian dan pemesanan tiket pesawat, hotel, serta paket wisata dengan sistem harga dinamis.", 
-      en: "A comprehensive Web Dashboard App for travel agents. Facilitates the management of flights, hotels, and tour packages with dynamic pricing systems." 
-    },
-    tags: ["Next.js", "Payment Gateway", "Travel API"],
-    image: "/MasterDiskon.png",
-    icon: Globe,
-    accent: "text-blue-600 bg-blue-50 border-blue-100",
-    url: "https://masterdiskon.com/id-id",
-  },
-  {
-    title: "Raja Cepat",
-    category: { id: "Logistik & Pengiriman", en: "Logistics & Delivery" },
-    type: "Internal Dashboard",
-    desc: { 
-      id: "Web Dashboard App untuk operasional ekspedisi pengiriman paket dan kargo. Dilengkapi pelacakan resi real-time (live tracking) dan manajemen armada kurir terpadu yang sangat akurat.", 
-      en: "Web Dashboard App for expedition and cargo delivery operations. Features real-time tracking and highly accurate integrated courier fleet management." 
-    },
-    tags: ["React", "Node.js", "Geolocation API"],
-    image: "/Raja Cepat.png",
-    icon: Smartphone,
-    accent: "text-red-600 bg-red-50 border-red-100",
-    url: "https://rajacepat.com/id",
-  },
-  {
-    title: "Jaja ID",
-    category: { id: "Marketplace E-Commerce", en: "E-Commerce Marketplace" },
-    type: "Internal Dashboard",
-    desc: { 
-      id: "Sistem Web Dashboard untuk marketplace digital inovatif. Menawarkan manajemen keranjang pintar, kontrol inventaris mandiri bagi penjual, dan kalkulator ongkir multi-kurir.", 
-      en: "Web Dashboard System for an innovative digital marketplace. Offers smart cart management, independent seller inventory control, and multi-courier shipping calculators." 
-    },
-    tags: ["React", "Express", "MongoDB", "Redux"],
-    image: "/jaja id web.png",
-    icon: Laptop,
-    accent: "text-emerald-600 bg-emerald-50 border-emerald-100",
-    url: "https://jaja.id/",
-  },
-  {
-    title: "Jaja Auto",
-    category: { id: "Showroom Otomotif", en: "Automotive Showroom" },
-    type: "Internal Dashboard",
-    desc: { 
-      id: "Web Dashboard interaktif untuk manajemen showroom jual beli kendaraan. Menyediakan fitur inventaris mobil, perbandingan spesifikasi, hingga kalkulator simulasi kredit.", 
-      en: "Interactive Web Dashboard for vehicle showroom management. Provides car inventory features, specification comparisons, and loan simulation calculators." 
-    },
-    tags: ["Vue.js", "TailwindCSS", "PostgreSQL"],
-    image: "/jaja auto.png",
-    icon: Laptop,
-    accent: "text-indigo-600 bg-indigo-50 border-indigo-100",
-    url: "https://auto.jaja.id/",
-  },
-  {
-    title: "Campos Law Firm",
-    category: { id: "Portal Hukum Korporat", en: "Corporate Legal Portal" },
-    type: "Website",
-    desc: { 
-      id: "Website representasi profesional untuk firma hukum Campos. Menampilkan profil pengacara, spesialisasi kasus, serta portal penjadwalan konsultasi hukum secara aman bagi klien.", 
-      en: "Professional representation website for Campos Law Firm. Features lawyer profiles, case specializations, and a secure legal consultation scheduling portal for clients." 
-    },
-    tags: ["Next.js", "Framer Motion", "CMS"],
-    image: "/Campos Law Firm.png",
-    icon: Laptop,
-    accent: "text-amber-600 bg-amber-50 border-amber-100",
-    url: "https://camposlawfirm.com/",
-  },
-  {
-    title: "Eureka Logistics Portal",
-    category: { id: "Pusat Logistik", en: "Logistics Hub" },
-    type: "Internal Dashboard",
-    desc: { 
-      id: "Web Dashboard App khusus klien Eureka Logistics untuk melakukan order pengiriman armada, pengecekan kontainer secara real-time, dan pengelolaan dokumen invoice tagihan.", 
-      en: "Dedicated Web Dashboard App for Eureka Logistics clients to order fleet shipments, check containers in real-time, and manage invoice documents." 
-    },
-    tags: ["React", "Spring Boot", "Redis"],
-    image: "/elogs web.jpeg",
-    icon: Globe,
-    accent: "text-teal-600 bg-teal-50 border-teal-100",
-    url: "https://eurekalogistics.co.id/id",
-  },
-  {
-    title: "Eureka Internal ERP",
-    category: { id: "Sistem ERP Korporat", en: "Production ERP System" },
-    type: "Internal Dashboard",
-    desc: { 
-      id: "Sistem ERP skala produksi full-module. Mencakup keseluruhan manajemen mulai dari penjualan, monitoring unit, service unit, pembuatan invoice otomatis, hingga integrasi data vendor lengkap dengan ekstraksi harga PO.", 
-      en: "Full-module Production-scale ERP System. Covers overall management from sales, unit monitoring, service, automated invoice generation, to vendor data integration." 
-    },
-    tags: ["Next.js", "Odoo ERP API", "WebSockets", "TailwindCSS"],
-    image: "/elogs dash.png",
-    icon: LineChart,
-    accent: "text-cyan-600 bg-cyan-50 border-cyan-100",
-    url: "/insights/eureka-logistics-case-study",
-    isPrivate: true,
-  },
-  {
-    title: "HR Management CMS",
-    category: { id: "Sistem Sumber Daya Manusia", en: "Human Resource System" },
-    type: "Internal Dashboard",
-    desc: { 
-      id: "Dashboard internal tersentralisasi khusus tim HR. Mengotomatisasi absensi, pengajuan cuti, perhitungan KPI, generasi slip gaji, hingga memonitor proses rekrutmen kandidat secara efisien.", 
-      en: "Centralized internal dashboard dedicated to the HR team. Automates attendance, leave requests, KPI calculations, payroll generation, and candidate recruitment monitoring." 
-    },
-    tags: ["Next.js", "Express.js", "Redis SSO", "PostgreSQL"],
-    image: "/HR CMS Das.png",
-    icon: LineChart,
-    accent: "text-rose-600 bg-rose-50 border-rose-100",
-    url: "/insights/hris-corporate-case-study",
-    isPrivate: true,
-  },
-  {
-    title: "Beego SuperApp",
-    category: { id: "Transportasi On-Demand", en: "On-Demand Ride Hailing" },
-    type: "APP",
-    desc: { 
-      id: "Aplikasi mobile multi-layanan on-demand (SuperApp). Mengintegrasikan layanan transportasi ojek online, pesan antar makanan, dan kurir barang dengan antarmuka native yang sangat responsif.", 
-      en: "On-demand multi-service mobile app (SuperApp). Integrates ride-hailing, food delivery, and courier services with a highly responsive native interface." 
-    },
-    tags: ["React Native", "WebSockets", "Go", "Firebase"],
-    images: ["/beego1.png", "/beego2.png"],
-    icon: Smartphone,
-    accent: "text-yellow-600 bg-yellow-50 border-yellow-100",
-    url: "https://play.google.com/store/apps/details?id=com.beego.mobile",
-  },
-  {
-    title: "Warung BungaPagi Ecosystem",
-    category: { id: "Ekosistem Digital F&B", en: "F&B Digital Ecosystem" },
-    type: "Website",
-    desc: { 
-      id: "Rasa Asli Malaysia, Kehangatan Kebersamaan. Rasakan pengalaman kuliner otentik, keuntungan keanggotaan eksklusif, dan kemudahan pemesanan digital.", 
-      en: "Authentic Malaysian Taste, Warmth of Togetherness. Experience authentic Malaysian cuisine, exclusive membership benefits, and a seamless digital ordering experience." 
-    },
-    tags: ["Next.js", "E-Commerce", "Membership API"],
-    image: "/warungbungaweb.png",
-    icon: Globe,
-    accent: "text-fuchsia-600 bg-fuchsia-50 border-fuchsia-100",
-    url: "https://warungpagipagi.com/",
-  },
-  {
-    title: "Guruino",
-    category: { id: "Platform EdTech", en: "EdTech Platform" },
-    type: "Website",
-    desc: { 
-      id: "Platform pembelajaran daring interaktif untuk menghubungkan siswa dengan mentor ahli. Memiliki fitur ruang kelas virtual, penjadwalan sesi belajar, dan pembayaran aman.", 
-      en: "Interactive online learning platform connecting students with expert mentors. Features virtual classrooms, study session scheduling, and secure payments." 
-    },
-    tags: ["Next.js", "TailwindCSS", "EdTech API"],
-    image: "/guruino1.jpeg",
-    icon: Globe,
-    accent: "text-blue-600 bg-blue-50 border-blue-100",
-  },
-  {
-    title: "NontonKuy",
-    category: { id: "Komunitas Streaming", en: "Streaming Community" },
-    type: "Website",
-    desc: { 
-      id: "Platform media hiburan untuk nonton bareng film secara virtual. Dilengkapi fitur live chat interaktif, sinkronisasi pemutaran video, dan ruang nonton publik.", 
-      en: "Entertainment media platform for virtual watch parties. Equipped with interactive live chat, video playback synchronization, and public screening rooms." 
-    },
-    tags: ["React", "WebSockets", "TailwindCSS"],
-    image: "/nontonkuy.jpeg",
-    icon: Laptop,
-    accent: "text-purple-600 bg-purple-50 border-purple-100",
-  },
-];
+const iconMap = {
+  Globe,
+  Smartphone,
+  Laptop,
+  LineChart,
+};
 
 const filterCategories = ["All", "Website", "Internal Dashboard", "APP"] as const;
 type FilterCategory = typeof filterCategories[number];
@@ -389,7 +200,7 @@ export default function PortfolioPage() {
           <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16">
             <AnimatePresence mode="popLayout">
               {paginatedProjects.map((project, idx) => {
-                const Icon = project.icon;
+                const Icon = iconMap[project.icon] || Globe;
                 // Asymmetric editorial logic: pattern repeats every 10 items perfectly.
                 // 1 wide, 1 narrow -> 3 narrow -> 1 narrow, 1 wide -> 3 narrow.
                 const isFeatured = idx % 10 === 0 || idx % 10 === 6;
@@ -405,40 +216,42 @@ export default function PortfolioPage() {
                     className={`group flex flex-col gap-6 cursor-pointer ${isFeatured ? "md:col-span-2 lg:col-span-2" : "col-span-1"}`}
                   >
                     {/* Visual Container */}
-                    <div className={`relative w-full rounded-[24px] overflow-hidden bg-slate-100 border border-slate-200/60 shadow-sm ${
-                      isFeatured ? "aspect-[4/3] md:aspect-[21/9]" : "aspect-[4/3]"
-                    }`}>
-                      {project.images ? (
-                        <div className="flex w-full h-full gap-1 bg-slate-200 p-0.5">
-                          {project.images.map((img, i) => (
-                            <div key={i} className="relative flex-1 h-full rounded-[20px] overflow-hidden">
-                              <Image
-                                src={img}
-                                alt={`${project.title} Preview ${i + 1}`}
-                                fill
-                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                                className="object-cover transform scale-100 group-hover:scale-[1.03] transition-transform duration-700 ease-out"
-                              />
-                            </div>
-                          ))}
-                        </div>
-                      ) : (
-                        <Image
-                          src={project.image || ""}
-                          alt={project.title}
-                          fill
-                          sizes={isFeatured ? "(max-width: 768px) 100vw, 66vw" : "(max-width: 768px) 100vw, 33vw"}
-                          className="object-cover transform scale-100 group-hover:scale-[1.03] transition-transform duration-700 ease-out"
-                        />
-                      )}
-                      
-                      {/* Hover Dark Overlay & Button */}
-                      <div className="absolute inset-0 bg-slate-900/0 group-hover:bg-slate-900/20 transition-colors duration-500 pointer-events-none flex items-center justify-center">
-                        <div className="w-16 h-16 rounded-full bg-white/90 backdrop-blur-sm text-slate-900 flex items-center justify-center opacity-0 scale-50 group-hover:opacity-100 group-hover:scale-100 transition-all duration-500 shadow-xl">
-                          <ArrowUpRight size={24} strokeWidth={2.5} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                    <Link href={`/portfolio/${project.slug}`} className="block relative">
+                      <div className={`relative w-full rounded-[24px] overflow-hidden bg-slate-100 border border-slate-200/60 shadow-sm ${
+                        isFeatured ? "aspect-[4/3] md:aspect-[21/9]" : "aspect-[4/3]"
+                      }`}>
+                        {project.images ? (
+                          <div className="flex w-full h-full gap-1 bg-slate-200 p-0.5">
+                            {project.images.map((img, i) => (
+                              <div key={i} className="relative flex-1 h-full rounded-[20px] overflow-hidden">
+                                <Image
+                                  src={img}
+                                  alt={`${project.title} Preview ${i + 1}`}
+                                  fill
+                                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                  className="object-cover transform scale-100 group-hover:scale-[1.03] transition-transform duration-700 ease-out"
+                                />
+                              </div>
+                            ))}
+                          </div>
+                        ) : (
+                          <Image
+                            src={project.image || ""}
+                            alt={project.title}
+                            fill
+                            sizes={isFeatured ? "(max-width: 768px) 100vw, 66vw" : "(max-width: 768px) 100vw, 33vw"}
+                            className="object-cover transform scale-100 group-hover:scale-[1.03] transition-transform duration-700 ease-out"
+                          />
+                        )}
+                        
+                        {/* Hover Dark Overlay & Button */}
+                        <div className="absolute inset-0 bg-slate-900/0 group-hover:bg-slate-900/20 transition-colors duration-500 pointer-events-none flex items-center justify-center">
+                          <div className="w-16 h-16 rounded-full bg-white/90 backdrop-blur-sm text-slate-900 flex items-center justify-center opacity-0 scale-50 group-hover:opacity-100 group-hover:scale-100 transition-all duration-500 shadow-xl">
+                            <ArrowUpRight size={24} strokeWidth={2.5} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                          </div>
                         </div>
                       </div>
-                    </div>
+                    </Link>
 
                     {/* Metadata & Typography */}
                     <div className="flex flex-col flex-grow">
@@ -465,17 +278,13 @@ export default function PortfolioPage() {
                         {project.desc[language as "id" | "en"]}
                       </p>
 
-                      {project.url && (
-                        <a 
-                          href={project.url}
-                          target={project.isPrivate ? "_self" : "_blank"}
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-2 text-[11px] font-bold text-blue-600 hover:text-blue-700 transition-colors uppercase tracking-widest mb-4"
-                        >
-                          {project.isPrivate ? (language === "id" ? "Baca Studi Kasus" : "Read Case Study") : (language === "id" ? "Kunjungi Website" : "Visit Website")}
-                          <ArrowUpRight size={14} strokeWidth={3} />
-                        </a>
-                      )}
+                      <Link 
+                        href={`/portfolio/${project.slug}`}
+                        className="inline-flex items-center gap-2 text-[11px] font-bold text-blue-600 hover:text-blue-700 transition-colors uppercase tracking-widest mb-4 z-10 relative"
+                      >
+                        {language === "id" ? "Lihat Detail Proyek" : "View Project Details"}
+                        <ArrowUpRight size={14} strokeWidth={3} />
+                      </Link>
 
                       {/* Tech Tags */}
                       <div className="flex flex-wrap gap-2 pt-5 border-t border-slate-100 mt-auto">

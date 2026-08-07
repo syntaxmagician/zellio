@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "eslint",
     "compro:pdf": "node scripts/generate-compro-pdf.mjs",
-    "clients:normalize": "node scripts/normalize-client-logos.mjs"
+    "clients:normalize": "node scripts/normalize-client-logos.mjs",
+    "insights:banners": "node scripts/generate-insights-banners.mjs"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",

@@ -1,6 +1,7 @@
 "use client";
 
 import React, { createContext, useContext, useState, useEffect } from "react";
+import { usePathname, useRouter } from "next/navigation";
 import { translations, TranslationKey } from "@/lib/translations";
 
 type Language = "en" | "id";
@@ -14,20 +15,34 @@ interface LanguageContextType {
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
+  const pathname = usePathname();
+  const router = useRouter();
   const [language, setLanguageState] = useState<Language>("en");
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    const savedLang = localStorage.getItem("preferred-language") as Language;
-    if (savedLang === "en" || savedLang === "id") {
-      setLanguageState(savedLang);
-    }
     setMounted(true);
   }, []);
 
+  useEffect(() => {
+    if (pathname) {
+      const firstSegment = pathname.split("/")[1] as Language;
+      if (firstSegment === "en" || firstSegment === "id") {
+        setLanguageState(firstSegment);
+      }
+    }
+  }, [pathname]);
+
   const setLanguage = (lang: Language) => {
-    setLanguageState(lang);
-    localStorage.setItem("preferred-language", lang);
+    if (!pathname) return;
+    const segments = pathname.split("/");
+    if (segments[1] === "en" || segments[1] === "id") {
+      segments[1] = lang;
+    } else {
+      segments.splice(1, 0, lang);
+    }
+    const newPathname = segments.join("/") || `/${lang}`;
+    router.push(newPathname);
   };
 
   const t = (key: TranslationKey): string => {

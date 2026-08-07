@@ -16,7 +16,7 @@ const localText = {
     faqList: [
       {
         q: "What types of digital projects do you handle?",
-        a: "We design and build custom web applications, responsive corporate websites, analytics dashboards, mobile applications (iOS/Android), and robust enterprise IT systems.",
+        a: "We design and build custom web applications, responsive corporate websites, analytics dashboards, mobile applications (iOS/Android), and custom business systems.",
       },
       {
         q: "What technologies do you use?",
@@ -24,7 +24,7 @@ const localText = {
       },
       {
         q: "How long does a typical IT project take?",
-        a: "Corporate websites and landing pages usually take 4-6 weeks. Custom admin dashboards and mobile apps take 8-12 weeks. Large-scale enterprise systems can take 12-16+ weeks.",
+        a: "Corporate websites and landing pages usually take 4-6 weeks. Custom admin dashboards and mobile apps take 8-12 weeks. Large-scale business systems can take 12-16+ weeks.",
       },
       {
         q: "How do you structure project pricing?",

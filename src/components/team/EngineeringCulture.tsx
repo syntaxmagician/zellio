@@ -85,12 +85,12 @@ export default function EngineeringCulture() {
                 Documentation first
               </h3>
               <p className="text-xs md:text-sm font-medium text-slate-500 leading-relaxed">
-                If it's not documented, it doesn't exist. Clear architectural blueprints are our foundation.
+                If it&apos;s not documented, it doesn&apos;t exist. Clear architectural blueprints are our foundation.
               </p>
             </div>
 
             <div className="mt-4 bg-slate-50 border border-slate-150 rounded-lg p-2.5 font-mono text-[9px] text-slate-500">
-              <span className="text-blue-500">type</span> Deploy = <span className="text-emerald-600">"SUCCESS"</span>;
+              <span className="text-blue-500">type</span> Deploy = <span className="text-emerald-600">&quot;SUCCESS&quot;</span>;
             </div>
           </div>
 
