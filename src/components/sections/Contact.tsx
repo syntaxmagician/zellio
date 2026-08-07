@@ -341,7 +341,7 @@ export default function Contact() {
                   <div>
                     <label
                       htmlFor="contact-name"
-                      className="text-[10px] font-mono font-bold text-slate-400 uppercase tracking-widest mb-2 block"
+                      className="text-[10px] font-mono font-bold text-slate-600 uppercase tracking-widest mb-2 block"
                     >
                       {text.form.fullName}
                     </label>
@@ -360,7 +360,7 @@ export default function Contact() {
                   <div>
                     <label
                       htmlFor="contact-company"
-                      className="text-[10px] font-mono font-bold text-slate-400 uppercase tracking-widest mb-2 block"
+                      className="text-[10px] font-mono font-bold text-slate-600 uppercase tracking-widest mb-2 block"
                     >
                       {text.form.company}
                     </label>
@@ -380,7 +380,7 @@ export default function Contact() {
                   <div>
                     <label
                       htmlFor="contact-email"
-                      className="text-[10px] font-mono font-bold text-slate-400 uppercase tracking-widest mb-2 block"
+                      className="text-[10px] font-mono font-bold text-slate-600 uppercase tracking-widest mb-2 block"
                     >
                       {text.form.email}
                     </label>
@@ -400,7 +400,7 @@ export default function Contact() {
                   <div>
                     <label
                       htmlFor="contact-phone"
-                      className="text-[10px] font-mono font-bold text-slate-400 uppercase tracking-widest mb-2 block"
+                      className="text-[10px] font-mono font-bold text-slate-600 uppercase tracking-widest mb-2 block"
                     >
                       {text.form.phone}
                     </label>
@@ -419,7 +419,7 @@ export default function Contact() {
                 {/* <div>
                   <label
                     htmlFor="contact-budget"
-                    className="text-[10px] font-mono font-bold text-slate-400 uppercase tracking-widest mb-2 block"
+                    className="text-[10px] font-mono font-bold text-slate-600 uppercase tracking-widest mb-2 block"
                   >
                     {text.form.budget}
                   </label>
@@ -446,7 +446,7 @@ export default function Contact() {
                 <div>
                   <label
                     htmlFor="contact-message"
-                    className="text-[10px] font-mono font-bold text-slate-400 uppercase tracking-widest mb-2 block"
+                    className="text-[10px] font-mono font-bold text-slate-600 uppercase tracking-widest mb-2 block"
                   >
                     {text.form.message}
                   </label>
@@ -645,7 +645,7 @@ export default function Contact() {
                         <div className="text-[11px] font-bold text-white font-mono tracking-tight">
                           Jl. Blk. Duku No.93RT.12/RW.10, Cibubur, Kec. Ciracas, Kota Jakarta Timur, Daerah Khusus Ibukota Jakarta 13720
                         </div>
-                        <div className="text-[9px] font-mono text-slate-400 mt-0.5">
+                        <div className="text-[9px] font-mono text-slate-200 mt-0.5">
                           {text.contact.viewMap} →
                         </div>
                       </div>

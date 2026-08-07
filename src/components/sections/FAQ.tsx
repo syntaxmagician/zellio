@@ -121,7 +121,7 @@ export default function FAQ() {
             {/* Statistics details */}
             <div className="space-y-5 max-w-xs">
               <div className="border-t border-slate-100 pt-4">
-                <div className="text-[10px] font-mono font-bold text-slate-400 uppercase tracking-widest mb-1">
+                <div className="text-[10px] font-mono font-bold text-slate-600 uppercase tracking-widest mb-1">
                   {text.readTimeLabel}
                 </div>
                 <div className="text-sm font-bold text-slate-900 font-mono">
@@ -129,7 +129,7 @@ export default function FAQ() {
                 </div>
               </div>
               <div className="border-t border-slate-100 pt-4">
-                <div className="text-[10px] font-mono font-bold text-slate-400 uppercase tracking-widest mb-1">
+                <div className="text-[10px] font-mono font-bold text-slate-600 uppercase tracking-widest mb-1">
                   {text.transparencyLabel}
                 </div>
                 <div className="text-sm font-bold text-slate-900 font-mono">
@@ -159,7 +159,7 @@ export default function FAQ() {
                     <h3
                       className={`text-base lg:text-lg font-bold tracking-tight transition-colors duration-300 leading-snug pr-8 ${
                         isOpen 
-                          ? "text-slate-400 font-semibold" 
+                          ? "text-slate-600 font-semibold" 
                           : "text-slate-900 group-hover:text-slate-600"
                       }`}
                     >

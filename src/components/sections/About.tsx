@@ -190,7 +190,7 @@ function EngineeringWorkflowSectionContent({ language }: { language: "en" | "id"
                     />
                   </div>
                 </div>
-                <div className="col-span-5 text-center font-mono text-[10px] md:text-xs font-bold text-slate-400 uppercase tracking-widest flex items-center justify-center pb-3 border-t border-r border-slate-200/60 rounded-tr-2xl bg-white">
+                <div className="col-span-5 text-center font-mono text-[10px] md:text-xs font-bold text-slate-600 uppercase tracking-widest flex items-center justify-center pb-3 border-t border-r border-slate-200/60 rounded-tr-2xl bg-white">
                   {language === "id" ? "LAYANAN LAIN" : "OTHER SERVICES"}
                 </div>
               </div>
@@ -212,7 +212,7 @@ function EngineeringWorkflowSectionContent({ language }: { language: "en" | "id"
                           <p className="font-bold text-slate-800 text-xs md:text-[14px] leading-snug">
                             {language === "id" ? feat.idTitle : feat.enTitle}
                           </p>
-                          <p className="text-slate-500 text-[10px] md:text-[12px] mt-1 leading-relaxed font-medium">
+                          <p className="text-slate-600 text-[10px] md:text-[12px] mt-1 leading-relaxed font-medium">
                             {language === "id" ? feat.idDesc : feat.enDesc}
                           </p>
                         </div>
@@ -268,7 +268,7 @@ function StatCounter({
         {target}
         <span className="text-blue-600">{suffix}</span>
       </div>
-      <div className="text-[10px] font-mono font-bold tracking-[0.18em] uppercase text-slate-400 mt-2.5 leading-tight">
+      <div className="text-[10px] font-mono font-bold tracking-[0.18em] uppercase text-slate-600 mt-2.5 leading-tight">
         {label}
       </div>
     </motion.div>

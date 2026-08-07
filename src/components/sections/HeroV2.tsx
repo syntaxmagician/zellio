@@ -33,10 +33,6 @@ export default function HeroV2() {
   const { language } = useLanguage();
   const text = localText[language];
   const sectionRef = useRef<HTMLElement>(null);
-  const [activeVideo, setActiveVideo] = useState<1 | 2>(1);
-  /** Second clip loads only after first paint / idle — avoids ~14MB dual preload. */
-  const [loadAltVideo, setLoadAltVideo] = useState(false);
-  /** Mobile Lighthouse / small screens: skip video entirely (static gradient). */
   const [allowVideo, setAllowVideo] = useState(false);
 
   useEffect(() => {
@@ -46,32 +42,6 @@ export default function HeroV2() {
     mq.addEventListener("change", sync);
     return () => mq.removeEventListener("change", sync);
   }, []);
-
-  useEffect(() => {
-    if (!allowVideo) return;
-
-    const enableAlt = () => setLoadAltVideo(true);
-    let idleId: number | undefined;
-    let timeoutId: ReturnType<typeof setTimeout> | undefined;
-
-    if ("requestIdleCallback" in window) {
-      idleId = window.requestIdleCallback(enableAlt, { timeout: 5000 });
-    } else {
-      timeoutId = setTimeout(enableAlt, 3500);
-    }
-
-    const interval = setInterval(() => {
-      setActiveVideo((prev) => (prev === 1 ? 2 : 1));
-    }, 8000);
-
-    return () => {
-      clearInterval(interval);
-      if (idleId !== undefined && "cancelIdleCallback" in window) {
-        window.cancelIdleCallback(idleId);
-      }
-      if (timeoutId) clearTimeout(timeoutId);
-    };
-  }, [allowVideo]);
 
   useGSAP(
     () => {
@@ -205,30 +175,15 @@ export default function HeroV2() {
       <div className="hero-video-wrap absolute inset-0 w-full h-full overflow-hidden pointer-events-none z-0 will-change-transform" aria-hidden="true">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_70%_40%,rgba(37,99,235,0.12),transparent_55%),linear-gradient(135deg,#121212_0%,#1a1a1a_50%,#0c0c0c_100%)]" />
         {allowVideo && (
-          <>
-            <video
-              src="/cinematic.mp4"
-              autoPlay
-              loop
-              muted
-              playsInline
-              preload="metadata"
-              className={`hero-video-clip absolute inset-0 w-full h-full object-cover transition-opacity duration-[2000ms] ease-in-out ${activeVideo === 1 ? "opacity-[0.22]" : "opacity-0"
-                }`}
-            />
-            {loadAltVideo && (
-              <video
-                src="/coba3.mp4"
-                autoPlay
-                loop
-                muted
-                playsInline
-                preload="none"
-                className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-[2000ms] ease-in-out ${activeVideo === 2 ? "opacity-[0.25]" : "opacity-0"
-                  }`}
-              />
-            )}
-          </>
+          <video
+            src="/cinematic.mp4"
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="none"
+            className="hero-video-clip absolute inset-0 w-full h-full object-cover opacity-[0.22]"
+          />
         )}
         <div className="absolute inset-0 bg-gradient-to-r from-[#121212] via-[#121212]/75 to-transparent" />
       </div>

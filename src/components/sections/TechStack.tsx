@@ -32,7 +32,12 @@ import { Database, Waypoints, Infinity as InfinityIcon } from "lucide-react";
 
 interface TechItem {
   name: string;
-  icon: ComponentType<{ className?: string; style?: CSSProperties }>;
+  icon: ComponentType<{
+    className?: string;
+    style?: CSSProperties;
+    "aria-label"?: string;
+    title?: string;
+  }>;
   /** Tuned for a white background — a few official hexes are dark-UI only. */
   color: string;
 }
@@ -202,6 +207,9 @@ export default function TechStack() {
                     <item.icon
                       className="w-6 h-6 shrink-0 transition-transform duration-300 group-hover:scale-110"
                       style={{ color: item.color }}
+                      aria-label={item.name}
+                      // Accessible name satisfies svg-img-alt / agentic tree checks.
+                      title={item.name}
                     />
                     <span className="text-[17px] lg:text-lg font-bold text-slate-700 tracking-tight group-hover:text-slate-950 transition-colors duration-300">
                       {item.name}

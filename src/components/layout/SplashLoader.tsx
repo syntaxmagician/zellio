@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import Image from "next/image";
 import { gsap, useGSAP } from "@/lib/gsap";
+import { shouldSkipSplash } from "@/lib/splash";
 
 /**
  * Intro loader, ZELLIO cut of the dd.nyc pattern:
@@ -17,8 +18,7 @@ export default function SplashLoader({ onDone }: { onDone: () => void }) {
 
   useGSAP(
     () => {
-      const isBot = typeof navigator !== "undefined" && /bot|google|baidu|bing|msn|duckduckbot|teoma|slurp|yandex|chrome-lighthouse|lighthouse/i.test(navigator.userAgent);
-      if (isBot || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      if (shouldSkipSplash()) {
         onDone();
         return;
       }
@@ -54,19 +54,15 @@ export default function SplashLoader({ onDone }: { onDone: () => void }) {
 
   return (
     <div ref={root} className="fixed inset-0 z-[99999] overflow-hidden">
-      {/* Brand mark — hidden behind the panels until they part.
-          The glyph is only ~15% of this PNG's canvas, so the image is drawn at
-          roughly its native width to keep the mark itself pixel-sharp; the
-          transparent surround simply overflows. */}
       <div className="absolute inset-0 z-10 flex items-center justify-center pointer-events-none overflow-hidden">
         <Image
           src="/zellio_logo.png"
           alt=""
           aria-hidden="true"
-          width={1536}
-          height={1024}
+          width={512}
+          height={341}
           priority
-          className="sl-burst w-[1536px] max-w-none h-auto select-none opacity-0"
+          className="sl-burst w-[min(90vw,512px)] max-w-none h-auto select-none opacity-0"
           style={{ filter: "brightness(0) saturate(100%) invert(32%) sepia(98%) saturate(1476%) hue-rotate(201deg) brightness(93%) contrast(98%)" }}
         />
       </div>
@@ -76,7 +72,6 @@ export default function SplashLoader({ onDone }: { onDone: () => void }) {
 
       <div className="absolute inset-0 z-30 flex flex-col items-center justify-center pointer-events-none px-6">
         <div className="sl-lockup flex items-center justify-center">
-          {/* each letter gets its own overflow-hidden reveal mask */}
           <span className="overflow-hidden block">
             <span className="sl-letter sl-z block font-black text-slate-900 leading-[0.9] tracking-tighter text-[19vw] sm:text-[13vw] md:text-[9rem]">
               Z
@@ -93,7 +88,7 @@ export default function SplashLoader({ onDone }: { onDone: () => void }) {
           </span>
         </div>
 
-        <span className="sl-tag mt-5 font-mono text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.42em] text-slate-400">
+        <span className="sl-tag mt-5 font-mono text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.42em] text-slate-600">
           Digital Engineering
         </span>
       </div>
