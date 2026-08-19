@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useRef } from "react";
 import Link from "next/link";
@@ -9,12 +9,12 @@ import ServiceIndexList, { type ServiceRow } from "@/components/services/Service
 import { servicesData, developmentProcess } from "@/lib/data";
 import { slugify } from "@/lib/slug";
 import { useLanguage } from "@/context/LanguageContext";
-import { gsap, useGSAP } from "@/lib/gsap";
+import { gsap, ScrollTrigger, useGSAP } from "@/lib/gsap";
 
 /**
  * One image per service, in servicesData order. Each was picked against the
- * subject of the service ΓÇö warehouse aisles for inventory, a floor of desks for
- * HRIS, server racks for DevOps ΓÇö rather than generic desk-and-laptop stock.
+ * subject of the service — warehouse aisles for inventory, a floor of desks for
+ * HRIS, server racks for DevOps — rather than generic desk-and-laptop stock.
  */
 const serviceImages = [
   "https://images.unsplash.com/photo-1531297484001-80022131f5a1?q=80&w=1200&auto=format&fit=crop", // Custom Web (code on screen)
@@ -31,7 +31,7 @@ const localText = {
   en: {
     eyebrow: "Services",
     headline: ["What we", "build for you."],
-    lead: "Fifteen disciplines under one roof ΓÇö from a landing page that has to convert this quarter, to the ERP a thousand people will open every morning. Same team, same standard.",
+    lead: "Fifteen disciplines under one roof — from a landing page that has to convert this quarter, to the ERP a thousand people will open every morning. Same team, same standard.",
     metaServices: "Services",
     metaCategories: "Disciplines",
     scroll: "Scroll",
@@ -40,7 +40,7 @@ const localText = {
     craftEyebrow: "How we work",
     craftTitle: "We don't hand you a template and call it a system.",
     craftBody:
-      "Every engagement starts with the same question ΓÇö what is this software actually supposed to change? Then we architect for that, not for a demo.",
+      "Every engagement starts with the same question — what is this software actually supposed to change? Then we architect for that, not for a demo.",
     processLabel: "The process",
     processTitle: "Five steps, no surprises.",
     ctaTitle: "Have something to build?",
@@ -50,7 +50,7 @@ const localText = {
   id: {
     eyebrow: "Layanan",
     headline: ["Yang kami", "bangun untukmu."],
-    lead: "Lima belas disiplin dalam satu atap ΓÇö dari landing page yang harus mendatangkan konversi kuartal ini, sampai ERP yang dibuka seribu orang setiap pagi. Tim yang sama, standar yang sama.",
+    lead: "Lima belas disiplin dalam satu atap — dari landing page yang harus mendatangkan konversi kuartal ini, sampai ERP yang dibuka seribu orang setiap pagi. Tim yang sama, standar yang sama.",
     metaServices: "Layanan",
     metaCategories: "Disiplin",
     scroll: "Gulir",
@@ -59,7 +59,7 @@ const localText = {
     craftEyebrow: "Cara kami bekerja",
     craftTitle: "Kami tidak menyerahkan template lalu menyebutnya sistem.",
     craftBody:
-      "Setiap proyek dimulai dari pertanyaan yang sama ΓÇö sebenarnya perangkat lunak ini harus mengubah apa? Arsitekturnya kami rancang untuk itu, bukan untuk demo.",
+      "Setiap proyek dimulai dari pertanyaan yang sama — sebenarnya perangkat lunak ini harus mengubah apa? Arsitekturnya kami rancang untuk itu, bukan untuk demo.",
     processLabel: "Prosesnya",
     processTitle: "Lima tahap, tanpa kejutan.",
     ctaTitle: "Ada yang ingin dibangun?",
@@ -93,11 +93,11 @@ export default function ServicesPageClient() {
       mm.add("(prefers-reduced-motion: no-preference)", () => {
         // Headline rises out of its mask, line by line.
         gsap
-          .timeline({ delay: 0.15 })
-          .from(".sv-line", { yPercent: 118, duration: 1.05, stagger: 0.1, ease: "power4.out" })
-          .from(".sv-eyebrow", { opacity: 0, y: 14, duration: 0.6 }, 0)
-          .from(".sv-lead", { opacity: 0, y: 18, duration: 0.7 }, 0.45)
-          .from(".sv-meta", { opacity: 0, y: 14, duration: 0.6, stagger: 0.08 }, 0.6);
+          .timeline({ delay: 0.1 })
+          .fromTo(".sv-line", { yPercent: 118 }, { yPercent: 0, duration: 1.05, stagger: 0.1, ease: "power4.out" })
+          .fromTo(".sv-eyebrow", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.6 }, 0)
+          .fromTo(".sv-lead", { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.7 }, 0.45)
+          .fromTo(".sv-meta", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.6, stagger: 0.08 }, 0.6);
 
         // Hero video drifts slower than the page, so the copy separates from it.
         gsap.to(".sv-hero-media", {
@@ -107,25 +107,33 @@ export default function ServicesPageClient() {
         });
 
         gsap.utils.toArray<HTMLElement>(".sv-reveal").forEach((el) => {
-          gsap.from(el, {
-            y: 26,
-            opacity: 0,
-            duration: 0.75,
+          gsap.fromTo(
+            el,
+            { y: 26, opacity: 0 },
+            {
+              y: 0,
+              opacity: 1,
+              duration: 0.75,
+              ease: "power3.out",
+              scrollTrigger: { trigger: el, start: "top 92%", once: true },
+            }
+          );
+        });
+
+        gsap.fromTo(
+          ".sv-step",
+          { y: 24, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.6,
+            stagger: 0.08,
             ease: "power3.out",
-            scrollTrigger: { trigger: el, start: "top 85%", once: true },
-          });
-        });
+            scrollTrigger: { trigger: ".sv-steps", start: "top 90%", once: true },
+          }
+        );
 
-        gsap.from(".sv-step", {
-          y: 24,
-          opacity: 0,
-          duration: 0.6,
-          stagger: 0.08,
-          ease: "power3.out",
-          scrollTrigger: { trigger: ".sv-steps", start: "top 82%", once: true },
-        });
-
-        // The band video creeps in scale as it passes ΓÇö slow, not showy.
+        // The band video creeps in scale as it passes — slow, not showy.
         gsap.fromTo(
           ".sv-band-media",
           { scale: 1.12 },
@@ -135,6 +143,11 @@ export default function ServicesPageClient() {
             scrollTrigger: { trigger: ".sv-band", start: "top bottom", end: "bottom top", scrub: true },
           }
         );
+
+        // Force GSAP ScrollTrigger to recalculate layout positions to prevent hidden text
+        setTimeout(() => {
+          ScrollTrigger.refresh();
+        }, 200);
       });
     },
     { scope: pageRef, dependencies: [language], revertOnUpdate: true }
@@ -142,7 +155,7 @@ export default function ServicesPageClient() {
 
   return (
     <div ref={pageRef} className="bg-white">
-      {/* The shared Navbar is styled for light pages ΓÇö dark logo, slate links ΓÇö
+      {/* The shared Navbar is styled for light pages — dark logo, slate links —
           so it disappears against this page's dark hero. A light bar sits behind
           it (below its z-[100]) to give those marks something to read against. */}
       <div className="pointer-events-none fixed top-0 left-0 right-0 h-20 lg:h-[88px] bg-white/85 backdrop-blur-md z-[90]" />
@@ -155,8 +168,8 @@ export default function ServicesPageClient() {
           className="relative min-h-[92vh] flex flex-col justify-end overflow-hidden bg-slate-950"
         >
           <div className="sv-hero-media absolute inset-0 -top-[8%] h-[116%] overflow-hidden">
-            {/* origin-top-left + scale pushes the clip's bottom-right corner ΓÇö
-                where the generator watermark sits ΓÇö outside the frame. */}
+            {/* origin-top-left + scale pushes the clip's bottom-right corner —
+                where the generator watermark sits — outside the frame. */}
             <video
               src="/vid2.mp4"
               autoPlay

@@ -43,7 +43,7 @@ export default function ServiceIndexList({ rows }: { rows: ServiceRow[] }) {
   return (
     <div
       ref={scope}
-      className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 lg:gap-x-8 gap-y-12 lg:gap-y-14"
+      className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-5 lg:gap-x-6 gap-y-10 lg:gap-y-12"
     >
       {rows.map((row, i) => (
         <Link

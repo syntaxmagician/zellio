@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useState, useRef } from "react";
 import Navbar from "@/components/layout/Navbar";
@@ -366,8 +366,8 @@ export default function PortfolioPageClient() {
                 </h2>
                 <p className="mt-4 text-[15px] sm:text-base text-slate-300/90 font-medium leading-relaxed max-w-xl">
                   {language === "id"
-                    ? "Ceritakan kebutuhan Anda ΓÇö kami bantu merancang arsitektur, membangun, dan meluncurkannya."
-                    : "Tell us what you need ΓÇö we'll help architect it, build it, and ship it."}
+                    ? "Ceritakan kebutuhan Anda — kami bantu merancang arsitektur, membangun, dan meluncurkannya."
+                    : "Tell us what you need — we'll help architect it, build it, and ship it."}
                 </p>
               </div>
               <Link

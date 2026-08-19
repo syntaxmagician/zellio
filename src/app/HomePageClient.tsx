@@ -4,15 +4,12 @@ import { useState, useEffect, useCallback } from "react";
 import dynamic from "next/dynamic";
 import { markReady } from "@/lib/ready";
 import { shouldSkipSplash } from "@/lib/splash";
+import SplashLoader from "@/components/layout/SplashLoader";
 
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import HeroV2 from "@/components/sections/HeroV2";
 import TrustedBy from "@/components/sections/TrustedBy";
-
-const SplashLoader = dynamic(() => import("@/components/layout/SplashLoader"), {
-  ssr: false,
-});
 
 const About = dynamic(() => import("@/components/sections/About"), { ssr: true });
 const ServicesRail = dynamic(() => import("@/components/sections/ServicesRail"), { ssr: true });
@@ -24,17 +21,17 @@ const FAQ = dynamic(() => import("@/components/sections/FAQ"), { ssr: true });
 const Contact = dynamic(() => import("@/components/sections/Contact"), { ssr: true });
 
 export default function Home() {
-  const [splashDone, setSplashDone] = useState(true);
-  const [showSplash, setShowSplash] = useState(false);
+  const [splashDone, setSplashDone] = useState(false);
+  const [showSplash, setShowSplash] = useState(true);
 
   useEffect(() => {
     if (shouldSkipSplash()) {
+      setSplashDone(true);
+      setShowSplash(false);
       markReady();
       return;
     }
 
-    setSplashDone(false);
-    setShowSplash(true);
     document.body.style.overflow = "hidden";
     return () => {
       document.body.style.overflow = "";

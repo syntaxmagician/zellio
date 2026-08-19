@@ -752,25 +752,25 @@ export default function ServicePageClient({ service }: { service: any }) {
           </motion.div>
         </div>
 
-        <div className="container mx-auto px-6 relative w-full z-20">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <div className="container mx-auto px-5 sm:px-6 relative w-full z-20">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center w-full">
             
-            <div className="col-span-12 lg:col-span-10 flex flex-col items-start text-left relative z-20 max-w-[1000px]">
+            <div className="col-span-12 lg:col-span-10 flex flex-col items-start text-left relative z-20 max-w-[1000px] w-full">
               <motion.div 
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
-                className="flex items-center gap-2.5 px-4 py-2 rounded-full text-xs font-mono font-bold uppercase tracking-widest mb-10 border bg-blue-50/50 backdrop-blur-sm border-blue-100 text-blue-700 shadow-sm transition-colors"
+                className="flex items-center gap-2.5 px-3.5 py-1.5 rounded-full text-[11px] font-mono font-bold uppercase tracking-wider mb-6 border bg-blue-50/70 backdrop-blur-sm border-blue-200/60 text-blue-700 shadow-sm max-w-full w-fit"
               >
-                <span className="w-2 h-2 rounded-full bg-blue-500 animate-ping" />
-                {service.category} Digital Experience
+                <span className="w-2 h-2 rounded-full bg-blue-500 animate-ping flex-shrink-0" />
+                <span className="truncate">{service.category} Digital Experience</span>
               </motion.div>
 
               <motion.h1 
                 initial={{ opacity: 0, y: 25 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.1 }}
-                className="text-5xl sm:text-7xl md:text-[5.5rem] lg:text-[7rem] font-black tracking-tighter mb-10 leading-[0.95] text-slate-900"
+                className="text-3xl sm:text-5xl md:text-6xl lg:text-[7rem] font-black tracking-tight mb-6 leading-[1.05] text-slate-900 w-full break-words"
               >
                 {translatedTitle}
               </motion.h1>
@@ -779,7 +779,7 @@ export default function ServicePageClient({ service }: { service: any }) {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
-                className="text-xl md:text-3xl leading-relaxed mb-16 max-w-4xl font-light text-slate-700 opacity-90"
+                className="text-base sm:text-lg md:text-2xl leading-relaxed mb-8 max-w-3xl font-normal text-slate-600 w-full break-words"
               >
                 {translatedDesc}
               </motion.p>
@@ -788,13 +788,13 @@ export default function ServicePageClient({ service }: { service: any }) {
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.3 }}
-                className="flex flex-wrap items-center gap-6 w-full sm:w-auto"
+                className="w-full sm:w-auto"
               >
                 <a 
                   href={whatsappUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full sm:w-auto px-10 py-5 rounded-full font-bold hover:-translate-y-1 active:translate-y-0 transition-all flex items-center justify-center gap-3 text-base bg-slate-900 hover:bg-slate-800 text-white shadow-xl shadow-slate-900/15"
+                  className="w-full sm:w-auto px-8 py-4 rounded-full font-bold transition-all flex items-center justify-center gap-3 text-base bg-slate-900 hover:bg-slate-800 text-white shadow-xl shadow-slate-900/15 max-w-xs active:scale-[0.98]"
                 >
                   {t("nav.startProject")} <ArrowRight size={18} />
                 </a>
@@ -828,7 +828,7 @@ export default function ServicePageClient({ service }: { service: any }) {
                   <span className="text-[10px] font-mono font-bold uppercase tracking-[0.3em] text-blue-600 mb-6 flex items-center gap-4">
                     01 // Vision Standard <div className="w-10 h-[1px] bg-blue-500/30" />
                   </span>
-                  <h2 className="text-4xl md:text-5xl lg:text-6xl font-black tracking-tighter leading-[0.9] uppercase text-slate-900 mb-8">
+                  <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-tighter leading-[0.9] uppercase text-slate-900 mb-8 w-full break-words">
                     {language === "id" ? "Merancang Karya Digital yang Bermakna." : "Designed to Captivate. Built to Last."}
                   </h2>
                   {/* Minimal stat bar */}
@@ -897,7 +897,7 @@ export default function ServicePageClient({ service }: { service: any }) {
                 <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 text-blue-600 text-[10px] font-mono font-bold tracking-widest uppercase">
                   02 — Our Process
                 </span>
-                <h3 className="text-4xl sm:text-5xl font-black tracking-tighter leading-[0.95] uppercase text-slate-900">
+                <h3 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tighter leading-[0.95] uppercase text-slate-900 w-full break-words">
                   {language === "id" ? "Cara Kami Bekerja" : "How We Work"}
                 </h3>
               </div>
@@ -1012,7 +1012,7 @@ export default function ServicePageClient({ service }: { service: any }) {
               <span className="text-[10px] font-mono font-bold uppercase tracking-[0.3em] text-slate-400 mb-5 block">
                 03 — What You Get
               </span>
-              <h3 className="text-5xl sm:text-6xl md:text-7xl font-black tracking-tighter text-slate-900 leading-[0.9] uppercase max-w-3xl">
+              <h3 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-tighter text-slate-900 leading-[0.9] uppercase max-w-3xl w-full break-words">
                 {language === "id" ? "Hasil Yang Kami Jamin" : "Guaranteed Outcomes"}
               </h3>
             </div>
@@ -1103,7 +1103,7 @@ export default function ServicePageClient({ service }: { service: any }) {
                 transition={{ duration: 0.7 }}
                 className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8"
               >
-                <h2 className="text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] font-black tracking-tighter leading-[0.9] text-slate-900 max-w-3xl">
+                <h2 className="text-3xl sm:text-5xl md:text-7xl lg:text-[5.5rem] font-black tracking-tighter leading-[0.9] text-slate-900 max-w-3xl w-full break-words">
                   {language === "id"
                     ? <>Apa yang Anda <em className="font-serif font-normal italic text-blue-600">dapatkan</em>:</>
                     : <>What you <em className="font-serif font-normal italic text-blue-600">get</em>:</>}
@@ -1196,7 +1196,7 @@ export default function ServicePageClient({ service }: { service: any }) {
                 <span className="text-[10px] font-mono font-bold uppercase tracking-[0.3em] text-blue-400 mb-4 block">
                   04 // Tech Stack
                 </span>
-                <h3 className="text-4xl sm:text-5xl md:text-6xl font-black tracking-tighter text-white leading-[0.9] uppercase">
+                <h3 className="text-3xl sm:text-5xl md:text-6xl font-black tracking-tighter text-white leading-[0.9] uppercase w-full break-words">
                   {language === "id" ? "Teknologi Yang Kami Gunakan" : "Built With"}
                 </h3>
               </div>

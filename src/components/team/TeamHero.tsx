@@ -13,6 +13,7 @@ const teamList = [
   { name: "Samuel Sukarno", id: "samuel", role: "Lead Frontend" },
   { name: "Muhammad Cavendio", id: "cavendio", role: "Backend Engineer" },
   { name: "Hasyim Ridwan", id: "hasyim", role: "DevOps Engineer" },
+  { name: "Alwi Rianto", id: "alwi", role: "Partnership & Eng" },
 ];
 
 export default function TeamHero() {
@@ -79,7 +80,7 @@ export default function TeamHero() {
         </div>
 
         {/* The Lineup: All Members Displayed Simultaneously */}
-        <div className="w-full grid grid-cols-2 md:grid-cols-4 gap-6 lg:gap-8 justify-items-center max-w-5xl mx-auto mb-16 lg:mb-24">
+        <div className="w-full grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6 lg:gap-8 justify-items-center max-w-5xl lg:max-w-6xl mx-auto mb-16 lg:mb-24">
           {teamList.map((member, i) => (
             <motion.div
               key={member.id}

@@ -14,7 +14,7 @@ export default function TeamAvatar({ name, className = "w-full h-full" }: Avatar
     samuel: "/samuel.JPG",
     cavendio: "/dio.JPG",
     hasyim: "/hasyim.JPG",
-    alwi: "/alwirianto.JPG"
+    alwi: "/fotoalwi.jpeg"
   };
 
   if (realPhotos[name]) {

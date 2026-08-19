@@ -29,11 +29,9 @@ const localText = {
         { label: "Portfolio", href: "/portfolio" },
         { label: "FAQs", href: "/#faq" },
       ],
-      Contact: [
+      "Contact & Legal": [
         { label: "Get in Touch", href: "/contact" },
         { label: "Request a Quote", href: "/contact?intent=quote" },
-      ],
-      Legal: [
         { label: "Privacy Policy", href: "/privacy-policy" },
         { label: "Terms of Service", href: "/terms-of-service" },
         { label: "Cookie Policy", href: "/cookie-policy" },
@@ -60,11 +58,9 @@ const localText = {
         { label: "Portofolio", href: "/portfolio" },
         { label: "Pertanyaan (FAQ)", href: "/#faq" },
       ],
-      Kontak: [
+      "Kontak & Legal": [
         { label: "Hubungi Kami", href: "/contact" },
         { label: "Minta Penawaran", href: "/contact?intent=quote" },
-      ],
-      Legal: [
         { label: "Kebijakan Privasi", href: "/privacy-policy" },
         { label: "Syarat & Ketentuan", href: "/terms-of-service" },
         { label: "Kebijakan Cookie", href: "/cookie-policy" },
@@ -86,105 +82,105 @@ export default function Footer() {
   return (
     <footer className="bg-[#0F172A] text-white">
       {/* Main Footer */}
-        <div className="section-container pt-16 lg:pt-20 pb-14 border-t border-white/5">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-start">
+      <div className="section-container pt-16 lg:pt-20 pb-14 border-t border-white/5">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-start">
 
-            {/* Brand Column (Left - Spans 5) */}
-            <div className="lg:col-span-5 flex flex-col justify-start">
-              <Link href={`/${language}`} className="flex items-center mb-4 group">
-                <Image
-                  src="/zellio3.png"
-                  alt="Zellio Logo"
-                  width={200}
-                  height={64}
-                  className="h-12 md:h-16 w-auto object-contain scale-[2.4] md:scale-[2.6] origin-left brightness-0 invert group-hover:opacity-90 transition-opacity duration-300"
-                  style={{ width: 'auto' }}
-                />
-              </Link>
-              <p className="text-[#94A3B8] text-sm leading-relaxed mb-6 max-w-sm">
-                {text.desc}
-              </p>
-              
-              {/* E-E-A-T Real World Identity */}
-              <div className="text-[#94A3B8] text-sm leading-relaxed mb-6 max-w-sm">
-                <p className="font-bold text-white mb-1">Jakarta HQ</p>
-                <p>Jl. Blk. Duku No.93, Cibubur, Ciracas</p>
-                <p>Jakarta Timur, DKI Jakarta 13720</p>
-                <p>Indonesia</p>
-              </div>
+          {/* Brand Column (Left - Spans 5) */}
+          <div className="lg:col-span-5 flex flex-col justify-start">
+            <Link href={`/${language}`} className="flex items-center mb-4 group">
+              <Image
+                src="/zellio3.png"
+                alt="Zellio Logo"
+                width={200}
+                height={64}
+                className="h-12 md:h-16 w-auto object-contain scale-[2.4] md:scale-[2.6] origin-left brightness-0 invert group-hover:opacity-90 transition-opacity duration-300"
+                style={{ width: 'auto' }}
+              />
+            </Link>
+            <p className="text-[#94A3B8] text-sm leading-relaxed mb-6 max-w-sm">
+              {text.desc}
+            </p>
 
-              {/* Social Links */}
-              <div className="flex items-center gap-3">
-                {socials.map((social, index) => (
-                  <a
-                    key={index}
-                    href={social.href}
-                    aria-label={social.label}
-                    className="w-9 h-9 rounded-full bg-white/5 flex items-center justify-center text-[#94A3B8] hover:bg-[#2563EB] hover:text-white transition-all duration-300 hover:scale-110"
-                  >
-                    <social.icon size={16} />
-                  </a>
-                ))}
-              </div>
+            {/* E-E-A-T Real World Identity */}
+            <div className="text-[#94A3B8] text-sm leading-relaxed mb-6 max-w-sm">
+              <p className="font-bold text-white mb-1">Jakarta HQ</p>
+              <p>Jl. Blk. Duku No.93, Cibubur, Ciracas</p>
+              <p>Jakarta Timur, DKI Jakarta 13720</p>
+              <p>Indonesia</p>
             </div>
 
-            {/* Links Columns (Right - Spans 7) */}
-            <div className="lg:col-span-7 grid grid-cols-2 md:grid-cols-4 gap-8">
-              {Object.entries(text.footerLinks).map(([title, links]) => (
-                <div key={title} className="flex flex-col">
-                  <p className="text-white text-xs font-bold uppercase tracking-wider mb-5">
-                    {title}
-                  </p>
-                  <ul className="space-y-3.5">
-                    {links.map((link, index) => (
-                      <li key={index}>
-                        <Link
-                          href={`/${language}${link.href === '/' ? '' : link.href.startsWith('/#') ? link.href.substring(1) : link.href}`}
-                          className="text-[#94A3B8] text-sm hover:text-white transition-colors duration-200"
-                        >
-                          {link.label}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+            {/* Social Links */}
+            <div className="flex items-center gap-3">
+              {socials.map((social, index) => (
+                <a
+                  key={index}
+                  href={social.href}
+                  aria-label={social.label}
+                  className="w-9 h-9 rounded-full bg-white/5 flex items-center justify-center text-[#94A3B8] hover:bg-[#2563EB] hover:text-white transition-all duration-300 hover:scale-110"
+                >
+                  <social.icon size={16} />
+                </a>
               ))}
             </div>
           </div>
-        </div>
 
-        {/* Bottom Footer */}
-        <div className="border-t border-white/5 bg-[#090D1A]">
-          <div className="section-container py-6 flex flex-col md:flex-row items-center justify-between gap-4">
-            <p className="text-[#94A3B8] text-sm text-center md:text-left">
-              &copy; {new Date().getFullYear()} ZELLIO. All rights reserved.
-            </p>
-
-            {/* Bottom Legal Links */}
-            {/* Bottom Legal Links — different labels from footer columns to avoid identical-name collisions */}
-            <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs text-[#94A3B8]">
-              <Link href={`/${language}/privacy-policy`} className="hover:text-white transition-colors">
-                {language === "en" ? "Privacy" : "Privasi"}
-              </Link>
-              <Link href={`/${language}/terms-of-service`} className="hover:text-white transition-colors">
-                {language === "en" ? "Terms" : "Ketentuan"}
-              </Link>
-              <Link href={`/${language}/cookie-policy`} className="hover:text-white transition-colors">
-                {language === "en" ? "Cookies" : "Cookie"}
-              </Link>
-            </div>
-
-            <button
-              onClick={scrollToTop}
-              className="group flex items-center gap-2 text-sm text-[#94A3B8] hover:text-white transition-colors"
-            >
-              {text.backToTop}
-              <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-[#2563EB] group-hover:text-white transition-all duration-300">
-                <ArrowUp size={14} />
+          {/* Links Columns (Right - Spans 7) */}
+          <div className="lg:col-span-7 grid grid-cols-2 md:grid-cols-4 gap-8">
+            {Object.entries(text.footerLinks).map(([title, links]) => (
+              <div key={title} className="flex flex-col">
+                <p className="text-white text-xs font-bold uppercase tracking-wider mb-5">
+                  {title}
+                </p>
+                <ul className="space-y-3.5">
+                  {links.map((link, index) => (
+                    <li key={index}>
+                      <Link
+                        href={`/${language}${link.href === '/' ? '' : link.href.startsWith('/#') ? link.href.substring(1) : link.href}`}
+                        className="text-[#94A3B8] text-sm hover:text-white transition-colors duration-200"
+                      >
+                        {link.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
               </div>
-            </button>
+            ))}
           </div>
         </div>
-      </footer>
+      </div>
+
+      {/* Bottom Footer */}
+      <div className="border-t border-white/5 bg-[#090D1A]">
+        <div className="section-container py-6 flex flex-col md:flex-row items-center justify-between gap-4">
+          <p className="text-[#94A3B8] text-sm text-center md:text-left">
+            &copy; {new Date().getFullYear()} ZELLIO. All rights reserved.
+          </p>
+
+          {/* Bottom Legal Links */}
+          {/* Bottom Legal Links — different labels from footer columns to avoid identical-name collisions */}
+          <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs text-[#94A3B8]">
+            <Link href={`/${language}/privacy-policy`} className="hover:text-white transition-colors">
+              {language === "en" ? "Privacy" : "Privasi"}
+            </Link>
+            <Link href={`/${language}/terms-of-service`} className="hover:text-white transition-colors">
+              {language === "en" ? "Terms" : "Ketentuan"}
+            </Link>
+            <Link href={`/${language}/cookie-policy`} className="hover:text-white transition-colors">
+              {language === "en" ? "Cookies" : "Cookie"}
+            </Link>
+          </div>
+
+          <button
+            onClick={scrollToTop}
+            className="group flex items-center gap-2 text-sm text-[#94A3B8] hover:text-white transition-colors"
+          >
+            {text.backToTop}
+            <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-[#2563EB] group-hover:text-white transition-all duration-300">
+              <ArrowUp size={14} />
+            </div>
+          </button>
+        </div>
+      </div>
+    </footer>
   );
 }

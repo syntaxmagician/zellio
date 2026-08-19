@@ -50,7 +50,8 @@ export default function Navbar() {
   const [hoveredItemId, setHoveredItemId] = useState<number | null>(null);
 
   // Compute theme based on page and scroll status
-  const isDarkTheme = !scrolled && pathname === "/";
+  const isHomepage = pathname === "/" || pathname === "/id" || pathname === "/id/" || pathname === "/en" || pathname === "/en/";
+  const isDarkTheme = !scrolled && isHomepage;
 
   // Monitor scroll for premium float transition
   useEffect(() => {
@@ -145,10 +146,10 @@ export default function Navbar() {
                           transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
                           className="absolute top-[28px] left-1/2 -translate-x-1/2 pt-4 z-[110] pointer-events-auto"
                         >
-                          <div className="w-[560px] bg-white/95 backdrop-blur-2xl rounded-[28px] shadow-[0_40px_100px_-20px_rgba(0,0,0,0.15)] border border-slate-200/60 p-5 flex flex-col gap-4">
+                          <div className="w-[640px] bg-white/95 backdrop-blur-2xl rounded-[32px] shadow-[0_40px_100px_-20px_rgba(0,0,0,0.15)] border border-slate-200/60 p-6 flex flex-col gap-6">
                             
                             {/* Grid of 6 Top Services */}
-                            <div className="grid grid-cols-2 gap-2.5">
+                            <div className="grid grid-cols-2 gap-x-6 gap-y-4">
                               {servicesData.slice(0, 6).map((service) => {
                                 const Icon = iconMap[service.icon];
                                 return (
@@ -158,27 +159,27 @@ export default function Navbar() {
                                     onMouseEnter={() => setHoveredItemId(service.id)}
                                     onMouseLeave={() => setHoveredItemId(null)}
                                     onClick={() => setDropdownOpen(false)}
-                                    className="group/item flex items-center gap-3.5 p-3 rounded-2xl border border-transparent transition-all duration-300 text-left hover:bg-slate-50 hover:shadow-[0_4px_20px_rgb(0,0,0,0.03)] hover:border-slate-100"
+                                    className="group/item flex items-start gap-4 p-3 rounded-2xl border border-transparent transition-all duration-300 text-left hover:bg-slate-50 hover:shadow-[0_4px_20px_rgb(0,0,0,0.02)] hover:border-slate-100"
                                   >
-                                    {/* 3D Glassmorphic Icon Wrapper */}
+                                    {/* Glassmorphic Icon Wrapper */}
                                     <div 
-                                      className="relative w-11 h-11 rounded-[12px] flex items-center justify-center shrink-0 transition-transform duration-300 group-hover/item:scale-110 shadow-sm"
+                                      className="relative w-12 h-12 rounded-[14px] flex items-center justify-center shrink-0 transition-all duration-300 group-hover/item:scale-105 shadow-sm"
                                       style={{
                                         background: `linear-gradient(135deg, ${service.bgColor}, #ffffff)`,
-                                        boxShadow: `4px 4px 10px rgba(0,0,0,0.03), -4px -4px 10px rgba(255,255,255,0.8), inset 0px 2px 4px rgba(255,255,255,0.6), inset 0px -2px 6px ${service.color}15`,
+                                        boxShadow: `4px 4px 10px rgba(0,0,0,0.02), -4px -4px 10px rgba(255,255,255,0.8), inset 0px 2px 4px rgba(255,255,255,0.6), inset 0px -2px 6px ${service.color}10`,
                                         border: '1px solid rgba(255,255,255,0.9)'
                                       }}
                                     >
-                                      <div style={{ color: service.color, filter: 'drop-shadow(0px 2px 3px rgba(0,0,0,0.12))' }}>
-                                        {Icon && <Icon size={20} strokeWidth={2.5} />}
+                                      <div style={{ color: service.color, filter: 'drop-shadow(0px 2px 3px rgba(0,0,0,0.08))' }}>
+                                        {Icon && <Icon size={22} strokeWidth={2.5} />}
                                       </div>
                                     </div>
                                     
-                                    <div className="flex flex-col flex-1 min-w-0 justify-center">
-                                      <span className="text-[13px] font-bold text-slate-900 leading-tight group-hover/item:text-blue-600 transition-colors truncate">
+                                    <div className="flex flex-col flex-1 min-w-0 pt-0.5">
+                                      <span className="text-sm font-bold text-slate-900 leading-snug group-hover/item:text-blue-600 transition-colors">
                                         {service.title}
                                       </span>
-                                      <span className="text-[10px] text-slate-500 font-medium leading-[1.3] truncate transition-colors group-hover/item:text-slate-600 mt-0.5">
+                                      <span className="text-xs text-slate-500 font-medium leading-relaxed transition-colors group-hover/item:text-slate-600 mt-1">
                                         {service.description}
                                       </span>
                                     </div>

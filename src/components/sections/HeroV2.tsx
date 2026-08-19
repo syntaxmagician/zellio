@@ -92,7 +92,7 @@ export default function HeroV2() {
           const onReady = () => play();
           window.addEventListener("zellio:ready", onReady, { once: true });
           removeReady = () => window.removeEventListener("zellio:ready", onReady);
-          fallback = setTimeout(play, 1200);
+          fallback = setTimeout(play, 5000);
         }
 
         gsap

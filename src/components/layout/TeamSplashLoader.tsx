@@ -68,7 +68,7 @@ export default function TeamSplashLoader() {
               transition={{ duration: 0.1 }}
               className={`text-sm md:text-lg tracking-wide ${
                 index === terminalLogs.length - 1 
-                  ? "text-blue-400 font-bold mt-4" 
+                  ? "text-emerald-400 font-bold mt-4" 
                   : "text-slate-400"
               }`}
             >

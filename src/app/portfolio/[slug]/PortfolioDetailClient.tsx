@@ -17,147 +17,8 @@ const iconMap = {
   LineChart,
 };
 
-function TimelineNode({ step, idx, nodes, scrollYProgress }: any) {
-  const appearStart = (idx / 4) * 0.75;
-  const appearEnd = appearStart + 0.05;
-  
-  const scale = useTransform(scrollYProgress, [appearStart, appearEnd], [0, 1]);
-  const opacity = useTransform(scrollYProgress, [appearStart, appearEnd], [0, 1]);
-
-  return (
-    <div 
-      className="absolute"
-      style={{ 
-        left: nodes[idx].left, 
-        top: nodes[idx].top,
-        transform: "translate(-50%, -50%)" 
-      }}
-    >
-      {/* The Node Dot */}
-      <motion.div 
-        style={{ scale }}
-        className="relative w-5 h-5 bg-blue-600 rounded-full shadow-[0_0_12px_rgba(37,99,235,0.5)] border-[3px] border-white z-10 mx-auto"
-      />
-
-      {/* The Text Content */}
-      <motion.div 
-        style={{ opacity }}
-        className={`absolute w-56 md:w-64 top-full mt-4 ${
-          nodes[idx].textAlign === "left" ? "left-1/2 -ml-2 text-left" : "right-1/2 -mr-2 text-right"
-        }`}
-      >
-        <span className="text-[10px] font-mono font-bold tracking-widest text-blue-600 uppercase mb-1 block">
-          Phase 0{idx + 1}
-        </span>
-        <h3 className="text-base md:text-lg font-black text-slate-900 tracking-tight leading-tight mb-2">
-          {step.title}
-        </h3>
-        <p className="text-xs text-slate-500 font-medium leading-relaxed">
-          {step.desc}
-        </p>
-      </motion.div>
-    </div>
-  );
-}
-
-function OrganicDesktopTimeline({ workflow, scrollYProgress }: any) {
-  // A highly organic, hand-drawn winding curve with irregular wiggles between nodes.
-  // The Y-coordinate strictly increases to ensure the clip-path animation is flawless.
-  const pathD = `
-    M 0,0 
-    C 5,0 8,3 10,5 
-    C 12,7 8,9 5,10 
-    C 2,11 10,13 15,15 
-    C 15,18 30,17 40,20 
-    C 50,23 35,24 30,26 
-    C 25,28 50,27 65,29 
-    C 80,31 85,30 85,32.5 
-    C 85,35 70,36 60,37 
-    C 50,38 65,40 70,42 
-    C 75,44 50,45 35,46 
-    C 20,47 15,48 15,50 
-    C 15,52 35,53 45,54 
-    C 55,55 40,57 35,59 
-    C 30,61 60,62 70,63 
-    C 80,64 85,65 85,67.5 
-    C 85,70 70,71 55,72 
-    C 40,73 60,75 65,77 
-    C 70,79 45,80 30,81 
-    C 15,82 15,83 15,85 
-    C 15,87 35,88 45,90 
-    C 55,92 40,93 35,94 
-    C 30,95 70,96 80,97 
-    C 90,98 100,99 100,100
-  `;
-  
-  // Reveal path from top to bottom based on scroll (using CSS clip-path to prevent vector scaling dash bugs)
-  const clipPercent = useTransform(scrollYProgress, [0, 0.8], [100, 0]);
-  const clipPath = useMotionTemplate`inset(0 0 ${clipPercent}% 0)`;
-
-  // Place nodes on the extreme edges (matching 5 phases)
-  const nodes = [
-    { left: "15%", top: "15%", textAlign: "left" },
-    { left: "85%", top: "32.5%", textAlign: "right" },
-    { left: "15%", top: "50%", textAlign: "left" },
-    { left: "85%", top: "67.5%", textAlign: "right" },
-    { left: "15%", top: "85%", textAlign: "left" }
-  ];
-
-  return (
-    <div className="relative w-full h-full">
-      {/* Background Grey Path */}
-      <svg 
-        className="absolute inset-0 w-full h-full pointer-events-none" 
-        style={{ overflow: 'visible' }} 
-        viewBox="0 0 100 100" 
-        preserveAspectRatio="none"
-      >
-        <path d={pathD} fill="none" stroke="#e2e8f0" strokeWidth="3" vectorEffect="non-scaling-stroke" />
-      </svg>
-
-      {/* Animated Blue Path (Revealed via Clip-Path) */}
-      <motion.div 
-        className="absolute inset-0 w-full h-full pointer-events-none"
-        style={{ clipPath }}
-      >
-        <svg 
-          className="w-full h-full" 
-          viewBox="0 0 100 100" 
-          preserveAspectRatio="none"
-        >
-          <path d={pathD} fill="none" stroke="#2563eb" strokeWidth="3" vectorEffect="non-scaling-stroke" />
-        </svg>
-      </motion.div>
-
-      {/* The Nodes */}
-      {workflow.map((step: any, idx: number) => (
-        <TimelineNode 
-          key={idx} 
-          step={step} 
-          idx={idx} 
-          nodes={nodes} 
-          scrollYProgress={scrollYProgress} 
-        />
-      ))}
-    </div>
-  );
-}
-
 export default function PortfolioDetailClient({ project }: { project: Project }) {
   const { language } = useLanguage();
-  const containerRef = useRef<HTMLDivElement>(null);
-  const workflowRef = useRef<HTMLDivElement>(null);
-  
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end start"]
-  });
-
-  const { scrollYProgress: workflowProgress } = useScroll({
-    target: workflowRef,
-    offset: ["start start", "end end"]
-  });
-  const scaleY = useTransform(workflowProgress, [0, 1], [0, 1]);
 
   const t = {
     overview: language === "id" ? "Ikhtisar Proyek" : "Project Overview",
@@ -176,7 +37,7 @@ export default function PortfolioDetailClient({ project }: { project: Project })
   const Icon = iconMap[project.icon as keyof typeof iconMap] || Globe;
 
   return (
-    <div ref={containerRef} className="min-h-screen bg-[#FAFAFA] text-slate-800 font-sans selection:bg-blue-600/10 selection:text-blue-600">
+    <div className="min-h-screen bg-[#FAFAFA] text-slate-800 font-sans selection:bg-blue-600/10 selection:text-blue-600">
       <Navbar />
 
       <main className="pt-24 lg:pt-32 pb-24 relative overflow-x-clip">
@@ -399,66 +260,48 @@ export default function PortfolioDetailClient({ project }: { project: Project })
           </div>
         </section>
 
-        {/* Workflow / Zellio Approach (Sticky S-Curve on Desktop, Vertical on Mobile) */}
-        <section ref={workflowRef} className="w-full bg-slate-50 relative border-y border-slate-200/50 md:h-[400vh]">
-          
-          <div className="w-full md:sticky md:top-0 md:h-screen md:overflow-hidden md:flex md:flex-col md:items-center py-20 md:py-0 relative">
-            
-            <div className="max-w-[1200px] mx-auto px-6 lg:px-12 w-full relative z-10 pt-16 md:pt-24">
-              <div className="text-center mb-8 md:mb-12">
-                <span className="text-xs font-mono font-bold tracking-[0.2em] uppercase text-slate-400">
-                  Zellio Approach
-                </span>
-                <h2 className="text-3xl md:text-5xl font-black text-slate-900 tracking-tight mt-3">
-                  {t.workflow}
-                </h2>
-              </div>
+        {/* Workflow / Zellio Approach (Premium Editorial Step Grid) */}
+        <section className="w-full bg-slate-50 relative border-y border-slate-200/60 py-24 lg:py-32">
+          <div className="max-w-[1400px] mx-auto px-6 lg:px-12 w-full relative z-10">
+            <div className="text-center mb-16 lg:mb-20">
+              <span className="text-xs font-mono font-bold tracking-[0.2em] uppercase text-blue-600">
+                Zellio Approach
+              </span>
+              <h2 className="text-3xl md:text-5xl font-black text-slate-900 tracking-tight mt-3">
+                {t.workflow}
+              </h2>
             </div>
 
-            {/* MOBILE LAYOUT (Vertical Timeline) */}
-            <div className="block md:hidden relative max-w-sm mx-auto w-full px-6">
-              <div className="absolute left-6 top-0 bottom-0 w-0.5 bg-slate-200 -translate-x-[1px]" />
-              <motion.div 
-                className="absolute left-6 top-0 bottom-0 w-0.5 bg-blue-600 -translate-x-[1px] origin-top pointer-events-none shadow-[0_0_8px_rgba(37,99,235,0.4)]"
-                style={{ scaleY }}
-              />
-              <div className="space-y-16">
-                {project.workflow[language as "id" | "en"].map((step, idx) => (
-                  <div key={idx} className="relative flex flex-col items-start">
-                    <div className="absolute left-0 w-12 h-12 -translate-x-1/2 flex items-center justify-center bg-white border-2 border-slate-200 rounded-full z-10 font-mono font-black text-xs text-slate-500 shadow-sm">
+            {/* Editorial Grid for all screen sizes */}
+            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6 lg:gap-8">
+              {project.workflow[language as "id" | "en"].map((step, idx) => (
+                <div 
+                  key={idx} 
+                  className="bg-white border border-slate-200/60 rounded-3xl p-8 relative flex flex-col justify-between overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 ease-out group hover:-translate-y-1"
+                >
+                  {/* Accent Highlight Bar on Top */}
+                  <div className="absolute top-0 left-0 right-0 h-1 bg-blue-600 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out origin-left" />
+                  
+                  <div>
+                    {/* Big Phase Number */}
+                    <div className="font-mono text-4xl lg:text-5xl font-black text-slate-100 group-hover:text-blue-50/70 transition-colors duration-300 mb-6 select-none">
                       0{idx + 1}
                     </div>
-                    <div className="w-full pl-16">
-                      <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true, margin: "-50px" }}
-                        transition={{ duration: 0.6 }}
-                      >
-                        <span className="text-[10px] font-mono font-bold tracking-widest text-slate-400 uppercase">
-                          Phase 0{idx + 1}
-                        </span>
-                        <h3 className="text-lg font-black text-slate-900 tracking-tight mt-1 mb-2">
-                          {step.title}
-                        </h3>
-                        <p className="text-sm text-slate-500 font-medium leading-relaxed">
-                          {step.desc}
-                        </p>
-                      </motion.div>
-                    </div>
+                    
+                    <span className="text-[10px] font-mono font-bold tracking-widest text-blue-600 uppercase mb-2 block">
+                      Phase 0{idx + 1}
+                    </span>
+                    <h3 className="text-lg font-black text-slate-900 tracking-tight leading-snug mb-3">
+                      {step.title}
+                    </h3>
                   </div>
-                ))}
-              </div>
+                  
+                  <p className="text-sm text-slate-500 font-medium leading-relaxed mt-2">
+                    {step.desc}
+                  </p>
+                </div>
+              ))}
             </div>
-
-            {/* DESKTOP LAYOUT (Edge-to-Edge Organic Sticky Line) */}
-            <div className="hidden md:block absolute top-[200px] bottom-10 left-12 right-12">
-              <OrganicDesktopTimeline 
-                workflow={project.workflow[language as "id" | "en"]} 
-                scrollYProgress={workflowProgress} 
-              />
-            </div>
-
           </div>
         </section>
 
