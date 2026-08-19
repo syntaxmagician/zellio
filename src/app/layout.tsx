@@ -98,6 +98,19 @@ export default function RootLayout({
       className={`${plusJakarta.variable} ${inter.variable} h-full antialiased overflow-x-clip`}
     >
       <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              if (
+                /bot|google|baidu|bing|msn|duckduckbot|teoma|slurp|yandex|chrome-lighthouse|lighthouse|pagespeed|gtmetrix|pingdom|facebookexternalhit|preview/i.test(navigator.userAgent) ||
+                window.matchMedia('(max-width: 767px)').matches ||
+                window.matchMedia('(prefers-reduced-motion: reduce)').matches
+              ) {
+                document.documentElement.classList.add('skip-splash');
+              }
+            `
+          }}
+        />
         {/* Google tag (gtag.js) */}
         <Script
           async

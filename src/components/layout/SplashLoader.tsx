@@ -70,7 +70,7 @@ export default function SplashLoader({ onDone }: { onDone: () => void }) {
   );
 
   return (
-    <div ref={root} className="fixed inset-0 z-[99999] bg-[#070709] overflow-hidden select-none">
+    <div ref={root} className="splash-loader fixed inset-0 z-[99999] bg-[#070709] overflow-hidden select-none">
       {/* Background Liquid Aurora Glow Spheres */}
       <div className="sl-glow-container absolute inset-0 pointer-events-none z-10 overflow-hidden">
         <div className="sl-glow-1 absolute -top-[10%] -left-[10%] w-[55vw] h-[55vw] rounded-full bg-indigo-600/20 blur-[130px]" />

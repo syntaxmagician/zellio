@@ -197,7 +197,7 @@ export default function HeroV2() {
           {/* Top Left Label (Studio Intro) */}
           <div className="hero-meta absolute top-[-50px] lg:top-[-80px] left-0 flex flex-col gap-2 max-lg:opacity-100 opacity-0">
             <span className="text-[10px] font-mono font-bold tracking-[0.2em] text-[#60A5FA] uppercase">[ 01 // STUDIO INTRODUCTION ]</span>
-            <span className="text-[10px] font-mono tracking-widest text-slate-300">EST. 2025</span>
+            <span className="text-[10px] font-mono tracking-widest text-slate-300">EST. 2026</span>
           </div>
 
           {/* Asymmetric Header */}
