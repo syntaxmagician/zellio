@@ -76,14 +76,19 @@ export default function HeroV2() {
           )
           .from(".hero-eyebrow", { y: 14, opacity: 0, duration: 0.5 }, "-=0.3")
           .from(".hero-desc", { y: 16, opacity: 0, duration: 0.7 }, "-=0.45")
-          .from(".hero-cta", { y: 16, opacity: 0, duration: 0.7 }, "-=0.5")
-          .fromTo(
-            ".hero-video-clip",
+          .from(".hero-cta", { y: 16, opacity: 0, duration: 0.7 }, "-=0.5");
+
+        const videoClip = sectionRef.current?.querySelector(".hero-video-clip");
+        if (videoClip) {
+          tl.fromTo(
+            videoClip,
             { clipPath: "inset(0% 0% 0% 100%)" },
             { clipPath: "inset(0% 0% 0% 0%)", duration: 1.2, ease: "expo.out" },
             0.25
-          )
-          .from(".hero-foot", { y: 12, opacity: 0, duration: 0.6 }, 0.5);
+          );
+        }
+
+        tl.from(".hero-foot", { y: 12, opacity: 0, duration: 0.6 }, 0.5);
 
         const play = () => tl.play();
         if (isReady()) {
@@ -136,7 +141,7 @@ export default function HeroV2() {
       if (fallback) clearTimeout(fallback);
       revert?.();
     };
-  }, [language]);
+  }, [language, allowVideo]);
 
   return (
     <section

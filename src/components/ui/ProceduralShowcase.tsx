@@ -226,6 +226,7 @@ export default function ProceduralShowcase({ activeIndex }: ShowcaseProps) {
                 stroke="#3B82F6"
                 strokeWidth="2"
                 fill="none"
+                initial={{ opacity: 0 }}
                 animate={{
                   d: pathData.d,
                   opacity: pathData.opacity
