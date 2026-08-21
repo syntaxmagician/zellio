@@ -1,10 +1,8 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
 import { markReady } from "@/lib/ready";
-import { shouldSkipSplash } from "@/lib/splash";
-import SplashLoader from "@/components/layout/SplashLoader";
 
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -21,33 +19,12 @@ const FAQ = dynamic(() => import("@/components/sections/FAQ"), { ssr: true });
 const Contact = dynamic(() => import("@/components/sections/Contact"), { ssr: true });
 
 export default function Home() {
-  const [splashDone, setSplashDone] = useState(false);
-  const [showSplash, setShowSplash] = useState(true);
-
   useEffect(() => {
-    if (shouldSkipSplash()) {
-      setSplashDone(true);
-      setShowSplash(false);
-      markReady();
-      return;
-    }
-
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, []);
-
-  const handleSplashDone = useCallback(() => {
-    setSplashDone(true);
-    setShowSplash(false);
-    document.body.style.overflow = "";
     markReady();
   }, []);
 
   return (
     <>
-      {showSplash && !splashDone && <SplashLoader onDone={handleSplashDone} />}
 
       <div className="w-full">
         <Navbar />

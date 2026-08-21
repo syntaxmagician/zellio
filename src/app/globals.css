@@ -57,11 +57,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-html.skip-splash .splash-loader,
-body.skip-splash .splash-loader {
-  display: none !important;
-}
-
 /* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
