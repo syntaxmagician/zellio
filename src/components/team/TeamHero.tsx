@@ -1,32 +1,14 @@
 "use client";
 
 import React, { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import { Hammer, ShieldCheck, Milestone } from "lucide-react";
-import TeamAvatar from "./TeamAvatar";
 import AuroraFlowHero from "../ui/AuroraFlowHero";
 import { gsap, useGSAP } from "@/lib/gsap";
 import { isReady } from "@/lib/ready";
 
-const teamList = [
-  { name: "Vico Tegar", id: "vico", role: "Chief Architect" },
-  { name: "Samuel Sukarno", id: "samuel", role: "Lead Frontend" },
-  { name: "Muhammad Cavendio", id: "cavendio", role: "Backend Engineer" },
-  { name: "Hasyim Ridwan", id: "hasyim", role: "DevOps Engineer" },
-  { name: "Alwi Rianto", id: "alwi", role: "Partnership & Eng" },
-];
-
 export default function TeamHero() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollY } = useScroll();
-  
-  // Parallax subtle offset for the portraits (4 offsets for 4 members)
-  const y1 = useTransform(scrollY, [0, 500], [0, -15]);
-  const y2 = useTransform(scrollY, [0, 500], [0, 20]);
-  const y3 = useTransform(scrollY, [0, 500], [0, -10]);
-  const y4 = useTransform(scrollY, [0, 500], [0, 15]);
-
-  const yOffsets = [y1, y2, y3, y4];
 
   useGSAP(
     () => {
@@ -35,12 +17,7 @@ export default function TeamHero() {
         const tl = gsap.timeline({ paused: true, defaults: { ease: "power4.out" } });
         tl.from(".th-badge", { y: 14, opacity: 0, duration: 0.5 })
           .from(".th-title", { y: 26, opacity: 0, duration: 0.8 }, "-=0.25")
-          .from(".th-desc", { y: 16, opacity: 0, duration: 0.6 }, "-=0.5")
-          .from(
-            ".th-portrait",
-            { y: 30, opacity: 0, scale: 0.95, duration: 0.8, stagger: 0.1 },
-            "-=0.4"
-          );
+          .from(".th-desc", { y: 16, opacity: 0, duration: 0.6 }, "-=0.5");
 
         let fallback: ReturnType<typeof setTimeout> | undefined;
         const play = () => tl.play();
@@ -79,38 +56,8 @@ export default function TeamHero() {
           </p>
         </div>
 
-        {/* The Lineup: All Members Displayed Simultaneously */}
-        <div className="w-full grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6 lg:gap-8 justify-items-center max-w-5xl lg:max-w-6xl mx-auto mb-16 lg:mb-24">
-          {teamList.map((member, i) => (
-            <motion.div
-              key={member.id}
-              style={{ y: yOffsets[i % 4] }}
-              className="th-portrait group flex flex-col items-center w-full max-w-[200px]"
-            >
-              {/* Borderless Organic Portrait Container */}
-              <div className="w-full aspect-[4/5] sm:aspect-square lg:aspect-[4/5] rounded-[24px] bg-slate-950 overflow-hidden relative shadow-lg group-hover:shadow-xl transition-shadow duration-500">
-                <TeamAvatar
-                  name={member.id as any}
-                  className="w-[120%] h-[120%] object-cover scale-100 group-hover:scale-105 transition-transform duration-700 opacity-90 group-hover:opacity-100"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent pointer-events-none" />
-              </div>
-
-              {/* Typography below portrait */}
-              <div className="mt-4 text-center">
-                <span className="text-[9px] font-mono font-bold text-blue-500 tracking-wider block uppercase mb-1">
-                  {member.role}
-                </span>
-                <h3 className="text-sm sm:text-base font-black text-slate-900 tracking-tight">
-                  {member.name}
-                </h3>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-
         {/* SECTION 02: Engineering Philosophy */}
-        <div className="border-t border-slate-100 pt-8 relative z-10">
+        <div className="border-t border-slate-100 pt-10 relative z-10">
           <span className="text-[10px] font-mono font-bold text-slate-400 tracking-[0.2em] uppercase block mb-4">
             ENGINEERING PHILOSOPHY
           </span>
