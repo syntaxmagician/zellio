@@ -21,6 +21,8 @@ const inter = Inter({
   preload: false,
 });
 
+import { getLanguageAlternates } from "@/lib/seo";
+
 export const metadata: Metadata = {
   metadataBase: new URL("https://zellio.id"),
   title: {
@@ -43,21 +45,14 @@ export const metadata: Metadata = {
   authors: [{ name: "ZELLIO Team" }],
   creator: "ZELLIO",
   publisher: "ZELLIO",
-  alternates: {
-    canonical: "/en",
-    languages: {
-      en: "/en",
-      id: "/id",
-      "x-default": "/en",
-    },
-  },
+  alternates: getLanguageAlternates(""),
   openGraph: {
     title: "ZELLIO — Professional Digital Engineering Agency",
     description:
       "ZELLIO is a professional digital engineering agency specializing in custom software, mobile apps, and scalable cloud solutions.",
-    url: "https://zellio.id/en",
+    url: "https://zellio.id",
     siteName: "ZELLIO",
-    locale: "en_US",
+    locale: "id_ID",
     type: "website",
   },
   twitter: {

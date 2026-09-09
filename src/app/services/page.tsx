@@ -1,15 +1,19 @@
 import type { Metadata } from "next";
-import { canonicalPath } from "@/lib/seo";
+import { getLanguageAlternates, absoluteUrl } from "@/lib/seo";
 import ServicesPageClient from "./ServicesPageClient";
 
 export const metadata: Metadata = {
   title: "Services",
   description:
     "Custom websites, web apps, mobile apps, ERP, CRM, HRIS, and SaaS engineering from ZELLIO.",
-  alternates: { canonical: canonicalPath("services") },
+  alternates: getLanguageAlternates("services"),
   openGraph: {
     title: "Services | ZELLIO",
-    url: canonicalPath("services"),
+    description:
+      "Custom websites, web apps, mobile apps, ERP, CRM, HRIS, and SaaS engineering from ZELLIO.",
+    url: absoluteUrl("services"),
+    locale: "id_ID",
+    type: "website",
   },
 };
 

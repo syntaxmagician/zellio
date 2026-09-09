@@ -1,11 +1,47 @@
-const BASE_URL = "https://zellio.id";
+export const BASE_URL = "https://zellio.id";
 
-/** Public canonical paths use the /en locale prefix (middleware rewrite). */
-export function canonicalPath(path = ""): string {
-  const normalized = path.replace(/^\//, "");
-  return normalized ? `/en/${normalized}` : "/en";
+/**
+ * Normalizes relative path by stripping leading and trailing slashes.
+ */
+export function normalizePath(path = ""): string {
+  return path.replace(/^\/+|\/+$/g, "");
 }
 
-export function absoluteUrl(path = ""): string {
-  return `${BASE_URL}${canonicalPath(path)}`;
+/**
+ * Returns the absolute canonical URL for a specific path and locale.
+ * Default locale ('id') produces clean root paths (e.g. https://zellio.id/portfolio),
+ * while 'en' produces /en prefixed paths (e.g. https://zellio.id/en/portfolio).
+ */
+export function getCanonicalUrl(path = "", locale: "id" | "en" = "id"): string {
+  const clean = normalizePath(path);
+  if (locale === "en") {
+    return clean ? `${BASE_URL}/en/${clean}` : `${BASE_URL}/en`;
+  }
+  return clean ? `${BASE_URL}/${clean}` : BASE_URL;
+}
+
+/**
+ * Returns full alternates configuration for Next.js metadata,
+ * including self-referencing canonical and reciprocal hreflang tags.
+ */
+export function getLanguageAlternates(path = "", locale: "id" | "en" = "id") {
+  const clean = normalizePath(path);
+  const idUrl = clean ? `${BASE_URL}/${clean}` : BASE_URL;
+  const enUrl = clean ? `${BASE_URL}/en/${clean}` : `${BASE_URL}/en`;
+
+  return {
+    canonical: locale === "en" ? enUrl : idUrl,
+    languages: {
+      id: idUrl,
+      en: enUrl,
+      "x-default": idUrl,
+    },
+  };
+}
+
+/**
+ * Returns absolute URL for OpenGraph / Schema structured data.
+ */
+export function absoluteUrl(path = "", locale: "id" | "en" = "id"): string {
+  return getCanonicalUrl(path, locale);
 }

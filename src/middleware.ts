@@ -1,62 +1,59 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
-const locales = ['en', 'id'];
-const defaultLocale = 'en';
-
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
-  // 1. If this request has already been processed and rewritten, skip to next middleware/router
-  if (request.headers.has('x-next-locale')) {
-    return NextResponse.next();
-  }
-  
-  // 2. Skip public files, API, and Next.js internals
+  // 1. Skip Next.js internals, API routes, and static files
   if (
     pathname.startsWith('/_next') ||
     pathname.startsWith('/api') ||
-    pathname.match(/\.[^/]+$/) // e.g., images, .xml, .txt
+    pathname.match(/\.[^/]+$/) // e.g. .ico, .png, .xml, .txt
   ) {
     return NextResponse.next();
   }
 
-  // 3. Check if path starts with a locale
-  const pathnameHasLocale = locales.some(
-    (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
-  );
-
-  if (!pathnameHasLocale) {
-    // Redirect to default locale (/en)
+  // 2. Handle legacy /id prefix by permanently redirecting (301) to clean non-prefixed paths
+  if (pathname === '/id' || pathname.startsWith('/id/')) {
+    const cleanPath = pathname.replace(/^\/id(\/|$)/, '$1') || '/';
     const url = request.nextUrl.clone();
-    url.pathname = `/${defaultLocale}${pathname === '/' ? '' : pathname}`;
-    return NextResponse.redirect(url);
+    url.pathname = cleanPath;
+    return NextResponse.redirect(url, 301);
   }
 
-  // 4. If path HAS locale (e.g. /en/services), rewrite to non-locale path (e.g. /services)
-  const activeLocale = pathname.startsWith('/en') ? 'en' : 'id';
-  let targetPath = pathname.replace(new RegExp(`^/${activeLocale}`), '');
-  if (targetPath === '') targetPath = '/';
+  // 3. Handle /en paths: rewrite to underlying route with locale header 'en'
+  if (pathname === '/en' || pathname.startsWith('/en/')) {
+    let targetPath = pathname.replace(/^\/en(\/|$)/, '$1');
+    if (!targetPath) targetPath = '/';
 
-  const url = request.nextUrl.clone();
-  url.pathname = targetPath;
-  
-  // Set headers in the rewritten request to prevent loop on subsequent runs
+    const url = request.nextUrl.clone();
+    url.pathname = targetPath;
+
+    const requestHeaders = new Headers(request.headers);
+    requestHeaders.set('x-next-locale', 'en');
+
+    const response = NextResponse.rewrite(url, {
+      request: {
+        headers: requestHeaders,
+      },
+    });
+    response.headers.set('x-next-locale', 'en');
+    return response;
+  }
+
+  // 4. Clean paths (e.g. /, /portfolio, /services) serve default Indonesian (id)
   const requestHeaders = new Headers(request.headers);
-  requestHeaders.set('x-next-locale', activeLocale);
+  requestHeaders.set('x-next-locale', 'id');
 
-  const response = NextResponse.rewrite(url, {
+  const response = NextResponse.next({
     request: {
       headers: requestHeaders,
-    }
+    },
   });
-  
-  // Optional: Set header on response as well
-  response.headers.set('x-next-locale', activeLocale);
+  response.headers.set('x-next-locale', 'id');
   return response;
 }
 
 export const config = {
-  // Do not invoke Middleware on paths starting with _next, api, and files with extensions
   matcher: ['/((?!api|_next/static|_next/image|favicon.ico).*)'],
 };

@@ -1,10 +1,9 @@
 import { servicesData } from "@/lib/data";
 import { slugify } from "@/lib/slug";
-import { canonicalPath } from "@/lib/seo";
+import { getLanguageAlternates, absoluteUrl } from "@/lib/seo";
 import { notFound } from "next/navigation";
 import ServicePageClient from "./ServicePageClient";
 import type { Metadata } from "next";
-
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
@@ -21,13 +20,12 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   return {
     title: `${service.title} — ZELLIO`,
     description: service.description,
-    alternates: {
-      canonical: canonicalPath(path),
-    },
+    alternates: getLanguageAlternates(path),
     openGraph: {
       title: `${service.title} — ZELLIO`,
       description: service.description,
-      url: canonicalPath(path),
+      url: absoluteUrl(path),
+      locale: "id_ID",
       type: "website",
     },
   };
