@@ -7,82 +7,52 @@ import { projects } from '@/lib/portfolioData';
 const BASE_URL = 'https://zellio.id';
 
 /** Canonical URLs match default clean paths (e.g. https://zellio.id/portfolio). */
-function url(path = ''): string {
+function createSitemapItem(
+  path = '',
+  changeFrequency: 'weekly' | 'monthly' | 'yearly',
+  priority: number
+) {
   const normalized = path.replace(/^\//, '');
-  return normalized ? `${BASE_URL}/${normalized}` : BASE_URL;
+  const idUrl = normalized ? `${BASE_URL}/${normalized}` : BASE_URL;
+  const enUrl = normalized ? `${BASE_URL}/en/${normalized}` : `${BASE_URL}/en`;
+
+  return {
+    url: idUrl,
+    lastModified: new Date(),
+    changeFrequency,
+    priority,
+    alternates: {
+      languages: {
+        id: idUrl,
+        en: enUrl,
+        'x-default': idUrl,
+      },
+    },
+  };
 }
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const serviceUrls = servicesData.map((service) => ({
-    url: url(`services/${slugify(service.title)}`),
-    lastModified: new Date(),
-    changeFrequency: 'monthly' as const,
-    priority: 0.8,
-  }));
+  const serviceUrls = servicesData.map((service) =>
+    createSitemapItem(`services/${slugify(service.title)}`, 'monthly', 0.8)
+  );
 
-  const insightUrls = insightsData.map((insight) => ({
-    url: url(`insights/${insight.slug}`),
-    lastModified: new Date(),
-    changeFrequency: 'monthly' as const,
-    priority: 0.7,
-  }));
+  const insightUrls = insightsData.map((insight) =>
+    createSitemapItem(`insights/${insight.slug}`, 'monthly', 0.7)
+  );
 
-  const portfolioUrls = projects.map((project) => ({
-    url: url(`portfolio/${project.slug}`),
-    lastModified: new Date(),
-    changeFrequency: 'monthly' as const,
-    priority: 0.8,
-  }));
+  const portfolioUrls = projects.map((project) =>
+    createSitemapItem(`portfolio/${project.slug}`, 'monthly', 0.8)
+  );
 
   return [
-    {
-      url: url(),
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 1,
-    },
-    {
-      url: url('portfolio'),
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.9,
-    },
-    {
-      url: url('services'),
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.9,
-    },
-    {
-      url: url('team'),
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: url('contact'),
-      lastModified: new Date(),
-      changeFrequency: 'yearly',
-      priority: 0.7,
-    },
-    {
-      url: url('privacy-policy'),
-      lastModified: new Date(),
-      changeFrequency: 'yearly',
-      priority: 0.3,
-    },
-    {
-      url: url('terms-of-service'),
-      lastModified: new Date(),
-      changeFrequency: 'yearly',
-      priority: 0.3,
-    },
-    {
-      url: url('cookie-policy'),
-      lastModified: new Date(),
-      changeFrequency: 'yearly',
-      priority: 0.3,
-    },
+    createSitemapItem('', 'weekly', 1.0),
+    createSitemapItem('portfolio', 'monthly', 0.9),
+    createSitemapItem('services', 'monthly', 0.9),
+    createSitemapItem('team', 'monthly', 0.8),
+    createSitemapItem('contact', 'yearly', 0.7),
+    createSitemapItem('privacy-policy', 'yearly', 0.3),
+    createSitemapItem('terms-of-service', 'yearly', 0.3),
+    createSitemapItem('cookie-policy', 'yearly', 0.3),
     ...serviceUrls,
     ...insightUrls,
     ...portfolioUrls,
