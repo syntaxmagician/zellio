@@ -1,15 +1,17 @@
 import type { Metadata } from "next";
-import { canonicalPath } from "@/lib/seo";
+import { getLanguageAlternates, absoluteUrl } from "@/lib/seo";
 import ContactPageClient from "./ContactPageClient";
 
 export const metadata: Metadata = {
   title: "Contact",
   description:
     "Start a project with ZELLIO — software house for websites, apps, and enterprise systems.",
-  alternates: { canonical: canonicalPath("contact") },
+  alternates: getLanguageAlternates("contact"),
   openGraph: {
     title: "Contact | ZELLIO",
-    url: canonicalPath("contact"),
+    url: absoluteUrl("contact"),
+    locale: "id_ID",
+    type: "website",
   },
 };
 

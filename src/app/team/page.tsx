@@ -1,15 +1,17 @@
 import type { Metadata } from "next";
-import { canonicalPath } from "@/lib/seo";
+import { getLanguageAlternates, absoluteUrl } from "@/lib/seo";
 import TeamPageClient from "./TeamPageClient";
 
 export const metadata: Metadata = {
   title: "Team",
   description:
     "Meet the ZELLIO engineering team building reliable digital products in Indonesia.",
-  alternates: { canonical: canonicalPath("team") },
+  alternates: getLanguageAlternates("team"),
   openGraph: {
     title: "Team | ZELLIO",
-    url: canonicalPath("team"),
+    url: absoluteUrl("team"),
+    locale: "id_ID",
+    type: "website",
   },
 };
 

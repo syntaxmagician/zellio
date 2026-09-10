@@ -6,10 +6,10 @@ import { projects } from '@/lib/portfolioData';
 
 const BASE_URL = 'https://zellio.id';
 
-/** Canonical URLs match middleware locale prefix (/en/...). */
+/** Canonical URLs match default clean paths (e.g. https://zellio.id/portfolio). */
 function url(path = ''): string {
   const normalized = path.replace(/^\//, '');
-  return normalized ? `${BASE_URL}/en/${normalized}` : `${BASE_URL}/en`;
+  return normalized ? `${BASE_URL}/${normalized}` : BASE_URL;
 }
 
 export default function sitemap(): MetadataRoute.Sitemap {

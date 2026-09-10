@@ -47,19 +47,28 @@ export const metadata: Metadata = {
   publisher: "ZELLIO",
   alternates: getLanguageAlternates(""),
   openGraph: {
-    title: "ZELLIO — Professional Digital Engineering Agency",
+    title: "ZELLIO — Software House Indonesia | Website, Web App & Enterprise Solutions",
     description:
-      "ZELLIO is a professional digital engineering agency specializing in custom software, mobile apps, and scalable cloud solutions.",
+      "ZELLIO is a professional software house in Indonesia specializing in modern websites, custom web & mobile applications, and scalable digital solutions.",
     url: "https://zellio.id",
     siteName: "ZELLIO",
     locale: "id_ID",
     type: "website",
+    images: [
+      {
+        url: "/compro-cover.jpg",
+        width: 1200,
+        height: 630,
+        alt: "ZELLIO — Software House Indonesia",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "ZELLIO — Professional Digital Engineering Agency",
+    title: "ZELLIO — Software House Indonesia | Website, Web App & Enterprise Solutions",
     description:
-      "ZELLIO is a professional digital engineering agency specializing in custom software, mobile apps, and scalable cloud solutions.",
+      "ZELLIO is a professional software house in Indonesia specializing in modern websites, custom web & mobile applications, and scalable digital solutions.",
+    images: ["/compro-cover.jpg"],
   },
   robots: {
     index: true,
@@ -114,7 +123,7 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "ProfessionalService",
               "name": "ZELLIO",
-              "url": "https://zellio.id/en",
+              "url": "https://zellio.id",
               "logo": "https://zellio.id/icon.png",
               "image": "https://zellio.id/icon.png",
               "description": "ZELLIO is a professional software engineering agency specializing in custom web applications, mobile platforms, and enterprise solutions.",

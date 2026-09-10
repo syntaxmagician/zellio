@@ -1,5 +1,5 @@
 import { insightsData } from "@/lib/insightsData";
-import { canonicalPath } from "@/lib/seo";
+import { getLanguageAlternates, absoluteUrl } from "@/lib/seo";
 import { notFound } from "next/navigation";
 import InsightPageClient from "./InsightPageClient";
 import type { Metadata } from "next";
@@ -19,13 +19,11 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   return {
     title: `${story.en.title} — ZELLIO Insights`,
     description: story.en.desc,
-    alternates: {
-      canonical: canonicalPath(path),
-    },
+    alternates: getLanguageAlternates(path),
     openGraph: {
       title: `${story.en.title} — ZELLIO Insights`,
       description: story.en.desc,
-      url: canonicalPath(path),
+      url: absoluteUrl(path),
       type: "article",
       images: [
         {
