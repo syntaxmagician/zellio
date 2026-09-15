@@ -15,44 +15,12 @@ export interface ClientLogo {
 
 export const clientLogos: ClientLogo[] = [
   {
-    slug: "masterdiskon",
-    name: "MasterDiskon",
-    sector: { en: "Travel Platform", id: "Platform Travel" },
-    src: "/clients/masterdiskon.png",
-    width: 111,
-    height: 47,
-  },
-  {
-    slug: "eureka",
-    name: "Eureka Group",
-    sector: { en: "Logistics Group", id: "Grup Logistik" },
-    src: "/clients/eureka.png",
-    width: 116,
-    height: 45,
-  },
-  {
-    slug: "race",
-    name: "RACE Raja Cepat",
-    sector: { en: "Express Logistics", id: "Logistik Ekspres" },
-    src: "/clients/race.png",
-    width: 83,
-    height: 63,
-  },
-  {
     slug: "campos",
     name: "Campos Law Firm",
     sector: { en: "Law Firm", id: "Firma Hukum" },
     src: "/clients/campos.png",
     width: 118,
     height: 44,
-  },
-  {
-    slug: "jaja",
-    name: "Jaja.id",
-    sector: { en: "Marketplace", id: "Marketplace" },
-    src: "/clients/jaja.png",
-    width: 114,
-    height: 45,
   },
   {
     slug: "palda",
@@ -95,21 +63,19 @@ export const clientLogos: ClientLogo[] = [
     height: 32,
   },
   {
-    slug: "elogs",
-    name: "Eureka Logistics",
-    sector: { en: "Logistics Platform", id: "Platform Logistik" },
-    src: "/clients/elogs.png",
-    width: 117,
-    height: 45,
-    hidden: true,
-  },
-
-  {
     slug: "batugin",
     name: "Batugin",
     sector: { en: "Healthcare Products", id: "Produk Kesehatan" },
     src: "/logo-batugin.svg",
     width: 110,
     height: 48,
+  },
+  {
+    slug: "kliktravelid",
+    name: "Klik Travel ID",
+    sector: { en: "Travel & Tours", id: "Travel & Wisata" },
+    src: "/kliktravelid.png",
+    width: 54,
+    height: 38,
   },
 ];

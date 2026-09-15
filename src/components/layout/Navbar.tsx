@@ -14,7 +14,7 @@ const mainLinks = [
   { label: "Home", href: "/", idKey: "Beranda" },
   { label: "Services", href: "/#services", idKey: "Layanan" },
   { label: "Portfolio", href: "/portfolio", idKey: "Portofolio" },
-  { label: "Team", href: "/team", idKey: "Tim" },
+  // { label: "Team", href: "/team", idKey: "Tim" },
   { label: "About", href: "/#about", idKey: "Tentang" },
   { label: "Contact", href: "/contact", idKey: "Kontak" },
 ];
@@ -74,26 +74,25 @@ export default function Navbar() {
         Top bar transition: Transparent -> Backdrop blur + border
       */}
       <nav
-        className={`hidden lg:flex fixed top-0 left-0 right-0 z-[100] w-full transition-all duration-300 ease-out ${
-          scrolled 
-            ? "bg-white/75 backdrop-blur-md border-b border-slate-200/50 py-4 shadow-sm" 
+        className={`hidden lg:flex fixed top-0 left-0 right-0 z-[100] w-full transition-all duration-300 ease-out ${scrolled
+            ? "bg-white/75 backdrop-blur-md border-b border-slate-200/50 py-4 shadow-sm"
             : "bg-transparent border-b border-transparent py-7"
-        }`}
+          }`}
       >
         <div className="max-w-none px-6 lg:px-12 w-full flex items-center justify-between">
-          
+
           {/* LEFT: Logo */}
           <div className="relative w-[180px] lg:w-[240px] h-10 shrink-0">
             <Link href={`/${language}`} className="absolute left-0 top-1/2 -translate-y-1/2 flex items-center">
-              <Image 
-                src="/zellio3.png" 
-                alt="Zellio Logo" 
+              <Image
+                src="/zellio3.png"
+                alt="Zellio Logo"
                 width={240}
                 height={44}
                 className="w-auto object-contain drop-shadow-sm transition-all duration-300"
-                style={{ 
-                  height: '44px', 
-                  transform: 'scale(3.2)', 
+                style={{
+                  height: '44px',
+                  transform: 'scale(3.2)',
                   transformOrigin: 'left center',
                   filter: isDarkTheme ? 'brightness(0) invert(1)' : 'brightness(0)'
                 }}
@@ -107,7 +106,7 @@ export default function Navbar() {
             {mainLinks.map((link) => {
               if (link.label === "Services") {
                 return (
-                  <div 
+                  <div
                     key={link.href}
                     onMouseEnter={() => setDropdownOpen(true)}
                     onMouseLeave={() => {
@@ -115,27 +114,24 @@ export default function Navbar() {
                       setHoveredItemId(null);
                     }}
                     className="group relative flex flex-col justify-center h-full cursor-pointer py-1"
-                >
-                  <div className="flex items-center gap-1">
-                    <span className={`text-[13px] font-medium tracking-wide transition-colors duration-200 uppercase ${
-                      isDarkTheme 
-                        ? "text-slate-300 group-hover:text-white" 
-                        : (dropdownOpen ? "text-slate-900" : "text-slate-600 group-hover:text-slate-900")
-                    }`}>
-                      {language === "id" ? link.idKey : link.label}
-                    </span>
-                    <ChevronDown size={14} className={`transition-all duration-300 ${
-                      isDarkTheme 
-                        ? "text-slate-400 group-hover:text-white" 
-                        : (dropdownOpen ? "rotate-180 text-slate-900" : "text-slate-400 group-hover:text-slate-900")
-                    }`} />
-                  </div>
-                  
-                  {/* Subtle Hover Underline Animation */}
-                  <span className={`absolute bottom-0 left-0 w-full h-[1.5px] origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out ${
-                    isDarkTheme ? "bg-white" : "bg-slate-900"
-                  }`} />
-                    
+                  >
+                    <div className="flex items-center gap-1">
+                      <span className={`text-[13px] font-medium tracking-wide transition-colors duration-200 uppercase ${isDarkTheme
+                          ? "text-slate-300 group-hover:text-white"
+                          : (dropdownOpen ? "text-slate-900" : "text-slate-600 group-hover:text-slate-900")
+                        }`}>
+                        {language === "id" ? link.idKey : link.label}
+                      </span>
+                      <ChevronDown size={14} className={`transition-all duration-300 ${isDarkTheme
+                          ? "text-slate-400 group-hover:text-white"
+                          : (dropdownOpen ? "rotate-180 text-slate-900" : "text-slate-400 group-hover:text-slate-900")
+                        }`} />
+                    </div>
+
+                    {/* Subtle Hover Underline Animation */}
+                    <span className={`absolute bottom-0 left-0 w-full h-[1.5px] origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out ${isDarkTheme ? "bg-white" : "bg-slate-900"
+                      }`} />
+
                     {/* Premium Asymmetric Mega Menu with Framer Motion */}
                     <AnimatePresence>
                       {dropdownOpen && (
@@ -147,7 +143,7 @@ export default function Navbar() {
                           className="absolute top-[28px] left-1/2 -translate-x-1/2 pt-4 z-[110] pointer-events-auto"
                         >
                           <div className="w-[640px] bg-white/95 backdrop-blur-2xl rounded-[32px] shadow-[0_40px_100px_-20px_rgba(0,0,0,0.15)] border border-slate-200/60 p-6 flex flex-col gap-6">
-                            
+
                             {/* Grid of 6 Top Services */}
                             <div className="grid grid-cols-2 gap-x-6 gap-y-4">
                               {servicesData.slice(0, 6).map((service) => {
@@ -162,7 +158,7 @@ export default function Navbar() {
                                     className="group/item flex items-start gap-4 p-3 rounded-2xl border border-transparent transition-all duration-300 text-left hover:bg-slate-50 hover:shadow-[0_4px_20px_rgb(0,0,0,0.02)] hover:border-slate-100"
                                   >
                                     {/* Glassmorphic Icon Wrapper */}
-                                    <div 
+                                    <div
                                       className="relative w-12 h-12 rounded-[14px] flex items-center justify-center shrink-0 transition-all duration-300 group-hover/item:scale-105 shadow-sm"
                                       style={{
                                         background: `linear-gradient(135deg, ${service.bgColor}, #ffffff)`,
@@ -174,7 +170,7 @@ export default function Navbar() {
                                         {Icon && <Icon size={22} strokeWidth={2.5} />}
                                       </div>
                                     </div>
-                                    
+
                                     <div className="flex flex-col flex-1 min-w-0 pt-0.5">
                                       <span className="text-sm font-bold text-slate-900 leading-snug group-hover/item:text-blue-600 transition-colors">
                                         {service.title}
@@ -190,30 +186,30 @@ export default function Navbar() {
 
                             {/* View All Services Bottom Bar */}
                             <div className="pt-4 border-t border-slate-100 flex justify-between items-center px-2">
-                               <div className="flex items-center gap-3">
-                                  <div className="flex -space-x-1.5">
-                                    <div className="w-6 h-6 rounded-full bg-blue-100 border-2 border-white flex items-center justify-center z-10 shadow-sm">
-                                      <Globe size={10} className="text-blue-600" />
-                                    </div>
-                                    <div className="w-6 h-6 rounded-full bg-emerald-100 border-2 border-white flex items-center justify-center z-20 shadow-sm">
-                                      <Database size={10} className="text-emerald-600" />
-                                    </div>
-                                    <div className="w-6 h-6 rounded-full bg-slate-100 border-2 border-white flex items-center justify-center text-[8px] font-bold text-slate-500 z-30 shadow-sm">
-                                      +{servicesData.length - 6}
-                                    </div>
+                              <div className="flex items-center gap-3">
+                                <div className="flex -space-x-1.5">
+                                  <div className="w-6 h-6 rounded-full bg-blue-100 border-2 border-white flex items-center justify-center z-10 shadow-sm">
+                                    <Globe size={10} className="text-blue-600" />
                                   </div>
-                                  <span className="text-[10px] font-medium text-slate-400">
-                                    {language === "id" ? "Layanan digital lainnya" : "More digital services"}
-                                  </span>
-                               </div>
-                               <Link
-                                  href={`/${language}/services`}
-                                  onClick={() => setDropdownOpen(false)}
-                                  className="flex items-center gap-1.5 text-[12px] font-bold text-blue-600 hover:text-blue-700 bg-blue-50 hover:bg-blue-100 px-4 py-2 rounded-full transition-all duration-300 group/link"
-                               >
-                                  {language === "id" ? "Lihat Semua Layanan" : "Explore All Services"}
-                                  <ArrowRight size={14} className="group-hover/link:translate-x-1 transition-transform" />
-                               </Link>
+                                  <div className="w-6 h-6 rounded-full bg-emerald-100 border-2 border-white flex items-center justify-center z-20 shadow-sm">
+                                    <Database size={10} className="text-emerald-600" />
+                                  </div>
+                                  <div className="w-6 h-6 rounded-full bg-slate-100 border-2 border-white flex items-center justify-center text-[8px] font-bold text-slate-500 z-30 shadow-sm">
+                                    +{servicesData.length - 6}
+                                  </div>
+                                </div>
+                                <span className="text-[10px] font-medium text-slate-400">
+                                  {language === "id" ? "Layanan digital lainnya" : "More digital services"}
+                                </span>
+                              </div>
+                              <Link
+                                href={`/${language}/services`}
+                                onClick={() => setDropdownOpen(false)}
+                                className="flex items-center gap-1.5 text-[12px] font-bold text-blue-600 hover:text-blue-700 bg-blue-50 hover:bg-blue-100 px-4 py-2 rounded-full transition-all duration-300 group/link"
+                              >
+                                {language === "id" ? "Lihat Semua Layanan" : "Explore All Services"}
+                                <ArrowRight size={14} className="group-hover/link:translate-x-1 transition-transform" />
+                              </Link>
                             </div>
 
                           </div>
@@ -225,21 +221,19 @@ export default function Navbar() {
               }
 
               return (
-                <Link 
-                  key={link.href} 
+                <Link
+                  key={link.href}
                   href={`/${language}${link.href === '/' ? '' : link.href.startsWith('/#') ? link.href.substring(1) : link.href}`}
                   className="group relative flex items-center h-full cursor-pointer py-1"
                 >
-                  <span className={`text-[13px] font-medium tracking-wide transition-colors duration-200 uppercase ${
-                    isDarkTheme ? "text-slate-300 group-hover:text-white" : "text-slate-600 group-hover:text-slate-900"
-                  }`}>
+                  <span className={`text-[13px] font-medium tracking-wide transition-colors duration-200 uppercase ${isDarkTheme ? "text-slate-300 group-hover:text-white" : "text-slate-600 group-hover:text-slate-900"
+                    }`}>
                     {language === "id" ? link.idKey : link.label}
                   </span>
-                  
+
                   {/* Subtle Hover Underline Animation */}
-                  <span className={`absolute bottom-0 left-0 w-full h-[1.5px] origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out ${
-                    isDarkTheme ? "bg-white" : "bg-slate-900"
-                  }`} />
+                  <span className={`absolute bottom-0 left-0 w-full h-[1.5px] origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out ${isDarkTheme ? "bg-white" : "bg-slate-900"
+                    }`} />
                 </Link>
               );
             })}
@@ -247,34 +241,31 @@ export default function Navbar() {
 
           {/* RIGHT: Controls (Language + CTA) */}
           <div className="flex items-center justify-end shrink-0 w-[180px] gap-6">
-            
+
             {/* Minimal Segmented Language Control */}
-            <div className={`flex items-center gap-1 border rounded-full p-0.5 text-[11px] font-bold font-mono transition-all duration-300 ${
-              isDarkTheme 
-                ? "bg-white/5 border-white/10 text-slate-400" 
+            <div className={`flex items-center gap-1 border rounded-full p-0.5 text-[11px] font-bold font-mono transition-all duration-300 ${isDarkTheme
+                ? "bg-white/5 border-white/10 text-slate-400"
                 : "bg-slate-100 border-slate-200/60 text-slate-500 shadow-inner"
-            }`}>
-              <button 
+              }`}>
+              <button
                 onClick={() => setLanguage("en")}
                 aria-label="Switch to English"
                 aria-pressed={language === "en"}
-                className={`px-2.5 py-1 rounded-full transition-all duration-200 ${
-                  language === "en" 
-                    ? (isDarkTheme ? "bg-white/15 text-white shadow-sm" : "bg-white text-slate-900 shadow-sm") 
+                className={`px-2.5 py-1 rounded-full transition-all duration-200 ${language === "en"
+                    ? (isDarkTheme ? "bg-white/15 text-white shadow-sm" : "bg-white text-slate-900 shadow-sm")
                     : (isDarkTheme ? "hover:text-white opacity-60 hover:opacity-100" : "hover:text-slate-800 opacity-60 hover:opacity-100")
-                }`}
+                  }`}
               >
                 EN
               </button>
-              <button 
+              <button
                 onClick={() => setLanguage("id")}
                 aria-label="Ganti ke Bahasa Indonesia"
                 aria-pressed={language === "id"}
-                className={`px-2.5 py-1 rounded-full transition-all duration-200 ${
-                  language === "id" 
-                    ? (isDarkTheme ? "bg-white/15 text-white shadow-sm" : "bg-white text-slate-900 shadow-sm") 
+                className={`px-2.5 py-1 rounded-full transition-all duration-200 ${language === "id"
+                    ? (isDarkTheme ? "bg-white/15 text-white shadow-sm" : "bg-white text-slate-900 shadow-sm")
                     : (isDarkTheme ? "hover:text-white opacity-60 hover:opacity-100" : "hover:text-slate-800 opacity-60 hover:opacity-100")
-                }`}
+                  }`}
               >
                 ID
               </button>
@@ -285,11 +276,10 @@ export default function Navbar() {
               href="https://wa.me/6285158945811?text=Saya%20ingin%20kosultasi%20mengenai%20project%20yang%20saya%20sedang%20kembangkan%2C%20"
               target="_blank"
               rel="noopener noreferrer"
-              className={`group inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-[12px] font-semibold tracking-wide transition-all duration-300 hover:scale-[1.02] shadow-sm hover:shadow-md cursor-pointer whitespace-nowrap ${
-                isDarkTheme 
-                  ? "bg-white text-slate-900 hover:bg-slate-100" 
+              className={`group inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-[12px] font-semibold tracking-wide transition-all duration-300 hover:scale-[1.02] shadow-sm hover:shadow-md cursor-pointer whitespace-nowrap ${isDarkTheme
+                  ? "bg-white text-slate-900 hover:bg-slate-100"
                   : "bg-slate-900 text-white hover:bg-slate-800"
-              }`}
+                }`}
             >
               {language === "id" ? "Mulai Proyek" : "Start Project"}
               <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform duration-300" />
@@ -304,26 +294,25 @@ export default function Navbar() {
         MOBILE NAVBAR
         Clean, full-width responsive header
       */}
-      <header 
-        className={`lg:hidden fixed top-0 left-0 right-0 z-[100] w-full transition-all duration-300 ${
-          scrolled || mobileOpen
-            ? "bg-white/95 backdrop-blur-md border-b border-slate-200/50 shadow-sm" 
+      <header
+        className={`lg:hidden fixed top-0 left-0 right-0 z-[100] w-full transition-all duration-300 ${scrolled || mobileOpen
+            ? "bg-white/95 backdrop-blur-md border-b border-slate-200/50 shadow-sm"
             : "bg-transparent border-b border-transparent"
-        }`}
+          }`}
       >
         <div className="flex items-center justify-between h-20 px-6">
           {/* Mobile Logo */}
           <div className="relative w-[160px] h-10 shrink-0 z-20">
             <Link href={`/${language}`} className="absolute left-0 top-1/2 -translate-y-1/2 flex items-center">
-              <Image 
-                src="/zellio3.png" 
-                alt="Zellio Logo" 
+              <Image
+                src="/zellio3.png"
+                alt="Zellio Logo"
                 width={160}
                 height={36}
                 className="w-auto object-contain drop-shadow-sm transition-all duration-300"
-                style={{ 
-                  height: '36px', 
-                  transform: 'scale(3.2)', 
+                style={{
+                  height: '36px',
+                  transform: 'scale(3.2)',
                   transformOrigin: 'left center',
                   filter: (isDarkTheme && !mobileOpen) ? 'brightness(0) invert(1)' : 'brightness(0)'
                 }}
@@ -335,9 +324,8 @@ export default function Navbar() {
           {/* Mobile Toggle Button */}
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className={`p-2 z-20 focus:outline-none transition-colors duration-300 ${
-              (isDarkTheme && !mobileOpen) ? "text-white" : "text-slate-800"
-            }`}
+            className={`p-2 z-20 focus:outline-none transition-colors duration-300 ${(isDarkTheme && !mobileOpen) ? "text-white" : "text-slate-800"
+              }`}
             aria-label="Toggle menu"
           >
             {mobileOpen ? <X size={24} /> : <Menu size={24} />}
@@ -347,7 +335,7 @@ export default function Navbar() {
         {/* Mobile Dropdown Menu Overlay */}
         <AnimatePresence>
           {mobileOpen && (
-            <motion.div 
+            <motion.div
               initial={{ height: 0, opacity: 0 }}
               animate={{ height: "100vh", opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
@@ -397,7 +385,7 @@ export default function Navbar() {
                       </motion.div>
                     );
                   }
-                  
+
                   return (
                     <motion.div
                       key={link.href}
@@ -416,7 +404,7 @@ export default function Navbar() {
                   );
                 })}
 
-                
+
                 {/* Mobile Divider */}
                 <motion.div
                   initial={{ opacity: 0 }}
@@ -433,7 +421,7 @@ export default function Navbar() {
                   className="flex items-center justify-between"
                 >
                   <div className="flex items-center gap-1 bg-slate-100 border border-slate-200/60 rounded-full p-0.5 text-[11px] font-bold font-mono text-slate-500 shadow-inner">
-                    <button 
+                    <button
                       onClick={() => setLanguage("en")}
                       aria-label="Switch to English"
                       aria-pressed={language === "en"}
@@ -441,7 +429,7 @@ export default function Navbar() {
                     >
                       EN
                     </button>
-                    <button 
+                    <button
                       onClick={() => setLanguage("id")}
                       aria-label="Ganti ke Bahasa Indonesia"
                       aria-pressed={language === "id"}
@@ -452,7 +440,7 @@ export default function Navbar() {
                   </div>
 
                   <a
-              href="https://wa.me/6285158945811?text=Saya%20ingin%20kosultasi%20mengenai%20project%20yang%20saya%20sedang%20kembangkan%2C%20"
+                    href="https://wa.me/6285158945811?text=Saya%20ingin%20kosultasi%20mengenai%20project%20yang%20saya%20sedang%20kembangkan%2C%20"
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={() => setMobileOpen(false)}

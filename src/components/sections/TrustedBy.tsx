@@ -41,8 +41,8 @@ const localText = {
 const premiumEase = [0.22, 1, 0.36, 1] as [number, number, number, number];
 
 // Split the roster into two counter-scrolling rows, wide and compact marks mixed.
-const ROW_ONE = ["masterdiskon", "race", "jaja", "beego", "warungbungapagi"];
-const rowOne = ROW_ONE.map((slug) => clientLogos.find((c) => c.slug === slug)!);
+const ROW_ONE = ["beego", "warungbungapagi", "palda", "batugin"];
+const rowOne = ROW_ONE.map((slug) => clientLogos.find((c) => c.slug === slug)).filter((c): c is ClientLogo => Boolean(c));
 const rowTwo = clientLogos.filter((c) => !c.hidden && !ROW_ONE.includes(c.slug));
 
 function LogoTile({ client, language }: { client: ClientLogo; language: "en" | "id" }) {

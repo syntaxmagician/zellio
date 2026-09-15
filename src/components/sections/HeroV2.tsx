@@ -41,12 +41,10 @@ export default function HeroV2() {
     return () => mq.removeEventListener("change", sync);
   }, []);
 
-  // Desktop-only GSAP — keep the library off the mobile critical path / LCP.
+  // GSAP entrance & ambient animations (respects prefers-reduced-motion)
   useEffect(() => {
-    const desktopMotion = window.matchMedia(
-      "(min-width: 768px) and (prefers-reduced-motion: no-preference)"
-    );
-    if (!desktopMotion.matches) return;
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (prefersReducedMotion) return;
 
     let cancelled = false;
     let revert: (() => void) | undefined;
@@ -200,7 +198,7 @@ export default function HeroV2() {
         <div className="w-full max-w-[1400px] mx-auto pointer-events-auto relative">
 
           {/* Top Left Label (Studio Intro) */}
-          <div className="hero-meta absolute top-[-50px] lg:top-[-80px] left-0 flex flex-col gap-2 max-lg:opacity-100 opacity-0">
+          <div className="hero-meta absolute top-[-50px] lg:top-[-80px] left-0 flex flex-col gap-2 opacity-0">
             <span className="text-[10px] font-mono font-bold tracking-[0.2em] text-[#60A5FA] uppercase">[ 01 // STUDIO INTRODUCTION ]</span>
             <span className="text-[10px] font-mono tracking-widest text-slate-300">EST. 2026</span>
           </div>
@@ -216,7 +214,7 @@ export default function HeroV2() {
               </span>
 
               {/* Second Line (Indented) */}
-              <span className="block py-1 relative lg:ml-[15%] flex items-center gap-4 lg:gap-8">
+              <span className="block overflow-hidden py-1 relative lg:ml-[15%] flex items-center gap-4 lg:gap-8">
                 <span className="hero-line block will-change-transform flex items-center flex-wrap gap-4 lg:gap-8">
                   {/* Inline pill badge */}
                   <span className="hero-pill hidden md:flex shrink-0 items-center justify-center px-6 py-2 lg:py-2.5 rounded-full border border-white/20 bg-white/5 backdrop-blur-md text-[10px] lg:text-xs font-mono font-bold tracking-[0.2em] text-[#93C5FD] mb-1 lg:mb-0 opacity-0">

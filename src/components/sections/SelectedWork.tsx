@@ -27,7 +27,7 @@ const projects: CaseProject[] = [
     image: "/masdis das.png",
   },
   {
-    title: "Eureka Internal ERP",
+    title: "Internal ERP",
     sector: { en: "Enterprise ERP System", id: "Sistem ERP Korporat" },
     desc: {
       en: "Full-module ERP covering sales, unit monitoring, service, automated invoicing, and vendor data integration.",

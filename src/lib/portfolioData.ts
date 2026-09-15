@@ -21,7 +21,7 @@ export type Project = {
   accent: string;
   url?: string;
   isPrivate?: boolean;
-  
+
   // Detailed Section Content
   overview: { id: string; en: string };
   challenges: { id: string[]; en: string[] };
@@ -43,9 +43,9 @@ export const projects: Project[] = [
     title: "Batugin",
     category: { id: "Farmasi & Kesehatan", en: "Healthcare & Pharmaceuticals" },
     type: "Website",
-    desc: { 
-      id: "Website Company Profile resmi untuk lini produk kesehatan unggulan Batugin. Menghadirkan informasi produk terpercaya dengan desain medis yang bersih, profesional, dan edukatif.", 
-      en: "Official Company Profile website for the Batugin healthcare product line. Presents trusted product information with a clean, professional, and educational medical design." 
+    desc: {
+      id: "Website Company Profile resmi untuk lini produk kesehatan unggulan Batugin. Menghadirkan informasi produk terpercaya dengan desain medis yang bersih, profesional, dan edukatif.",
+      en: "Official Company Profile website for the Batugin healthcare product line. Presents trusted product information with a clean, professional, and educational medical design."
     },
     tags: ["Next.js", "TailwindCSS", "Framer Motion"],
     image: "/batugin_compro.jpeg",
@@ -114,310 +114,6 @@ export const projects: Project[] = [
         { title: "Lightning Fast Access", desc: "Page load time decreased from 4.2 seconds to 1.1 seconds, reducing bounce rate by 28%." },
         { title: "Organic Traffic Surge", desc: "The Next.js architecture update boosted organic search traffic by 34% in the first quarter." },
         { title: "High-Traffic Stability", desc: "The system now processes over 50,000 active daily visitors with zero downtime." }
-      ]
-    }
-  },
-  {
-    slug: "master-diskon",
-    title: "Master Diskon",
-    category: { id: "Travel & Perhotelan", en: "Travel & Hospitality" },
-    type: "Internal Dashboard",
-    desc: { 
-      id: "Aplikasi Web Dashboard komprehensif untuk travel agent. Memfasilitasi manajemen pencarian dan pemesanan tiket pesawat, hotel, serta paket wisata dengan sistem harga dinamis.", 
-      en: "A comprehensive Web Dashboard App for travel agents. Facilitates the management of flights, hotels, and tour packages with dynamic pricing systems." 
-    },
-    tags: ["Next.js", "Payment Gateway", "Travel API"],
-    image: "/masdis das.png",
-    icon: "Globe",
-    accent: "text-blue-600 bg-blue-50 border-blue-100",
-    url: "https://masterdiskon.com/id-id",
-    overview: {
-      id: "MasterDiskon adalah platform travel modern yang membantu agen dan traveler mencari, membandingkan, serta memesan produk perjalanan—tiket pesawat, hotel, dan voucher promo—secara real-time. Di industri travel yang kompetitif, konversi ditentukan oleh kecepatan pencarian dan kesederhanaan alur checkout. Sistem ini dibangun dengan fokus pada performa query API pencarian tiket dan transparansi harga. Melalui dashboard internal, admin dapat menyesuaikan margin keuntungan secara dinamis, mengelola kode promo musiman, serta melacak transaksi tiket yang dikeluarkan oleh berbagai maskapai penerbangan.",
-      en: "MasterDiskon is a modern travel platform that helps agents and travelers search, compare, and book travel products—flight tickets, hotels, and promo vouchers—in real-time. In a highly competitive travel industry, conversion is determined by search speed and checkout simplicity. This system was built focusing on ticket search API query performance and pricing transparency. Through the internal dashboard, admins can dynamically adjust profit margins, manage seasonal promo codes, and track ticket transactions issued by various airlines."
-    },
-    challenges: {
-      id: [
-        "Menyederhanakan alur booking tiket perjalanan yang biasanya melibatkan banyak data penumpang dan opsi tambahan.",
-        "Mengatasi latensi pencarian ketika melakukan query ke banyak API vendor (maskapai & hotel) secara bersamaan.",
-        "Menjaga konsistensi data harga yang sering berubah mendadak dari API pihak ketiga sebelum pengguna membayar."
-      ],
-      en: [
-        "Simplifying the travel ticket booking workflow, which usually involves multiple passenger details and add-ons.",
-        "Overcoming search latency when querying multiple vendor APIs (airlines & hotels) concurrently.",
-        "Maintaining consistency of price data that frequently changes suddenly from third-party APIs before the user makes a payment."
-      ]
-    },
-    solutions: {
-      id: [
-        "Merancang alur checkout 3-langkah ringkas dengan validasi form instan di sisi klien.",
-        "Mengimplementasikan caching berlapis pada halaman pencarian kritis menggunakan Redis untuk menampung hasil query API vendor.",
-        "Membangun mekanisme penguncian harga (price lock) selama 15 menit menggunakan antrean sesi transaksi di backend."
-      ],
-      en: [
-        "Designing a concise 3-step checkout flow with instant client-side form validation.",
-        "Implementing multi-level caching on critical search pages using Redis to hold vendor API query results.",
-        "Building a 15-minute price lock mechanism using transaction session queues in the backend."
-      ]
-    },
-    workflow: {
-      id: [
-        { title: "Konsultasi", desc: "Membahas integrasi API aviasi global, struktur komisi keagenan, dan arsitektur dasbor operasional." },
-        { title: "Perencanaan", desc: "Membuat cetak biru alur pencarian multi-rute pesawat dan skema alur pemesanan hotel." },
-        { title: "Development", desc: "Membangun antarmuka dasbor dengan Next.js dan merancang gateway integrasi API travel." },
-        { title: "Quality Assurance", desc: "Pengujian beban (stress testing) pada API pencarian dengan mensimulasikan ratusan request per detik." },
-        { title: "Launch & Support", desc: "Peluncuran dasbor agen dan monitoring kestabilan transaksi tiket secara real-time." },
-      ],
-      en: [
-        { title: "Consultation", desc: "Discussing global aviation API integration, agency commission structures, and operational dashboard architecture." },
-        { title: "Planning", desc: "Creating blueprints for multi-route flight search layouts and hotel booking workflow schemes." },
-        { title: "Development", desc: "Building the dashboard interface with Next.js and designing travel API integration gateways." },
-        { title: "Quality Assurance", desc: "Stress testing the search APIs by simulating hundreds of concurrent requests per second." },
-        { title: "Launch & Support", desc: "Launching the agent dashboard and monitoring ticket transaction stability in real-time." },
-      ]
-    },
-    screenshots: [
-      "/masdis/masdis1.jpeg",
-      "/masdis/masdis2.jpeg",
-      "/masdis/masdis3.jpeg",
-      "/masdis/masdis4.jpeg",
-      "/masdis/masdisdas.jpeg"
-    ],
-    impact: {
-      id: [
-        { title: "Konversi Pemesanan Naik", desc: "Penyederhanaan alur checkout tiket sukses menaikkan rasio konversi pembayaran pengguna sebesar 22%." },
-        { title: "Akurasi Harga Real-Time", desc: "Integrasi API berhasil menekan angka pembatalan karena selisih harga menjadi di bawah 1%." },
-        { title: "Efisiensi B2B", desc: "Dashboard agen mempercepat waktu cetak tiket dari rata-rata 15 menit menjadi kurang dari 2 menit." }
-      ],
-      en: [
-        { title: "Booking Conversion Lift", desc: "Simplifying the ticket checkout flow successfully increased user payment conversion rates by 22%." },
-        { title: "Real-Time Price Accuracy", desc: "API integration successfully suppressed price mismatch cancellations to below 1%." },
-        { title: "B2B Efficiency", desc: "The agent dashboard accelerated ticketing time from an average of 15 minutes to under 2 minutes." }
-      ]
-    }
-  },
-  {
-    slug: "raja-cepat",
-    title: "Raja Cepat",
-    category: { id: "Logistik & Pengiriman", en: "Logistics & Delivery" },
-    type: "Internal Dashboard",
-    desc: { 
-      id: "Web Dashboard App untuk operasional ekspedisi pengiriman paket dan kargo. Dilengkapi pelacakan resi real-time (live tracking) dan manajemen armada kurir terpadu yang sangat akurat.", 
-      en: "Web Dashboard App for expedition and cargo delivery operations. Features real-time tracking and highly accurate integrated courier fleet management." 
-    },
-    tags: ["React", "Node.js", "Geolocation API"],
-    image: "/Raja Cepat.png",
-    icon: "Smartphone",
-    accent: "text-red-600 bg-red-50 border-red-100",
-    url: "https://rajacepat.com/id",
-    overview: {
-      id: "Raja Cepat adalah platform manajemen pengiriman logistik yang dirancang untuk mempercepat proses sortir, distribusi, dan pelacakan paket. Dengan meningkatnya volume belanja online, perusahaan ekspedisi membutuhkan sistem internal yang tangguh untuk memantau keberadaan kurir, mengalokasikan armada secara cerdas, dan memberikan status resi yang akurat bagi penerima. Aplikasi dasbor ini menyatukan data operasional dari gudang pusat hingga ke tangan kurir lapangan melalui antarmuka peta interaktif dan sistem pelaporan otomatis.",
-      en: "Raja Cepat is a logistics shipping management platform designed to accelerate package sorting, distribution, and tracking processes. With the rising volume of online shopping, delivery companies require a robust internal system to monitor courier locations, assign fleets intelligently, and provide accurate receipt status for recipients. This dashboard application unifies operational data from central warehouses to field couriers through an interactive map interface and automated reporting systems."
-    },
-    challenges: {
-      id: [
-        "Menyajikan visualisasi pelacakan kurir secara live di peta tanpa membebani browser admin.",
-        "Mengotomatisasi pembagian wilayah pengiriman agar kurir mendapatkan rute paket yang seefisien mungkin.",
-        "Sinkronisasi status paket yang dikirim kurir di daerah dengan sinyal internet tidak stabil."
-      ],
-      en: [
-        "Presenting live courier tracking visualizations on maps without overloading the admin's browser.",
-        "Automating delivery area assignments so couriers receive the most efficient package routes possible.",
-        "Synchronizing status of packages sent by couriers in areas with unstable mobile internet connection."
-      ]
-    },
-    solutions: {
-      id: [
-        "Menggunakan WebSockets untuk pembaruan koordinat real-time dengan library Mapbox GL JS yang dioptimalkan rendering-nya.",
-        "Membangun algoritma pembagian rute (route clustering) berbasis jarak terdekat dari titik koordinat gudang sortir.",
-        "Menerapkan mekanisme antrean sinkronisasi offline (offline sync queue) pada aplikasi kurir menggunakan Service Workers."
-      ],
-      en: [
-        "Using WebSockets for real-time coordinate updates with Mapbox GL JS library optimized for rendering efficiency.",
-        "Building a route clustering algorithm based on nearest distance from sorting warehouse coordinates.",
-        "Applying offline sync queue mechanisms on the courier app using Service Workers."
-      ]
-    },
-    workflow: {
-      id: [
-        { title: "Konsultasi", desc: "Menganalisis alur masuk-keluar barang di gudang ekspedisi dan skema operasional kurir." },
-        { title: "Perencanaan", desc: "Merancang skema database pelacakan koordinat dan struktur antarmuka peta dasbor." },
-        { title: "Development", desc: "Mengembangkan dasbor React terintegrasi Geolocation API dan server backend Node.js." },
-        { title: "Quality Assurance", desc: "Simulasi beban data koordinat GPS dari ribuan kurir virtual untuk menguji skalabilitas WebSocket." },
-        { title: "Launch & Support", desc: "Deploy sistem ke cloud server dan memberikan pelatihan intensif bagi tim admin operasional." },
-      ],
-      en: [
-        { title: "Consultation", desc: "Analyzing warehouse inbound/outbound logistics flows and courier operational schemes." },
-        { title: "Planning", desc: "Designing coordinate tracking database schemas and dashboard map interface wireframes." },
-        { title: "Development", desc: "Developing the React dashboard integrated with Geolocation APIs and a Node.js backend server." },
-        { title: "Quality Assurance", desc: "Simulating GPS coordinate load from thousands of virtual couriers to test WebSocket scalability." },
-        { title: "Launch & Support", desc: "Deploying system to cloud servers and conducting intensive training for operational admins." },
-      ]
-    },
-    screenshots: ["/Raja Cepat.png"],
-    impact: {
-      id: [
-        { title: "Presisi Pelacakan", desc: "Sistem resi real-time berhasil mengurangi keluhan pelanggan tentang status paket hingga 40%." },
-        { title: "Optimalisasi Rute", desc: "Algoritma pemetaan kurir menghemat biaya operasional bahan bakar armada hingga 15% setiap bulan." },
-        { title: "Kapasitas Proses Data", desc: "Backend kini menangani lebih dari 100.000 sinkronisasi data resi per hari tanpa bottleneck." }
-      ],
-      en: [
-        { title: "Tracking Precision", desc: "The real-time waybill system successfully reduced customer complaints about package status by 40%." },
-        { title: "Route Optimization", desc: "The courier mapping algorithm saves fleet fuel operational costs by 15% every month." },
-        { title: "Data Processing Capacity", desc: "The backend now handles over 100,000 waybill data synchronizations per day without bottlenecks." }
-      ]
-    }
-  },
-  {
-    slug: "jaja-id",
-    title: "Jaja ID",
-    category: { id: "Marketplace E-Commerce", en: "E-Commerce Marketplace" },
-    type: "Internal Dashboard",
-    desc: { 
-      id: "Sistem Web Dashboard untuk marketplace digital inovatif. Menawarkan manajemen keranjang pintar, kontrol inventaris mandiri bagi penjual, dan kalkulator ongkir multi-kurir.", 
-      en: "Web Dashboard System for an innovative digital marketplace. Offers smart cart management, independent seller inventory control, and multi-courier shipping calculators." 
-    },
-    tags: ["React", "Express", "MongoDB", "Redux"],
-    image: "/jaja id web.png",
-    icon: "Laptop",
-    accent: "text-emerald-600 bg-emerald-50 border-emerald-100",
-    url: "https://jaja.id/",
-    overview: {
-      id: "Jaja ID adalah ekosistem marketplace e-commerce lokal yang bertujuan mempermudah transaksi jual beli dengan menyederhanakan estimasi ongkos kirim. Sistem ini memiliki dasbor penjual (seller center) mandiri yang memudahkan pengelolaan produk, pelacakan pesanan, dan perhitungan ongkos kirim dari berbagai ekspedisi secara langsung. Dengan sistem backend terintegrasi, Jaja ID mempertemukan ribuan pedagang dengan pembeli retail menggunakan arsitektur keranjang belanja yang fleksibel dan aman.",
-      en: "Jaja ID is a local e-commerce marketplace ecosystem aiming to facilitate buy-and-sell transactions by simplifying shipping cost estimation. The system features a self-serve merchant dashboard (seller center) that eases product management, order tracking, and live shipping cost calculations from various courier partners. With an integrated backend system, Jaja ID connects thousands of merchants with retail buyers using a flexible and secure shopping cart architecture."
-    },
-    challenges: {
-      id: [
-        "Menyatukan berbagai produk dari merchant yang berbeda ke dalam satu pesanan dengan kalkulasi ongkir multi-asal.",
-        "Mengelola inventaris merchant secara real-time guna menghindari penjualan produk yang stoknya kosong.",
-        "Menyajikan statistik grafik penjualan harian merchant yang akurat dan interaktif."
-      ],
-      en: [
-        "Consolidating products from different merchants into a single order with multi-origin shipping cost calculation.",
-        "Managing merchant inventory in real-time to avoid selling out-of-stock products.",
-        "Presenting accurate and interactive daily sales stats charts for merchants."
-      ]
-    },
-    solutions: {
-      id: [
-        "Membangun algoritma pemecah pesanan (order splitting) otomatis berdasarkan lokasi gudang asal masing-masing penjual.",
-        "Menerapkan transaksi atomik MongoDB guna menjamin konsistensi pengurangan stok produk saat checkout massal.",
-        "Menggunakan Chart.js dikombinasikan dengan state management Redux Toolkit untuk visualisasi data analitik toko."
-      ],
-      en: [
-        "Building an automated order splitting algorithm based on the origin warehouse location of each individual merchant.",
-        "Applying MongoDB atomic transactions to guarantee consistency of product stock reduction during bulk checkout.",
-        "Using Chart.js combined with Redux Toolkit state management for store analytics data visualization."
-      ]
-    },
-    workflow: {
-      id: [
-        { title: "Konsultasi", desc: "Mendiskusikan skema split order e-commerce, integrasi kurir logistik, dan fitur manajemen toko." },
-        { title: "Perencanaan", desc: "Merancang wireframe katalog e-menu interaktif dan pemodelan database poin loyalitas." },
-        { title: "Development", desc: "Mengembangkan website customer dengan Next.js dan membuat dashboard admin outlet untuk manajemen pesanan." },
-        { title: "Quality Assurance", desc: "Pengujian checkout dengan skenario multi-barang dan multi-kurir guna memvalidasi perhitungan ongkir." },
-        { title: "Launch & Support", desc: "Meluncurkan platform seller center Jaja ID dan memantau stabilitas pemrosesan pesanan." },
-      ],
-      en: [
-        { title: "Consultation", desc: "Discussing e-commerce split order logic, logistics courier integrations, and store management features." },
-        { title: "Planning", desc: "Designing merchant-product-courier relation data models and structuring MongoDB database collections." },
-        { title: "Development", desc: "Creating the seller center dashboard with React and building REST APIs using Express.js." },
-        { title: "Quality Assurance", desc: "Testing checkouts with multi-item and multi-courier scenarios to validate shipping rate calculations." },
-        { title: "Launch & Support", desc: "Launching the Jaja ID seller center platform and monitoring order processing stability." },
-      ]
-    },
-    screenshots: [
-      "/jajaid/jajaid1.jpeg",
-      "/jajaid/jajaid2.jpeg",
-      "/jajaid/jajaid3.jpeg",
-      "/jajaid/jajaid4.jpeg",
-      "/jajaid/jajaid5.jpeg"
-    ],
-    impact: {
-      id: [
-        { title: "Retensi Pengguna Aktif", desc: "Fitur rekomendasi keranjang belanja meningkatkan persentase returning buyers sebesar 25%." },
-        { title: "Stabilitas Mega Sale", desc: "Arsitektur microservices memastikan uptime 99.9% selama kampanye diskon besar (tanggal kembar)." },
-        { title: "Penurunan Cart Abandonment", desc: "Perbaikan alur e-wallet berhasil menekan pembatalan keranjang belanja sebanyak 18%." }
-      ],
-      en: [
-        { title: "Active User Retention", desc: "The shopping cart recommendation feature increased the percentage of returning buyers by 25%." },
-        { title: "Mega Sale Stability", desc: "Microservices architecture ensures 99.9% uptime during massive twin-date discount campaigns." },
-        { title: "Cart Abandonment Drop", desc: "E-wallet flow improvements successfully reduced shopping cart abandonments by 18%." }
-      ]
-    }
-  },
-  {
-    slug: "jaja-auto",
-    title: "Jaja Auto",
-    category: { id: "Showroom Otomotif", en: "Automotive Showroom" },
-    type: "Internal Dashboard",
-    desc: { 
-      id: "Web Dashboard interaktif untuk manajemen showroom jual beli kendaraan. Menyediakan fitur inventaris mobil, perbandingan spesifikasi, hingga kalkulator simulasi kredit.", 
-      en: "Interactive Web Dashboard for vehicle showroom management. Provides car inventory features, specification comparisons, and loan simulation calculators." 
-    },
-    tags: ["Vue.js", "TailwindCSS", "PostgreSQL"],
-    image: "/jaja auto.png",
-    icon: "Laptop",
-    accent: "text-indigo-600 bg-indigo-50 border-indigo-100",
-    url: "https://auto.jaja.id/",
-    overview: {
-      id: "Jaja Auto adalah platform digital yang dirancang untuk mentransformasi cara dealer otomotif mengelola unit kendaraan dan berinteraksi dengan calon pembeli. Aplikasi web ini berfungsi sebagai katalog interaktif yang tidak hanya memajang foto kendaraan, melainkan juga menyajikan spesifikasi mesin mendalam, fitur komparasi antar tipe mobil, dan simulator pembayaran cicilan kredit. Dengan sistem admin terpadu, manajer showroom dapat memperbarui status unit terjual secara instan dan melacak prospek calon pembeli yang mengajukan simulasi kredit.",
-      en: "Jaja Auto is a digital platform designed to transform how automotive dealerships manage vehicle units and interact with prospective buyers. This web application functions as an interactive catalog that not only displays vehicle photos but also presents detailed engine specs, type comparison tools, and credit installment simulation calculators. With an integrated admin system, showroom managers can instantly update sold unit statuses and track leads requesting loan simulations."
-    },
-    challenges: {
-      id: [
-        "Menyajikan database spesifikasi mobil yang luas secara rapi dan mudah dibandingkan oleh pengguna.",
-        "Menghitung kalkulasi suku bunga dan simulasi kredit kendaraan secara akurat sesuai standar lembaga pembiayaan leasing.",
-        "Mengunggah dan mengoptimalkan gambar eksterior/interior mobil beresolusi tinggi agar halaman katalog tetap dimuat dengan cepat."
-      ],
-      en: [
-        "Presenting a vast vehicle specs database in a tidy, easily comparable structure for users.",
-        "Calculating interest rates and vehicle loan simulations accurately in compliance with leasing financial standards.",
-        "Uploading and optimizing high-res exterior/interior car images so the catalog page loads swiftly."
-      ]
-    },
-    solutions: {
-      id: [
-        "Membangun visual komparasi sisi-demi-sisi (side-by-side comparison matrix) menggunakan komponen dinamis Vue.js.",
-        "Mengembangkan mesin kalkulator finansial di frontend yang dapat menyesuaikan persentase DP, tenor cicilan, dan bunga flat/efektif.",
-        "Mengintegrasikan image pipeline otomatis di backend yang mengompresi foto kendaraan ke format WebP sebelum disimpan di database."
-      ],
-      en: [
-        "Building a side-by-side visual comparison matrix using dynamic Vue.js components.",
-        "Developing a financial calculator engine on the frontend that adjusts DP percentages, loan terms, and flat/effective interest.",
-        "Integrating an automated backend image pipeline compressing vehicle photos to WebP format before database storage."
-      ]
-    },
-    workflow: {
-      id: [
-        { title: "Konsultasi", desc: "Menganalisis alur bisnis penjualan dealer mobil, formula simulasi cicilan, dan parameter spesifikasi mobil." },
-        { title: "Perencanaan", desc: "Merancang tata letak perbandingan mobil dan menyusun skema database PostgreSQL untuk katalog unit." },
-        { title: "Development", desc: "Mengembangkan antarmuka dealer berbasis Vue.js dan menulis modul backend kalkulator finansial." },
-        { title: "Quality Assurance", desc: "Verifikasi hasil hitung cicilan kredit dengan mencocokkannya langsung dengan tabel leasing partner resmi." },
-        { title: "Launch & Support", desc: "Deploy sistem, setup backup database berkala, dan menghubungkan form prospek ke WhatsApp sales." },
-      ],
-      en: [
-        { title: "Consultation", desc: "Analyzing dealership sales business flows, installment formula configurations, and car spec parameters." },
-        { title: "Planning", desc: "Designing the car comparison UI layouts and structuring PostgreSQL database tables for vehicle listings." },
-        { title: "Development", desc: "Developing the Vue.js-based dealer interface and writing the backend financial calculator module." },
-        { title: "Quality Assurance", desc: "Verifying loan calculation outputs by matching them directly with official leasing partner rate tables." },
-        { title: "Launch & Support", desc: "Deploying system, setting up scheduled database backups, and routing lead forms to sales WhatsApp." },
-      ]
-    },
-    screenshots: [
-      "/auto1.jpeg",
-      "/auto2.jpeg",
-      "/auto3.jpeg"
-    ],
-    impact: {
-      id: [
-        { title: "Konversi Lead Prospek", desc: "Sistem filter pencarian cerdas menaikkan jumlah konversi prospek survei mobil hingga 30%." },
-        { title: "Interaksi Dealer Cepat", desc: "Integrasi chat langsung memotong rata-rata waktu respons dealer dari 2 jam menjadi 15 menit." },
-        { title: "Akurasi Katalog", desc: "Sinkronisasi database gudang memastikan stok mobil di website 100% akurat dengan ketersediaan fisik." }
-      ],
-      en: [
-        { title: "Prospect Lead Conversion", desc: "The smart search filter system increased car survey prospect conversions by up to 30%." },
-        { title: "Fast Dealer Interaction", desc: "Direct chat integration cut average dealer response times from 2 hours to 15 minutes." },
-        { title: "Catalog Accuracy", desc: "Warehouse database synchronization ensures website car stock is 100% accurate with physical availability." }
       ]
     }
   },
@@ -494,98 +190,23 @@ export const projects: Project[] = [
     }
   },
   {
-    slug: "eureka-logistics-portal",
-    title: "Eureka Logistics Portal",
-    category: { id: "Pusat Logistik", en: "Logistics Hub" },
-    type: "Internal Dashboard",
-    desc: { 
-      id: "Web Dashboard App khusus klien Eureka Logistics untuk melakukan order pengiriman armada, pengecekan kontainer secara real-time, dan pengelolaan dokumen invoice tagihan.", 
-      en: "Dedicated Web Dashboard App for Eureka Logistics clients to order fleet shipments, check containers in real-time, and manage invoice documents." 
-    },
-    tags: ["React", "Spring Boot", "Redis"],
-    image: "/elogs web.jpeg",
-    icon: "Globe",
-    accent: "text-teal-600 bg-teal-50 border-teal-100",
-    url: "https://eurekalogistics.co.id/id",
-    overview: {
-      id: "Eureka Logistics Portal adalah solusi digital B2B yang dirancang untuk memudahkan pelanggan korporat dalam mengelola rantai pengiriman barang kontainer mereka. Melalui portal terpusat ini, klien dapat melakukan pemesanan kontainer, memantau posisi pengiriman secara langsung, mengunduh bukti tanda terima digital, serta meninjau tagihan invoice bulanan tanpa perlu bertukar email secara manual. Platform ini menghemat waktu operasional customer service dan meningkatkan transparansi pengiriman logistik multimodalnya.",
-      en: "Eureka Logistics Portal is a B2B digital solution designed to ease corporate clients in managing their container shipment supply chain. Through this centralized portal, clients can place container orders, track shipment status live, download digital delivery receipts, and review monthly billing invoices without manual email exchange. The platform saves operational time for customer service and boosts transparency of its multimodal logistics."
-    },
-    challenges: {
-      id: [
-        "Menyinkronkan data status kontainer dari sistem pelacakan GPS pihak ketiga dengan delay sesingkat mungkin.",
-        "Mengamankan data invoice tagihan bernilai besar agar hanya dapat diakses oleh staf keuangan berwenang dari pihak klien.",
-        "Menyediakan pencarian log riwayat pengiriman kontainer tahunan secara cepat dari database yang membesar."
-      ],
-      en: [
-        "Syncing container status data from third-party GPS tracking systems with minimal latency.",
-        "Securing high-value billing invoice data so it is only accessible by authorized finance staff on the client side.",
-        "Providing rapid searches of annual container shipment log history from a ballooning database."
-      ]
-    },
-    solutions: {
-      id: [
-        "Membangun worker backend terjadwal yang memproses update koordinat kontainer ke cache Redis sebelum dialirkan ke klien.",
-        "Menerapkan Role-Based Access Control (RBAC) ketat dengan token JWT yang kedaluwarsa secara berkala.",
-        "Mengoptimalkan indeks query basis data relational PostgreSQL pada kolom nomor kontainer dan rentang tanggal pengiriman."
-      ],
-      en: [
-        "Building a scheduled backend worker that processes container coordinate updates to Redis cache before streaming to client.",
-        "Implementing strict Role-Based Access Control (RBAC) using short-lived JWT tokens.",
-        "Optimizing relational database query indexes on container number and shipment date range columns."
-      ]
-    },
-    workflow: {
-      id: [
-        { title: "Konsultasi", desc: "Mendalami alur supply chain B2B Eureka Logistics, status kontainer, dan parameter invoice." },
-        { title: "Perencanaan", desc: "Merancang skema database pelacakan kontainer dan struktur integrasi API tracker." },
-        { title: "Development", desc: "Membangun antarmuka portal klien dengan React dan memprogram API backend menggunakan Spring Boot." },
-        { title: "Quality Assurance", desc: "Audit keamanan celah OWASP Top 10 dan pengujian respon query filter data log kontainer." },
-        { title: "Launch & Support", desc: "Deploy ke server korporat Eureka, setup log monitoring, dan rilis akses portal ke klien pilot." },
-      ],
-      en: [
-        { title: "Consultation", desc: "Deep-diving into Eureka's B2B supply chain workflows, container status lifecycles, and invoice parameters." },
-        { title: "Planning", desc: "Designing container tracking database schemas and planning API tracker integrations." },
-        { title: "Development", desc: "Building the client portal interface with React and programming backend APIs using Spring Boot." },
-        { title: "Quality Assurance", desc: "Auditing security vulnerabilities against OWASP Top 10 and testing container log search speeds." },
-        { title: "Launch & Support", desc: "Deploying to corporate servers, setting up log monitors, and launching portal access to pilot clients." },
-      ]
-    },
-    screenshots: [
-      "/elogs1.jpeg",
-      "/elogs2.jpeg"
-    ],
-    impact: {
-      id: [
-        { title: "Efisiensi Input Data", desc: "Otomatisasi pengisian resi memangkas waktu kerja administratif tim hingga 2 jam per hari." },
-        { title: "Transparansi Vendor", desc: "Portal mandiri menurunkan jumlah pertanyaan via telepon terkait status tagihan sebesar 60%." },
-        { title: "Akurasi Laporan", desc: "Pembuatan laporan digital menghilangkan keseluruhan kesalahan rekapitulasi data manual." }
-      ],
-      en: [
-        { title: "Data Entry Efficiency", desc: "Waybill automation slashed team administrative work time by up to 2 hours per day." },
-        { title: "Vendor Transparency", desc: "The self-service portal reduced phone inquiries regarding invoice status by 60%." },
-        { title: "Report Accuracy", desc: "Digital report generation completely eliminated manual data recapitulation errors." }
-      ]
-    }
-  },
-  {
-    slug: "eureka-internal-erp",
-    title: "Eureka Internal ERP",
+    slug: "internal-erp",
+    title: "Internal ERP",
     category: { id: "Sistem ERP Korporat", en: "Production ERP System" },
     type: "Internal Dashboard",
-    desc: { 
-      id: "Sistem ERP skala produksi full-module. Mencakup keseluruhan manajemen mulai dari penjualan, monitoring unit, service unit, pembuatan invoice otomatis, hingga integrasi data vendor lengkap dengan ekstraksi harga PO.", 
-      en: "Full-module Production-scale ERP System. Covers overall management from sales, unit monitoring, service, automated invoice generation, to vendor data integration." 
+    desc: {
+      id: "Sistem ERP skala produksi full-module. Mencakup keseluruhan manajemen mulai dari penjualan, monitoring unit, service unit, pembuatan invoice otomatis, hingga integrasi data vendor lengkap dengan ekstraksi harga PO.",
+      en: "Full-module Production-scale ERP System. Covers overall management from sales, unit monitoring, service, automated invoice generation, to vendor data integration."
     },
     tags: ["Next.js", "Odoo ERP API", "WebSockets", "TailwindCSS"],
-    image: "/elogs dash.png",
+    image: "/logistics-erp-dashboard.jpg",
     icon: "LineChart",
     accent: "text-cyan-600 bg-cyan-50 border-cyan-100",
     url: "/insights/eureka-logistics-case-study",
     isPrivate: true,
     overview: {
-      id: "Eureka Internal ERP adalah jantung operasional dari seluruh divisi Eureka Logistics. Sistem ini menggabungkan berbagai fungsi bisnis yang sebelumnya terfragmentasi—mulai dari manajemen penawaran penjualan (sales order), pengawasan perawatan unit truk di bengkel internal, pembuatan tagihan otomatis, hingga pengadaan suku cadang dari vendor eksternal. Dengan mengotomatiskan ekstraksi harga dari Purchase Order (PO), ERP ini berhasil memangkas kesalahan input manual dan menyajikan laporan laba-rugi divisi secara real-time.",
-      en: "Eureka Internal ERP is the operational heart of the entire Eureka Logistics division. This system unifies various business functions that were previously fragmented—from sales quotation management (sales orders), tracking maintenance of truck units at internal workshops, auto-invoicing, to spare part procurement from external vendors. By automating price extraction from Purchase Orders (PO), this ERP has slashed manual input errors and displays real-time division profit-and-loss reports."
+      id: "Internal ERP adalah jantung operasional dari seluruh divisi Eureka Logistics. Sistem ini menggabungkan berbagai fungsi bisnis yang sebelumnya terfragmentasi—mulai dari manajemen penawaran penjualan (sales order), pengawasan perawatan unit truk di bengkel internal, pembuatan tagihan otomatis, hingga pengadaan suku cadang dari vendor eksternal. Dengan mengotomatiskan ekstraksi harga dari Purchase Order (PO), ERP ini berhasil memangkas kesalahan input manual dan menyajikan laporan laba-rugi divisi secara real-time.",
+      en: "Internal ERP is the operational heart of the entire Eureka Logistics division. This system unifies various business functions that were previously fragmented—from sales quotation management (sales orders), tracking maintenance of truck units at internal workshops, auto-invoicing, to spare part procurement from external vendors. By automating price extraction from Purchase Orders (PO), this ERP has slashed manual input errors and displays real-time division profit-and-loss reports."
     },
     challenges: {
       id: [
@@ -627,14 +248,7 @@ export const projects: Project[] = [
         { title: "Launch & Support", desc: "Phased system transition, migration of legacy logs, and on-premises server maintenance." },
       ]
     },
-    screenshots: [
-      "/elogs dash.png",
-      "/el sales report.jpeg",
-      "/el so.jpeg",
-      "/el dashboard auto.jpeg",
-      "/driver monitoring el.jpeg",
-      "/vehicle monitoring el.jpeg"
-    ],
+    screenshots: [],
     impact: {
       id: [
         { title: "Penyatuan Data Pusat", desc: "Integrasi sistem menghilangkan gap antar departemen, membuat pengesahan dokumen 3x lebih cepat." },
@@ -653,12 +267,12 @@ export const projects: Project[] = [
     title: "HR Management CMS",
     category: { id: "Sistem Sumber Daya Manusia", en: "Human Resource System" },
     type: "Internal Dashboard",
-    desc: { 
-      id: "Dashboard internal tersentralisasi khusus tim HR. Mengotomatisasi absensi, pengajuan cuti, perhitungan KPI, generasi slip gaji, hingga memonitor proses rekrutmen kandidat secara efisien.", 
-      en: "Centralized internal dashboard dedicated to the HR team. Automates attendance, leave requests, KPI calculations, payroll generation, and candidate recruitment monitoring." 
+    desc: {
+      id: "Dashboard internal tersentralisasi khusus tim HR. Mengotomatisasi absensi, pengajuan cuti, perhitungan KPI, generasi slip gaji, hingga memonitor proses rekrutmen kandidat secara efisien.",
+      en: "Centralized internal dashboard dedicated to the HR team. Automates attendance, leave requests, KPI calculations, payroll generation, and candidate recruitment monitoring."
     },
     tags: ["Next.js", "Express.js", "Redis SSO", "PostgreSQL"],
-    image: "/HR CMS Das.png",
+    image: "/hr-cms-dashboard.jpg",
     icon: "LineChart",
     accent: "text-rose-600 bg-rose-50 border-rose-100",
     url: "/insights/hris-corporate-case-study",
@@ -707,12 +321,7 @@ export const projects: Project[] = [
         { title: "Launch & Support", desc: "Deploying system to corporate intranet, integrating physical biometric machines, and monitoring server performance." },
       ]
     },
-    screenshots: [
-      "/hr1.png",
-      "/hr2.png",
-      "/hr3.png",
-      "/hr4.png"
-    ],
+    screenshots: [],
     impact: {
       id: [
         { title: "Proses Payroll Cepat", desc: "Kalkulasi otomatis gaji dan PPh21 memangkas beban kerja rekapitulasi dari 5 hari menjadi 1 hari." },
@@ -731,9 +340,9 @@ export const projects: Project[] = [
     title: "Beego SuperApp",
     category: { id: "Transportasi On-Demand", en: "On-Demand Ride Hailing" },
     type: "APP",
-    desc: { 
-      id: "Aplikasi mobile multi-layanan on-demand (SuperApp). Mengintegrasikan layanan transportasi ojek online, pesan antar makanan, dan kurir barang dengan antarmuka native yang sangat responsif.", 
-      en: "On-demand multi-service mobile app (SuperApp). Integrates ride-hailing, food delivery, and courier services with a highly responsive native interface." 
+    desc: {
+      id: "Aplikasi mobile multi-layanan on-demand (SuperApp). Mengintegrasikan layanan transportasi ojek online, pesan antar makanan, dan kurir barang dengan antarmuka native yang sangat responsif.",
+      en: "On-demand multi-service mobile app (SuperApp). Integrates ride-hailing, food delivery, and courier services with a highly responsive native interface."
     },
     tags: ["React Native", "WebSockets", "Go", "Firebase"],
     images: ["/beego1.png", "/beego2.png"],
@@ -803,9 +412,9 @@ export const projects: Project[] = [
     title: "Warung BungaPagi Ecosystem",
     category: { id: "Ekosistem Digital F&B", en: "F&B Digital Ecosystem" },
     type: "Website",
-    desc: { 
-      id: "Rasa Asli Malaysia, Kehangatan Kebersamaan. Rasakan pengalaman kuliner otentik, keuntungan keanggotaan eksklusif, dan kemudahan pemesanan digital.", 
-      en: "Authentic Malaysian Taste, Warmth of Togetherness. Experience authentic Malaysian cuisine, exclusive membership benefits, and a seamless digital ordering experience." 
+    desc: {
+      id: "Rasa Asli Malaysia, Kehangatan Kebersamaan. Rasakan pengalaman kuliner otentik, keuntungan keanggotaan eksklusif, dan kemudahan pemesanan digital.",
+      en: "Authentic Malaysian Taste, Warmth of Togetherness. Experience authentic Malaysian cuisine, exclusive membership benefits, and a seamless digital ordering experience."
     },
     tags: ["Next.js", "E-Commerce", "Membership API"],
     image: "/warungbungaweb.png",
@@ -879,73 +488,80 @@ export const projects: Project[] = [
     }
   },
   {
-    slug: "guruino",
-    title: "Guruino",
-    category: { id: "Platform EdTech", en: "EdTech Platform" },
+    slug: "klik-travel-id",
+    title: "Klik Travel ID",
+    category: { id: "Travel & Pariwisata", en: "Travel & Tourism" },
     type: "Website",
     desc: { 
-      id: "Platform pembelajaran daring interaktif untuk menghubungkan siswa dengan mentor ahli. Memiliki fitur ruang kelas virtual, penjadwalan sesi belajar, dan pembayaran aman.", 
-      en: "Interactive online learning platform connecting students with expert mentors. Features virtual classrooms, study session scheduling, and secure payments." 
+      id: "Platform kurasi open trip dan private tour modern untuk destinasi liburan domestik dan internasional. Menghadirkan eksplorasi destinasi interaktif, filter jadwal keberangkatan fleksibel, serta integrasi reservasi instan.", 
+      en: "A modern curated open trip and private tour platform for domestic and international holiday destinations. Features interactive destination exploration, flexible departure schedules, and instant booking integration." 
     },
-    tags: ["Next.js", "TailwindCSS", "EdTech API"],
-    image: "/guruino1.jpeg",
+    tags: ["Next.js", "TailwindCSS", "Framer Motion", "SEO Architecture", "Travel Platform"],
+    image: "/klik1.jpeg",
     icon: "Globe",
-    accent: "text-blue-600 bg-blue-50 border-blue-100",
+    accent: "text-sky-600 bg-sky-50 border-sky-100",
+    url: "https://kliktravelid.com",
     overview: {
-      id: "Guruino adalah platform EdTech inovatif yang memfasilitasi pencarian, penjadwalan, dan pelaksanaan bimbingan belajar privat secara online maupun offline. Menyadari tingginya kebutuhan akan pendidikan tambahan yang berkualitas, Guruino hadir menyaring mentor-mentor terbaik dengan proses verifikasi ketat. Siswa dapat mencari mentor berdasarkan spesialisasi mata pelajaran, membaca ulasan dari siswa lain, memesan jam belajar kosong, melakukan pembayaran aman, dan mengikuti bimbingan interaktif melalui ruang kelas virtual terintegrasi.",
-      en: "Guruino is an innovative EdTech platform that facilitates the search, scheduling, and execution of private tutoring sessions both online and offline. Recognizing the high demand for quality supplemental education, Guruino filters the best mentors through a strict verification process. Students can search for tutors by subject specialization, read peer reviews, book open slots, process secure payments, and attend interactive sessions in integrated virtual classrooms."
+      id: "Klik Travel ID adalah platform perjalanan wisata terkurasi di bawah naungan PT Bersama Jelajah Dunia yang dirancang untuk mewujudkan pengalaman liburan impian yang mudah, aman, nyaman, dan berkesan. Menghadirkan paket Open Trip terjadwal yang ramah anggaran, Private Trip yang dapat dikustomisasi, hingga Corporate Gathering dan Incentive Tour melintasi berbagai destinasi unggulan di Indonesia (Labuan Bajo, Belitung, Banyuwangi, dll.) hingga mancanegara (Jepang, Korea Selatan, Thailand, Vietnam, Eropa). Dibangun dengan pendekatan desain modern yang bersih dan responsif, platform ini memadukan visual sinematik dengan alur reservasi terintegrasi WhatsApp Concierge untuk memastikan kemudahan eksplorasi bagi para traveler.",
+      en: "Klik Travel ID is a curated travel and tour platform under PT Bersama Jelajah Dunia designed to turn dream vacation experiences into seamless, secure, comfortable, and memorable journeys. Offering budget-friendly scheduled Open Trips, fully customizable Private Trips, as well as Corporate Gatherings and Incentive Tours across top destinations in Indonesia (Labuan Bajo, Belitung, Banyuwangi, etc.) and abroad (Japan, South Korea, Thailand, Vietnam, Europe). Built with a clean, modern, and responsive design philosophy, the platform combines cinematic visuals with integrated WhatsApp Concierge inquiry flows to ensure effortless exploration for travelers."
     },
     challenges: {
       id: [
-        "Menyinkronkan zona waktu belajar antara siswa dan tutor di seluruh wilayah Indonesia (WIB, WITA, WIT) secara dinamis.",
-        "Mengintegrasikan ruang konferensi video interaktif yang hemat bandwidth namun tetap jernih bagi pengguna di daerah terpencil.",
-        "Mengelola pembayaran di muka (escrow) agar aman bagi kedua belah pihak hingga sesi belajar selesai terlaksana."
+        "Menyajikan katalog paket wisata multi-kategori (Open Trip, Private Trip, dan Jadwal Keberangkatan) secara dinamis tanpa mengorbankan kecepatan muat halaman.",
+        "Mengoptimalkan aset visual dan media promosi destinasi resolusi tinggi agar tetap tajam namun sangat ringan diakses pada koneksi seluler.",
+        "Membangun alur konversi reservasi dan konsultasi cepat yang menghubungkan calon wisatawan langsung ke tim konsultan perjalanan."
       ],
       en: [
-        "Dynamically syncing tutoring session time zones between students and tutors across Indonesia (WIB, WITA, WIT).",
-        "Integrating an interactive video conferencing space that is bandwidth-friendly yet clear for users in remote areas.",
-        "Managing upfront payments (escrow system) to be secure for both parties until the study session is fully completed."
+        "Presenting a multi-category tour catalog (Open Trips, Private Trips, and Departure Calendars) dynamically without compromising page load speeds.",
+        "Optimizing high-resolution destination media and visual assets to remain crisp yet extremely lightweight over mobile networks.",
+        "Building an instant reservation and inquiry conversion flow that seamlessly connects prospective travelers directly with travel consultants."
       ]
     },
     solutions: {
       id: [
-        "Menerapkan penanganan zona waktu berbasis UTC di basis data dan mengonversinya secara otomatis ke waktu lokal browser pengguna.",
-        "Mengintegrasikan WebRTC via platform kustom yang secara adaptif menurunkan resolusi video ketika kualitas sinyal internet melambat.",
-        "Membangun mekanisme pembayaran rekening penampung (escrow account) terintegrasi dengan Payment Gateway untuk otomatisasi pencairan dana tutor."
+        "Mengimplementasikan arsitektur Next.js Static Site Generation (SSG) & Incremental Static Regeneration (ISR) untuk pemuatan katalog destinasi ultra-cepat dengan skor Core Web Vitals tinggi.",
+        "Mengintegrasikan optimasi gambar otomatis berbasis Next.js Image & WebP modern serta lazy loading untuk efisiensi transfer data hingga 65%.",
+        "Merancang antarmuka filter destinasi interaktif dan integrasi floating WhatsApp concierge dengan pre-filled template pesan untuk konversi instan."
       ],
       en: [
-        "Applying UTC-based time zone handling in the database and converting it automatically to the user's local browser time.",
-        "Integrating WebRTC via a custom platform that adaptively lowers video resolution when internet connection speed drops.",
-        "Building an escrow account system integrated with our Payment Gateway to automate tutor funds payout upon session completion."
+        "Implementing Next.js Static Site Generation (SSG) & Incremental Static Regeneration (ISR) architecture for ultra-fast destination catalog rendering and top Core Web Vitals.",
+        "Integrating automated image optimization with Next.js Image, WebP formatting, and lazy loading to cut bandwidth consumption by up to 65%.",
+        "Designing an interactive destination filter UI and floating WhatsApp concierge integration with pre-filled inquiry templates for instant conversion."
       ]
     },
     workflow: {
       id: [
-        { title: "Konsultasi", desc: "Mengidentifikasi model bimbingan belajar, kebutuhan fitur video conference, dan skema bagi hasil tutor." },
-        { title: "Perencanaan", desc: "Merancang wireframe pemesanan jadwal kalender mentor dan skema alur dana escrow." },
-        { title: "Development", desc: "Pengembangan website Next.js untuk siswa & mentor serta pembuatan platform video WebRTC." },
-        { title: "Quality Assurance", desc: "Pengujian kestabilan video conference pada koneksi 3G/4G lambat dan audit validasi escrow." },
-        { title: "Launch & Support", desc: "Deploy server, proses onboarding tutor gelombang pertama, dan peluncuran pemasaran digital." },
+        { title: "Konsultasi", desc: "Menganalisis kebutuhan branding travel, segmentasi pasar open trip & corporate tour, serta struktur paket wisata." },
+        { title: "Perencanaan", desc: "Merancang arsitektur informasi katalog destinasi, taksonomi filter perjalanan, dan struktur metadata SEO perjalanan." },
+        { title: "Development", desc: "Membangun antarmuka responsif dengan Next.js, Tailwind CSS, dan transisi halus interaktif menggunakan Framer Motion." },
+        { title: "Quality Assurance", desc: "Audit performa web lintas perangkat mobile/desktop, pengujian alur form konsultasi, dan optimasi skema JSON-LD." },
+        { title: "Launch & Support", desc: "Deployment di infrastruktur cloud berperforma tinggi, setup analitik kunjungan, dan pemeliharaan katalog berkala." }
       ],
       en: [
-        { title: "Consultation", desc: "Identifying tutoring workflows, video conferencing feature goals, and tutor profit-sharing rules." },
-        { title: "Planning", desc: "Designing wireframes for tutor calendar booking layouts and mapping the escrow payment workflows." },
-        { title: "Development", desc: "Developing the Next.js website for students & tutors and building the WebRTC video classroom platform." },
-        { title: "Quality Assurance", desc: "Testing video conference stability on slow 3G/4G cellular connections and auditing escrow validation logs." },
-        { title: "Launch & Support", desc: "Deploying system, onboarding the first wave of verified tutors, and launching digital marketing campaigns." },
+        { title: "Consultation", desc: "Analyzing travel branding requirements, market segmentation for open trips & corporate tours, and package structures." },
+        { title: "Planning", desc: "Designing information architecture for destination catalogs, travel filter taxonomy, and structured travel SEO metadata." },
+        { title: "Development", desc: "Developing a responsive interface with Next.js, Tailwind CSS, and smooth interactive transitions powered by Framer Motion." },
+        { title: "Quality Assurance", desc: "Auditing performance across mobile/desktop devices, validating inquiry workflows, and optimizing JSON-LD schema." },
+        { title: "Launch & Support", desc: "Deploying on high-performance cloud infrastructure, setting up visitor analytics, and providing periodic catalog support." }
       ]
     },
-    screenshots: ["/guruino1.jpeg"],
+    screenshots: [
+      "/klik1.jpeg",
+      "/klik2.jpeg",
+      "/klik3.jpeg",
+      "/klik4.jpeg",
+      "/klik5.jpeg"
+    ],
     impact: {
       id: [
-        { title: "Keterlibatan Belajar", desc: "Elemen kuis interaktif menaikkan tingkat kelulusan dan penyelesaian kursus sebesar 40%." },
-        { title: "Stabilitas Video", desc: "Penggunaan arsitektur CDN khusus meminimalisir buffering video materi meskipun di jaringan 3G." },
-        { title: "Pertumbuhan Pendapatan", desc: "Otomatisasi langganan (subscription) meningkatkan pendapatan pasif bulanan instruktur sebesar 25%." }
+        { title: "Peningkatan Konversi Inquiry", desc: "Alur konsultasi WhatsApp terstruktur dan filter jadwal yang intuitif menaikkan konversi pertanyaan calon traveler sebesar 38%." },
+        { title: "Kecepatan Akses Mobile Unggul", desc: "Skor performa Core Web Vitals mencapai 95+ dengan waktu respon halaman di bawah 1 detik di seluruh perangkat." },
+        { title: "Katalog Destinasi Terpadu", desc: "Membantu pengelolaan ratusan jadwal keberangkatan open trip dan paket private trip dalam satu platform terpusat." }
       ],
       en: [
-        { title: "Learning Engagement", desc: "Interactive quiz elements increased course completion and graduation rates by 40%." },
-        { title: "Video Stability", desc: "The use of custom CDN architecture minimized material video buffering even on 3G networks." },
-        { title: "Revenue Growth", desc: "Subscription automation increased instructors' monthly passive revenue by 25%." }
+        { title: "Inquiry Conversion Growth", desc: "Structured WhatsApp consultation flows and intuitive departure filtering boosted traveler inquiry conversion rates by 38%." },
+        { title: "Superior Mobile Performance", desc: "Core Web Vitals performance score exceeded 95+ with sub-second page responsiveness across all mobile devices." },
+        { title: "Unified Destination Catalog", desc: "Streamlined the management of dozens of open trip departure schedules and private trip packages in a centralized platform." }
       ]
     }
   },
@@ -954,9 +570,9 @@ export const projects: Project[] = [
     title: "NontonKuy",
     category: { id: "Komunitas Streaming", en: "Streaming Community" },
     type: "Website",
-    desc: { 
-      id: "Platform media hiburan untuk nonton bareng film secara virtual. Dilengkapi fitur live chat interaktif, sinkronisasi pemutaran video, dan ruang nonton publik.", 
-      en: "Entertainment media platform for virtual watch parties. Equipped with interactive live chat, video playback synchronization, and public screening rooms." 
+    desc: {
+      id: "Platform media hiburan untuk nonton bareng film secara virtual. Dilengkapi fitur live chat interaktif, sinkronisasi pemutaran video, dan ruang nonton publik.",
+      en: "Entertainment media platform for virtual watch parties. Equipped with interactive live chat, video playback synchronization, and public screening rooms."
     },
     tags: ["React", "WebSockets", "TailwindCSS"],
     image: "/nontonkuy.jpeg",
@@ -1017,6 +633,77 @@ export const projects: Project[] = [
         { title: "Server Cost Savings", desc: "The new video compression process successfully reduced monthly AWS storage costs by 30%." },
         { title: "Buffer-Free Streaming", desc: "Adaptive bitrate ensures movie resolution automatically adjusts to user internet speed without stuttering." },
         { title: "Increased Watch Time", desc: "Relevant recommendation algorithms increased average watch times from 45 to 75 minutes." }
+      ]
+    }
+  },
+  {
+    slug: "guruino",
+    title: "Guruino",
+    category: { id: "Platform EdTech", en: "EdTech Platform" },
+    type: "Website",
+    desc: {
+      id: "Platform pembelajaran daring interaktif untuk menghubungkan siswa dengan mentor ahli. Memiliki fitur ruang kelas virtual, penjadwalan sesi belajar, dan pembayaran aman.",
+      en: "Interactive online learning platform connecting students with expert mentors. Features virtual classrooms, study session scheduling, and secure payments."
+    },
+    tags: ["Next.js", "TailwindCSS", "EdTech API"],
+    image: "/guruino1.jpeg",
+    icon: "Globe",
+    accent: "text-blue-600 bg-blue-50 border-blue-100",
+    overview: {
+      id: "Guruino adalah platform EdTech inovatif yang memfasilitasi pencarian, penjadwalan, dan pelaksanaan bimbingan belajar privat secara online maupun offline. Menyadari tingginya kebutuhan akan pendidikan tambahan yang berkualitas, Guruino hadir menyaring mentor-mentor terbaik dengan proses verifikasi ketat. Siswa dapat mencari mentor berdasarkan spesialisasi mata pelajaran, membaca ulasan dari siswa lain, memesan jam belajar kosong, melakukan pembayaran aman, dan mengikuti bimbingan interaktif melalui ruang kelas virtual terintegrasi.",
+      en: "Guruino is an innovative EdTech platform that facilitates the search, scheduling, and execution of private tutoring sessions both online and offline. Recognizing the high demand for quality supplemental education, Guruino filters the best mentors through a strict verification process. Students can search for tutors by subject specialization, read peer reviews, book open slots, process secure payments, and attend interactive sessions in integrated virtual classrooms."
+    },
+    challenges: {
+      id: [
+        "Menyinkronkan zona waktu belajar antara siswa dan tutor di seluruh wilayah Indonesia (WIB, WITA, WIT) secara dinamis.",
+        "Mengintegrasikan ruang konferensi video interaktif yang hemat bandwidth namun tetap jernih bagi pengguna di daerah terpencil.",
+        "Mengelola pembayaran di muka (escrow) agar aman bagi kedua belah pihak hingga sesi belajar selesai terlaksana."
+      ],
+      en: [
+        "Dynamically syncing tutoring session time zones between students and tutors across Indonesia (WIB, WITA, WIT).",
+        "Integrating an interactive video conferencing space that is bandwidth-friendly yet clear for users in remote areas.",
+        "Managing upfront payments (escrow system) to be secure for both parties until the study session is fully completed."
+      ]
+    },
+    solutions: {
+      id: [
+        "Menerapkan penanganan zona waktu berbasis UTC di basis data dan mengonversinya secara otomatis ke waktu lokal browser pengguna.",
+        "Mengintegrasikan WebRTC via platform kustom yang secara adaptif menurunkan resolusi video ketika kualitas sinyal internet melambat.",
+        "Membangun mekanisme pembayaran rekening penampung (escrow account) terintegrasi dengan Payment Gateway untuk otomatisasi pencairan dana tutor."
+      ],
+      en: [
+        "Applying UTC-based time zone handling in the database and converting it automatically to the user's local browser time.",
+        "Integrating WebRTC via a custom platform that adaptively lowers video resolution when internet connection speed drops.",
+        "Building an escrow account system integrated with our Payment Gateway to automate tutor funds payout upon session completion."
+      ]
+    },
+    workflow: {
+      id: [
+        { title: "Konsultasi", desc: "Mengidentifikasi model bimbingan belajar, kebutuhan fitur video conference, dan skema bagi hasil tutor." },
+        { title: "Perencanaan", desc: "Merancang wireframe pemesanan jadwal kalender mentor dan skema alur dana escrow." },
+        { title: "Development", desc: "Pengembangan website Next.js untuk siswa & mentor serta pembuatan platform video WebRTC." },
+        { title: "Quality Assurance", desc: "Pengujian kestabilan video conference pada koneksi 3G/4G lambat dan audit validasi escrow." },
+        { title: "Launch & Support", desc: "Deploy server, proses onboarding tutor gelombang pertama, dan peluncuran pemasaran digital." },
+      ],
+      en: [
+        { title: "Consultation", desc: "Identifying tutoring workflows, video conferencing feature goals, and tutor profit-sharing rules." },
+        { title: "Planning", desc: "Designing wireframes for tutor calendar booking layouts and mapping the escrow payment workflows." },
+        { title: "Development", desc: "Developing the Next.js website for students & tutors and building the WebRTC video classroom platform." },
+        { title: "Quality Assurance", desc: "Testing video conference stability on slow 3G/4G cellular connections and auditing escrow validation logs." },
+        { title: "Launch & Support", desc: "Deploying system, onboarding the first wave of verified tutors, and launching digital marketing campaigns." },
+      ]
+    },
+    screenshots: ["/guruino1.jpeg"],
+    impact: {
+      id: [
+        { title: "Keterlibatan Belajar", desc: "Elemen kuis interaktif menaikkan tingkat kelulusan dan penyelesaian kursus sebesar 40%." },
+        { title: "Stabilitas Video", desc: "Penggunaan arsitektur CDN khusus meminimalisir buffering video materi meskipun di jaringan 3G." },
+        { title: "Pertumbuhan Pendapatan", desc: "Otomatisasi langganan (subscription) meningkatkan pendapatan pasif bulanan instruktur sebesar 25%." }
+      ],
+      en: [
+        { title: "Learning Engagement", desc: "Interactive quiz elements increased course completion and graduation rates by 40%." },
+        { title: "Video Stability", desc: "The use of custom CDN architecture minimized material video buffering even on 3G networks." },
+        { title: "Revenue Growth", desc: "Subscription automation increased instructors' monthly passive revenue by 25%." }
       ]
     }
   }
