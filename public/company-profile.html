@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zellio — Credentials 2026</title>
+  <style>
+    @font-face { font-family: "Plus Jakarta Sans"; src: url("fonts/plus-jakarta-400.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: block; }
+    @font-face { font-family: "Plus Jakarta Sans"; src: url("fonts/plus-jakarta-500.woff2") format("woff2"); font-weight: 500; font-style: normal; font-display: block; }
+    @font-face { font-family: "Plus Jakarta Sans"; src: url("fonts/plus-jakarta-600.woff2") format("woff2"); font-weight: 600; font-style: normal; font-display: block; }
+    @font-face { font-family: "Plus Jakarta Sans"; src: url("fonts/plus-jakarta-600-italic.woff2") format("woff2"); font-weight: 600; font-style: italic; font-display: block; }
+    @font-face { font-family: "Plus Jakarta Sans"; src: url("fonts/plus-jakarta-700.woff2") format("woff2"); font-weight: 700; font-style: normal; font-display: block; }
+    @font-face { font-family: "Plus Jakarta Sans"; src: url("fonts/plus-jakarta-800.woff2") format("woff2"); font-weight: 800; font-style: normal; font-display: block; }
+
+    :root {
+      --navy: #0B1F3A;
+      --blue: #2563EB;
+      --sky: #38BDF8;
+      --cream: #F3EFE7;
+      --ink: #0F172A;
+      --slate: #475569;
+      --muted: #94A3B8;
+      --line: rgba(255,255,255,0.14);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      background: #071422;
+      font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+      color: #fff;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .toolbar {
+      position: sticky; top: 0; z-index: 40;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 12px 20px; background: rgba(7,20,34,0.94); color: #94A3B8; font-size: 12px;
+    }
+    .toolbar b { color: #fff; }
+    .toolbar button {
+      appearance: none; border: 0; background: var(--blue); color: #fff;
+      font: 700 11px/1 "Plus Jakarta Sans", sans-serif; letter-spacing: 0.08em;
+      text-transform: uppercase; padding: 11px 16px; border-radius: 8px; cursor: pointer;
+    }
+
+    .slide {
+      width: 1920px; height: 1080px;
+      margin: 28px auto;
+      position: relative; overflow: hidden;
+      background: var(--navy);
+      page-break-after: always; break-after: page;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.4);
+    }
+    .slide:last-of-type { page-break-after: auto; }
+
+    em { font-style: italic; font-weight: 600; color: #7DD3FC; }
+
+    .kicker {
+      font-size: 13px; font-weight: 800; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--sky);
+    }
+    .kicker-dark { color: var(--blue); }
+
+    .brand {
+      display: flex; align-items: center; gap: 12px;
+    }
+    .brand img { height: 40px; width: 40px; object-fit: contain; display: block; }
+    .brand span {
+      font-size: 22px; font-weight: 800; letter-spacing: 0.32em; color: #fff;
+    }
+    .brand-ink span { color: var(--ink); }
+
+    .nav {
+      position: absolute; top: 32px; left: 56px; right: 56px; z-index: 6;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .nav .meta {
+      font-size: 13px; font-weight: 700; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--muted);
+    }
+
+    .pg {
+      position: absolute; right: 56px; bottom: 28px; z-index: 6;
+      font-size: 13px; font-weight: 700; letter-spacing: 0.16em; color: var(--muted);
+    }
+
+    /* COVER */
+    .cover {
+      background:
+        linear-gradient(100deg, rgba(11,31,58,0.97) 0%, rgba(11,31,58,0.88) 42%, rgba(11,31,58,0.55) 100%),
+        url("compro-cover.jpg") center/cover;
+    }
+    .cover-inner {
+      height: 100%;
+      padding: 36px 56px 40px;
+      display: flex; flex-direction: column;
+    }
+    .cover-top { display: flex; justify-content: space-between; align-items: center; }
+    .badge {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 9px 16px; border-radius: 999px;
+      background: rgba(37,99,235,0.32); border: 1px solid rgba(56,189,248,0.45);
+      font-size: 12px; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase; color: #BAE6FD;
+    }
+    .badge i { width: 8px; height: 8px; border-radius: 50%; background: #38BDF8; display: block; }
+    .cover-main { flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 24px 0; }
+    .cover h1 {
+      font-size: 58px; font-weight: 800; letter-spacing: -0.038em; line-height: 1.08; max-width: 1280px;
+    }
+    .cover h1 em { color: #7DD3FC; }
+    .cover-sub {
+      margin-top: 20px; max-width: 820px; font-size: 22px; line-height: 1.5; font-weight: 500; color: #CBD5E1;
+    }
+    .cover-stats {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 40px;
+    }
+    .cover-stat {
+      padding: 22px 22px 18px; border-radius: 16px;
+      background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.16);
+    }
+    .cover-stat b { display: block; font-size: 32px; font-weight: 800; letter-spacing: -0.03em; }
+    .cover-stat span { display: block; margin-top: 6px; font-size: 13px; font-weight: 600; color: #94A3B8; }
+    .cover-foot {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
+      border-top: 1px solid rgba(255,255,255,0.14); padding-top: 20px;
+    }
+    .cover-foot span { display: block; font-size: 11px; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase; color: #64748B; margin-bottom: 5px; }
+    .cover-foot b { font-size: 18px; font-weight: 700; }
+
+    /* PAGE 2 — split editorial */
+    .p2 { display: grid; grid-template-columns: 0.92fr 1.08fr; height: 100%; }
+    .p2-left {
+      padding: 40px 48px 32px 56px;
+      display: flex; flex-direction: column;
+    }
+    .p2-head {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 40px;
+    }
+    .p2-head .meta {
+      font-size: 13px; font-weight: 700; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--muted);
+    }
+    .p2-left h2 {
+      font-size: 36px; font-weight: 800; letter-spacing: -0.03em; line-height: 1.12;
+      max-width: 820px; margin: 8px 0 8px;
+    }
+    .p2-lead { font-size: 17px; line-height: 1.5; color: #94A3B8; max-width: 720px; margin-bottom: 4px; }
+    .issues { display: flex; flex-direction: column; margin-top: 8px; }
+    .issue {
+      display: grid; grid-template-columns: 52px 1fr; gap: 14px; align-items: start;
+      padding: 14px 0; border-top: 1px solid var(--line);
+    }
+    .issue:last-of-type { border-bottom: 1px solid var(--line); }
+    .issue .n { font-size: 20px; font-weight: 800; letter-spacing: -0.03em; color: #7DD3FC; padding-top: 2px; }
+    .issue h3 { font-size: 20px; font-weight: 800; margin-bottom: 4px; }
+    .issue p { font-size: 15px; line-height: 1.45; color: #CBD5E1; }
+    .p2-logos { margin-top: 22px; }
+    .p2-logos .kicker { margin-bottom: 10px; }
+    .logos {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+    }
+    .logos img {
+      width: 100%; height: 52px; object-fit: contain;
+      background: #fff; border-radius: 8px; padding: 8px 10px;
+    }
+    .p2-right {
+      position: relative;
+      overflow: hidden;
+    }
+    .p2-right img {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center 42%;
+      display: block;
+    }
+    .p2-cap {
+      position: absolute; left: 0; right: 0; bottom: 0;
+      padding: 18px 24px 20px;
+      background: linear-gradient(180deg, transparent, rgba(11,31,58,0.92));
+      font-size: 15px; font-weight: 700; color: #E2E8F0; line-height: 1.4;
+    }
+    .p2-cap span { display: block; font-size: 11px; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase; color: var(--sky); margin-bottom: 4px; }
+
+    .title { font-size: 42px; font-weight: 800; letter-spacing: -0.03em; line-height: 1.12; }
+
+    /* CASE */
+    .case {
+      height: 100%;
+      display: grid;
+      grid-template-columns: 0.78fr 1.22fr;
+    }
+    .case-copy {
+      padding: 100px 40px 48px 56px;
+      display: flex; flex-direction: column; justify-content: center;
+    }
+    .case-copy h2 { font-size: 44px; font-weight: 800; letter-spacing: -0.03em; margin: 8px 0 14px; }
+    .case-copy .lead { font-size: 18px; line-height: 1.5; color: var(--muted); margin-bottom: 22px; }
+    .rows { display: flex; flex-direction: column; gap: 14px; }
+    .row {
+      padding: 14px 0;
+      border-top: 1px solid var(--line);
+    }
+    .row b { display: block; font-size: 11px; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase; color: var(--sky); margin-bottom: 4px; }
+    .row p { font-size: 17px; line-height: 1.45; color: #E2E8F0; }
+    .metric {
+      margin-top: 20px; padding: 18px 20px; border-radius: 14px;
+      background: rgba(56,189,248,0.1); border: 1px solid rgba(56,189,248,0.25);
+      font-size: 28px; font-weight: 800; letter-spacing: -0.03em; color: #7DD3FC;
+    }
+    .metric span { display: block; font-size: 14px; font-weight: 600; color: #CBD5E1; margin-top: 4px; letter-spacing: 0; }
+    .quote {
+      margin-top: 16px; font-size: 15px; line-height: 1.45; color: #CBD5E1;
+    }
+    .quote b { display: block; margin-top: 8px; font-size: 13px; color: #7DD3FC; }
+
+    .shot {
+      margin: 88px 48px 48px 8px;
+      height: calc(100% - 136px);
+      display: flex; flex-direction: column;
+      background: #111827;
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+    .shot-bar {
+      flex-shrink: 0; height: 36px;
+      display: flex; align-items: center; gap: 7px;
+      padding: 0 14px; background: #1f2937;
+    }
+    .shot-bar i { width: 10px; height: 10px; border-radius: 50%; background: #4b5563; display: block; }
+    .shot-bar i:nth-child(1) { background: #f87171; }
+    .shot-bar i:nth-child(2) { background: #fbbf24; }
+    .shot-bar i:nth-child(3) { background: #34d399; }
+    .shot-stage {
+      flex: 1; min-height: 0;
+      display: flex; align-items: center; justify-content: center;
+      padding: 18px; background: #0b1220;
+    }
+    .shot-stage img {
+      max-width: 100%; max-height: 100%;
+      width: auto; height: auto;
+      object-fit: contain;
+      display: block;
+      border-radius: 6px;
+    }
+
+    .case.light-case { background: var(--cream); color: var(--ink); }
+    .case.light-case .lead, .case.light-case .row p, .case.light-case .quote { color: var(--slate); }
+    .case.light-case .row { border-top-color: rgba(15,23,42,0.1); }
+    .case.light-case .row b { color: var(--blue); }
+    .case.light-case .metric { background: #fff; border-color: #dbeafe; color: var(--blue); }
+    .case.light-case .metric span { color: #64748B; }
+    .case.light-case .quote b { color: var(--blue); }
+    .case.light-case .shot { background: #fff; border-color: #e5e0d6; }
+    .case.light-case .shot-bar { background: #ece8df; }
+    .case.light-case .shot-stage { background: #f7f4ee; }
+    .case.light-case .pg, .case.light-case .nav .meta { color: #94A3B8; }
+
+    /* SERVICES */
+    .svc { height: 100%; padding: 152px 56px 40px; display: flex; flex-direction: column; }
+    .svc h2 { font-size: 40px; font-weight: 800; letter-spacing: -0.03em; margin: 6px 0 10px; }
+    .svc-lead { font-size: 17px; color: var(--muted); margin-bottom: 18px; }
+    .svc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 40px; }
+    .svc-item {
+      display: grid; grid-template-columns: 48px 1fr auto; gap: 12px; align-items: center;
+      padding: 18px 0; border-bottom: 1px solid var(--line);
+    }
+    .svc-item .n { font-size: 14px; font-weight: 800; letter-spacing: 0.08em; color: var(--sky); }
+    .svc-item h3 { font-size: 20px; font-weight: 800; }
+    .svc-item p { font-size: 14px; color: var(--muted); margin-top: 2px; }
+    .svc-item .price { font-size: 16px; font-weight: 800; color: #7DD3FC; white-space: nowrap; }
+    .svc-foot { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 18px; }
+    .chip {
+      border-radius: 14px; padding: 16px 18px;
+      background: rgba(255,255,255,0.05); border: 1px solid var(--line);
+      font-size: 15px; color: #CBD5E1; line-height: 1.45;
+    }
+    .chip b { color: #fff; }
+
+    /* CTA */
+    .cta {
+      display: grid; grid-template-columns: 1.15fr 0.85fr; height: 100%;
+      background:
+        linear-gradient(110deg, rgba(11,31,58,0.96) 0%, rgba(11,31,58,0.82) 48%, rgba(11,31,58,0.5) 100%),
+        url("compro-meeting.jpg") right center/cover;
+    }
+    .cta-left { padding: 48px 56px; display: flex; flex-direction: column; justify-content: center; }
+    .cta-left h1 { font-size: 48px; font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; max-width: 760px; margin: 14px 0 16px; }
+    .cta-left > p { font-size: 20px; line-height: 1.5; color: #CBD5E1; max-width: 620px; margin-bottom: 24px; }
+    .wa {
+      display: inline-block; background: #16A34A; color: #fff; text-decoration: none;
+      font-size: 16px; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase;
+      padding: 16px 22px; border-radius: 12px; width: fit-content;
+    }
+    .cta-meta { margin-top: 28px; display: flex; gap: 36px; }
+    .cta-meta span { display: block; font-size: 12px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; color: var(--sky); margin-bottom: 4px; }
+    .cta-meta b { font-size: 18px; }
+    .cta-right {
+      background: #E8F1FF; color: var(--ink);
+      padding: 64px 48px; display: flex; flex-direction: column; justify-content: center;
+    }
+    .cta-right h3 { font-size: 26px; font-weight: 800; margin-bottom: 18px; }
+    .cta-right li {
+      list-style: none; padding: 16px 0; border-bottom: 1px solid rgba(15,23,42,0.08);
+      font-size: 18px; font-weight: 650; display: flex; gap: 14px;
+    }
+    .cta-right li b { color: var(--blue); min-width: 28px; }
+    .cta-right .note { margin-top: 20px; font-size: 15px; color: #64748B; font-weight: 600; }
+
+    .hint { text-align: center; color: var(--muted); font-size: 12px; padding: 8px 16px 40px; }
+
+    @page { size: 1920px 1080px; margin: 0; }
+    @media print {
+      html, body { background: #fff; width: 1920px; }
+      .toolbar, .hint { display: none !important; }
+      .slide { margin: 0; box-shadow: none; }
+    }
+    @media screen and (max-width: 1400px) {
+      .slide { zoom: 0.62; margin: 16px auto; }
+    }
+  </style>
+</head>
+<body>
+  <div class="toolbar">
+    <span>Print → Save as PDF · <b>Landscape · Background graphics ON</b></span>
+    <button type="button" onclick="window.print()">Print / Simpan PDF</button>
+  </div>
+
+  <!-- 01 COVER -->
+  <section class="slide cover">
+    <div class="cover-inner">
+      <div class="cover-top">
+        <div class="brand"><img src="icon-dark.png" alt=""><span>ZELLIO</span></div>
+        <div class="badge"><i></i> Company Profile · 2026</div>
+      </div>
+      <div class="cover-main">
+        <h1>Kami bangun custom software sesuai <em>cara kerja perusahaan Anda.</em></h1>
+        <p class="cover-sub">Website, mobile app, e-commerce, ERP, CRM, HRIS. Bukan paket jadi — scope kita mapping dulu, baru dikerjakan.</p>
+        <div class="cover-stats">
+          <div class="cover-stat"><b>12+</b><span>Sistem yang klien masih pakai sekarang</span></div>
+          <div class="cover-stat"><b>&lt; 12 jam</b><span>Kami balas chat atau email masuk</span></div>
+          <div class="cover-stat"><b>3 bulan</b><span>Maintenance setelah go-live, tanpa biaya</span></div>
+          <div class="cover-stat"><b>1 tim</b><span>Engineer yang sama dari desain sampai selesai</span></div>
+        </div>
+      </div>
+      <div class="cover-foot">
+        <div><span>Web</span><b>zellio.id</b></div>
+        <div><span>WhatsApp</span><b>085158945811</b></div>
+        <div><span>Email</span><b>marketing@zellio.id</b></div>
+        <div><span>Kantor</span><b>Cibubur, Jakarta</b></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 PROBLEM -->
+  <section class="slide">
+    <div class="p2">
+      <div class="p2-left">
+        <div class="p2-head">
+          <div class="brand"><img src="icon-dark.png" alt=""><span>ZELLIO</span></div>
+          <div class="meta">02 / 07</div>
+        </div>
+        <div class="kicker">Yang biasanya kami terima</div>
+        <h2>Excel, WhatsApp, dan sistem lama <em>jarang nyambung satu sama lain.</em></h2>
+        <p class="p2-lead">Itu yang bikin invoice selisih, stok kacau, dan follow-up hilang. Bukan karena kurang fitur.</p>
+        <div class="issues">
+          <div class="issue">
+            <div class="n">01</div>
+            <div>
+              <h3>Data pecah di banyak file</h3>
+              <p>Gudang, finance, dan sales masing-masing pegang versi sendiri. Rekonsiliasi jadi kerjaan harian.</p>
+            </div>
+          </div>
+          <div class="issue">
+            <div class="n">02</div>
+            <div>
+              <h3>Website ada, tapi tidak menutup deal</h3>
+              <p>Loading lama, alur bingung, orang pergi sebelum WhatsApp atau checkout. Budget iklan terbuang.</p>
+            </div>
+          </div>
+          <div class="issue">
+            <div class="n">03</div>
+            <div>
+              <h3>Vendor hilang setelah go-live</h3>
+              <p>Deadline molor, scope menggelembung, dan saat error muncul tidak ada PIC yang jawab.</p>
+            </div>
+          </div>
+        </div>
+        <div class="p2-logos">
+          <div class="kicker">Beberapa klien</div>
+          <div class="logos">
+            <img src="clients/campos.png" alt="Campos">
+            <img src="clients/beego.png" alt="Beego">
+            <img src="clients/guruinovatif.png" alt="GuruInovatif">
+            <img src="clients/warungbungapagi.png" alt="BungaPagi">
+            <img src="clients/nontonkuy.png" alt="NontonKuy">
+            <img src="clients/jaja.png" alt="Jaja">
+            <img src="clients/palda.png" alt="Palda">
+            <img src="clients/race.png" alt="RACE">
+          </div>
+        </div>
+      </div>
+      <div class="p2-right">
+        <img src="compro-team.jpg" alt="">
+        <div class="p2-cap">
+          <span>Cara kami kerja</span>
+          Satu tim in-house. PIC yang sama dari kickoff sampai go-live.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 BATUGIN -->
+  <section class="slide">
+    <div class="nav">
+      <div class="brand"><img src="icon-dark.png" alt=""><span>ZELLIO</span></div>
+      <div class="meta">Project 01</div>
+    </div>
+    <div class="case">
+      <div class="case-copy">
+        <div class="kicker">Healthcare · Website</div>
+        <h2>Batugin</h2>
+        <p class="lead">Produk herbal harus terasa bisa dipercaya, mudah dicari di Google, dan tetap enteng dibuka di HP.</p>
+        <div class="rows">
+          <div class="row"><b>Brief</b><p>Artikel medis berat, audiens luas, halaman lama 4,2 detik — orang pergi sebelum baca.</p></div>
+          <div class="row"><b>Scope</b><p>Portal edukasi, kalkulator hidrasi, dan struktur SEO supaya artikel kesehatan ketemu di search.</p></div>
+        </div>
+        <div class="metric">Load 1,1 detik · traffic organik +34%<span>Bounce rate turun 28%.</span></div>
+        <p class="quote">“Kalkulator minum airnya disukain banget sama user. Tim gesit tiap ada revisi konten.”<b>Astri Novianti · Batugin</b></p>
+      </div>
+      <div class="shot">
+        <div class="shot-bar"><i></i><i></i><i></i></div>
+        <div class="shot-stage"><img src="batugin/batugin1.jpeg" alt="Batugin"></div>
+      </div>
+    </div>
+    <div class="pg">03 / 07</div>
+  </section>
+
+  <!-- 04 KLIK -->
+  <section class="slide light">
+    <div class="nav">
+      <div class="brand brand-ink"><img src="icon-light.png" alt=""><span>ZELLIO</span></div>
+      <div class="meta">Project 02</div>
+    </div>
+    <div class="case light-case">
+      <div class="case-copy">
+        <div class="kicker kicker-dark">Travel · Platform</div>
+        <h2>Klik Travel ID</h2>
+        <p class="lead">Katalog open trip dan private tour harus terasa rapi — dan calon traveler tidak hilang di chat mundur-maju.</p>
+        <div class="rows">
+          <div class="row"><b>Brief</b><p>Jadwal banyak, foto destinasi berat, tanya-jawab lewat WhatsApp tidak terstruktur.</p></div>
+          <div class="row"><b>Scope</b><p>Filter keberangkatan, halaman yang cepat, alur WhatsApp yang jelas dari klik sampai booking.</p></div>
+        </div>
+        <div class="metric">Leads masuk +38%<span>Halaman di bawah 1 detik. Core Web Vitals 95+.</span></div>
+      </div>
+      <div class="shot">
+        <div class="shot-bar"><i></i><i></i><i></i></div>
+        <div class="shot-stage"><img src="klik1.jpeg" alt="Klik Travel ID"></div>
+      </div>
+    </div>
+    <div class="pg">04 / 07</div>
+  </section>
+
+  <!-- 05 BUNGAPAGI -->
+  <section class="slide">
+    <div class="nav">
+      <div class="brand"><img src="icon-dark.png" alt=""><span>ZELLIO</span></div>
+      <div class="meta">Project 03</div>
+    </div>
+    <div class="case">
+      <div class="case-copy">
+        <div class="kicker">F&amp;B · Website + order</div>
+        <h2>Warung BungaPagi</h2>
+        <p class="lead">Brand harus terasa hangat, tapi pesanan dari web harus sampai ke dapur — bukan berhenti di layar.</p>
+        <div class="rows">
+          <div class="row"><b>Brief</b><p>Order online tidak nyambung ke kasir. Input ulang, antrian berantakan jam ramai.</p></div>
+          <div class="row"><b>Scope</b><p>Website membership dan order yang langsung cetak di printer dapur.</p></div>
+        </div>
+        <div class="metric">Order langsung ke printer dapur<span>Kasir tidak ketik ulang saat ramai.</span></div>
+        <p class="quote">“Orderan masuk dari web, printer kasir langsung bunyi cetak struk otomatis.”<b>Ester Damayanti · Warung BungaPagi</b></p>
+      </div>
+      <div class="shot">
+        <div class="shot-bar"><i></i><i></i><i></i></div>
+        <div class="shot-stage"><img src="warungbungaweb.png" alt="Warung BungaPagi"></div>
+      </div>
+    </div>
+    <div class="pg">05 / 07</div>
+  </section>
+
+  <!-- 06 SERVICES -->
+  <section class="slide">
+    <div class="nav">
+      <div class="brand"><img src="icon-dark.png" alt=""><span>ZELLIO</span></div>
+      <div class="meta">Layanan</div>
+    </div>
+    <div class="svc">
+      <div class="kicker">Yang bisa kami kerjakan</div>
+      <h2>Starting price di kanan. <em>Angka final setelah kita mapping scope.</em></h2>
+      <p class="svc-lead">Harga bergantung modul, integrasi, dan timeline. Yang tertulis adalah titik mulai — dikunci di proposal.</p>
+      <div class="svc-grid">
+        <div class="svc-item"><div class="n">01</div><div><h3>Custom Website</h3><p>Situs cepat, jelas, dan mengarahkan orang ke WhatsApp atau form.</p></div><div class="price">Mulai Rp __ jt</div></div>
+        <div class="svc-item"><div class="n">02</div><div><h3>Company Profile</h3><p>Profil perusahaan untuk klien, partner, dan tender.</p></div><div class="price">Mulai Rp __ jt</div></div>
+        <div class="svc-item"><div class="n">03</div><div><h3>E-Commerce</h3><p>Pembayaran, ongkir, stok — tetap jalan saat promo ramai.</p></div><div class="price">Mulai Rp __ jt</div></div>
+        <div class="svc-item"><div class="n">04</div><div><h3>Mobile App</h3><p>iOS &amp; Android: order, driver, membership, atau layanan lapangan.</p></div><div class="price">Mulai Rp __ jt</div></div>
+        <div class="svc-item"><div class="n">05</div><div><h3>ERP</h3><p>Sales, gudang, invoice, dan vendor dalam satu sistem.</p></div><div class="price">Mulai Rp __ jt</div></div>
+        <div class="svc-item"><div class="n">06</div><div><h3>CRM</h3><p>Pipeline sales rapi. Follow-up tidak hilang di chat pribadi.</p></div><div class="price">Mulai Rp __ jt</div></div>
+        <div class="svc-item"><div class="n">07</div><div><h3>HRIS &amp; Payroll</h3><p>Absensi, cuti, gaji, dan PPh 21 tanpa rekap Excel akhir bulan.</p></div><div class="price">Mulai Rp __ jt</div></div>
+        <div class="svc-item"><div class="n">08</div><div><h3>SaaS</h3><p>Produk berlangganan: akun user, billing, siap tumbuh.</p></div><div class="price">Mulai Rp __ jt</div></div>
+      </div>
+      <div class="svc-foot">
+        <div class="chip"><b>Termasuk</b> — discovery, desain Figma yang Anda approve dulu, QA, deploy, 3 bulan maintenance setelah go-live.</div>
+        <div class="chip"><b>Belum termasuk</b> — iklan, foto produk, perpanjangan hosting/domain, dan fitur di luar proposal.</div>
+      </div>
+    </div>
+    <div class="pg">06 / 07</div>
+  </section>
+
+  <!-- 07 CTA -->
+  <section class="slide">
+    <div class="cta">
+      <div class="cta-left">
+        <div class="brand" style="margin-bottom:28px"><img src="icon-dark.png" alt=""><span>ZELLIO</span></div>
+        <div class="kicker">Langkah berikutnya</div>
+        <h1>Kirim brief-nya. <em>Proposal kami kirim dalam 3 hari kerja.</em></h1>
+        <p>Discovery 30 menit. Bawa Excel, screenshot alur, atau catatan masalah — belum perlu SOW lengkap.</p>
+        <a class="wa" href="https://wa.me/6285158945811?text=Halo%20Zellio%2C%20saya%20ingin%20diskusi%20proyek.">WhatsApp 085158945811</a>
+        <div class="cta-meta">
+          <div><span>Email</span><b>marketing@zellio.id</b></div>
+          <div><span>Web</span><b>zellio.id</b></div>
+        </div>
+      </div>
+      <div class="cta-right">
+        <h3>Setelah Anda WhatsApp</h3>
+        <ol>
+          <li><b>01</b> Call singkat: kami mapping alur dan yang benar-benar perlu dibangun.</li>
+          <li><b>02</b> Proposal: scope, timeline, investasi — 3 hari kerja.</li>
+          <li><b>03</b> Scope disepakati, DP masuk, kickoff desain.</li>
+        </ol>
+        <p class="note">Tidak ada invoice sebelum scope dikunci.</p>
+      </div>
+    </div>
+    <div class="pg">07 / 07</div>
+  </section>
+
+  <p class="hint">Chrome: Print → Save as PDF → Landscape → Background graphics ON. Isi Rp __ jt sebelum dikirim.</p>
+</body>
+</html>
