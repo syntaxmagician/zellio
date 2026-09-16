@@ -39,6 +39,83 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    slug: "palda",
+    title: "Palda Solusi Sinergi",
+    category: { id: "Teknik Industri & EPC", en: "Industrial Engineering & EPC" },
+    type: "Website",
+    desc: {
+      id: "Website Company Profile korporat resmi untuk PT Palda Solusi Sinergi. Menampilkan kapabilitas teknik industri, layanan EPC komprehensif, inspeksi integritas aset, dan proteksi coating berstandar internasional.",
+      en: "Official corporate Company Profile website for PT Palda Solusi Sinergi. Showcasing industrial engineering capabilities, comprehensive EPC services, asset integrity inspection, and protective coating solutions with international standards."
+    },
+    tags: ["Next.js", "TailwindCSS", "Framer Motion", "SEO Optimization"],
+    image: "/palda1.jpeg",
+    images: ["/palda1.jpeg", "/palda2.jpeg", "/palda3.jpeg"],
+    icon: "Globe",
+    accent: "text-amber-600 bg-amber-50 border-amber-100",
+    url: "https://paldasolusisinergi.com/our-services/",
+    overview: {
+      id: "PT Palda Solusi Sinergi adalah perusahaan penyedia solusi rekayasa teknik industri dan EPC (Engineering, Procurement, Construction) yang melayani sektor minyak & gas, manufaktur berat, dan infrastruktur sipil. Untuk memperkuat kredibilitas dalam tender proyek skala besar dan mempermudah klien korporat memahami spektrum layanan menyeluruh, ZELLIO merancang website profil korporat modern berkinerja tinggi. Platform ini mengartikulasikan keahlian teknis perusahaan—mulai dari Mechanical & EPC Services, Asset Integrity & Inspection, Fabrication & Installation, hingga Specialized Coating—dengan arsitektur informasi terstruktur, visualisasi dokumentasi proyek lapangan yang kredibel, serta tata letak responsif yang dirancang untuk mempercepat konversi prospek B2B.",
+      en: "PT Palda Solusi Sinergi is an industrial engineering and EPC (Engineering, Procurement, Construction) solutions provider serving critical sectors such as oil & gas, heavy manufacturing, and civil infrastructure. To strengthen credibility in large-scale project tenders and help corporate clients navigate their comprehensive suite of services, ZELLIO engineered a modern, high-performance corporate profile website. The platform articulates the company's technical capabilities—ranging from Mechanical & EPC Services, Asset Integrity & Inspection, Fabrication & Installation, to Specialized Coating—with structured information architecture, robust industrial field project visualization, and a responsive layout tailored for B2B lead conversion."
+    },
+    challenges: {
+      id: [
+        "Menyajikan spektrum 8 lini layanan teknik spesifik (EPC, asset integrity, coating, civil infrastructure) agar mudah dipahami pengambil keputusan korporat tanpa mengurangi kedalaman spesifikasi teknis.",
+        "Menampilkan dokumentasi proyek lapangan berat (instalasi pipa, pengelasan industri, sandblasting, pengujian NDT) dalam galeri visual beresolusi tinggi dengan kecepatan pemuatan instan.",
+        "Menyediakan saluran komunikasi langsung dan formulir RFQ (Request for Quotation) yang intuitif untuk menangani permintaan penawaran proyek industri secara cepat."
+      ],
+      en: [
+        "Presenting a spectrum of 8 specialized technical service lines (EPC, asset integrity, coating, civil infrastructure) in an easily digestible manner for corporate decision-makers without sacrificing technical depth.",
+        "Showcasing heavy industrial field project documentation (pipeline installation, industrial welding, sandblasting, NDT testing) in high-resolution visual galleries with instant load speeds.",
+        "Providing immediate communication channels and an intuitive RFQ (Request for Quotation) workflow to capture incoming industrial project inquiries rapidly."
+      ]
+    },
+    solutions: {
+      id: [
+        "Merancang arsitektur navigasi multi-tier yang mengelompokkan portofolio layanan teknis secara intuitif dengan sub-halaman terdedikasi untuk setiap bidang keahlian.",
+        "Menerapkan optimasi media Next.js Image dan kompresi WebP adaptif untuk memastikan foto dokumentasi proyek tampil tajam namun tetap ringan diakses.",
+        "Mengintegrasikan tombol direct action WhatsApp dan formulir konsultasi cepat yang terhubung langsung ke tim sales engineering Palda Solusi Sinergi."
+      ],
+      en: [
+        "Designing an intuitive multi-tier navigation architecture categorizing technical service lines with dedicated sub-pages for each engineering discipline.",
+        "Applying Next.js Image optimization and adaptive WebP compression to ensure field documentation photos remain razor-sharp while loading instantly.",
+        "Integrating WhatsApp direct-action buttons and quick inquiry forms connecting prospective corporate clients directly to Palda Solusi Sinergi's sales engineering team."
+      ]
+    },
+    workflow: {
+      id: [
+        { title: "Konsultasi", desc: "Mendalami profil bisnis industri EPC, portofolio proyek lapangan yang telah diselesaikan, dan kualifikasi tender korporat." },
+        { title: "Perencanaan", desc: "Menyusun arsitektur informasi 'Our Services', taksonomi kategori proyek, serta wireframe berbasis konversi B2B." },
+        { title: "Development", desc: "Membangun antarmuka modern dengan Next.js, TailwindCSS, dan micro-animation yang mencerminkan standar keunggulan industri." },
+        { title: "Quality Assurance", desc: "Audit performa lintas perangkat, optimasi Core Web Vitals, dan validasi form penawaran proyek." },
+        { title: "Launch & Support", desc: "Deployment di server cloud andal, konfigurasi SEO industri EPC, dan integrasi analitik pemantauan prospek." }
+      ],
+      en: [
+        { title: "Consultation", desc: "Analyzing the EPC industrial business profile, past completed field project track records, and corporate tender requirements." },
+        { title: "Planning", desc: "Structuring the 'Our Services' information architecture, project categorization taxonomy, and B2B conversion-focused wireframes." },
+        { title: "Development", desc: "Engineering the modern web interface with Next.js, TailwindCSS, and sleek micro-animations reflecting industrial excellence." },
+        { title: "Quality Assurance", desc: "Cross-device responsiveness testing, Core Web Vitals optimization, and project quotation inquiry validation." },
+        { title: "Launch & Support", desc: "Deploying to high-availability cloud servers, configuring EPC industrial SEO, and setting up lead tracking analytics." }
+      ]
+    },
+    screenshots: [
+      "/palda1.jpeg",
+      "/palda2.jpeg",
+      "/palda3.jpeg"
+    ],
+    impact: {
+      id: [
+        { title: "Kredibilitas Tender Meningkat", desc: "Representasi digital yang terstruktur memperkuat portofolio kualifikasi dalam proses tender proyek skala nasional." },
+        { title: "Konversi Prospek B2B Cepat", desc: "Akses kontak cepat memangkas waktu respon komunikasi antara calon klien dengan tim sales engineering." },
+        { title: "Performa Akses Cepat", desc: "Optimasi aset menghasilkan skor Core Web Vitals 95+ dengan waktu muat halaman di bawah 1.2 detik." }
+      ],
+      en: [
+        { title: "Enhanced Tender Credibility", desc: "Structured digital representation bolsters qualification portfolios during national-scale industrial project tenders." },
+        { title: "Rapid B2B Lead Conversion", desc: "Fast-action contact access reduces inquiry response times between prospective corporate clients and sales engineers." },
+        { title: "High-Speed Access Performance", desc: "Asset optimization delivers 95+ Core Web Vitals scores with page load times under 1.2 seconds." }
+      ]
+    }
+  },
+  {
     slug: "batugin",
     title: "Batugin",
     category: { id: "Farmasi & Kesehatan", en: "Healthcare & Pharmaceuticals" },
