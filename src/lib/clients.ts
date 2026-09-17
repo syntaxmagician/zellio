@@ -82,8 +82,8 @@ export const clientLogos: ClientLogo[] = [
     slug: "neurox",
     name: "Neurox",
     sector: { en: "F&B Operating System", id: "Sistem Operasi F&B" },
-    src: "/neuroxapp.png",
-    width: 120,
-    height: 40,
+    src: "/neurox-logo.webp",
+    width: 130,
+    height: 38,
   },
 ];
