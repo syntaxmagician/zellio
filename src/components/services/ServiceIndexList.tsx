@@ -1,7 +1,9 @@
 "use client";
 
 import { useRef } from "react";
+import { useLanguage } from "@/context/LanguageContext";
 import Link from "next/link";
+import { localizedPath } from "@/lib/seo";
 import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 import { gsap, useGSAP } from "@/lib/gsap";
@@ -24,6 +26,7 @@ export interface ServiceRow {
  * across a row, which reads as sloppy rather than editorial.
  */
 export default function ServiceIndexList({ rows }: { rows: ServiceRow[] }) {
+  const { language } = useLanguage();
   const scope = useRef<HTMLDivElement>(null);
 
   useGSAP(
@@ -48,7 +51,7 @@ export default function ServiceIndexList({ rows }: { rows: ServiceRow[] }) {
       {rows.map((row, i) => (
         <Link
           key={row.slug}
-          href={`/services/${row.slug}`}
+          href={localizedPath(`/services/${row.slug}`, language)}
           className="svc-card group flex flex-col"
         >
           <div className="relative overflow-hidden rounded-2xl bg-slate-100 aspect-[4/3]">

@@ -1,20 +1,13 @@
-import type { Metadata } from "next";
-import { getLanguageAlternates, absoluteUrl } from "@/lib/seo";
 import ContactPageClient from "./ContactPageClient";
+import { getRequestLocale } from "@/lib/locale";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Contact",
-  description:
-    "Start a project with ZELLIO — software house for websites, apps, and enterprise systems.",
-  alternates: getLanguageAlternates("contact"),
-  openGraph: {
-    title: "Contact | ZELLIO",
-    url: absoluteUrl("contact"),
-    locale: "id_ID",
-    type: "website",
-  },
-};
-
-export default function ContactPage() {
-  return <ContactPageClient />;
+export async function generateMetadata() {
+  const locale = await getRequestLocale();
+  return pageMetadata("contact", locale,
+    locale === "id" ? "Konsultasi Proyek Website & Aplikasi" : "Discuss Your Website or App Project",
+    locale === "id" ? "Diskusikan kebutuhan website, aplikasi, atau sistem bisnis Anda bersama ZELLIO. Ceritakan ruang lingkup, integrasi, dan target proyek Anda." : "Discuss your website, app, or business software project with ZELLIO. Share your scope, integrations, and project goals."
+  );
 }
+
+export default function Page() { return <ContactPageClient />; }

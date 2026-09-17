@@ -10,6 +10,7 @@ import {
   Network, Terminal
 } from "lucide-react";
 import Link from "next/link";
+import { localizedPath } from "@/lib/seo";
 import { motion, AnimatePresence, useScroll, useTransform, useMotionValueEvent, useInView, useMotionValue, useSpring } from "framer-motion";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -1308,7 +1309,7 @@ export default function ServicePageClient({ service }: { service: any }) {
               </h2>
               
               <Link 
-                href="/contact"
+                href={localizedPath("/contact", language)}
                 className="inline-flex items-center gap-4 px-8 py-4 rounded-full bg-blue-600 text-white font-bold tracking-wide hover:bg-blue-500 hover:scale-105 transition-all duration-300 shadow-xl shadow-blue-900/10 group/btn"
               >
                 <span className="text-sm">SAY HELLO</span>

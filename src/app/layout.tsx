@@ -21,7 +21,9 @@ const inter = Inter({
   preload: false,
 });
 
-import { getLanguageAlternates } from "@/lib/seo";
+import { getRequestLocale } from "@/lib/locale";
+import StructuredData from "@/components/seo/StructuredData";
+import { organization } from "@/lib/structured-data";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://zellio.id"),
@@ -45,7 +47,6 @@ export const metadata: Metadata = {
   authors: [{ name: "ZELLIO Team" }],
   creator: "ZELLIO",
   publisher: "ZELLIO",
-  alternates: getLanguageAlternates(""),
   openGraph: {
     title: "ZELLIO — Software House Indonesia | Website, Web App & Enterprise Solutions",
     description:
@@ -90,14 +91,15 @@ import { LanguageProvider } from "@/context/LanguageContext";
 import SmoothScroll from "@/components/providers/SmoothScroll";
 import TabTitle from "@/components/providers/TabTitle";
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const locale = await getRequestLocale();
   return (
     <html
-      lang="en"
+      lang={locale}
       suppressHydrationWarning
       className={`${plusJakarta.variable} ${inter.variable} h-full antialiased overflow-x-clip`}
     >
@@ -116,25 +118,7 @@ export default function RootLayout({
             gtag('config', 'G-E7L3JZ628T');
           `}
         </Script>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "ProfessionalService",
-              "name": "ZELLIO",
-              "url": "https://zellio.id",
-              "logo": "https://zellio.id/icon.png",
-              "image": "https://zellio.id/icon.png",
-              "description": "ZELLIO is a professional software engineering agency specializing in custom web applications, mobile platforms, and enterprise solutions.",
-              "address": {
-                "@type": "PostalAddress",
-                "addressCountry": "ID"
-              },
-              "priceRange": "$$$$"
-            }),
-          }}
-        />
+        <StructuredData data={organization} />
       </head>
       <body
         suppressHydrationWarning
@@ -143,7 +127,7 @@ export default function RootLayout({
       >
         <SmoothScroll />
         <TabTitle />
-        <LanguageProvider>
+        <LanguageProvider initialLanguage={locale}>
           {children}
         </LanguageProvider>
         <Analytics />

@@ -6,6 +6,7 @@ import Footer from "@/components/layout/Footer";
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
+import { localizedPath } from "@/lib/seo";
 import { ArrowRight, ArrowUpRight, Laptop, Smartphone, LineChart, Globe } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 import { gsap, useGSAP } from "@/lib/gsap";
@@ -216,7 +217,7 @@ export default function PortfolioPageClient() {
                     className={`group flex flex-col gap-6 cursor-pointer ${isFeatured ? "md:col-span-2 lg:col-span-2" : "col-span-1"}`}
                   >
                     {/* Visual Container */}
-                    <Link href={`/portfolio/${project.slug}`} className="block relative">
+                    <Link href={localizedPath(`/portfolio/${project.slug}`, language)} className="block relative">
                       <div className={`relative w-full rounded-[24px] overflow-hidden bg-slate-100 border border-slate-200/60 shadow-sm ${
                         isFeatured ? "aspect-[4/3] md:aspect-[21/9]" : "aspect-[4/3]"
                       }`}>
@@ -279,7 +280,7 @@ export default function PortfolioPageClient() {
                       </p>
 
                       <Link 
-                        href={`/portfolio/${project.slug}`}
+                        href={localizedPath(`/portfolio/${project.slug}`, language)}
                         className="inline-flex items-center gap-2 text-[11px] font-bold text-blue-600 hover:text-blue-700 transition-colors uppercase tracking-widest mb-4 z-10 relative"
                       >
                         {language === "id" ? "Lihat Detail Proyek" : "View Project Details"}
@@ -371,7 +372,7 @@ export default function PortfolioPageClient() {
                 </p>
               </div>
               <Link
-                href="/contact"
+                href={localizedPath("/contact", language)}
                 className="group inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-slate-950 hover:bg-blue-50 font-bold text-sm uppercase tracking-widest rounded-2xl transition-all duration-300 flex-shrink-0"
               >
                 <span>{language === "id" ? "Mulai Proyek" : "Start Your Project"}</span>

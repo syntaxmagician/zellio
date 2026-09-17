@@ -2,6 +2,7 @@
 
 import React, { useState, useCallback } from "react";
 import Link from "next/link";
+import { localizedPath } from "@/lib/seo";
 import { ArrowUpRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { servicesData } from "@/lib/data";
 import { useLanguage } from "@/context/LanguageContext";
@@ -423,7 +424,7 @@ export default function ServicesRail() {
                   {/* Creative Underlined CTA Link */}
                   <div className="pt-2">
                     <Link
-                      href={`/services/${slug}`}
+                      href={localizedPath(`/services/${slug}`, language)}
                       className="inline-flex items-center gap-3 text-xs sm:text-sm font-mono font-bold uppercase tracking-[0.25em] relative py-1.5 group/cta"
                       style={{ color: palette.accent }}
                     >

@@ -29,6 +29,7 @@ import {
   ShieldCheck
 } from "lucide-react";
 import Link from "next/link";
+import { localizedPath } from "@/lib/seo";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useLanguage } from "@/context/LanguageContext";
@@ -150,7 +151,7 @@ export default function Navbar() {
         <div className="max-w-none px-6 lg:px-12 w-full flex items-center justify-between">
           {/* LEFT: Logo */}
           <div className="relative w-[180px] lg:w-[240px] h-10 shrink-0">
-            <Link href={`/${language}`} className="absolute left-0 top-1/2 -translate-y-1/2 flex items-center">
+            <Link href={localizedPath("/", language)} className="absolute left-0 top-1/2 -translate-y-1/2 flex items-center">
               <Image
                 src="/zellio3.png"
                 alt="Zellio Logo"
@@ -244,7 +245,7 @@ export default function Navbar() {
                                     return (
                                       <Link
                                         key={service.id}
-                                        href={`/${language}/services/${slug}`}
+                                        href={localizedPath(`/services/${slug}`, language)}
                                         onClick={() => setDropdownOpen(false)}
                                         className="group/item flex items-start gap-3 p-2.5 rounded-xl transition-all duration-150 hover:bg-slate-50 border border-transparent hover:border-slate-100/80 text-left"
                                       >
@@ -286,7 +287,7 @@ export default function Navbar() {
                                     return (
                                       <Link
                                         key={service.id}
-                                        href={`/${language}/services/${slug}`}
+                                        href={localizedPath(`/services/${slug}`, language)}
                                         onClick={() => setDropdownOpen(false)}
                                         className="group/item flex items-start gap-3 p-2.5 rounded-xl transition-all duration-150 hover:bg-slate-50 border border-transparent hover:border-slate-100/80 text-left"
                                       >
@@ -375,7 +376,7 @@ export default function Navbar() {
                                 </span>
                               </div>
                               <Link
-                                href={`/${language}/services`}
+                                href={localizedPath("/services", language)}
                                 onClick={() => setDropdownOpen(false)}
                                 className="flex items-center gap-1.5 text-[11px] font-bold text-slate-800 hover:text-blue-600 transition-colors group/view"
                               >
@@ -397,7 +398,7 @@ export default function Navbar() {
               return (
                 <Link
                   key={link.href}
-                  href={`/${language}${link.href === "/" ? "" : link.href.startsWith("/#") ? link.href.substring(1) : link.href}`}
+                  href={localizedPath(link.href, language)}
                   className="group relative flex items-center h-full cursor-pointer py-1"
                 >
                   <span
@@ -493,7 +494,7 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-20 px-6">
           {/* Mobile Logo */}
           <div className="relative w-[160px] h-10 shrink-0 z-20">
-            <Link href={`/${language}`} className="absolute left-0 top-1/2 -translate-y-1/2 flex items-center">
+            <Link href={localizedPath("/", language)} className="absolute left-0 top-1/2 -translate-y-1/2 flex items-center">
               <Image
                 src="/zellio3.png"
                 alt="Zellio Logo"
@@ -574,7 +575,7 @@ export default function Navbar() {
                                 return (
                                   <Link
                                     key={service.id}
-                                    href={`/${language}/services/${slug}`}
+                                    href={localizedPath(`/services/${slug}`, language)}
                                     onClick={() => setMobileOpen(false)}
                                     className="flex items-center gap-3 p-2 rounded-xl hover:bg-slate-50 transition-colors"
                                   >
@@ -594,7 +595,7 @@ export default function Navbar() {
                               })}
 
                               <Link
-                                href={`/${language}/services`}
+                                href={localizedPath("/services", language)}
                                 onClick={() => setMobileOpen(false)}
                                 className="inline-flex items-center gap-2 text-xs font-bold text-blue-600 pt-2 pl-2"
                               >
@@ -615,9 +616,7 @@ export default function Navbar() {
                       transition={{ delay: i * 0.05 + 0.1 }}
                     >
                       <Link
-                        href={`/${language}${
-                          link.href === "/" ? "" : link.href.startsWith("/#") ? link.href.substring(1) : link.href
-                        }`}
+                        href={localizedPath(link.href, language)}
                         onClick={() => setMobileOpen(false)}
                         className="text-2xl font-bold tracking-tight text-slate-900 hover:text-blue-600 transition-colors block py-1"
                       >

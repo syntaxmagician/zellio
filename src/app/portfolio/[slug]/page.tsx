@@ -1,7 +1,8 @@
+import { getRequestLocale } from "@/lib/locale";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { projects } from "@/lib/portfolioData";
-import { getLanguageAlternates, absoluteUrl } from "@/lib/seo";
+import { pageMetadata } from "@/lib/seo";
 import PortfolioDetailClient from "./PortfolioDetailClient";
 
 export async function generateStaticParams() {
@@ -25,21 +26,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 
   const path = `portfolio/${slug}`;
-  const title = `${project.title} — Case Study`;
-  const description = project.desc?.id || project.desc?.en || project.overview?.id || "";
-
-  return {
-    title,
-    description,
-    alternates: getLanguageAlternates(path),
-    openGraph: {
-      title: `${project.title} | ZELLIO Case Study`,
-      description,
-      url: absoluteUrl(path),
-      locale: "id_ID",
-      type: "article",
-    },
-  };
+  const locale = await getRequestLocale();
+  const title = `${project.title} — ${locale === "id" ? "Studi Kasus" : "Case Study"}`;
+  const description = project.desc?.[locale] || project.overview?.[locale] || "";
+  return pageMetadata(path, locale, title, description);
 }
 
 export default async function ProjectDetailPage({ params }: Props) {

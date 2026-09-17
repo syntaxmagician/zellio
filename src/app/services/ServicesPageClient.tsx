@@ -2,6 +2,7 @@
 
 import { useRef } from "react";
 import Link from "next/link";
+import { localizedPath } from "@/lib/seo";
 import { ArrowRight } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -330,7 +331,7 @@ export default function ServicesPageClient() {
               </div>
 
               <Link
-                href="/contact"
+                href={localizedPath("/contact", language)}
                 className="group inline-flex items-center justify-center gap-3 px-9 py-5 bg-white hover:bg-blue-600 text-slate-950 hover:text-white font-bold text-sm uppercase tracking-widest rounded-2xl transition-colors duration-300 shrink-0"
               >
                 <span>{text.ctaButton}</span>

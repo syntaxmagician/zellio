@@ -15,23 +15,18 @@ export default function TabTitle() {
   const msgIndex = useRef(0);
 
   useEffect(() => {
-    // Small delay so Next.js has time to hydrate the full page title
-    const captureTimer = setTimeout(() => {
-      originalTitle.current = document.title;
-    }, 800);
-
     const handleVisibilityChange = () => {
       if (document.hidden) {
+        originalTitle.current = document.title;
         document.title = AWAY_MESSAGES[msgIndex.current % AWAY_MESSAGES.length];
         msgIndex.current += 1;
-      } else {
+      } else if (originalTitle.current) {
         document.title = originalTitle.current;
       }
     };
 
     document.addEventListener("visibilitychange", handleVisibilityChange);
     return () => {
-      clearTimeout(captureTimer);
       document.removeEventListener("visibilitychange", handleVisibilityChange);
     };
   }, []);
