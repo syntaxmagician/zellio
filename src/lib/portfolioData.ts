@@ -39,6 +39,83 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    slug: "palda",
+    title: "Palda Solusi Sinergi",
+    category: { id: "Teknik Industri & EPC", en: "Industrial Engineering & EPC" },
+    type: "Website",
+    desc: {
+      id: "Website Company Profile korporat resmi untuk PT Palda Solusi Sinergi. Menampilkan kapabilitas teknik industri, layanan EPC komprehensif, inspeksi integritas aset, dan proteksi coating berstandar internasional.",
+      en: "Official corporate Company Profile website for PT Palda Solusi Sinergi. Showcasing industrial engineering capabilities, comprehensive EPC services, asset integrity inspection, and protective coating solutions with international standards."
+    },
+    tags: ["Next.js", "TailwindCSS", "Framer Motion", "SEO Optimization"],
+    image: "/palda1.jpeg",
+    images: ["/palda1.jpeg", "/palda2.jpeg", "/palda3.jpeg"],
+    icon: "Globe",
+    accent: "text-amber-600 bg-amber-50 border-amber-100",
+    url: "https://paldasolusisinergi.com/our-services/",
+    overview: {
+      id: "PT Palda Solusi Sinergi adalah perusahaan penyedia solusi rekayasa teknik industri dan EPC (Engineering, Procurement, Construction) yang melayani sektor minyak & gas, manufaktur berat, dan infrastruktur sipil. Untuk memperkuat kredibilitas dalam tender proyek skala besar dan mempermudah klien korporat memahami spektrum layanan menyeluruh, ZELLIO merancang website profil korporat modern berkinerja tinggi. Platform ini mengartikulasikan keahlian teknis perusahaan—mulai dari Mechanical & EPC Services, Asset Integrity & Inspection, Fabrication & Installation, hingga Specialized Coating—dengan arsitektur informasi terstruktur, visualisasi dokumentasi proyek lapangan yang kredibel, serta tata letak responsif yang dirancang untuk mempercepat konversi prospek B2B.",
+      en: "PT Palda Solusi Sinergi is an industrial engineering and EPC (Engineering, Procurement, Construction) solutions provider serving critical sectors such as oil & gas, heavy manufacturing, and civil infrastructure. To strengthen credibility in large-scale project tenders and help corporate clients navigate their comprehensive suite of services, ZELLIO engineered a modern, high-performance corporate profile website. The platform articulates the company's technical capabilities—ranging from Mechanical & EPC Services, Asset Integrity & Inspection, Fabrication & Installation, to Specialized Coating—with structured information architecture, robust industrial field project visualization, and a responsive layout tailored for B2B lead conversion."
+    },
+    challenges: {
+      id: [
+        "Menyajikan spektrum 8 lini layanan teknik spesifik (EPC, asset integrity, coating, civil infrastructure) agar mudah dipahami pengambil keputusan korporat tanpa mengurangi kedalaman spesifikasi teknis.",
+        "Menampilkan dokumentasi proyek lapangan berat (instalasi pipa, pengelasan industri, sandblasting, pengujian NDT) dalam galeri visual beresolusi tinggi dengan kecepatan pemuatan instan.",
+        "Menyediakan saluran komunikasi langsung dan formulir RFQ (Request for Quotation) yang intuitif untuk menangani permintaan penawaran proyek industri secara cepat."
+      ],
+      en: [
+        "Presenting a spectrum of 8 specialized technical service lines (EPC, asset integrity, coating, civil infrastructure) in an easily digestible manner for corporate decision-makers without sacrificing technical depth.",
+        "Showcasing heavy industrial field project documentation (pipeline installation, industrial welding, sandblasting, NDT testing) in high-resolution visual galleries with instant load speeds.",
+        "Providing immediate communication channels and an intuitive RFQ (Request for Quotation) workflow to capture incoming industrial project inquiries rapidly."
+      ]
+    },
+    solutions: {
+      id: [
+        "Merancang arsitektur navigasi multi-tier yang mengelompokkan portofolio layanan teknis secara intuitif dengan sub-halaman terdedikasi untuk setiap bidang keahlian.",
+        "Menerapkan optimasi media Next.js Image dan kompresi WebP adaptif untuk memastikan foto dokumentasi proyek tampil tajam namun tetap ringan diakses.",
+        "Mengintegrasikan tombol direct action WhatsApp dan formulir konsultasi cepat yang terhubung langsung ke tim sales engineering Palda Solusi Sinergi."
+      ],
+      en: [
+        "Designing an intuitive multi-tier navigation architecture categorizing technical service lines with dedicated sub-pages for each engineering discipline.",
+        "Applying Next.js Image optimization and adaptive WebP compression to ensure field documentation photos remain razor-sharp while loading instantly.",
+        "Integrating WhatsApp direct-action buttons and quick inquiry forms connecting prospective corporate clients directly to Palda Solusi Sinergi's sales engineering team."
+      ]
+    },
+    workflow: {
+      id: [
+        { title: "Konsultasi", desc: "Mendalami profil bisnis industri EPC, portofolio proyek lapangan yang telah diselesaikan, dan kualifikasi tender korporat." },
+        { title: "Perencanaan", desc: "Menyusun arsitektur informasi 'Our Services', taksonomi kategori proyek, serta wireframe berbasis konversi B2B." },
+        { title: "Development", desc: "Membangun antarmuka modern dengan Next.js, TailwindCSS, dan micro-animation yang mencerminkan standar keunggulan industri." },
+        { title: "Quality Assurance", desc: "Audit performa lintas perangkat, optimasi Core Web Vitals, dan validasi form penawaran proyek." },
+        { title: "Launch & Support", desc: "Deployment di server cloud andal, konfigurasi SEO industri EPC, dan integrasi analitik pemantauan prospek." }
+      ],
+      en: [
+        { title: "Consultation", desc: "Analyzing the EPC industrial business profile, past completed field project track records, and corporate tender requirements." },
+        { title: "Planning", desc: "Structuring the 'Our Services' information architecture, project categorization taxonomy, and B2B conversion-focused wireframes." },
+        { title: "Development", desc: "Engineering the modern web interface with Next.js, TailwindCSS, and sleek micro-animations reflecting industrial excellence." },
+        { title: "Quality Assurance", desc: "Cross-device responsiveness testing, Core Web Vitals optimization, and project quotation inquiry validation." },
+        { title: "Launch & Support", desc: "Deploying to high-availability cloud servers, configuring EPC industrial SEO, and setting up lead tracking analytics." }
+      ]
+    },
+    screenshots: [
+      "/palda1.jpeg",
+      "/palda2.jpeg",
+      "/palda3.jpeg"
+    ],
+    impact: {
+      id: [
+        { title: "Kredibilitas Tender Meningkat", desc: "Representasi digital yang terstruktur memperkuat portofolio kualifikasi dalam proses tender proyek skala nasional." },
+        { title: "Konversi Prospek B2B Cepat", desc: "Akses kontak cepat memangkas waktu respon komunikasi antara calon klien dengan tim sales engineering." },
+        { title: "Performa Akses Cepat", desc: "Optimasi aset menghasilkan skor Core Web Vitals 95+ dengan waktu muat halaman di bawah 1.2 detik." }
+      ],
+      en: [
+        { title: "Enhanced Tender Credibility", desc: "Structured digital representation bolsters qualification portfolios during national-scale industrial project tenders." },
+        { title: "Rapid B2B Lead Conversion", desc: "Fast-action contact access reduces inquiry response times between prospective corporate clients and sales engineers." },
+        { title: "High-Speed Access Performance", desc: "Asset optimization delivers 95+ Core Web Vitals scores with page load times under 1.2 seconds." }
+      ]
+    }
+  },
+  {
     slug: "batugin",
     title: "Batugin",
     category: { id: "Farmasi & Kesehatan", en: "Healthcare & Pharmaceuticals" },
@@ -633,6 +710,83 @@ export const projects: Project[] = [
         { title: "Server Cost Savings", desc: "The new video compression process successfully reduced monthly AWS storage costs by 30%." },
         { title: "Buffer-Free Streaming", desc: "Adaptive bitrate ensures movie resolution automatically adjusts to user internet speed without stuttering." },
         { title: "Increased Watch Time", desc: "Relevant recommendation algorithms increased average watch times from 45 to 75 minutes." }
+      ]
+    }
+  },
+  {
+    slug: "neurox",
+    title: "Neurox",
+    category: { id: "Ekosistem Bisnis F&B & Retail", en: "F&B & Retail Operating System" },
+    type: "Website",
+    desc: {
+      id: "Satu sistem terpadu untuk kedai dan restoran: POS kasir, dapur, stok resep, akuntansi keuangan dua-catatan, HR absensi geofence, dan manajemen tugas operasional dalam satu aliran data otomatis.",
+      en: "All-in-one operating system for food & retail: POS cashier, kitchen recipe & inventory, double-entry finance, HR geofence attendance, and task management in a single real-time data stream."
+    },
+    tags: ["Next.js", "React Native", "PostgreSQL", "Real-Time Sync", "ERP System"],
+    image: "/neurox1.jpeg",
+    images: ["/neurox1.jpeg", "/neurox2.jpeg", "/neurox3.jpeg"],
+    icon: "Laptop",
+    accent: "text-emerald-600 bg-emerald-50 border-emerald-100",
+    url: "https://myneurox.com/ms",
+    overview: {
+      id: "Neurox adalah ekosistem operasional terpadu yang dirancang khusus untuk bisnis kedai, kafe, dan restoran modern. Berangkat dari masalah klasik industri F&B di mana pemilik bisnis harus mengelola belasan aplikasi terpisah (kasir POS, absensi karyawan, catatan stok bahan, dan Excel akuntansi) yang sering menimbulkan salah ketik serta selisih angka, Neurox menghadirkan filosofi 'Data Masuk Sekali, Bergerak Seterusnya'. Dalam satu kali login, seluruh modul—mulai dari POS kasir & QR self-order, integrasi dapur Kitchen Display & HPP resep otomatis, buku besar keuangan (Finance), absensi geofencing & slip gaji HR (Human), hingga checklist tugas outlet dengan verifikasi foto (Task)—saling bertukar data secara instan tanpa perlu memindah angka manual.",
+      en: "Neurox is an all-in-one operational ecosystem engineered for modern F&B outlets, cafes, and multi-branch restaurants. Solving the fragmentation of juggling a dozen disconnected apps (POS, employee clock-in, manual kitchen inventory, and Excel bookkeeping), Neurox enforces a unified data stream philosophy: 'Enter data once, let it flow everywhere'. Within a single login, every module—from POS cashier & QR self-ordering, automated recipe costing & kitchen stock deduction, double-entry financial ledger, geofenced HR attendance & automated payroll, to photo-verified outlet task management—communicates seamlessly in real-time without manual reconciliation."
+    },
+    challenges: {
+      id: [
+        "Menghubungkan alur transaksi POS secara instan ke pembukuan akuntansi (double-entry ledger) agar laporan laba-rugi terbit otomatis tanpa rekap Excel.",
+        "Menghitung HPP (Harga Pokok Penjualan) menu secara presisi dan dinamis dari resep × fluktuasi harga beli bahan mentah saat supplier mengirim faktur baru.",
+        "Mengintegrasikan modul absensi geofence dan slip gaji kru outlet yang otomatis memperhitungkan shift, lembur, dan KPI harian tanpa manipulasi lokasi."
+      ],
+      en: [
+        "Connecting real-time POS transaction streams directly into the double-entry accounting ledger for zero-Excel automated profit and loss statements.",
+        "Calculating precise, dynamic Menu Costing (COGS) automatically calculated from recipe formulations multiplied by live supplier ingredient purchasing costs.",
+        "Integrating anti-fraud geofenced mobile attendance with automated payroll calculation factoring in shifts, overtime, and daily crew KPIs."
+      ]
+    },
+    solutions: {
+      id: [
+        "Membangun arsitektur event-driven di mana setiap struk transaksi POS memicu jurnal otomatis ke modul Finance dan memotong saldo stok bahan di modul Kitchen.",
+        "Merancang engine kalkulator resep bertingkat yang otomatis memperbarui margin keuntungan menu saat ada kenaikan harga beli bahan baku.",
+        "Mengembangkan modul HR mobile dengan validasi GPS geofencing radius akurat dan slip gaji instan yang siap diunduh kru outlet."
+      ],
+      en: [
+        "Building an event-driven architecture where every POS transaction receipt automatically creates double-entry journal entries in Finance and deducts raw inventory in Kitchen.",
+        "Engineering a multi-level recipe calculation engine that dynamically recalculates menu profit margins whenever ingredient invoice purchase prices fluctuate.",
+        "Developing a mobile HR module featuring strict GPS geofencing radius validation and instant downloadable payslips for outlet staff."
+      ]
+    },
+    workflow: {
+      id: [
+        { title: "Konsultasi & Alur F&B", desc: "Menganalisis alur kerja dari kasir depan, kitchen display, alur penerimaan stok supplier, hingga konsolidasi keuangan multi-outlet." },
+        { title: "Perencanaan Arsitektur", desc: "Merancang skema database relasional terintegrasi, relasi formula resep dinamis, dan matriks hak akses multi-role (Kasir, Koki, Manajer, Owner)." },
+        { title: "Development Ekosistem", desc: "Membangun platform Neurox web & mobile responsif dengan Next.js, React Native, dan endpoint API berkecepatan tinggi." },
+        { title: "Quality Assurance & Stress Test", desc: "Simulasi transaksi kasir jam sibuk makan siang, pengujian offline-first POS sync, dan audit validasi angka neraca akuntansi." },
+        { title: "Peluncuran & Onboarding", desc: "Deployment di infrastruktur cloud skalabel dan pendampingan implementasi operasional untuk outlet mitra." }
+      ],
+      en: [
+        { title: "F&B Workflow Discovery", desc: "Analyzing complete operational flows from front cashier, kitchen displays, supplier receiving, to multi-branch financial consolidation." },
+        { title: "Architecture Planning", desc: "Designing integrated relational database schemas, dynamic recipe formulation formulas, and granular multi-role access controls." },
+        { title: "Ecosystem Development", desc: "Engineering responsive web & mobile Neurox platform using Next.js, React Native, and high-throughput real-time APIs." },
+        { title: "QA & Stress Testing", desc: "Simulating peak lunch rush transaction volumes, offline-first POS sync resilience, and financial ledger balance validation." },
+        { title: "Launch & Rollout", desc: "Deploying on high-availability cloud architecture with live onboarding support across partner outlets." }
+      ]
+    },
+    screenshots: [
+      "/neurox1.jpeg",
+      "/neurox2.jpeg",
+      "/neurox3.jpeg"
+    ],
+    impact: {
+      id: [
+        { title: "100% Bebas Rekap Excel", desc: "Integrasi POS ke buku besar menghemat lebih dari 15 jam kerja pembukuan keuangan setiap minggu." },
+        { title: "Akurasi Stok & Margin Menu", desc: "Kalkulasi resep otomatis mendeteksi kebocoran bahan dan mengamankan margin profit saat harga bahan baku naik." },
+        { title: "Efisiensi Operasional Multi-Outlet", desc: "Owner dan manajer dapat memantau performa penjualan seluruh cabang secara real-time dalam satu dasbor terpusat." }
+      ],
+      en: [
+        { title: "Zero Manual Excel Rekap", desc: "Seamless POS-to-ledger integration saves over 15 hours of manual financial bookkeeping per week." },
+        { title: "Precise Inventory & Margins", desc: "Automated recipe costing eliminates ingredient shrinkage and protects profit margins against supplier price spikes." },
+        { title: "Multi-Outlet Operational Efficiency", desc: "Owners and managers can monitor real-time sales, inventory, and staff KPIs across all branches from a single unified portal." }
       ]
     }
   },

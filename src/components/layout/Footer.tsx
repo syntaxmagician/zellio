@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { localizedPath } from "@/lib/seo";
 import {
   ArrowUp,
   Globe,
@@ -19,11 +20,11 @@ const localText = {
         { label: "Contact", href: "/contact" },
       ],
       Services: [
-        { label: "UI/UX Design", href: "/services" },
-        { label: "Custom Web Dev", href: "/services" },
-        { label: "Admin Dashboards", href: "/services" },
-        { label: "Mobile Apps", href: "/services" },
-        { label: "Business Systems", href: "/services" },
+        { label: "Company Profile", href: "/services/company-profile-website" },
+        { label: "Custom Websites", href: "/services/custom-website-development" },
+        { label: "HRIS & Payroll", href: "/services/hris-payroll-system" },
+        { label: "Mobile Apps", href: "/services/mobile-app-development" },
+        { label: "ERP Systems", href: "/services/erp-system-development" },
       ],
       Resources: [
         { label: "Portfolio", href: "/portfolio" },
@@ -48,11 +49,11 @@ const localText = {
         { label: "Kontak", href: "/contact" },
       ],
       Layanan: [
-        { label: "Desain UI/UX", href: "/services" },
-        { label: "Website Kustom", href: "/services" },
-        { label: "Dashboard Admin", href: "/services" },
-        { label: "Aplikasi Mobile", href: "/services" },
-        { label: "Sistem IT Kustom", href: "/services" },
+        { label: "Company Profile", href: "/services/company-profile-website" },
+        { label: "Pembuatan Website", href: "/services/custom-website-development" },
+        { label: "HRIS & Payroll", href: "/services/hris-payroll-system" },
+        { label: "Aplikasi Mobile", href: "/services/mobile-app-development" },
+        { label: "Sistem ERP", href: "/services/erp-system-development" },
       ],
       Sumber: [
         { label: "Portofolio", href: "/portfolio" },
@@ -87,7 +88,7 @@ export default function Footer() {
 
           {/* Brand Column (Left - Spans 5) */}
           <div className="lg:col-span-5 flex flex-col justify-start">
-            <Link href={`/${language}`} className="flex items-center mb-4 group">
+            <Link href={localizedPath("/", language)} className="flex items-center mb-4 group">
               <Image
                 src="/zellio3.png"
                 alt="Zellio Logo"
@@ -135,7 +136,7 @@ export default function Footer() {
                   {links.map((link, index) => (
                     <li key={index}>
                       <Link
-                        href={`/${language}${link.href === '/' ? '' : link.href.startsWith('/#') ? link.href.substring(1) : link.href}`}
+                        href={localizedPath(link.href, language)}
                         className="text-[#94A3B8] text-sm hover:text-white transition-colors duration-200"
                       >
                         {link.label}
@@ -159,13 +160,13 @@ export default function Footer() {
           {/* Bottom Legal Links */}
           {/* Bottom Legal Links — different labels from footer columns to avoid identical-name collisions */}
           <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs text-[#94A3B8]">
-            <Link href={`/${language}/privacy-policy`} className="hover:text-white transition-colors">
+            <Link href={localizedPath("/privacy-policy", language)} className="hover:text-white transition-colors">
               {language === "en" ? "Privacy" : "Privasi"}
             </Link>
-            <Link href={`/${language}/terms-of-service`} className="hover:text-white transition-colors">
+            <Link href={localizedPath("/terms-of-service", language)} className="hover:text-white transition-colors">
               {language === "en" ? "Terms" : "Ketentuan"}
             </Link>
-            <Link href={`/${language}/cookie-policy`} className="hover:text-white transition-colors">
+            <Link href={localizedPath("/cookie-policy", language)} className="hover:text-white transition-colors">
               {language === "en" ? "Cookies" : "Cookie"}
             </Link>
           </div>

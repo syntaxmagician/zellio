@@ -193,13 +193,13 @@ export const translations: Record<"en" | "id", any> = {
       viewAll: "Lihat Semua Layanan",
       elevate: "Tingkatkan reputasi digital bisnis Anda.",
 
-      "custom-website-development": "Pengembangan Web Kustom",
-      "company-profile-website": "Website Profil Perusahaan",
-      "e-commerce-development": "Pengembangan E-Commerce",
-      "mobile-app-development": "Pembuatan Aplikasi Mobile",
-      "erp-system-development": "Pengembangan Sistem ERP",
-      "crm-system-development": "Pengembangan Sistem CRM",
-      "hris-payroll-system": "Sistem HRIS & Payroll",
+      "custom-website-development": "Jasa Pembuatan Website Kustom",
+      "company-profile-website": "Jasa Website Company Profile",
+      "e-commerce-development": "Jasa Pembuatan Website E-Commerce",
+      "mobile-app-development": "Jasa Pembuatan Aplikasi Android & iOS",
+      "erp-system-development": "Jasa Pembuatan Sistem ERP",
+      "crm-system-development": "Jasa Pembuatan Sistem CRM",
+      "hris-payroll-system": "Pengembangan HRIS & Payroll Kustom",
       "saas-platform-development": "Pengembangan Platform SaaS",
 
       desc: {

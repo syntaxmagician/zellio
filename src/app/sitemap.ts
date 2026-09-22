@@ -16,9 +16,8 @@ function createSitemapItem(
   const idUrl = normalized ? `${BASE_URL}/${normalized}` : BASE_URL;
   const enUrl = normalized ? `${BASE_URL}/en/${normalized}` : `${BASE_URL}/en`;
 
-  return {
-    url: idUrl,
-    lastModified: new Date(),
+  return [idUrl, enUrl].map(url => ({
+    url,
     changeFrequency,
     priority,
     alternates: {
@@ -28,31 +27,31 @@ function createSitemapItem(
         'x-default': idUrl,
       },
     },
-  };
+  }));
 }
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const serviceUrls = servicesData.map((service) =>
+  const serviceUrls = servicesData.flatMap((service) =>
     createSitemapItem(`services/${slugify(service.title)}`, 'monthly', 0.8)
   );
 
-  const insightUrls = insightsData.map((insight) =>
+  const insightUrls = insightsData.flatMap((insight) =>
     createSitemapItem(`insights/${insight.slug}`, 'monthly', 0.7)
   );
 
-  const portfolioUrls = projects.map((project) =>
+  const portfolioUrls = projects.flatMap((project) =>
     createSitemapItem(`portfolio/${project.slug}`, 'monthly', 0.8)
   );
 
   return [
-    createSitemapItem('', 'weekly', 1.0),
-    createSitemapItem('portfolio', 'monthly', 0.9),
-    createSitemapItem('services', 'monthly', 0.9),
-    createSitemapItem('team', 'monthly', 0.8),
-    createSitemapItem('contact', 'yearly', 0.7),
-    createSitemapItem('privacy-policy', 'yearly', 0.3),
-    createSitemapItem('terms-of-service', 'yearly', 0.3),
-    createSitemapItem('cookie-policy', 'yearly', 0.3),
+    ...createSitemapItem('', 'weekly', 1.0),
+    ...createSitemapItem('portfolio', 'monthly', 0.9),
+    ...createSitemapItem('services', 'monthly', 0.9),
+    ...createSitemapItem('team', 'monthly', 0.8),
+    ...createSitemapItem('contact', 'yearly', 0.7),
+    ...createSitemapItem('privacy-policy', 'yearly', 0.3),
+    ...createSitemapItem('terms-of-service', 'yearly', 0.3),
+    ...createSitemapItem('cookie-policy', 'yearly', 0.3),
     ...serviceUrls,
     ...insightUrls,
     ...portfolioUrls,

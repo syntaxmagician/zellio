@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { localizedPath } from "@/lib/seo";
 import { insightsData } from "@/lib/insightsData";
 
 export default function Insights() {
@@ -119,7 +120,7 @@ export default function Insights() {
                 </div>
 
                 <div className="mt-4">
-                  <Link href={`/insights/${activeStory.slug}`} className="group inline-flex items-center gap-2 text-sm font-bold text-white bg-slate-900 hover:bg-slate-800 px-7 py-3.5 rounded-full transition-all duration-300 shadow-md hover:shadow-xl">
+                  <Link href={localizedPath(`/insights/${activeStory.slug}`, language)} className="group inline-flex items-center gap-2 text-sm font-bold text-white bg-slate-900 hover:bg-slate-800 px-7 py-3.5 rounded-full transition-all duration-300 shadow-md hover:shadow-xl">
                     <span>{activeStory[language].buttonText}</span>
                     <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
                   </Link>

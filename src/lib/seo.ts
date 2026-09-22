@@ -1,3 +1,5 @@
+import type { Metadata } from "next";
+
 export const BASE_URL = "https://zellio.id";
 
 /**
@@ -44,4 +46,27 @@ export function getLanguageAlternates(path = "", locale: "id" | "en" = "id") {
  */
 export function absoluteUrl(path = "", locale: "id" | "en" = "id"): string {
   return getCanonicalUrl(path, locale);
+}
+
+export function localizedPath(path: string, locale: "id" | "en") {
+  const clean = path.replace(/^\/(?:en|id)(?=\/|$)/, "");
+  return `${locale === "en" ? "/en" : ""}${clean === "/" ? "" : clean}` || "/";
+}
+
+export function pageMetadata(path: string, locale: "id" | "en", title: string, description: string): Metadata {
+  const brandedTitle = /\bZELLIO\b/i.test(title)
+    ? title
+    : path ? `${title} | ZELLIO` : `ZELLIO — ${title}`;
+  return {
+    title: { absolute: brandedTitle },
+    description,
+    alternates: getLanguageAlternates(path, locale),
+    openGraph: {
+      title: brandedTitle, description, url: absoluteUrl(path, locale),
+      siteName: "ZELLIO", locale: locale === "id" ? "id_ID" : "en_US",
+      alternateLocale: locale === "id" ? "en_US" : "id_ID", type: "website",
+      images: [{ url: "/compro-cover.jpg", width: 1200, height: 630, alt: "ZELLIO — Software House Indonesia" }],
+    },
+    twitter: { card: "summary_large_image", title: brandedTitle, description, images: ["/compro-cover.jpg"] },
+  };
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { createContext, useContext, useState, useEffect } from "react";
+import React, { createContext, useContext, useEffect } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { translations, TranslationKey } from "@/lib/translations";
 
@@ -14,25 +14,19 @@ interface LanguageContextType {
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
-export function LanguageProvider({ children }: { children: React.ReactNode }) {
+export function LanguageProvider({ children, initialLanguage }: {
+  children: React.ReactNode;
+  initialLanguage: Language;
+}) {
   const pathname = usePathname();
   const router = useRouter();
-  const [language, setLanguageState] = useState<Language>("id");
-  const [mounted, setMounted] = useState(false);
+  // Server HTML and hydration use the same locale. The pathname also keeps
+  // the persistent provider in sync after client-side language navigation.
+  const language: Language = pathname
+    ? (pathname === "/en" || pathname.startsWith("/en/") ? "en" : "id")
+    : initialLanguage;
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  useEffect(() => {
-    if (pathname) {
-      if (pathname === "/en" || pathname.startsWith("/en/")) {
-        setLanguageState("en");
-      } else {
-        setLanguageState("id");
-      }
-    }
-  }, [pathname]);
+  useEffect(() => { document.documentElement.lang = language; }, [language]);
 
   const setLanguage = (lang: Language) => {
     if (!pathname) return;
@@ -55,7 +49,7 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
   };
 
   const t = (key: TranslationKey): string => {
-    const activeLang = mounted ? language : "id";
+    const activeLang = language;
     const keys = key.split(".") as string[];
     let current: any = translations[activeLang];
 

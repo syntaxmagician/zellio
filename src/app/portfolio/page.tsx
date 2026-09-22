@@ -1,22 +1,13 @@
-import type { Metadata } from "next";
-import { getLanguageAlternates, absoluteUrl } from "@/lib/seo";
 import PortfolioPageClient from "./PortfolioPageClient";
+import { getRequestLocale } from "@/lib/locale";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Portfolio",
-  description:
-    "Selected product engineering work by ZELLIO — websites, web apps, and internal systems.",
-  alternates: getLanguageAlternates("portfolio"),
-  openGraph: {
-    title: "Portfolio | ZELLIO",
-    description:
-      "Selected product engineering work by ZELLIO — websites, web apps, and internal systems.",
-    url: absoluteUrl("portfolio"),
-    locale: "id_ID",
-    type: "website",
-  },
-};
-
-export default function PortfolioPage() {
-  return <PortfolioPageClient />;
+export async function generateMetadata() {
+  const locale = await getRequestLocale();
+  return pageMetadata("portfolio", locale,
+    locale === "id" ? "Portofolio Website, Aplikasi & Sistem Bisnis" : "Website, App & Business Software Portfolio",
+    locale === "id" ? "Lihat portofolio ZELLIO: pengembangan website, aplikasi web, dan sistem operasional beserta pendekatan dan teknologi yang digunakan." : "Explore ZELLIO projects: websites, web applications, and operational systems, including our approach and the technologies used."
+  );
 }
+
+export default function Page() { return <PortfolioPageClient />; }

@@ -1,5 +1,6 @@
+import { getRequestLocale } from "@/lib/locale";
 import { insightsData } from "@/lib/insightsData";
-import { getLanguageAlternates, absoluteUrl } from "@/lib/seo";
+import { pageMetadata } from "@/lib/seo";
 import { notFound } from "next/navigation";
 import InsightPageClient from "./InsightPageClient";
 import type { Metadata } from "next";
@@ -16,24 +17,13 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
   const path = `insights/${slug}`;
 
+  const locale = await getRequestLocale();
+  const copy = story[locale];
+  const metadata = pageMetadata(path, locale, copy.title, copy.desc);
   return {
-    title: `${story.en.title} — ZELLIO Insights`,
-    description: story.en.desc,
-    alternates: getLanguageAlternates(path),
-    openGraph: {
-      title: `${story.en.title} — ZELLIO Insights`,
-      description: story.en.desc,
-      url: absoluteUrl(path),
-      type: "article",
-      images: [
-        {
-          url: story.img,
-          width: 1200,
-          height: 630,
-          alt: story.en.title
-        }
-      ]
-    },
+    ...metadata,
+    openGraph: { ...metadata.openGraph, type: "article", images: [{ url: story.img, alt: copy.title }] },
+    twitter: { ...metadata.twitter, images: [story.img] },
   };
 }
 

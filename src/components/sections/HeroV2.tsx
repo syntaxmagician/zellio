@@ -9,7 +9,7 @@ const localText = {
     eyebrow: "Greetings! We Are ZELLIO",
     slogan: ["Building digital", "systems that last."],
     description:
-      "We are a creative team of designers, developers, and strategists building elevated websites and scalable custom platforms.",
+      "ZELLIO is a software house in Indonesia building custom websites, mobile apps, and business systems. We turn business requirements into digital products ready for everyday use.",
     primaryBtn: "Get to know us",
     secondaryBtn: "Explore Our Work",
     scroll: "Scroll",
@@ -19,7 +19,7 @@ const localText = {
     eyebrow: "HAI ! KAMI ADALAH ZELLIO",
     slogan: ["Membangun sistem", "digital yang abadi."],
     description:
-      "Kami adalah tim desainer, developer, dan arsitek perangkat lunak yang membangun sistem digital premium berstandar industri.",
+      "ZELLIO adalah software house Indonesia untuk pembuatan website, aplikasi mobile, dan sistem bisnis kustom. Kami membantu menerjemahkan kebutuhan bisnis menjadi produk digital yang siap digunakan.",
     primaryBtn: "Mulai proyek",
     secondaryBtn: "Lihat Portofolio",
     scroll: "Scroll",

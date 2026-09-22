@@ -303,4 +303,10 @@ export const testimonials = [
     name: "Davin Alamsyah",
     company: "NontonKuy",
   },
+  {
+    quote_en: "Running a cafe with multiple disconnected apps was exhausting. Neurox unified POS, recipe costing, staff attendance, and finance into one live flow. No more spreadsheet headaches.",
+    quote_id: "Dulu pusing kelola belasan app terpisah buat kasir, stok resep, dan slip gaji kru. Pas pakai Neurox buatan Zellio, data masuk sekali langsung ngalir ke pembukuan dan dapur. Bebas rekap Excel!",
+    name: "Syed Al-Hafiz",
+    company: "Neurox Operating System",
+  },
 ];
